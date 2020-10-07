@@ -11,7 +11,7 @@ public class ProjectCommand extends Command {
     }
 
     public void executeCommand(ProjectList projects) {
-        ProjectList.errorCheckingProject(currentInput, projects);
+        projects.createProject(currentInput, projects);
     }
 
     public Boolean isExit() {
