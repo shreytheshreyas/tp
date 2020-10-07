@@ -14,9 +14,9 @@ public class ProjectList {
     }
 
     /**
-     * Gets the arraylist that contains existing tasks
+     * Gets the arraylist that contains existing tasks.
      *
-     * @return Arraylist that contains existing tasks
+     * @return Arraylist that contains existing tasks.
      */
     public ArrayList<Project> getProjectList() {
         return projects;
@@ -37,7 +37,6 @@ public class ProjectList {
         Project newProject = new Project(projectDescription, deadline);
         projects.getProjectList().add(newProject);
         System.out.println("Project \"" + projectDescription + " by " + deadline + "\" created!!");
-        //printAddTaskMessage(tasks);
     }
 
 }

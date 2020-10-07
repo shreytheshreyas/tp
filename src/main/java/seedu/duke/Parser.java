@@ -38,8 +38,7 @@ public class Parser {
         // If given correct command but invalid format, error messages can be printed
         if (inputCommand.split(" ").length > 1) {
             projectDescription = inputCommand.split(" /", 2)[0].split(" ", 2)[1];
-        }
-        else {
+        } else {
             projectDescription = inputCommand;
         }
 
@@ -66,6 +65,8 @@ public class Parser {
 //        case INPUT_COMMAND_DATETIME:
 //            commandType = new DateTimeCommand(inputCommand);
 //            break;
+        default:
+            break;
         }
         return commandType;
     }

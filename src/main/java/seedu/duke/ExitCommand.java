@@ -1,7 +1,7 @@
 package seedu.duke;
 
 /**
- * Displays goodbye message when application is terminated by the user
+ * Displays goodbye message when application is terminated by the user.
  */
 public class ExitCommand extends Command {
     public void executeCommand(ProjectList projects) {
