@@ -9,7 +9,9 @@ public class ProjectList {
     /**
      * Creates an empty project list.
      */
-    public ProjectList() { projects = new ArrayList<>(); }
+    public ProjectList() { 
+        projects = new ArrayList<>(); 
+    }
 
     /**
      * Gets the arraylist that contains existing projects.
