@@ -4,7 +4,7 @@ public class Parser {
 
     private static final String INPUT_COMMAND_BYE = "bye";
     private static final String INPUT_COMMAND_LIST = "list";
-    private static int projectIndex;
+    private static int projectIndex = -1;
 
     /**
      * Parses user input into command for execution.
@@ -12,7 +12,7 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command parse(String inputCommand, int projectIndex) {
+    public static Command parse(String inputCommand) {
         Command commandType;
         if (inputCommand.equals(INPUT_COMMAND_BYE)) {
             commandType = new ExitCommand();
@@ -45,6 +45,7 @@ public class Parser {
             break;
         case "select":
             if (isProjectListView) {
+                projectIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
                 commandType = new SelectCommand(inputCommand);
             } else {
 
@@ -53,7 +54,12 @@ public class Parser {
         case "project":
             String deadline = inputCommand.split(" /by ")[1];
             projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
-            commandType = new ProjectCommand(inputCommand, projectDescription, deadline);
+            commandType = new ProjectCommand(projectDescription, deadline);
+            break;
+        case "task":
+            deadline = inputCommand.split(" /by ")[1];
+            projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
+            commandType = new TaskCommand(projectDescription, deadline, projectIndex);
             break;
         default:
             break;

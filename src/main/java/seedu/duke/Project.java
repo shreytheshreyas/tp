@@ -6,20 +6,24 @@ public class Project {
     protected String description;
     protected boolean isDone;
     protected String deadline;
-    private ArrayList<Task> tasks;
+    private TaskList tasks;
 
     public Project(String description, String deadline) {
         this.description = description;
         this.isDone = false;
         this.deadline = deadline;
-        this.tasks = new ArrayList<>();
+        this.tasks = new TaskList();
     }
 
     public String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
-    public ArrayList<Task> getTasks() {return tasks;}
+    public ArrayList<Task> getTasks() {return tasks.getTaskList();}
+
+    public void createTask(String description, String deadline) {
+        tasks.createTask(description, deadline);
+    }
 
     /**
      * Returns details of the specified task.
