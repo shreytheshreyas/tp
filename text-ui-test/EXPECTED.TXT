@@ -5,5 +5,8 @@ Hello from
 | |_| | |_| |   <  __/
 |____/ \__,_|_|\_\___|
 
-What is your name?
-Hello James Gosling
+Project "eat noodle by 2020" created!!
+List of Projects:
+     1.eat noodle | 2020
+eat noodle | 2020
+See you again!

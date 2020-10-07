@@ -48,23 +48,7 @@ public class Parser {
             break;
         case "project":
             commandType = new ProjectCommand(inputCommand, projectDescription);
-//        case INPUT_COMMAND_DEADLINE:
-//        case INPUT_COMMAND_EVENT:
-//        case INPUT_COMMAND_TODO:
-//            commandType = new AddCommand(taskType, taskDescription, inputCommand);
-//            break;
-//        case INPUT_COMMAND_DONE:
-//            commandType = new DoneCommand(inputCommand);
-//            break;
-//        case INPUT_COMMAND_DELETE:
-//            commandType = new DeleteCommand(inputCommand);
-//            break;
-//        case INPUT_COMMAND_FIND:
-//            commandType = new FindCommand(inputCommand);
-//            break;
-//        case INPUT_COMMAND_DATETIME:
-//            commandType = new DateTimeCommand(inputCommand);
-//            break;
+            break;
         default:
             break;
         }

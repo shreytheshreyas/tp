@@ -18,6 +18,8 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
+
+
         Scanner in = new Scanner(System.in);
 
         boolean isExit = false;
