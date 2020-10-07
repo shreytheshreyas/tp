@@ -63,6 +63,7 @@ public class Parser {
             } else {
                 System.out.println("Not in Project View!");
             }
+            break;
         case "task":
             if (isProjectListView) {
                 System.out.println("Not in Task View!");
@@ -80,6 +81,7 @@ public class Parser {
             } else {
                 System.out.println("Already in Project View!");
             }
+            break;
         default:
             break;
         }
