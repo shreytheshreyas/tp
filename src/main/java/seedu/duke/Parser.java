@@ -4,6 +4,7 @@ public class Parser {
 
     private static final String INPUT_COMMAND_BYE = "bye";
     private static final String INPUT_COMMAND_LIST = "list";
+    private static int projectIndex = -1;
 
     /**
      * Parses user input into command for execution.
@@ -15,8 +16,6 @@ public class Parser {
         Command commandType;
         if (inputCommand.equals(INPUT_COMMAND_BYE)) {
             commandType = new ExitCommand();
-        } else if (inputCommand.equals(INPUT_COMMAND_LIST)) {
-            commandType = new ListCommand();
         } else {
             commandType = checkAction(inputCommand);
         }
@@ -33,21 +32,31 @@ public class Parser {
         Command commandType = null;
         String taskType = inputCommand.split(" ")[0];
         String projectDescription;
-
-        // Check validity of user's input on task description
-        // If given correct command but invalid format, error messages can be printed
-        if (inputCommand.split(" ").length > 1) {
-            projectDescription = inputCommand.split(" /", 2)[0].split(" ", 2)[1];
-        } else {
-            projectDescription = inputCommand;
-        }
+        boolean isProjectListView = (projectIndex == -1); //In main project list view
 
         switch (taskType) {
+        case "list":
+            if (isProjectListView) {
+                commandType = new ProjectListCommand();
+            } else {
+                commandType = new TaskListCommand(projectIndex);
+            }
+            break;
         case "select":
-            commandType = new SelectCommand(inputCommand);
+            if (isProjectListView) {
+                projectIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
+                commandType = new ProjectSelectCommand(projectIndex);
+            } 
             break;
         case "project":
-            commandType = new ProjectCommand(inputCommand, projectDescription);
+            String deadline = inputCommand.split(" /by ")[1];
+            projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
+            commandType = new ProjectCommand(projectDescription, deadline);
+            break;
+        case "task":
+            deadline = inputCommand.split(" /by ")[1];
+            projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
+            commandType = new TaskCommand(projectDescription, deadline, projectIndex);
             break;
         default:
             break;
