@@ -23,9 +23,10 @@ public class Duke {
         Scanner in = new Scanner(System.in);
 
         boolean isExit = false;
+        int projectIndex = 0;
         while (!isExit) {
             try {
-                Command commandInput = Parser.parse(in.nextLine());
+                Command commandInput = Parser.parse(in.nextLine(), projectIndex);
                 commandInput.executeCommand(projects);
                 isExit = commandInput.isExit();
             } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {

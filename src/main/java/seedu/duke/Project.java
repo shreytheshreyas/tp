@@ -19,6 +19,8 @@ public class Project {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
+    public ArrayList<Task> getTasks() {return tasks;}
+
     /**
      * Returns details of the specified task.
      *
