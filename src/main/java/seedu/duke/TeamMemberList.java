@@ -25,6 +25,10 @@ public class TeamMemberList {
     }
 
     public static String listTeamMembers() {
+        if (memberList.size() == 0) {
+            return "No team members have been added."
+        }
+        
         String listOfMembers = "";
         int i = 0;
         for (TeamMember member : memberList) {
