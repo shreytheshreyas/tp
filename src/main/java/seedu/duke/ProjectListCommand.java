@@ -3,7 +3,7 @@ package seedu.duke;
 /**
  * Prints a list of existing tasks.
  */
-public class ListCommand extends Command {
+public class ProjectListCommand extends Command {
 
     public void executeCommand(ProjectList projects) {
         if (projects.getProjectList().size() == 0) {

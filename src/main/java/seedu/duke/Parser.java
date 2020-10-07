@@ -37,7 +37,7 @@ public class Parser {
         switch (taskType) {
         case "list":
             if (isProjectListView) {
-                commandType = new ListCommand();
+                commandType = new ProjectListCommand();
             }
             else {
                 commandType = new TaskListCommand(projectIndex);
@@ -46,7 +46,7 @@ public class Parser {
         case "select":
             if (isProjectListView) {
                 projectIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
-                commandType = new SelectCommand(inputCommand);
+                commandType = new ProjectSelectCommand(projectIndex);
             } else {
 
             }
