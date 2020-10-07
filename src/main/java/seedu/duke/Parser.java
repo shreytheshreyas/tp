@@ -34,20 +34,14 @@ public class Parser {
         String taskType = inputCommand.split(" ")[0];
         String projectDescription;
 
-        // Check validity of user's input on task description
-        // If given correct command but invalid format, error messages can be printed
-        if (inputCommand.split(" ").length > 1) {
-            projectDescription = inputCommand.split(" /", 2)[0].split(" ", 2)[1];
-        } else {
-            projectDescription = inputCommand;
-        }
-
         switch (taskType) {
         case "select":
             commandType = new SelectCommand(inputCommand);
             break;
         case "project":
-            commandType = new ProjectCommand(inputCommand, projectDescription);
+            String deadline = inputCommand.split(" /by ")[1];
+            projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
+            commandType = new ProjectCommand(inputCommand, projectDescription, deadline);
             break;
         default:
             break;

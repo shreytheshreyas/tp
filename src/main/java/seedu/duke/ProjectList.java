@@ -7,7 +7,7 @@ public class ProjectList {
     private ArrayList<Project> projects;
 
     /**
-     * Creates an empty task list.
+     * Creates an empty project list.
      */
     public ProjectList() {
         projects = new ArrayList<>();
@@ -22,13 +22,11 @@ public class ProjectList {
         return projects;
     }
 
-    public void createProject(String currentInput, ProjectList projects) {
+    public void createProject(ProjectList projects, String description, String deadline) {
         try {
-            String deadline = currentInput.split(" /by ")[1];
-            String projectDescription = currentInput.split(" /by ")[0].split(" ", 2)[1];
-            Project newProject = new Project(projectDescription, deadline);
+            Project newProject = new Project(description, deadline);
             projects.getProjectList().add(newProject);
-            System.out.println("Project \"" + projectDescription + " by " + deadline + "\" created!!");
+            System.out.println("Project \"" + description + " by " + deadline + "\" created!!");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("There is an ERROR in PROJECTLIST!!");
         }
