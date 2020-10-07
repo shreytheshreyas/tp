@@ -38,8 +38,7 @@ public class Parser {
         case "list":
             if (isProjectListView) {
                 commandType = new ProjectListCommand();
-            }
-            else {
+            } else {
                 commandType = new TaskListCommand(projectIndex);
             }
             break;
@@ -47,9 +46,7 @@ public class Parser {
             if (isProjectListView) {
                 projectIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
                 commandType = new ProjectSelectCommand(projectIndex);
-            } else {
-
-            }
+            } 
             break;
         case "project":
             String deadline = inputCommand.split(" /by ")[1];
