@@ -9,23 +9,21 @@ public class ProjectList {
     /**
      * Creates an empty project list.
      */
-    public ProjectList() {
-        projects = new ArrayList<>();
-    }
+    public ProjectList() { projects = new ArrayList<>(); }
 
     /**
-     * Gets the arraylist that contains existing tasks.
+     * Gets the arraylist that contains existing projects.
      *
-     * @return Arraylist that contains existing tasks.
+     * @return Arraylist that contains existing projects.
      */
     public ArrayList<Project> getProjectList() {
         return projects;
     }
 
-    public void createProject(ProjectList projects, String description, String deadline) {
+    public void createProject(String description, String deadline) {
         try {
             Project newProject = new Project(description, deadline);
-            projects.getProjectList().add(newProject);
+            projects.add(newProject);
             System.out.println("Project \"" + description + " by " + deadline + "\" created!!");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("There is an ERROR in PROJECTLIST!!");

@@ -1,18 +1,14 @@
 package seedu.duke;
 
-import java.util.ArrayList;
-
-public class Project {
+public class Task {
     protected String description;
     protected boolean isDone;
     protected String deadline;
-    private ArrayList<Task> tasks;
 
-    public Project(String description, String deadline) {
+    public Task(String description, String deadline) {
         this.description = description;
         this.isDone = false;
         this.deadline = deadline;
-        this.tasks = new ArrayList<>();
     }
 
     public String getStatusIcon() {

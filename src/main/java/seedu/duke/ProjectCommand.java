@@ -13,7 +13,7 @@ public class ProjectCommand extends Command {
     }
 
     public void executeCommand(ProjectList projects) {
-        projects.createProject(projects, description, deadline);
+        projects.createProject(description, deadline);
     }
 
     public Boolean isExit() {
