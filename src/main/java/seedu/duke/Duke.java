@@ -16,6 +16,6 @@ public class Duke {
         System.out.println("What is your name?");
 
         Scanner in = new Scanner(System.in);
-        String command = in.nextLine();
+        System.out.println("Hello " + in.nextLine());
     }
 }
