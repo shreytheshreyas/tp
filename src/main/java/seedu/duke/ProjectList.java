@@ -39,4 +39,8 @@ public class ProjectList {
         System.out.println("Project \"" + projectDescription + " by " + deadline + "\" created!!");
     }
 
+    public void selectProject(int projectIndex) {
+        System.out.println(this.getProjectList().get(projectIndex));
+    }
+
 }
