@@ -29,7 +29,6 @@ public class Project {
     }
 
     public void createTask(String description, String deadline) {
-        
         tasks.createTask(description, deadline);
     }
 

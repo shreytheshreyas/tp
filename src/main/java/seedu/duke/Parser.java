@@ -58,6 +58,13 @@ public class Parser {
             projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
             commandType = new TaskCommand(projectDescription, deadline, projectIndex);
             break;
+        case "member":
+            String memberName = inputCommand.split(" ")[1];
+            commandType = new AddTeamMemberCommand(memberName);
+            break;
+        case "members":
+            commandType = new ListTeamMembersCommand();
+            break;
         default:
             break;
         }
