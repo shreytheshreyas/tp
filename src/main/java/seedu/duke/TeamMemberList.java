@@ -26,7 +26,7 @@ public class TeamMemberList {
 
     public static String listTeamMembers() {
         if (memberList.size() == 0) {
-            return "No team members have been added."
+            return "No team members have been added.";
         }
         
         String listOfMembers = "";
