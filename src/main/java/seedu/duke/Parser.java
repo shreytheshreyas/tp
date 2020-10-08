@@ -82,6 +82,13 @@ public class Parser {
                 System.out.println("Already in Project View!");
             }
             break;
+        case "member":
+            String memberName = inputCommand.split(" ")[1];
+            commandType = new AddTeamMemberCommand(memberName);
+            break;
+        case "members":
+            commandType = new ListTeamMembersCommand();
+            break;
         default:
             break;
         }
