@@ -1,2 +1,1 @@
-list
-bye
+project 1select 1bye
