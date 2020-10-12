@@ -4,13 +4,15 @@ import java.util.ArrayList;
 
 public class ProjectList {
 
+    private int projectIndex;
     private ArrayList<Project> projects;
 
     /**
      * Creates an empty project list.
      */
     public ProjectList() { 
-        projects = new ArrayList<>(); 
+        projects = new ArrayList<>();
+        projectIndex = -1;
     }
 
     /**
@@ -22,18 +24,29 @@ public class ProjectList {
         return projects;
     }
 
-    public void createProject(String description, String deadline) {
+    public void createProject(String description) {
         try {
-            Project newProject = new Project(description, deadline);
+            Project newProject = new Project(description);
             projects.add(newProject);
-            System.out.println("Project \"" + description + " by " + deadline + "\" created!!");
+            System.out.println("Project \"" + description + "\" created!!");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("There is an ERROR in PROJECTLIST!!");
         }
     }
 
     public void selectProject(int projectIndex) {
-        System.out.println(this.getProjectList().get(projectIndex));
+        System.out.println("Switched to " + this.getProjectList().get(projectIndex));
     }
 
+    public Project getProject(int projectIndex) {
+        return this.getProjectList().get(projectIndex);
+    }
+
+    public int getProjectIndex() {
+        return projectIndex;
+    }
+
+    public void setProjectIndex(int index) {
+        projectIndex = index;
+    }
 }
