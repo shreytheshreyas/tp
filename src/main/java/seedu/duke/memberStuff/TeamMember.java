@@ -1,4 +1,4 @@
-package seedu.duke.MemberStuff;
+package seedu.duke.memberStuff;
 
 public class TeamMember {
     protected String name;

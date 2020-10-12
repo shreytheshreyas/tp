@@ -1,6 +1,6 @@
-package seedu.duke.Commands;
+package seedu.duke.commands;
 
-import seedu.duke.ProjectStuff.ProjectList;
+import seedu.duke.projectStuff.ProjectList;
 
 /**
  * Represents an executable command.

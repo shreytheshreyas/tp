@@ -1,7 +1,7 @@
-package seedu.duke.ProjectStuff;
+package seedu.duke.projectStuff;
 
-import seedu.duke.TaskStuff.Task;
-import seedu.duke.TaskStuff.TaskList;
+import seedu.duke.taskStuff.Task;
+import seedu.duke.taskStuff.TaskList;
 
 import java.util.ArrayList;
 
