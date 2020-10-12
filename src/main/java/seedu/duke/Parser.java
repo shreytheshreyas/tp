@@ -33,7 +33,7 @@ public class Parser {
         Command commandType = null;
         String[] inputs = inputCommand.split("\\s+");
         String taskType = inputs[0];
-        String projectDescription = "";
+        String description = "";
         boolean isProjectListView = (projectIndex == -1); //In main project list view
 
         switch (taskType) {
@@ -53,12 +53,22 @@ public class Parser {
                 commandType = new TaskSelectCommand(taskIndex, projectIndex);
             }
             break;
+        case "description":
+            if (isProjectListView) {
+                System.out.println("Not in Task View!");
+            } else {
+                for (int i = 1; i < inputs.length; i++) {
+                    description += inputs[i];
+                }
+                commandType = new ProjectDescriptionCommand(description, projectIndex);
+            }
+            break;
         case "project":
             if (isProjectListView) {
                 for (int i = 1; i < inputs.length; i++) {
-                    projectDescription += inputs[i];
+                    description += inputs[i];
                 }
-                commandType = new ProjectCommand(projectDescription);
+                commandType = new ProjectCommand(description);
                 break;
             } else {
                 System.out.println("Not in Project View!");
@@ -69,9 +79,9 @@ public class Parser {
                 System.out.println("Not in Task View!");
             } else {
                 for (int i = 1; i < inputs.length; i++) {
-                    projectDescription += inputs[i];
+                    description += inputs[i];
                 }
-                commandType = new TaskCommand(projectDescription, projectIndex);
+                commandType = new TaskCommand(description, projectIndex);
             }
             break;
         case "switch":

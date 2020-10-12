@@ -36,6 +36,7 @@ public class ProjectList {
 
     public void selectProject(int projectIndex) {
         System.out.println("Switched to " + this.getProjectList().get(projectIndex));
+        System.out.println("Project Description - " + this.getProjectList().get(projectIndex).getDescription());
     }
 
     public Project getProject(int projectIndex) {
