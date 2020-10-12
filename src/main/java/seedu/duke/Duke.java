@@ -1,5 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.Commands.Command;
+import seedu.duke.ProjectStuff.ProjectList;
+import seedu.duke.TaskStuff.TaskList;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -18,7 +22,9 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         //System.out.println("Hello from\n" + logo);
-        //System.out.println("____________________________________________________________");
+        System.out.println("Hello from Duke!");
+        System.out.println("What can I do for you?");
+        System.out.println("____________________________________________________________");
 
 
         Scanner in = new Scanner(System.in);
@@ -27,13 +33,13 @@ public class Duke {
         while (!isExit) {
             try {
                 Command commandInput = Parser.parse(in.nextLine());
-                //System.out.println("____________________________________________________________");
+                System.out.println("____________________________________________________________");
                 commandInput.executeCommand(projects);
                 isExit = commandInput.isExit();
             } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
                 printInvalidTaskInputErrorMessage();
             }
-            //System.out.println("____________________________________________________________");
+            System.out.println("____________________________________________________________");
         }
 
     }

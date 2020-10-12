@@ -1,4 +1,8 @@
-package seedu.duke;
+package seedu.duke.Commands.TaskCommands;
+
+import seedu.duke.Commands.Command;
+import seedu.duke.ProjectStuff.Project;
+import seedu.duke.ProjectStuff.ProjectList;
 
 public class TaskCommand extends Command {
 

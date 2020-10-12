@@ -1,5 +1,16 @@
 package seedu.duke;
 
+import seedu.duke.Commands.*;
+import seedu.duke.Commands.MemberCommands.AddTeamMemberCommand;
+import seedu.duke.Commands.MemberCommands.ListTeamMembersCommand;
+import seedu.duke.Commands.ProjectCommands.ProjectCommand;
+import seedu.duke.Commands.ProjectCommands.ProjectListCommand;
+import seedu.duke.Commands.ProjectCommands.ProjectSelectCommand;
+import seedu.duke.Commands.TaskCommands.TaskCommand;
+import seedu.duke.Commands.TaskCommands.TaskDeleteCommand;
+import seedu.duke.Commands.TaskCommands.TaskListCommand;
+import seedu.duke.Commands.TaskCommands.TaskSelectCommand;
+
 public class Parser {
 
     private static final String INPUT_COMMAND_BYE = "bye";
@@ -46,10 +57,10 @@ public class Parser {
             break;
         case "select":
             if (isProjectListView) {
-                projectIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
+                projectIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new ProjectSelectCommand(projectIndex);
             } else {
-                taskIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
+                taskIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new TaskSelectCommand(taskIndex, projectIndex);
             }
             break;
@@ -72,6 +83,14 @@ public class Parser {
                     projectDescription += inputs[i];
                 }
                 commandType = new TaskCommand(projectDescription, projectIndex);
+            }
+            break;
+        case "delete":
+            if (isProjectListView) {
+                //Implement delete project here - Small Sam
+            } else {
+                taskIndex = Integer.parseInt(inputs[1]) - 1;
+                commandType = new TaskDeleteCommand(taskIndex, projectIndex);
             }
             break;
         case "switch":

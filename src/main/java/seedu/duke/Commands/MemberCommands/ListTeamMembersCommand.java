@@ -1,4 +1,8 @@
-package seedu.duke;
+package seedu.duke.Commands.MemberCommands;
+
+import seedu.duke.Commands.Command;
+import seedu.duke.ProjectStuff.ProjectList;
+import seedu.duke.MemberStuff.TeamMemberList;
 
 public class ListTeamMembersCommand extends Command {
 

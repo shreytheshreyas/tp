@@ -1,4 +1,7 @@
-package seedu.duke;
+package seedu.duke.ProjectStuff;
+
+import seedu.duke.TaskStuff.Task;
+import seedu.duke.TaskStuff.TaskList;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,14 @@ public class Project {
 
     public void createTask(String description) {
         tasks.createTask(description);
+    }
+
+    public void selectTask(int index) {
+        tasks.selectTask(index);
+    }
+
+    public void deleteTask(int index) {
+        tasks.deleteTask(index);
     }
 
     /**

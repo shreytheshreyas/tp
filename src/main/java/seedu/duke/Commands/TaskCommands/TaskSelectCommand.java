@@ -1,16 +1,21 @@
-package seedu.duke;
+package seedu.duke.Commands.TaskCommands;
 
-public class ProjectSelectCommand extends Command {
+import seedu.duke.Commands.Command;
+import seedu.duke.ProjectStuff.ProjectList;
+
+public class TaskSelectCommand extends Command {
 
     private int itemIndex;
+    private int projectIndex;
 
-    public ProjectSelectCommand(int itemIndex) {
+    public TaskSelectCommand(int itemIndex, int projectIndex) {
         this.itemIndex = itemIndex;
+        this.projectIndex = projectIndex;
     }
 
     public void executeCommand(ProjectList projects) {
         try {
-            projects.selectProject(itemIndex);
+            projects.getProject(projectIndex).selectTask(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.getProjectList().size() == 0) {
                 System.out.println("I am empty!!!");
