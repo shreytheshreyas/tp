@@ -1,32 +1,34 @@
-package seedu.duke.commands.taskCommands;
+package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
-import seedu.duke.projectStuff.ProjectList;
+import seedu.duke.project.ProjectList;
 
-public class TaskSelectCommand extends Command {
+public class TaskDeleteCommand extends Command {
 
     private int itemIndex;
     private int projectIndex;
 
-    public TaskSelectCommand(int itemIndex, int projectIndex) {
+    public TaskDeleteCommand(int itemIndex, int projectIndex) {
         this.itemIndex = itemIndex;
         this.projectIndex = projectIndex;
     }
 
+    @Override
     public void executeCommand(ProjectList projects) {
         try {
-            projects.getProject(projectIndex).selectTask(itemIndex);
+            projects.getProject(projectIndex).deleteTask(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.getProjectList().size() == 0) {
-                System.out.println("I am empty!!!");
+                System.out.println("Task list is empty!!!");
             } else {
-                System.out.println("Invalid project ID");
+                e.printStackTrace();
+                //System.out.println("Invalid Task number");
             }
         }
     }
 
+    @Override
     public Boolean isExit() {
         return false;
     }
-
 }

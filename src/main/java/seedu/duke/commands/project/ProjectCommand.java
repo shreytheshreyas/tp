@@ -1,7 +1,7 @@
-package seedu.duke.commands.projectCommands;
+package seedu.duke.commands.project;
 
 import seedu.duke.commands.Command;
-import seedu.duke.projectStuff.ProjectList;
+import seedu.duke.project.ProjectList;
 
 public class ProjectCommand extends Command {
 

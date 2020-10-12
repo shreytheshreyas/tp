@@ -1,8 +1,8 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
-import seedu.duke.projectStuff.ProjectList;
-import seedu.duke.taskStuff.TaskList;
+import seedu.duke.project.ProjectList;
+import seedu.duke.task.TaskList;
 
 import java.util.Scanner;
 

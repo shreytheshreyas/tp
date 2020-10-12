@@ -1,15 +1,17 @@
 package seedu.duke;
 
-import seedu.duke.commands.*;
-import seedu.duke.commands.memberCommands.AddTeamMemberCommand;
-import seedu.duke.commands.memberCommands.ListTeamMembersCommand;
-import seedu.duke.commands.projectCommands.ProjectCommand;
-import seedu.duke.commands.projectCommands.ProjectListCommand;
-import seedu.duke.commands.projectCommands.ProjectSelectCommand;
-import seedu.duke.commands.taskCommands.TaskCommand;
-import seedu.duke.commands.taskCommands.TaskDeleteCommand;
-import seedu.duke.commands.taskCommands.TaskListCommand;
-import seedu.duke.commands.taskCommands.TaskSelectCommand;
+
+import seedu.duke.commands.Command;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.member.AddTeamMemberCommand;
+import seedu.duke.commands.member.ListTeamMembersCommand;
+import seedu.duke.commands.project.ProjectCommand;
+import seedu.duke.commands.project.ProjectListCommand;
+import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskListCommand;
+import seedu.duke.commands.task.TaskSelectCommand;
 
 public class Parser {
 

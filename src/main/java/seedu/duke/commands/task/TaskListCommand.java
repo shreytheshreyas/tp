@@ -1,8 +1,8 @@
-package seedu.duke.commands.taskCommands;
+package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
-import seedu.duke.projectStuff.Project;
-import seedu.duke.projectStuff.ProjectList;
+import seedu.duke.project.Project;
+import seedu.duke.project.ProjectList;
 
 /**
  * Prints a list of existing tasks.

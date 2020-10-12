@@ -1,6 +1,6 @@
 package seedu.duke.commands;
 
-import seedu.duke.projectStuff.ProjectList;
+import seedu.duke.project.ProjectList;
 
 /**
  * Displays goodbye message when application is terminated by the user.
