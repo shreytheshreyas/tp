@@ -22,13 +22,17 @@ public class TaskList {
         return tasks;
     }
 
-    public void createTask(String description, String deadline) {
+    public void createTask(String description) {
         try {
-            Task newTask = new Task(description, deadline);
+            Task newTask = new Task(description);
             tasks.add(newTask);
-            System.out.println("Task \"" + description + " by " + deadline + "\" created!!");
+            System.out.println("Task \"" + description + "\" created!!");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("There is an ERROR in TASKLIST!!");
         }
+    }
+
+    public void selectTask(int taskIndex) {
+        System.out.println(this.getTaskList().get(taskIndex));
     }
 }

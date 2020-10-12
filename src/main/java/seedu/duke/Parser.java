@@ -5,9 +5,10 @@ public class Parser {
     private static final String INPUT_COMMAND_BYE = "bye";
     private static final String INPUT_COMMAND_LIST = "list";
     private static int projectIndex = -1;
+    private static int taskIndex = -1;
 
     /**
-     * Parses user input into command for execution.
+     * Parses user input into project command for execution.
      *
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
@@ -30,8 +31,9 @@ public class Parser {
      */
     public static Command checkAction(String inputCommand) {
         Command commandType = null;
-        String taskType = inputCommand.split(" ")[0];
-        String projectDescription;
+        String[] inputs = inputCommand.split("\\s+");
+        String taskType = inputs[0];
+        String projectDescription = "";
         boolean isProjectListView = (projectIndex == -1); //In main project list view
 
         switch (taskType) {
@@ -46,17 +48,39 @@ public class Parser {
             if (isProjectListView) {
                 projectIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
                 commandType = new ProjectSelectCommand(projectIndex);
-            } 
+            } else {
+                taskIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
+                commandType = new TaskSelectCommand(taskIndex, projectIndex);
+            }
             break;
         case "project":
-            String deadline = inputCommand.split(" /by ")[1];
-            projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
-            commandType = new ProjectCommand(projectDescription, deadline);
+            if (isProjectListView) {
+                for (int i = 1; i < inputs.length; i++) {
+                    projectDescription += inputs[i];
+                }
+                commandType = new ProjectCommand(projectDescription);
+                break;
+            } else {
+                System.out.println("Not in Project View!");
+            }
             break;
         case "task":
-            deadline = inputCommand.split(" /by ")[1];
-            projectDescription = inputCommand.split(" /by ", 2)[0].split(" ", 2)[1];
-            commandType = new TaskCommand(projectDescription, deadline, projectIndex);
+            if (isProjectListView) {
+                System.out.println("Not in Task View!");
+            } else {
+                for (int i = 1; i < inputs.length; i++) {
+                    projectDescription += inputs[i];
+                }
+                commandType = new TaskCommand(projectDescription, projectIndex);
+            }
+            break;
+        case "switch":
+            if (!isProjectListView) {
+                System.out.println("Switched to Project View!");
+                projectIndex = -1;
+            } else {
+                System.out.println("Already in Project View!");
+            }
             break;
         case "member":
             String memberName = inputCommand.split(" ")[1];
@@ -70,7 +94,6 @@ public class Parser {
         }
         return commandType;
     }
-
 
 }
 

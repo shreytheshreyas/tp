@@ -14,7 +14,7 @@ public class TaskListCommand extends Command {
         Project project = projects.getProjectList().get(projectIndex);
 
         if (project.getTasks().size() == 0) {
-            System.out.println("I am empty!!");
+            System.out.println("Task list is empty!!");
         } else {
             System.out.println("List of Tasks:");
             for (int i = 0; i < project.getTasks().size(); i++) {

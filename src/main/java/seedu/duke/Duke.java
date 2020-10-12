@@ -4,20 +4,21 @@ import java.util.Scanner;
 
 public class Duke {
 
-
     /**
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
 
         ProjectList projects = new ProjectList();
+        TaskList tasks = new TaskList();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
                 + "| | | | | | | |/ / _ \\\n"
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
-        System.out.println("Hello from\n" + logo);
+        //System.out.println("Hello from\n" + logo);
+        //System.out.println("____________________________________________________________");
 
 
         Scanner in = new Scanner(System.in);
@@ -26,11 +27,13 @@ public class Duke {
         while (!isExit) {
             try {
                 Command commandInput = Parser.parse(in.nextLine());
+                //System.out.println("____________________________________________________________");
                 commandInput.executeCommand(projects);
                 isExit = commandInput.isExit();
             } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
                 printInvalidTaskInputErrorMessage();
             }
+            //System.out.println("____________________________________________________________");
         }
 
     }

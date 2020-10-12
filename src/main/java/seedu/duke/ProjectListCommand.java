@@ -7,7 +7,7 @@ public class ProjectListCommand extends Command {
 
     public void executeCommand(ProjectList projects) {
         if (projects.getProjectList().size() == 0) {
-            System.out.println("I am empty!!");
+            System.out.println("Project list is empty!!");
         } else {
             System.out.println("List of Projects:");
             for (int i = 0; i < projects.getProjectList().size(); i++) {

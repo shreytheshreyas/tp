@@ -15,12 +15,10 @@ public class Task {
 
     protected String description;
     protected boolean isDone;
-    protected String deadline;
 
-    public Task(String description, String deadline) {
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
-        this.deadline = deadline;
     }
 
     public String getStatusIcon() {
@@ -34,7 +32,7 @@ public class Task {
      */
     @Override
     public String toString() {
-        return description + " | " + deadline;
+        return description;
     }
 
     @Override
