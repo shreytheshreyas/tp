@@ -23,7 +23,7 @@ public class TaskCommand extends Command {
     public boolean equals(Object obj) {
         if (obj instanceof TaskCommand) {
             TaskCommand taskCommand = (TaskCommand) obj;
-            return (this.description.equals(taskCommand.description) && this.deadline.equals(taskCommand.deadline)
+            return (this.description.equals(taskCommand.description)
                     && (this.projectIndex == taskCommand.projectIndex));
         } else {
             return false;

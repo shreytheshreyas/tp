@@ -12,17 +12,17 @@ class TaskCommandTest {
     @BeforeAll
     static void createProjectList() {
         projects = new ProjectList();
-        projects.createProject("project1", "today");
-        projects.createProject("project2", "tmr");
-        projects.createProject("project3", "next week");
+        projects.createProject("project1");
+        projects.createProject("project2");
+        projects.createProject("project3");
     }
 
     @Test
     void executeCommand_projectList_taskCreated() {
-        TaskCommand createTask = new TaskCommand("task1", "now", 2);
+        TaskCommand createTask = new TaskCommand("task1", 2);
         createTask.executeCommand(projects);
         Project correctProject = projects.getProjectList().get(2);
-        Task newTask = new Task ("task1", "now");
+        Task newTask = new Task ("task1");
         assertEquals(correctProject.getTasks().get(0), newTask);
     }
 }

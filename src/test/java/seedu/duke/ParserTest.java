@@ -8,9 +8,10 @@ class ParserTest {
 
     @Test
     void checkAction_taskCommand_correctCommandType() {
-        String inputCommand = "task some task /by some deadline";
-        int projectIndex = -1;
-        TaskCommand commandType = new TaskCommand("some task", "some deadline", projectIndex);
+        String inputCommand = "task some task";
+        int projectIndex = 0;
+        TaskCommand commandType = new TaskCommand("some task", projectIndex);
+        Parser.setProjectIndex(projectIndex);
         assertEquals(Parser.checkAction(inputCommand), commandType);
     }
 }

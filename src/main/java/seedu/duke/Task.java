@@ -9,10 +9,6 @@ public class Task {
         return isDone;
     }
 
-    public String getDeadline() {
-        return deadline;
-    }
-
     protected String description;
     protected boolean isDone;
 
@@ -39,8 +35,7 @@ public class Task {
     public boolean equals(Object obj) {
         if (obj instanceof Task) {
             Task task = (Task) obj;
-            return ((task.description.equals(this.description)) && (task.isDone == this.isDone)
-                    && (task.deadline.equals(this.deadline)));
+            return ((task.description.equals(this.description)) && (task.isDone == this.isDone));
         } else {
             return false;
         }
