@@ -35,8 +35,12 @@ public class ProjectList {
     }
 
     public void selectProject(int projectIndex) {
-        System.out.println("Switched to " + this.getProjectList().get(projectIndex));
-        System.out.println("Project Description - " + this.getProjectList().get(projectIndex).getDescription());
+        System.out.println("Switched to Project \"" + this.getProjectList().get(projectIndex) + "\"");
+        if (this.getProjectList().get(projectIndex).getDescription().equals("")) {
+            System.out.println("<project description empty> | <project deadline empty> | <team members involved empty>");
+        } else {
+            System.out.println(this.getProjectList().get(projectIndex).getDescription() + " | <project deadline empty> | <team members involved empty>");
+        }
     }
 
     public Project getProject(int projectIndex) {

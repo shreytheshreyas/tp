@@ -14,7 +14,7 @@ public class ProjectDescriptionCommand extends Command {
     public void executeCommand(ProjectList projects) {
         Project project = projects.getProjectList().get(projectIndex);
         project.addDescription(projectDescription);
-        System.out.println(project + " description added - " + project.getDescription());
+        System.out.println("Project \"" + project + "\" description added <" + project.getDescription() + ">");
     }
 
     public Boolean isExit() {
