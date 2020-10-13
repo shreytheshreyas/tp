@@ -11,8 +11,8 @@ public class ProjectCommand extends Command {
         this.description = description;
     }
 
-    public void executeCommand(ProjectList projects) {
-        projects.createProject(description);
+    public String executeCommand(ProjectList projects) {
+        return projects.createProject(description);
     }
 
     public Boolean isExit() {

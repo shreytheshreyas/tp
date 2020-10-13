@@ -11,8 +11,8 @@ public class ListTeamMembersCommand extends Command {
     public ListTeamMembersCommand() {
     }
 
-    public void executeCommand(ProjectList projects) {
-        System.out.println(TeamMemberList.listTeamMembers());
+    public String executeCommand(ProjectList projects) {
+        return TeamMemberList.listTeamMembers();
     }
 
     public Boolean isExit() {
