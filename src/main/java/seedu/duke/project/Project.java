@@ -35,8 +35,8 @@ public class Project {
         return tasks.getTaskList();
     }
 
-    public void createTask(String description) {
-        tasks.createTask(description);
+    public String createTask(String description) {
+        return tasks.createTask(description);
     }
 
     public void addDescription(String projectDescription) {
@@ -47,12 +47,12 @@ public class Project {
         return projectDescription;
     }
 
-    public void selectTask(int index) {
-        tasks.selectTask(index);
+    public String selectTask(int index) {
+        return tasks.selectTask(index);
     }
 
-    public void deleteTask(int index) {
-        tasks.deleteTask(index);
+    public String deleteTask(int index) {
+        return tasks.deleteTask(index);
     }
 
     /**

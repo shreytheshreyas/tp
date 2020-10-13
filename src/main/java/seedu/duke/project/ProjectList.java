@@ -24,13 +24,13 @@ public class ProjectList {
         return projects;
     }
 
-    public void createProject(String description) {
+    public String createProject(String description) {
         try {
             Project newProject = new Project(description);
             projects.add(newProject);
-            System.out.println("Project \"" + description + "\" created!!");
+            return ("Project \"" + description + "\" created!!");
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("There is an ERROR in PROJECTLIST!!");
+            return ("There is an ERROR in PROJECTLIST!!");
         }
     }
 

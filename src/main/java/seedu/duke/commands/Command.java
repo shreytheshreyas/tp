@@ -7,7 +7,7 @@ import seedu.duke.project.ProjectList;
  */
 public abstract class Command {
 
-    public abstract void executeCommand(ProjectList projects);
+    public abstract String executeCommand(ProjectList projects);
 
     /**
      * Returns an exit flag that is determined by user's command.
