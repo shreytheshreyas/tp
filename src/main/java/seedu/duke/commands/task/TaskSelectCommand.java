@@ -13,14 +13,14 @@ public class TaskSelectCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public void executeCommand(ProjectList projects) {
+    public String executeCommand(ProjectList projects) {
         try {
-            projects.getProject(projectIndex).selectTask(itemIndex);
+            return projects.getProject(projectIndex).selectTask(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.getProjectList().size() == 0) {
-                System.out.println("I am empty!!!"); //----------REPLACE WITH EXCEPTION
+                return ("I am empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
-                System.out.println("Invalid project ID"); //----------REPLACE WITH EXCEPTION
+                return ("Invalid project ID"); //----------REPLACE WITH EXCEPTION
             }
         }
     }

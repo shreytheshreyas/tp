@@ -12,8 +12,9 @@ public class AddTeamMemberCommand extends Command {
         this.name = name;
     }
 
-    public void executeCommand(ProjectList projects) {
+    public String executeCommand(ProjectList projects) {
         TeamMemberList.addTeamMember(name);
+        return "";
     }
 
     public Boolean isExit() {

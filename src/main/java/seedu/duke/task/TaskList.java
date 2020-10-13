@@ -22,17 +22,17 @@ public class TaskList {
         return tasks;
     }
 
-    public void createTask(String description) {
+    public String createTask(String description) {
         Task newTask = new Task(description);
         tasks.add(newTask);
-        System.out.println("Task \"" + description + "\" created!!");
+        return "Task \"" + description + "\" created!!";
     }
 
-    public void selectTask(int taskIndex) {
+    public String selectTask(int taskIndex) {
         try {
-            System.out.println("Selected Task: " + getTaskDescription(taskIndex));
+            return "Selected Task: " + getTaskDescription(taskIndex);
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("There is an ERROR in TASKLIST!!");
+            return "There is an ERROR in TASKLIST!!";
         }
     }
 
@@ -44,13 +44,13 @@ public class TaskList {
         return getTask(taskIndex).getDescription();
     }
 
-    public void deleteTask(int taskIndex) {
+    public String deleteTask(int taskIndex) {
         try {
             String taskDescription = getTaskDescription(taskIndex);
             this.getTaskList().remove(taskIndex);
-            System.out.println("Task \"" + taskDescription + "\" removed!!");
+            return "Task \"" + taskDescription + "\" removed!!";
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("There is an ERROR in TASKLIST!!");
+            return "There is an ERROR in TASKLIST!!";
         }
     }
 

@@ -14,9 +14,10 @@ public class TaskCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public void executeCommand(ProjectList projects) {
+    public String executeCommand(ProjectList projects) {
         Project project = projects.getProjectList().get(projectIndex);
-        project.createTask(description);
+        return project.createTask(description);
+
     }
 
     public Boolean isExit() {

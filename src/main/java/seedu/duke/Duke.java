@@ -33,7 +33,8 @@ public class Duke {
             try {
                 Command commandInput = Parser.parse(in.nextLine());
                 System.out.println("____________________________________________________________");
-                commandInput.executeCommand(projects);
+                String output = commandInput.executeCommand(projects);
+                System.out.println(output);
                 isExit = commandInput.isExit();
             } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
                 System.out.println(e);
