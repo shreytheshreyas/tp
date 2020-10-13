@@ -14,14 +14,14 @@ public class TaskDeleteCommand extends Command {
     }
 
     @Override
-    public void executeCommand(ProjectList projects) {
+    public String executeCommand(ProjectList projects) {
         try {
-            projects.getProject(projectIndex).deleteTask(itemIndex);
+            return projects.getProject(projectIndex).deleteTask(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.getProjectList().size() == 0) {
-                System.out.println("Task list is empty!!!"); //----------REPLACE WITH EXCEPTION
+                return ("Task list is empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
-                System.out.println("Invalid Task number"); //----------REPLACE WITH EXCEPTION
+                return ("Invalid Task number"); //----------REPLACE WITH EXCEPTION
             }
         }
     }
