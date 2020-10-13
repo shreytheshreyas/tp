@@ -15,10 +15,10 @@ public class ProjectDescriptionCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public void executeCommand(ProjectList projects) {
+    public String executeCommand(ProjectList projects) {
         Project project = projects.getProjectList().get(projectIndex);
         project.addDescription(projectDescription);
-        System.out.println("Project description added \"" + project.getDescription() + "\".");
+        return "Project description added \"" + project.getDescription() + "\".";
     }
 
     public Boolean isExit() {
