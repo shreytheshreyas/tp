@@ -58,7 +58,11 @@ public class Parser {
                 System.out.println("Not in Task View!");
             } else {
                 for (int i = 1; i < inputs.length; i++) {
-                    description += inputs[i];
+                    if (i == inputs.length - 1) {
+                        description += inputs[i];
+                    } else {
+                        description += inputs[i] + " ";
+                    }
                 }
                 commandType = new ProjectDescriptionCommand(description, projectIndex);
             }
@@ -66,7 +70,11 @@ public class Parser {
         case "project":
             if (isProjectListView) {
                 for (int i = 1; i < inputs.length; i++) {
-                    description += inputs[i];
+                    if (i == inputs.length - 1) {
+                        description += inputs[i];
+                    } else {
+                        description += inputs[i] + " ";
+                    }
                 }
                 commandType = new ProjectCommand(description);
                 break;
@@ -79,7 +87,11 @@ public class Parser {
                 System.out.println("Not in Task View!");
             } else {
                 for (int i = 1; i < inputs.length; i++) {
-                    description += inputs[i];
+                    if (i == inputs.length - 1) {
+                        description += inputs[i];
+                    } else {
+                        description += inputs[i] + " ";
+                    }
                 }
                 commandType = new TaskCommand(description, projectIndex);
             }
