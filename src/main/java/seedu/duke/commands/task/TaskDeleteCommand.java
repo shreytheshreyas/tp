@@ -19,10 +19,9 @@ public class TaskDeleteCommand extends Command {
             projects.getProject(projectIndex).deleteTask(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.getProjectList().size() == 0) {
-                System.out.println("Task list is empty!!!");
+                System.out.println("Task list is empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
-                e.printStackTrace();
-                //System.out.println("Invalid Task number");
+                System.out.println("Invalid Task number"); //----------REPLACE WITH EXCEPTION
             }
         }
     }

@@ -26,12 +26,12 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command parse(String inputCommand) {
+    public static Command parse(String inputCommand) throws DukeExceptions {
         Command commandType;
         if (inputCommand.equals(INPUT_COMMAND_BYE)) {
             commandType = new ExitCommand();
         } else {
-            commandType = checkAction(inputCommand);
+            commandType = checkAction(inputCommand); //----------ADD TRY CATCH (EXCEPTION)
         }
         return commandType;
     }
@@ -42,7 +42,7 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command checkAction(String inputCommand) {
+    public static Command checkAction(String inputCommand) throws DukeExceptions {
         Command commandType = null;
         String[] inputs = inputCommand.split("\\s+");
         String taskType = inputs[0];
@@ -74,12 +74,12 @@ public class Parser {
                 commandType = new ProjectCommand(projectDescription);
                 break;
             } else {
-                System.out.println("Not in Project View!");
+                System.out.println("Not in Project View!"); //----------REPLACE WITH EXCEPTION
             }
             break;
         case "task":
             if (isProjectListView) {
-                System.out.println("Not in Task View!");
+                System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
             } else {
                 for (int i = 1; i < inputs.length; i++) {
                     projectDescription += inputs[i];
@@ -100,7 +100,7 @@ public class Parser {
                 System.out.println("Switched to Project View!");
                 projectIndex = -1;
             } else {
-                System.out.println("Already in Project View!");
+                System.out.println("Already in Project View!"); //----------REPLACE WITH EXCEPTION
             }
             break;
         case "member":

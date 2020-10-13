@@ -11,10 +11,9 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeExceptions {
 
         ProjectList projects = new ProjectList();
-        TaskList tasks = new TaskList();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -37,16 +36,11 @@ public class Duke {
                 commandInput.executeCommand(projects);
                 isExit = commandInput.isExit();
             } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
-                printInvalidTaskInputErrorMessage();
+                System.out.println(e);
             }
             System.out.println("____________________________________________________________");
         }
 
     }
-
-    private static void printInvalidTaskInputErrorMessage() {
-        System.out.println("There is an ERROR!!!");
-    }
-
 
 }

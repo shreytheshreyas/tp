@@ -23,13 +23,9 @@ public class TaskList {
     }
 
     public void createTask(String description) {
-        try {
-            Task newTask = new Task(description);
-            tasks.add(newTask);
-            System.out.println("Task \"" + description + "\" created!!");
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("There is an ERROR in TASKLIST!!");
-        }
+        Task newTask = new Task(description);
+        tasks.add(newTask);
+        System.out.println("Task \"" + description + "\" created!!");
     }
 
     public void selectTask(int taskIndex) {
