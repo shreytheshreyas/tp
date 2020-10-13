@@ -15,6 +15,6 @@ public class ExitCommand extends Command {
     }
 
     private String printGoodbyeMessage() {
-        return("See you again!");
+        return "See you again!";
     }
 }

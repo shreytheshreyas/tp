@@ -12,7 +12,7 @@ public class ListTeamMembersCommand extends Command {
     }
 
     public String executeCommand(ProjectList projects) {
-       return TeamMemberList.listTeamMembers();
+        return TeamMemberList.listTeamMembers();
     }
 
     public Boolean isExit() {
