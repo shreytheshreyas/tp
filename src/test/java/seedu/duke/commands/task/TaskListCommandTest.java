@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TaskListCommandTest {
 
@@ -15,9 +15,9 @@ class TaskListCommandTest {
         projects.createProject("iPhone App");
         projects.createProject("Android App");
         int testIndex = 1;
-        Project iPhone = projects.getProjectList().get(testIndex);
-        iPhone.createTask("network features");
-        iPhone.createTask("keyboard features");
+        Project iphone = projects.getProjectList().get(testIndex);
+        iphone.createTask("network features");
+        iphone.createTask("keyboard features");
 
         //Expected Output
         String expectedOutput = "";
