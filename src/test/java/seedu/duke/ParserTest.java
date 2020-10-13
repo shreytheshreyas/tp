@@ -17,5 +17,5 @@ class ParserTest {
         Parser.setProjectIndex(projectIndex);
         assertEquals(Parser.checkAction(inputCommand), commandType);
     }
-    *//
+    **/
 }
