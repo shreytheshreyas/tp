@@ -1,4 +1,7 @@
-package seedu.duke;
+package seedu.duke.commands.task;
+
+import seedu.duke.commands.Command;
+import seedu.duke.project.ProjectList;
 
 public class TaskSelectCommand extends Command {
 
@@ -12,12 +15,12 @@ public class TaskSelectCommand extends Command {
 
     public void executeCommand(ProjectList projects) {
         try {
-            projects.getProject(projectIndex).getTaskList().selectTask(itemIndex);
+            projects.getProject(projectIndex).selectTask(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.getProjectList().size() == 0) {
-                System.out.println("I am empty!!!");
+                System.out.println("I am empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
-                System.out.println("Invalid project ID");
+                System.out.println("Invalid project ID"); //----------REPLACE WITH EXCEPTION
             }
         }
     }
