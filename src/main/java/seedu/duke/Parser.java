@@ -6,6 +6,7 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
 import seedu.duke.commands.project.ProjectCommand;
+import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.commands.task.TaskCommand;
