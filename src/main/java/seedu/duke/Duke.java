@@ -1,5 +1,9 @@
 package seedu.duke;
 
+import seedu.duke.commands.Command;
+import seedu.duke.project.ProjectList;
+import seedu.duke.task.TaskList;
+
 import java.util.Scanner;
 
 public class Duke {
@@ -7,10 +11,9 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws DukeExceptions {
 
         ProjectList projects = new ProjectList();
-        TaskList tasks = new TaskList();
 
         String logo = " ____        _        \n"
                 + "|  _ \\ _   _| | _____ \n"
@@ -18,7 +21,9 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         //System.out.println("Hello from\n" + logo);
-        //System.out.println("____________________________________________________________");
+        System.out.println("Hello from Duke!");
+        System.out.println("What can I do for you?");
+        System.out.println("____________________________________________________________");
 
 
         Scanner in = new Scanner(System.in);
@@ -27,20 +32,15 @@ public class Duke {
         while (!isExit) {
             try {
                 Command commandInput = Parser.parse(in.nextLine());
-                //System.out.println("____________________________________________________________");
+                System.out.println("____________________________________________________________");
                 commandInput.executeCommand(projects);
                 isExit = commandInput.isExit();
             } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException e) {
-                printInvalidTaskInputErrorMessage();
+                System.out.println(e);
             }
-            //System.out.println("____________________________________________________________");
+            System.out.println("____________________________________________________________");
         }
 
     }
-
-    private static void printInvalidTaskInputErrorMessage() {
-        System.out.println("There is an ERROR!!!");
-    }
-
 
 }
