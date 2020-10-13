@@ -1,5 +1,18 @@
 package seedu.duke;
 
+
+import seedu.duke.commands.Command;
+import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.member.AddTeamMemberCommand;
+import seedu.duke.commands.member.ListTeamMembersCommand;
+import seedu.duke.commands.project.ProjectCommand;
+import seedu.duke.commands.project.ProjectListCommand;
+import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskListCommand;
+import seedu.duke.commands.task.TaskSelectCommand;
+
 public class Parser {
 
     private static final String INPUT_COMMAND_BYE = "bye";
@@ -13,14 +26,18 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command parse(String inputCommand) {
+    public static Command parse(String inputCommand) throws DukeExceptions {
         Command commandType;
         if (inputCommand.equals(INPUT_COMMAND_BYE)) {
             commandType = new ExitCommand();
         } else {
-            commandType = checkAction(inputCommand);
+            commandType = checkAction(inputCommand); //----------ADD TRY CATCH (EXCEPTION)
         }
         return commandType;
+    }
+
+    static void setProjectIndex(int newIndex) {
+        projectIndex = newIndex;
     }
 
     /**
@@ -29,7 +46,7 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command checkAction(String inputCommand) {
+    public static Command checkAction(String inputCommand) throws DukeExceptions {
         Command commandType = null;
         String[] inputs = inputCommand.split("\\s+");
         String taskType = inputs[0];
@@ -46,10 +63,10 @@ public class Parser {
             break;
         case "select":
             if (isProjectListView) {
-                projectIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
+                projectIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new ProjectSelectCommand(projectIndex);
             } else {
-                taskIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
+                taskIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new TaskSelectCommand(taskIndex, projectIndex);
             }
             break;
@@ -79,12 +96,12 @@ public class Parser {
                 commandType = new ProjectCommand(description);
                 break;
             } else {
-                System.out.println("Not in Project View!");
+                System.out.println("Not in Project View!"); //----------REPLACE WITH EXCEPTION
             }
             break;
         case "task":
             if (isProjectListView) {
-                System.out.println("Not in Task View!");
+                System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
             } else {
                 for (int i = 1; i < inputs.length; i++) {
                     if (i == inputs.length - 1) {
@@ -96,12 +113,20 @@ public class Parser {
                 commandType = new TaskCommand(description, projectIndex);
             }
             break;
+        case "delete":
+            if (isProjectListView) {
+                //Implement delete project here - Small Sam
+            } else {
+                taskIndex = Integer.parseInt(inputs[1]) - 1;
+                commandType = new TaskDeleteCommand(taskIndex, projectIndex);
+            }
+            break;
         case "switch":
             if (!isProjectListView) {
                 System.out.println("Switched to Project View!");
                 projectIndex = -1;
             } else {
-                System.out.println("Already in Project View!");
+                System.out.println("Already in Project View!"); //----------REPLACE WITH EXCEPTION
             }
             break;
         case "member":
