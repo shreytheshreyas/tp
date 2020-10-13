@@ -36,6 +36,10 @@ public class Parser {
         return commandType;
     }
 
+    static void setProjectIndex(int newIndex) {
+        projectIndex = newIndex;
+    }
+
     /**
      * Parses user input related to tasks into command for execution.
      *

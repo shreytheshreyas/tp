@@ -22,4 +22,15 @@ public class TaskCommand extends Command {
     public Boolean isExit() {
         return false;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof TaskCommand) {
+            TaskCommand taskCommand = (TaskCommand) obj;
+            return (this.description.equals(taskCommand.description)
+                    && (this.projectIndex == taskCommand.projectIndex));
+        } else {
+            return false;
+        }
+    }
 }

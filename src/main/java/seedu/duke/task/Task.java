@@ -1,16 +1,20 @@
 package seedu.duke.task;
 
 public class Task {
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
     protected String description;
     protected boolean isDone;
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-    }
-
-    public String getDescription() {
-        return this.description;
     }
 
     public String getStatusIcon() {
@@ -25,5 +29,15 @@ public class Task {
     @Override
     public String toString() {
         return description;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Task) {
+            Task task = (Task) obj;
+            return ((task.description.equals(this.description)) && (task.isDone == this.isDone));
+        } else {
+            return false;
+        }
     }
 }
