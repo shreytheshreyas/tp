@@ -13,7 +13,8 @@ List of Projects:
      2.tundra
 ____________________________________________________________
 ____________________________________________________________
-Switched to baba
+Switched to Project "baba"
+<project description empty> | <project deadline empty> | <team members involved empty>
 ____________________________________________________________
 ____________________________________________________________
 Task list is empty!!
