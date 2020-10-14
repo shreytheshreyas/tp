@@ -110,7 +110,14 @@ public class Parser {
             }
             break;
         case "member":
-            String memberName = inputCommand.split(" ")[1];
+            String memberName = "";
+            for (int i = 1; i < inputs.length; i++) {
+                if (i == inputs.length - 1) {
+                    memberName += inputs[i];
+                } else {
+                    memberName += inputs[i] + " ";
+                }
+            }
             commandType = new AddTeamMemberCommand(memberName);
             break;
         case "members":
