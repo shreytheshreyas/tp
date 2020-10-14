@@ -4,6 +4,7 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
+import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
 import seedu.duke.commands.project.DeleteProjectCommand;
 import seedu.duke.commands.project.ProjectCommand;
@@ -115,6 +116,9 @@ public class Parser {
             break;
         case "members":
             commandType = new ListTeamMembersCommand();
+            break;
+        case "remove":      
+            commandType = new DeleteTeamMemberCommand(inputCommand.split(" ")[1]);
             break;
         default:
             break;
