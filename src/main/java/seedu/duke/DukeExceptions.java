@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import java.util.HashMap;
+
 public class DukeExceptions extends Exception {
 
     private HashMap<String,String> exceptionMessageList = new HashMap<>();
