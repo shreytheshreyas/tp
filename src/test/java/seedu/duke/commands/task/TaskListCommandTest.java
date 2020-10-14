@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TaskListCommandTest {
@@ -16,14 +18,14 @@ class TaskListCommandTest {
         projects.createProject("Android App");
         int testIndex = 1;
         Project iphone = projects.getProjectList().get(testIndex);
-        iphone.createTask("network features");
-        iphone.createTask("keyboard features");
+        iphone.createTask("network features", LocalDate.parse("2020-08-24"));
+        iphone.createTask("keyboard features", LocalDate.parse("2020-10-24"));
 
         //Expected Output
         String expectedOutput = "";
         expectedOutput += "List of Tasks:";
-        expectedOutput += "\n     " + "1" + "." + "network features";
-        expectedOutput += "\n     " + "2" + "." + "keyboard features";
+        expectedOutput += "\n     " + "1" + "." + "network features | 24/08/2020";
+        expectedOutput += "\n     " + "2" + "." + "keyboard features | 24/10/2020";
 
 
 

@@ -8,6 +8,8 @@ import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TaskCommandTest {
@@ -23,17 +25,17 @@ class TaskCommandTest {
 
     @Test
     void executeCommand_projectList_taskCreated() {
-        TaskCommand createTask = new TaskCommand("task1", 2);
+        TaskCommand createTask = new TaskCommand("task1", 2, LocalDate.parse("2020-08-24"));
         createTask.executeCommand(projects);
         Project correctProject = projects.getProjectList().get(2);
-        Task newTask = new Task("task1");
+        Task newTask = new Task("task1", LocalDate.parse("2020-08-24"));
         assertEquals(newTask, correctProject.getTasks().get(0));
     }
 
     @Test
     void executeCommand_projectList_correctOutput() {
-        TaskCommand createTask = new TaskCommand("task1", 2);
+        TaskCommand createTask = new TaskCommand("task1", 2, LocalDate.parse("2020-08-24"));
         String output = createTask.executeCommand(projects);
-        assertEquals("Task \"" + "task1" + "\" created!!", output);
+        assertEquals("Created: task1 | 24/08/2020", output);
     }
 }
