@@ -123,8 +123,9 @@ public class Parser {
         case "members":
             commandType = new ListTeamMembersCommand();
             break;
-        case "remove":      
-            commandType = new DeleteTeamMemberCommand(inputCommand.split(" ")[1]);
+        case "remove":
+            int memberIndex = Integer.parseInt(inputCommand.split(" ")[1]) - 1;
+            commandType = new DeleteTeamMemberCommand(memberIndex);
             break;
         default:
             break;
