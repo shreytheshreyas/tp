@@ -4,19 +4,23 @@ import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 
+import java.time.LocalDate;
+
 public class TaskCommand extends Command {
 
     private String description;
     private int projectIndex;
+    private LocalDate date;
 
-    public TaskCommand(String description, int projectIndex) {
+    public TaskCommand(String description, int projectIndex, LocalDate date) {
         this.description = description;
         this.projectIndex = projectIndex;
+        this.date = date;
     }
 
     public String executeCommand(ProjectList projects) {
         Project project = projects.getProjectList().get(projectIndex);
-        return project.createTask(description);
+        return project.createTask(description, date);
 
     }
 

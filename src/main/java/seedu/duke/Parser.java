@@ -4,7 +4,9 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
+import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
+import seedu.duke.commands.project.DeleteProjectCommand;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectListCommand;
@@ -13,6 +15,10 @@ import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
+import seedu.duke.ui.Ui;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Parser {
 
@@ -53,6 +59,7 @@ public class Parser {
         String taskType = inputs[0];
         String description = "";
         boolean isProjectListView = (projectIndex == -1); //In main project list view
+        Ui ui = new Ui();
 
         switch (taskType) {
         case "list":
@@ -104,19 +111,30 @@ public class Parser {
             if (isProjectListView) {
                 System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
             } else {
-                for (int i = 1; i < inputs.length; i++) {
-                    if (i == inputs.length - 1) {
-                        description += inputs[i];
-                    } else {
-                        description += inputs[i] + " ";
-                    }
+                for (int i = 1; i < inputs.length - 1; i++) { //Task name after task keyword and before date
+                    description += inputs[i];
                 }
-                commandType = new TaskCommand(description, projectIndex);
+                try {
+                    String dateString = inputs[inputs.length - 1].substring(2);
+                    /**
+                    if (dateString.substring(0,2) != "/t") {
+                        throw new DukeExceptions();
+                    }
+                     **/
+                    LocalDate date = LocalDate.parse(dateString);
+                    commandType = new TaskCommand(description, projectIndex, date);
+                } catch (NullPointerException e) {
+                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
+                } catch (StringIndexOutOfBoundsException e) {
+                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
+                }  catch (DateTimeParseException e) {
+                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
+                }
             }
             break;
         case "delete":
             if (isProjectListView) {
-                //Implement delete project here - Small Sam
+                commandType = new DeleteProjectCommand(Integer.parseInt(inputs[1]) - 1);
             } else {
                 taskIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new TaskDeleteCommand(taskIndex, projectIndex);
@@ -131,11 +149,21 @@ public class Parser {
             }
             break;
         case "member":
-            String memberName = inputCommand.split(" ")[1];
+            String memberName = "";
+            for (int i = 1; i < inputs.length; i++) {
+                if (i == inputs.length - 1) {
+                    memberName += inputs[i];
+                } else {
+                    memberName += inputs[i] + " ";
+                }
+            }
             commandType = new AddTeamMemberCommand(memberName);
             break;
         case "members":
             commandType = new ListTeamMembersCommand();
+            break;
+        case "remove":      
+            commandType = new DeleteTeamMemberCommand(inputCommand.split(" ")[1]);
             break;
         default:
             break;

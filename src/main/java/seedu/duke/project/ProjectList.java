@@ -45,6 +45,10 @@ public class ProjectList {
         }
     }
 
+    public void deleteProject(int projectIndex) {
+        projects.remove(projectIndex);
+    }
+
     public Project getProject(int projectIndex) {
         return this.getProjectList().get(projectIndex);
     }

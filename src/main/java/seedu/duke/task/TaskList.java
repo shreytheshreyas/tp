@@ -1,5 +1,6 @@
 package seedu.duke.task;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class TaskList {
@@ -22,15 +23,15 @@ public class TaskList {
         return tasks;
     }
 
-    public String createTask(String description) {
-        Task newTask = new Task(description);
+    public String createTask(String description, LocalDate date) {
+        Task newTask = new Task(description, date);
         tasks.add(newTask);
-        return "Task \"" + description + "\" created!!";
+        return "Created: " + newTask.toString();
     }
 
     public String selectTask(int taskIndex) {
         try {
-            return "Selected Task: " + getTaskDescription(taskIndex);
+            return "Selected Task: " + getTask(taskIndex);
         } catch (ArrayIndexOutOfBoundsException e) {
             return "There is an ERROR in TASKLIST!!";
         }

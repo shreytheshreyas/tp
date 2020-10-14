@@ -3,6 +3,7 @@ package seedu.duke.project;
 import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Project {
@@ -35,8 +36,8 @@ public class Project {
         return tasks.getTaskList();
     }
 
-    public String createTask(String description) {
-        return tasks.createTask(description);
+    public String createTask(String description, LocalDate dateTime) {
+        return tasks.createTask(description, dateTime);
     }
 
     public void addDescription(String projectDescription) {

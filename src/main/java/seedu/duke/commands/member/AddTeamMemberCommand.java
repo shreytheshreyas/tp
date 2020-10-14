@@ -14,7 +14,7 @@ public class AddTeamMemberCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
         TeamMemberList.addTeamMember(name);
-        return "";
+        return "Team member " + name + " has been added";
     }
 
     public Boolean isExit() {
