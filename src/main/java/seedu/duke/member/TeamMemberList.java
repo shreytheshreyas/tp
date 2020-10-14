@@ -9,6 +9,10 @@ public class TeamMemberList {
 
     }
 
+    public static boolean isNamePresent(String name) {
+        return memberList.contains(name);
+    }
+
     public static void addTeamMember(String name) {
         TeamMember newMember = new TeamMember(name);
         memberList.add(newMember);
@@ -16,12 +20,6 @@ public class TeamMemberList {
 
     public static void removeTeamMember(String name) {
         memberList.removeIf(member -> (member.name.contains(name)));
-    }
-
-    public static void removeTeamMember(Integer id) {
-        if (id < memberList.size()) {
-            memberList.remove(id - 1);
-        }
     }
 
     public static String listTeamMembers() {
