@@ -23,8 +23,8 @@ public class TaskList {
         return tasks;
     }
 
-    public String createTask(String description, LocalDate date) {
-        Task newTask = new Task(description, date);
+    public String createTask(String description) {
+        Task newTask = new Task(description);
         tasks.add(newTask);
         return "Created: " + newTask.toString();
     }

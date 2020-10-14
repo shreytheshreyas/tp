@@ -10,17 +10,15 @@ public class TaskCommand extends Command {
 
     private String description;
     private int projectIndex;
-    private LocalDate date;
 
-    public TaskCommand(String description, int projectIndex, LocalDate date) {
+    public TaskCommand(String description, int projectIndex) {
         this.description = description;
         this.projectIndex = projectIndex;
-        this.date = date;
     }
 
     public String executeCommand(ProjectList projects) {
         Project project = projects.getProjectList().get(projectIndex);
-        return project.createTask(description, date);
+        return project.createTask(description);
 
     }
 
