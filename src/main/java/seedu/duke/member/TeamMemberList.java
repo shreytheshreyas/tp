@@ -9,6 +9,10 @@ public class TeamMemberList {
 
     }
 
+    public static boolean isNamePresent(String name) {
+        return memberList.contains(name);
+    }
+
     public static void addTeamMember(String name) {
         TeamMember newMember = new TeamMember(name);
         memberList.add(newMember);
