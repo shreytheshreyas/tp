@@ -14,7 +14,7 @@ public class DeleteTeamMemberCommand extends Command {
 
     @Override
     public String executeCommand(ProjectList projects) {
-        String isNamePresent = (TeamMemberList.isNamePresent(name)) ? "Member removed from Member List" : "Member is not present is Member List";
+        String isNamePresent = (TeamMemberList.isNamePresent(name)) ? "Member removed" : "Member not present";
         TeamMemberList.removeTeamMember(name);
         return isNamePresent;
     }
