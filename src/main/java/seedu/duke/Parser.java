@@ -95,8 +95,7 @@ public class Parser {
             break;
         case "delete":
             if (isProjectListView) {
-                projectIndex = Integer.parseInt(inputs[1]) - 1;
-                commandType = new DeleteProjectCommand(projectIndex);
+                commandType = new DeleteProjectCommand(Integer.parseInt(inputs[1]) - 1);
             } else {
                 taskIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new TaskDeleteCommand(taskIndex, projectIndex);
