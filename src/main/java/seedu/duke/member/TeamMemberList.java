@@ -18,12 +18,6 @@ public class TeamMemberList {
         memberList.removeIf(member -> (member.name.contains(name)));
     }
 
-    public static void removeTeamMember(Integer id) {
-        if (id < memberList.size()) {
-            memberList.remove(id - 1);
-        }
-    }
-
     public static String listTeamMembers() {
         if (memberList.size() == 0) {
             return "No team members have been added.";
