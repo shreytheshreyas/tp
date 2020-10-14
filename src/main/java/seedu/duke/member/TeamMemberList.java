@@ -9,8 +9,8 @@ public class TeamMemberList {
 
     }
 
-    public static boolean isNamePresent(String name) {
-        return memberList.contains(name);
+    public static boolean isMemberPresent(int memberIndex) {
+        return memberIndex < memberList.size();
     }
 
     public static void addTeamMember(String name) {
@@ -18,8 +18,8 @@ public class TeamMemberList {
         memberList.add(newMember);
     }
 
-    public static void removeTeamMember(String name) {
-        memberList.removeIf(member -> (member.name.contains(name)));
+    public static void removeTeamMember(int memberIndex) {
+        memberList.remove(memberIndex);
     }
 
     public static String listTeamMembers() {
