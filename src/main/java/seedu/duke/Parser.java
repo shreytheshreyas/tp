@@ -80,6 +80,7 @@ public class Parser {
                 break;
             } else {
                 System.out.println("Not in Project View!"); //----------REPLACE WITH EXCEPTION
+                DukeExceptions.uiExceptionType("add tasks");
             }
             break;
         case "task":
