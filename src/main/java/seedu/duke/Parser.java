@@ -77,15 +77,13 @@ public class Parser {
                     projectDescription += inputs[i];
                 }
                 commandType = new ProjectCommand(projectDescription);
-                break;
             } else {
-                System.out.println("Not in Project View!"); //----------REPLACE WITH EXCEPTION
-                DukeExceptions.uiExceptionType("add tasks");
+                throw new DukeExceptions("Add Task"); // REPLACED WITH EXCEPTION
             }
             break;
         case "task":
             if (isProjectListView) {
-                System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
+                throw new DukeExceptions("Add Project"); //REPLACED WITH EXCEPTION
             } else {
                 for (int i = 1; i < inputs.length; i++) {
                     projectDescription += inputs[i];
@@ -106,7 +104,7 @@ public class Parser {
                 System.out.println("Switched to Project View!");
                 projectIndex = -1;
             } else {
-                System.out.println("Already in Project View!"); //----------REPLACE WITH EXCEPTION
+                throw new DukeExceptions("Switch"); // REPLACED WITH EXCEPTION
             }
             break;
         case "member":
