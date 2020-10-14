@@ -28,7 +28,8 @@ public class Duke {
                 String output = commandInput.executeCommand(projects);
                 ui.printOutput(output);
                 isExit = commandInput.isExit();
-            } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | DukeExceptions e) {
+            } catch (NullPointerException | StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException 
+                     | DukeExceptions e) {
                 System.out.println(e);
             }
             ui.printLine();
