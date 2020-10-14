@@ -8,6 +8,7 @@ import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
 import seedu.duke.commands.project.DeleteProjectCommand;
 import seedu.duke.commands.project.ProjectCommand;
+import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.commands.task.TaskCommand;
@@ -56,7 +57,7 @@ public class Parser {
         Command commandType = null;
         String[] inputs = inputCommand.split("\\s+");
         String taskType = inputs[0];
-        String projectDescription = "";
+        String description = "";
         boolean isProjectListView = (projectIndex == -1); //In main project list view
         Ui ui = new Ui();
 
@@ -77,12 +78,30 @@ public class Parser {
                 commandType = new TaskSelectCommand(taskIndex, projectIndex);
             }
             break;
+        case "description":
+            if (isProjectListView) {
+                System.out.println("Not in Task View!");
+            } else {
+                for (int i = 1; i < inputs.length; i++) {
+                    if (i == inputs.length - 1) {
+                        description += inputs[i];
+                    } else {
+                        description += inputs[i] + " ";
+                    }
+                }
+                commandType = new ProjectDescriptionCommand(description, projectIndex);
+            }
+            break;
         case "project":
             if (isProjectListView) {
                 for (int i = 1; i < inputs.length; i++) {
-                    projectDescription += inputs[i];
+                    if (i == inputs.length - 1) {
+                        description += inputs[i];
+                    } else {
+                        description += inputs[i] + " ";
+                    }
                 }
-                commandType = new ProjectCommand(projectDescription);
+                commandType = new ProjectCommand(description);
                 break;
             } else {
                 System.out.println("Not in Project View!"); //----------REPLACE WITH EXCEPTION
@@ -93,7 +112,7 @@ public class Parser {
                 System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
             } else {
                 for (int i = 1; i < inputs.length - 1; i++) { //Task name after task keyword and before date
-                    projectDescription += inputs[i];
+                    description += inputs[i];
                 }
                 try {
                     String dateString = inputs[inputs.length - 1].substring(2);
@@ -103,7 +122,7 @@ public class Parser {
                     }
                      **/
                     LocalDate date = LocalDate.parse(dateString);
-                    commandType = new TaskCommand(projectDescription, projectIndex, date);
+                    commandType = new TaskCommand(description, projectIndex, date);
                 } catch (NullPointerException e) {
                     ui.printOutput("Date must be specified in format YYYY-MM-DD");
                 } catch (StringIndexOutOfBoundsException e) {
