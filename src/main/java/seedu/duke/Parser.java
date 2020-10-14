@@ -14,6 +14,10 @@ import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
+import seedu.duke.ui.Ui;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 public class Parser {
 
@@ -54,6 +58,7 @@ public class Parser {
         String taskType = inputs[0];
         String projectDescription = "";
         boolean isProjectListView = (projectIndex == -1); //In main project list view
+        Ui ui = new Ui();
 
         switch (taskType) {
         case "list":
@@ -87,10 +92,25 @@ public class Parser {
             if (isProjectListView) {
                 System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
             } else {
-                for (int i = 1; i < inputs.length; i++) {
+                for (int i = 1; i < inputs.length - 1; i++) { //Task name after task keyword and before date
                     projectDescription += inputs[i];
                 }
-                commandType = new TaskCommand(projectDescription, projectIndex);
+                try {
+                    String dateString = inputs[inputs.length - 1].substring(2);
+                    /**
+                    if (dateString.substring(0,2) != "/t") {
+                        throw new DukeExceptions();
+                    }
+                     **/
+                    LocalDate date = LocalDate.parse(dateString);
+                    commandType = new TaskCommand(projectDescription, projectIndex, date);
+                } catch (NullPointerException e) {
+                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
+                } catch (StringIndexOutOfBoundsException e) {
+                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
+                }  catch (DateTimeParseException e) {
+                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
+                }
             }
             break;
         case "delete":
