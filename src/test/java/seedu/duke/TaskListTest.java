@@ -23,4 +23,12 @@ class TaskListTest {
         tasks.add(task2);
         assertEquals(tasks, taskList.getTaskList());
     }
+
+    @Test
+    void createTasks_existingList_correctOutput() {
+        TaskList taskList = new TaskList();
+        taskList.createTask("task1");
+        String output = taskList.createTask("task2");
+        assertEquals("Task \"" + "task2" + "\" created!!", output);
+    }
 }
