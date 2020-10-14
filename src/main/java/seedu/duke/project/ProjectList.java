@@ -38,6 +38,10 @@ public class ProjectList {
         return ("Switched to " + this.getProjectList().get(projectIndex));
     }
 
+    public void deleteProject(int projectIndex) {
+        projects.remove(projectIndex);
+    }
+
     public Project getProject(int projectIndex) {
         return this.getProjectList().get(projectIndex);
     }

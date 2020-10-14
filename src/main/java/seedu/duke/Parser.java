@@ -6,6 +6,7 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
+import seedu.duke.commands.project.DeleteProjectCommand;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
@@ -94,7 +95,7 @@ public class Parser {
             break;
         case "delete":
             if (isProjectListView) {
-                //Implement delete project here - Small Sam
+                commandType = new DeleteProjectCommand(Integer.parseInt(inputs[1]) - 1);
             } else {
                 taskIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new TaskDeleteCommand(taskIndex, projectIndex);
@@ -109,7 +110,14 @@ public class Parser {
             }
             break;
         case "member":
-            String memberName = inputCommand.split(" ")[1];
+            String memberName = "";
+            for (int i = 1; i < inputs.length; i++) {
+                if (i == inputs.length - 1) {
+                    memberName += inputs[i];
+                } else {
+                    memberName += inputs[i] + " ";
+                }
+            }
             commandType = new AddTeamMemberCommand(memberName);
             break;
         case "members":
