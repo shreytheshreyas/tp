@@ -29,4 +29,11 @@ class TaskCommandTest {
         Task newTask = new Task("task1");
         assertEquals(newTask, correctProject.getTasks().get(0));
     }
+
+    @Test
+    void executeCommand_projectList_correctOutput() {
+        TaskCommand createTask = new TaskCommand("task1", 2);
+        String output = createTask.executeCommand(projects);
+        assertEquals("Task \"" + "task1" + "\" created!!", output);
+    }
 }

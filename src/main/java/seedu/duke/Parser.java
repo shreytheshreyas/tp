@@ -95,8 +95,7 @@ public class Parser {
             break;
         case "delete":
             if (isProjectListView) {
-                projectIndex = Integer.parseInt(inputs[1]) - 1;
-                commandType = new DeleteProjectCommand(projectIndex);
+                commandType = new DeleteProjectCommand(Integer.parseInt(inputs[1]) - 1);
             } else {
                 taskIndex = Integer.parseInt(inputs[1]) - 1;
                 commandType = new TaskDeleteCommand(taskIndex, projectIndex);
@@ -111,7 +110,14 @@ public class Parser {
             }
             break;
         case "member":
-            String memberName = inputCommand.split(" ")[1];
+            String memberName = "";
+            for (int i = 1; i < inputs.length; i++) {
+                if (i == inputs.length - 1) {
+                    memberName += inputs[i];
+                } else {
+                    memberName += inputs[i] + " ";
+                }
+            }
             commandType = new AddTeamMemberCommand(memberName);
             break;
         case "members":

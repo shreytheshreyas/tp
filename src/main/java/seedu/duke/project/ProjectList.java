@@ -40,7 +40,6 @@ public class ProjectList {
 
     public void deleteProject(int projectIndex) {
         projects.remove(projectIndex);
-        projectIndex--;
     }
 
     public Project getProject(int projectIndex) {
