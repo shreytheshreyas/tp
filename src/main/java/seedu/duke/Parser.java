@@ -1,6 +1,5 @@
 package seedu.duke;
 
-
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
@@ -48,7 +47,7 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command checkAction(String inputCommand) throws DukeExceptions {
+    public static Command checkAction(String inputCommand) throws NumberFormatException {
         Command commandType = null;
         String[] inputs = inputCommand.split("\\s+");
         String taskType = inputs[0];
@@ -124,8 +123,12 @@ public class Parser {
             commandType = new ListTeamMembersCommand();
             break;
         case "remove":
-            int memberIndex = Integer.parseInt(inputs[1]) - 1;
-            commandType = new DeleteTeamMemberCommand(memberIndex);
+            try {
+                int memberIndex = Integer.parseInt(inputs[1]) - 1;
+                commandType = new DeleteTeamMemberCommand(memberIndex);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+            }
             break;
         default:
             break;
