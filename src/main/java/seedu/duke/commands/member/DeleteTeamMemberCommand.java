@@ -6,16 +6,16 @@ import seedu.duke.project.ProjectList;
 import seedu.duke.member.TeamMemberList;
 
 public class DeleteTeamMemberCommand extends Command {
-    private String name;
+    private int memberIndex;
 
-    public DeleteTeamMemberCommand(String name) {
-        this.name = name;
+    public DeleteTeamMemberCommand(int memberIndex) {
+        this.memberIndex = memberIndex;
     }
 
     @Override
     public String executeCommand(ProjectList projects) {
-        String isNamePresent = (TeamMemberList.isNamePresent(name)) ? "Member removed" : "Member not present";
-        TeamMemberList.removeTeamMember(name);
+        String isNamePresent = (TeamMemberList.isMemberPresent(memberIndex)) ? "Member removed" : "Member not present";
+        TeamMemberList.removeTeamMember(memberIndex);
         return isNamePresent;
     }
 
