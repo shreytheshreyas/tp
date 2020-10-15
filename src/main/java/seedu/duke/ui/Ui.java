@@ -7,8 +7,8 @@ import seedu.duke.task.Task;
 public class Ui {
 
     private static final String MESSAGE_SINGLE_LINE = "____________________________________________________________";
-    private static final String MESSAGE_WELCOME = "Hello from Duke!\n" +
-            "What can I do for you?";
+    private static final String MESSAGE_WELCOME = "Hello from Duke!\n"
+            + "What can I do for you?";
     private static final String MESSAGE_GOODBYE = "See you again!";
     private static final String MESSAGE_LOGO = " ____        _        \n"
             + "|  _ \\ _   _| | _____ \n"
