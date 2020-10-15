@@ -3,6 +3,7 @@ package seedu.duke.commands.member;
 import seedu.duke.commands.Command;
 import seedu.duke.project.ProjectList;
 import seedu.duke.member.TeamMemberList;
+import seedu.duke.ui.Ui;
 
 public class AddTeamMemberCommand extends Command {
 
@@ -14,7 +15,7 @@ public class AddTeamMemberCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
         TeamMemberList.addTeamMember(name);
-        return "Team member " + name + " has been added";
+        return Ui.printMemberAddedMessage(name);
     }
 
     public Boolean isExit() {

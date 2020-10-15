@@ -1,5 +1,7 @@
 package seedu.duke.project;
 
+import seedu.duke.ui.Ui;
+
 import java.util.ArrayList;
 
 public class ProjectList {
@@ -24,21 +26,20 @@ public class ProjectList {
         return projects;
     }
 
-    public String createProject(String description) {
+    public String createProject(String projectName) {
         try {
-            Project newProject = new Project(description);
+            Project newProject = new Project(projectName);
             projects.add(newProject);
-            return ("Project \"" + description + "\" created!!");
+            return Ui.printProjectCreatedMessage(projectName);
         } catch (ArrayIndexOutOfBoundsException e) {
-            return ("There is an ERROR in PROJECTLIST!!");
+            return ("There is an ERROR in PROJECTLIST!!"); //----------REPLACE WITH EXCEPTION
         }
     }
 
     public String selectProject(int projectIndex) {
         System.out.println("Switched to Project \"" + this.getProjectList().get(projectIndex) + "\"");
         if (this.getProjectList().get(projectIndex).getDescription().equals("")) {
-            return "<project description empty> | <project deadline empty> | "
-                    + "<team members involved empty>";
+            return Ui.printEmptyAdditionalProjectInformationMessage();
         } else {
             return this.getProjectList().get(projectIndex).getDescription()
                     + " | <project deadline empty> | <team members involved empty>";

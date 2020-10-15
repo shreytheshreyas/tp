@@ -1,5 +1,7 @@
 package seedu.duke.task;
 
+import seedu.duke.ui.Ui;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 
@@ -26,7 +28,7 @@ public class TaskList {
     public String createTask(String description, LocalDate date) {
         Task newTask = new Task(description, date);
         tasks.add(newTask);
-        return "Created: " + newTask.toString();
+        return Ui.printTaskCreatedMessage(newTask);
     }
 
     public String selectTask(int taskIndex) {
@@ -49,7 +51,7 @@ public class TaskList {
         try {
             String taskDescription = getTaskDescription(taskIndex);
             this.getTaskList().remove(taskIndex);
-            return "Task \"" + taskDescription + "\" removed!!";
+            return Ui.printTaskDeletedMessage(taskDescription);
         } catch (ArrayIndexOutOfBoundsException e) {
             return "There is an ERROR in TASKLIST!!";
         }
