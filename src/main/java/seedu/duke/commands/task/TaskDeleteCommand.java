@@ -18,8 +18,8 @@ public class TaskDeleteCommand extends Command {
     @Override
     public String executeCommand(ProjectList projects) {
         try {
-             Project project = projects.getProject(projectIndex);
-             project.deleteTask(itemIndex);
+            Project project = projects.getProject(projectIndex);
+            project.deleteTask(itemIndex);
             return "Task " + (itemIndex + 1) + " removed!!";
         } catch (ArrayIndexOutOfBoundsException e) {
             return "There is an ERROR in TASKLIST!!";
