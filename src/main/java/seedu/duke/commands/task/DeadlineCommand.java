@@ -21,7 +21,7 @@ public class DeadlineCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
         Project project = projects.getProjectList().get(projectIndex);
-        Task task = project.getTaskList().getTask(taskIndex);
+        Task task = project.getTask(taskIndex);
         task.addDeadline(date);
         return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 + " added to Task " + task.getDescription();

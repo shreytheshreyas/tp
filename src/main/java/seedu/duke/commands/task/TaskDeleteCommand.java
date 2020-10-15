@@ -1,7 +1,9 @@
 package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
+import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
+import seedu.duke.task.Task;
 
 public class TaskDeleteCommand extends Command {
 
@@ -16,7 +18,11 @@ public class TaskDeleteCommand extends Command {
     @Override
     public String executeCommand(ProjectList projects) {
         try {
-            return projects.getProject(projectIndex).deleteTask(itemIndex);
+             Project project = projects.getProject(projectIndex);
+             project.deleteTask(itemIndex);
+            return "Task " + (itemIndex + 1) + " removed!!";
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return "There is an ERROR in TASKLIST!!";
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.getProjectList().size() == 0) {
                 return ("Task list is empty!!!"); //----------REPLACE WITH EXCEPTION

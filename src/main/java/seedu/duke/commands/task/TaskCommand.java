@@ -3,6 +3,7 @@ package seedu.duke.commands.task;
 import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
+import seedu.duke.task.Task;
 
 import java.time.LocalDate;
 
@@ -18,8 +19,9 @@ public class TaskCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
         Project project = projects.getProjectList().get(projectIndex);
-        return project.createTask(description);
-
+        Task newTask = new Task(description);
+        project.createTask(newTask);
+        return "Created: " + newTask.toString();
     }
 
     public Boolean isExit() {
