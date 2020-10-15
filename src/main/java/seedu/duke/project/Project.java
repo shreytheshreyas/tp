@@ -8,7 +8,6 @@ public class Project {
     protected String projectName;
     protected boolean isDone;
     private ArrayList<Task> tasks;
-    private int numberTasks;
     private String projectDescription;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
@@ -26,12 +25,10 @@ public class Project {
     }
 
     public void createTask(Task task) {
-        numberTasks += 1;
         tasks.add(task);
     }
 
     public void deleteTask(int taskIndex) {
-        numberTasks -= 1;
         tasks.remove(taskIndex);
     }
 
@@ -44,7 +41,7 @@ public class Project {
     }
 
     public int getNumberTasks() {
-        return numberTasks;
+        return tasks.size();
     }
 
     /**

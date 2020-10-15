@@ -20,7 +20,7 @@ public class DeadlineCommand extends Command {
     }
 
     public String executeCommand(ProjectList projects) {
-        Project project = projects.getProjectList().get(projectIndex);
+        Project project = projects.getProject(projectIndex);
         Task task = project.getTask(taskIndex);
         task.addDeadline(date);
         return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))

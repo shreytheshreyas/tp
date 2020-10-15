@@ -9,13 +9,13 @@ import seedu.duke.project.ProjectList;
 public class ProjectListCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
-        if (projects.getProjectList().size() == 0) {
+        if (projects.getNumberOfProjects() == 0) {
             return "Project list is empty!!";
         } else {
             String output = "";
             output += "List of Projects:";
             for (int i = 0; i < projects.getProjectList().size(); i++) {
-                output += "\n     " + (i + 1) + "." + projects.getProjectList().get(i);
+                output += "\n     " + (i + 1) + "." + projects.getProject(i);
             }
             return output;
         }

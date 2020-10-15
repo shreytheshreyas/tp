@@ -18,7 +18,7 @@ public class TaskCommand extends Command {
     }
 
     public String executeCommand(ProjectList projects) {
-        Project project = projects.getProjectList().get(projectIndex);
+        Project project = projects.getProject(projectIndex);
         Task newTask = new Task(description);
         project.createTask(newTask);
         return "Created: " + newTask.toString();

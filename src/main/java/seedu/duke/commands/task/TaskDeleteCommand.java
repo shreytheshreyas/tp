@@ -24,7 +24,7 @@ public class TaskDeleteCommand extends Command {
         } catch (ArrayIndexOutOfBoundsException e) {
             return "There is an ERROR in TASKLIST!!";
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            if (projects.getProjectList().size() == 0) {
+            if (projects.getNumberOfProjects() == 0) {
                 return ("Task list is empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
                 return ("Invalid Task number"); //----------REPLACE WITH EXCEPTION

@@ -16,7 +16,7 @@ public class ProjectDescriptionCommand extends Command {
     }
 
     public String executeCommand(ProjectList projects) {
-        Project project = projects.getProjectList().get(projectIndex);
+        Project project = projects.getProject(projectIndex);
         project.addDescription(projectDescription);
         return "Project description added \"" + project.getDescription() + "\".";
     }
