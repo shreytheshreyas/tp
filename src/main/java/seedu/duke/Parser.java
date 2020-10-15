@@ -112,7 +112,11 @@ public class Parser {
                 System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
             } else {
                 for (int i = 1; i < inputs.length; i++) { //Task name after task keyword and before date
-                    description += inputs[i];
+                    if (i == inputs.length - 1) {
+                        description += inputs[i];
+                    } else {
+                        description += inputs[i] + " ";
+                    }
                 }
                 commandType = new TaskCommand(description, projectIndex);
             }
