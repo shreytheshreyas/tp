@@ -52,7 +52,7 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command checkAction(String inputCommand) throws NumberFormatException {
+    public static Command checkAction(String inputCommand) throws DukeExceptions {
         Command commandType = null;
         String[] inputs = inputCommand.split("\\s+");
         String taskType = inputs[0];
@@ -101,14 +101,13 @@ public class Parser {
                     }
                 }
                 commandType = new ProjectCommand(description);
-                break;
             } else {
-                System.out.println("Not in Project View!"); //----------REPLACE WITH EXCEPTION
+                throw new DukeExceptions("Add Task"); // REPLACED WITH EXCEPTION
             }
             break;
         case "task":
             if (isProjectListView) {
-                System.out.println("Not in Task View!"); //----------REPLACE WITH EXCEPTION
+                throw new DukeExceptions("Add Project"); //REPLACED WITH EXCEPTION
             } else {
                 for (int i = 1; i < inputs.length - 1; i++) { //Task name after task keyword and before date
                     description += inputs[i];
@@ -144,7 +143,7 @@ public class Parser {
                 System.out.println("Switched to Project View!");
                 projectIndex = -1;
             } else {
-                System.out.println("Already in Project View!"); //----------REPLACE WITH EXCEPTION
+                throw new DukeExceptions("Switch"); // REPLACED WITH EXCEPTION
             }
             break;
         case "member":
