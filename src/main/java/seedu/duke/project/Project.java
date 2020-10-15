@@ -36,8 +36,8 @@ public class Project {
         return tasks.getTaskList();
     }
 
-    public String createTask(String description, LocalDate dateTime) {
-        return tasks.createTask(description, dateTime);
+    public String createTask(String description) {
+        return tasks.createTask(description);
     }
 
     public void addDescription(String projectDescription) {
