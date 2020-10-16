@@ -102,7 +102,7 @@ public class Parser {
                 }
                 commandType = new ProjectCommand(description);
             } else {
-                throw new DukeExceptions("Add Task"); // REPLACED WITH EXCEPTION
+                throw new DukeExceptions("Add Task"); // REPLACED WITH EXCEPTION // change key descriptions
             }
             break;
         case "task":
