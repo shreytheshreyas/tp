@@ -47,6 +47,23 @@ public class Parser {
         projectIndex = newIndex;
     }
 
+    public static int extractIndex(String [] inputs) {
+        return Integer.parseInt(inputs[1]) - 1;
+    }
+
+    public static String inputTextField(String[] inputs) {
+        String description = "";
+
+        for (int i = 1; i < inputs.length; i++) {
+            if (i == inputs.length - 1) {
+                description += inputs[i];
+            } else {
+                description += inputs[i] + " ";
+            }
+        }
+        return description;
+    }
+    
     /**
      * Parses user input related to tasks into command for execution.
      *
@@ -57,24 +74,20 @@ public class Parser {
         Command commandType = null;
         String[] inputs = inputCommand.split("\\s+");
         String taskType = inputs[0];
-        String description = "";
+        String description;
         boolean isProjectListView = (projectIndex == -1); //In main project list view
         Ui ui = new Ui();
 
         switch (taskType) {
         case "list":
-            if (isProjectListView) {
-                commandType = new ProjectListCommand();
-            } else {
-                commandType = new TaskListCommand(projectIndex);
-            }
+            commandType = (isProjectListView) ? new ProjectListCommand() : new TaskListCommand(projectIndex);
             break;
         case "select":
             if (isProjectListView) {
-                projectIndex = Integer.parseInt(inputs[1]) - 1;
+                projectIndex = extractIndex(inputs);
                 commandType = new ProjectSelectCommand(projectIndex);
             } else {
-                taskIndex = Integer.parseInt(inputs[1]) - 1;
+                taskIndex = extractIndex(inputs);
                 commandType = new TaskSelectCommand(taskIndex, projectIndex);
             }
             break;
@@ -82,25 +95,13 @@ public class Parser {
             if (isProjectListView) {
                 System.out.println("Not in Task View!");
             } else {
-                for (int i = 1; i < inputs.length; i++) {
-                    if (i == inputs.length - 1) {
-                        description += inputs[i];
-                    } else {
-                        description += inputs[i] + " ";
-                    }
-                }
+                description = inputTextField(inputs);
                 commandType = new ProjectDescriptionCommand(description, projectIndex);
             }
             break;
         case "project":
             if (isProjectListView) {
-                for (int i = 1; i < inputs.length; i++) {
-                    if (i == inputs.length - 1) {
-                        description += inputs[i];
-                    } else {
-                        description += inputs[i] + " ";
-                    }
-                }
+                description = inputTextField(inputs);
                 commandType = new ProjectCommand(description);
             } else {
                 throw new DukeExceptions("Add Task"); // REPLACED WITH EXCEPTION // change key descriptions
@@ -110,20 +111,14 @@ public class Parser {
             if (isProjectListView) {
                 throw new DukeExceptions("Add Project"); //REPLACED WITH EXCEPTION
             } else {
-                for (int i = 1; i < inputs.length; i++) { //Task name after task keyword and before date
-                    if (i == inputs.length - 1) {
-                        description += inputs[i];
-                    } else {
-                        description += inputs[i] + " ";
-                    }
-                }
+                description = inputTextField(inputs);
                 commandType = new TaskCommand(description, projectIndex);
             }
             break;
         case "deadline":
             if (!isProjectListView) {
                 try {
-                    int taskIndex = Integer.parseInt(inputs[1]) - 1;
+                    int taskIndex = extractIndex(inputs);
                     String dateString = inputs[2];
                     LocalDate date = LocalDate.parse(dateString);
                     commandType = new DeadlineCommand(projectIndex, taskIndex, date);
@@ -140,9 +135,10 @@ public class Parser {
             break;
         case "delete":
             if (isProjectListView) {
-                commandType = new DeleteProjectCommand(Integer.parseInt(inputs[1]) - 1);
+                projectIndex = extractIndex(inputs);
+                commandType = new DeleteProjectCommand(projectIndex);
             } else {
-                taskIndex = Integer.parseInt(inputs[1]) - 1;
+                taskIndex = extractIndex(inputs);
                 commandType = new TaskDeleteCommand(taskIndex, projectIndex);
             }
             break;
@@ -155,14 +151,7 @@ public class Parser {
             }
             break;
         case "member":
-            String memberName = "";
-            for (int i = 1; i < inputs.length; i++) {
-                if (i == inputs.length - 1) {
-                    memberName += inputs[i];
-                } else {
-                    memberName += inputs[i] + " ";
-                }
-            }
+            String memberName = inputTextField(inputs);
             commandType = new AddTeamMemberCommand(memberName);
             break;
         case "members":
@@ -170,7 +159,7 @@ public class Parser {
             break;
         case "remove":
             try {
-                int memberIndex = Integer.parseInt(inputs[1]) - 1;
+                int memberIndex = extractIndex(inputs);
                 commandType = new DeleteTeamMemberCommand(memberIndex);
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
@@ -181,6 +170,7 @@ public class Parser {
         }
         return commandType;
     }
+
 
 }
 
