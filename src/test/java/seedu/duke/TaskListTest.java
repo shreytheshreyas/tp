@@ -1,12 +1,5 @@
 package seedu.duke;
 
-import org.junit.jupiter.api.Test;
-import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TaskListTest {
