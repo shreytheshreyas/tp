@@ -14,6 +14,7 @@ import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
+import seedu.duke.commands.task.DeadlineCommand;    
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
@@ -109,24 +110,31 @@ public class Parser {
             if (isProjectListView) {
                 throw new DukeExceptions("Add Project"); //REPLACED WITH EXCEPTION
             } else {
-                for (int i = 1; i < inputs.length - 1; i++) { //Task name after task keyword and before date
-                    description += inputs[i];
-                }
-                try {
-                    String dateString = inputs[inputs.length - 1].substring(2);
-                    /**
-                    if (dateString.substring(0,2) != "/t") {
-                        throw new DukeExceptions();
+                for (int i = 1; i < inputs.length; i++) { //Task name after task keyword and before date
+                    if (i == inputs.length - 1) {
+                        description += inputs[i];
+                    } else {
+                        description += inputs[i] + " ";
                     }
-                     **/
+                }
+                commandType = new TaskCommand(description, projectIndex);
+            }
+            break;
+        case "deadline":
+            if (!isProjectListView) {
+                try {
+                    int taskIndex = Integer.parseInt(inputs[1]) - 1;
+                    String dateString = inputs[2];
                     LocalDate date = LocalDate.parse(dateString);
-                    commandType = new TaskCommand(description, projectIndex, date);
+                    commandType = new DeadlineCommand(projectIndex, taskIndex, date);
                 } catch (NullPointerException e) {
                     ui.printOutput("Date must be specified in format YYYY-MM-DD");
                 } catch (StringIndexOutOfBoundsException e) {
                     ui.printOutput("Date must be specified in format YYYY-MM-DD");
-                }  catch (DateTimeParseException e) {
+                } catch (DateTimeParseException e) {
                     ui.printOutput("Date must be specified in format YYYY-MM-DD");
+                } catch (NumberFormatException e) {
+                    System.out.println("Task Index not specified");
                 }
             }
             break;

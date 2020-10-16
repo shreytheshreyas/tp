@@ -17,9 +17,12 @@ public class Task {
     protected boolean isDone;
     protected LocalDate date;
 
-    public Task(String description, LocalDate date) {
+    public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public void addDeadline(LocalDate date) {
         this.date = date;
     }
 
@@ -38,7 +41,11 @@ public class Task {
      */
     @Override
     public String toString() {
-        return description + " | " + getDateString();
+        String taskStatus = description;
+        if (date != null) {
+            taskStatus += " | " + getDateString();
+        }
+        return taskStatus;
     }
 
     @Override
