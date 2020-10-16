@@ -12,7 +12,7 @@ public class Project {
     protected boolean isDone;
     private TaskList tasks;
     private String projectDescription;
-    public static ArrayList<TeamMember> members = new ArrayList<>();
+    private static ArrayList<TeamMember> members = new ArrayList<>();
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
@@ -52,6 +52,10 @@ public class Project {
 
     public String selectTask(int index) {
         return tasks.selectTask(index);
+    }
+
+    public static ArrayList<TeamMember> getMembers() {
+        return members;
     }
 
     public String deleteTask(int index) {

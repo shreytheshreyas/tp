@@ -16,13 +16,13 @@ public class ListTeamMembersCommand extends Command {
     }
 
     public String executeCommand(ArrayList<Project> projects) {
-        if (Project.members.size() == 0) {
+        if (Project.getMembers().size() == 0) {
             return "No team members have been added.";
         }
 
         String listOfMembers = "";
         int i = 0;
-        for (TeamMember member : Project.members) {
+        for (TeamMember member : Project.getMembers()) {
             String memberLine = (i + 1) + ". " + member.name + "\n";
             listOfMembers += memberLine;
             i++;

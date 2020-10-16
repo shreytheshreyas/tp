@@ -18,7 +18,7 @@ public class AddTeamMemberCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects) {
         TeamMember newMember = new TeamMember(name);
-        Project.members.add(newMember);
+        Project.getMembers().add(newMember);
         return "Team member " + name + " has been added";
     }
 

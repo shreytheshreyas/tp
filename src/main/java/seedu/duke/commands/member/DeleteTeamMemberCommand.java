@@ -17,10 +17,10 @@ public class DeleteTeamMemberCommand extends Command {
 
     @Override
     public String executeCommand(ArrayList<Project> projects) {
-        boolean isMemberPresent = memberIndex < Project.members.size();
-        String isNamePresent = (isMemberPresent) ? "Member removed" : "Member not present";
-        Project.members.remove(memberIndex);
-        return isNamePresent;
+        boolean isMemberPresent = memberIndex < Project.getMembers().size();
+        String memberMessage = (isMemberPresent) ? "Member removed" : "Member not present";
+        Project.getMembers().remove(memberIndex);
+        return memberMessage;
     }
 
     @Override
