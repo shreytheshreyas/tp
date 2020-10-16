@@ -2,7 +2,8 @@ package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
+
+import java.util.ArrayList;
 
 /**
  * Prints a list of existing tasks.
@@ -14,8 +15,8 @@ public class TaskListCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public String executeCommand(ProjectList projects) {
-        Project project = projects.getProjectList().get(projectIndex);
+    public String executeCommand(ArrayList<Project> projects) {
+        Project project = projects.get(projectIndex);
 
         if (project.getTasks().size() == 0) {
             return "Task list is empty!!";

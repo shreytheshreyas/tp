@@ -1,8 +1,12 @@
 package seedu.duke.commands.member;
 
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
+import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.member.TeamMemberList;
+
+import java.util.ArrayList;
 
 public class AddTeamMemberCommand extends Command {
 
@@ -12,8 +16,9 @@ public class AddTeamMemberCommand extends Command {
         this.name = name;
     }
 
-    public String executeCommand(ProjectList projects) {
-        TeamMemberList.addTeamMember(name);
+    public String executeCommand(ArrayList<Project> projects) {
+        TeamMember newMember = new TeamMember(name);
+        Project.members.add(newMember);
         return "Team member " + name + " has been added";
     }
 

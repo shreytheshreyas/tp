@@ -2,11 +2,11 @@ package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class DeadlineCommand extends Command {
     private int projectIndex;
@@ -19,8 +19,8 @@ public class DeadlineCommand extends Command {
         this.date = date;
     }
 
-    public String executeCommand(ProjectList projects) {
-        Project project = projects.getProjectList().get(projectIndex);
+    public String executeCommand(ArrayList<Project> projects) {
+        Project project = projects.get(projectIndex);
         Task task = project.getTaskList().getTask(taskIndex);
         task.addDeadline(date);
         return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))

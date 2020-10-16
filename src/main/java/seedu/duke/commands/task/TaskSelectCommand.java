@@ -1,7 +1,9 @@
 package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
-import seedu.duke.project.ProjectList;
+import seedu.duke.project.Project;
+
+import java.util.ArrayList;
 
 public class TaskSelectCommand extends Command {
 
@@ -13,11 +15,11 @@ public class TaskSelectCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public String executeCommand(ProjectList projects) {
+    public String executeCommand(ArrayList<Project> projects) {
         try {
-            return projects.getProject(projectIndex).selectTask(itemIndex);
+            return projects.get(projectIndex).selectTask(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            if (projects.getProjectList().size() == 0) {
+            if (projects.size() == 0) {
                 return ("I am empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
                 return ("Invalid project ID"); //----------REPLACE WITH EXCEPTION
