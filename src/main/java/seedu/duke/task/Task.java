@@ -26,10 +26,6 @@ public class Task {
         this.date = date;
     }
 
-    public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
-    }
-
     public String getDateString() {
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }

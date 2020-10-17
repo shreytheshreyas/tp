@@ -26,6 +26,10 @@ public class ProjectList {
         return projects;
     }
 
+    public int getNumberOfProjects() {
+        return projects.size();
+    }
+
     public String createProject(String projectName) {
         try {
             Project newProject = new Project(projectName);
@@ -38,10 +42,10 @@ public class ProjectList {
 
     public String selectProject(int projectIndex) {
         System.out.println("Switched to Project \"" + this.getProjectList().get(projectIndex) + "\"");
-        if (this.getProjectList().get(projectIndex).getDescription().equals("")) {
+        if (this.getProject(projectIndex).getDescription().equals("")) {
             return Ui.printEmptyAdditionalProjectInformationMessage();
         } else {
-            return this.getProjectList().get(projectIndex).getDescription()
+            return this.getProject(projectIndex).getDescription()
                     + " | <project deadline empty> | <team members involved empty>";
         }
     }
@@ -51,14 +55,7 @@ public class ProjectList {
     }
 
     public Project getProject(int projectIndex) {
-        return this.getProjectList().get(projectIndex);
+        return projects.get(projectIndex);
     }
 
-    public int getProjectIndex() {
-        return projectIndex;
-    }
-
-    public void setProjectIndex(int index) {
-        projectIndex = index;
-    }
 }

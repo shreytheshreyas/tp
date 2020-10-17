@@ -10,10 +10,10 @@ import seedu.duke.ui.Ui;
 public class ProjectListCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
-        if (projects.getProjectList().size() == 0) {
+        if (projects.getNumberOfProjects() == 0) {
             return Ui.printEmptyProjectListMessage(); //----------REPLACE WITH EXCEPTION
         } else {
-            return Ui.printProjectListMessage(projects);
+            return Ui.printProjectListMessage(projects)
         }
     }
 
