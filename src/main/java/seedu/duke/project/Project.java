@@ -1,5 +1,6 @@
 package seedu.duke.project;
 
+import seedu.duke.member.TeamMember;
 import seedu.duke.task.Task;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ public class Project {
     protected boolean isDone;
     private ArrayList<Task> tasks;
     private String projectDescription;
+    private static ArrayList<TeamMember> members = new ArrayList<>();
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
@@ -40,6 +42,11 @@ public class Project {
         return projectDescription;
     }
 
+
+    public static ArrayList<TeamMember> getMembers() {
+        return members;
+    }
+
     public int getNumberTasks() {
         return tasks.size();
     }
@@ -51,8 +58,21 @@ public class Project {
      */
     @Override
     public String toString() {
-        
+
         return projectName;
-        
+
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return tasks;
+    }
+
+    public String selectTask(int taskId) {
+        try {
+            Task selectedTask = tasks.get(taskId);
+            return "Selected Task: " + selectedTask.toString();
+        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
+            return "Task ID does not exist.";
+        }
     }
 }

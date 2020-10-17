@@ -7,6 +7,7 @@ import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class TaskCommand extends Command {
 
@@ -18,8 +19,8 @@ public class TaskCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public String executeCommand(ProjectList projects) {
-        Project project = projects.getProject(projectIndex);
+    public String executeCommand(ArrayList<Project> projects) {
+        Project project = projects.get(projectIndex);
         Task newTask = new Task(description);
         project.createTask(newTask);
         return Ui.printTaskCreatedMessage(newTask);
