@@ -76,9 +76,9 @@ public class Parser {
         return commandType;
     }
 
-    public static Command getAddMemberCommand(String[] inputs) throws DukeExceptions{
+    public static Command getAddMemberCommand(String[] inputs) throws DukeExceptions {
         Command commandType;
-        if(inputs[1].contains("m/")) {
+        if (inputs[1].contains("m/")) {
             inputs[1] = inputs[1].replaceFirst("m/","");
             String memberName = inputTextField(inputs);
             commandType = new AddTeamMemberCommand(memberName);
@@ -98,7 +98,7 @@ public class Parser {
 
     }
 
-    public static Command getDeleteCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions{
+    public static Command getDeleteCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
         Command commandType;
         if (isProjectListView && inputs[1].contains("p/")) {
             inputs[1] = inputs[1].replaceFirst("p/","");
@@ -115,7 +115,7 @@ public class Parser {
         return commandType;
     }
 
-    public static Command getDeadlineCommand(Ui ui, boolean isProjectView, String[] inputs) throws DukeExceptions{
+    public static Command getDeadlineCommand(Ui ui, boolean isProjectView, String[] inputs) throws DukeExceptions {
         Command commandType = null;
 
         try {
@@ -147,7 +147,7 @@ public class Parser {
         Command commandType;
         String taskDescription;
 
-        if(!isProjectListView && inputs[1].contains("n/")) {
+        if (!isProjectListView && inputs[1].contains("n/")) {
             inputs[1] = inputs[1].replaceFirst("n/","");
             taskDescription = inputTextField(inputs);
             commandType = new TaskCommand(taskDescription,projectIndex);
@@ -170,7 +170,7 @@ public class Parser {
         return commandType;
     }
 
-    public static Command getDescriptionCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions{
+    public static Command getDescriptionCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
         Command commandType;
         String description;
         if (isProjectListView) {
@@ -182,13 +182,13 @@ public class Parser {
         return commandType;
     }
 
-    public static Command getSelectCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions{
-        Command commandType ;
+    public static Command getSelectCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
+        Command commandType;
         if (isProjectListView && inputs[1].contains("p/")) {
             inputs[1] = inputs[1].replaceFirst("p/","");
             projectIndex = extractIndex(inputs[1]);
             commandType = new ProjectSelectCommand(projectIndex);
-        } else if (inputs[1].contains("t/")){
+        } else if (inputs[1].contains("t/")) {
             inputs[1] = inputs[1].replaceFirst("t/","");
             taskIndex = extractIndex(inputs[1]);
             commandType = new TaskSelectCommand(taskIndex, projectIndex);
