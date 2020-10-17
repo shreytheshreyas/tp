@@ -2,6 +2,8 @@ package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
+import seedu.duke.ui.Ui;
+
 import java.util.ArrayList;
 
 public class TaskSelectCommand extends Command {
@@ -16,7 +18,8 @@ public class TaskSelectCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects) {
         try {
-            return "Selected Task: " + projects.get(projectIndex).selectTask(taskIndex);
+            String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
+            return Ui.printTaskSelectedMessage(selectedTask);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.size() == 0) {
                 return ("Project List is Empty!"); //----------REPLACE WITH EXCEPTION
