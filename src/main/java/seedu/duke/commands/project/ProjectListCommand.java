@@ -13,7 +13,7 @@ public class ProjectListCommand extends Command {
         if (projects.getNumberOfProjects() == 0) {
             return Ui.printEmptyProjectListMessage(); //----------REPLACE WITH EXCEPTION
         } else {
-            return Ui.printProjectListMessage(projects)
+            return Ui.printProjectListMessage(projects);
         }
     }
 
