@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 /**
  * Displays goodbye message when application is terminated by the user.
@@ -15,6 +16,6 @@ public class ExitCommand extends Command {
     }
 
     private String printGoodbyeMessage() {
-        return "See you again!";
+        return Ui.printGoodbyeMessage();
     }
 }

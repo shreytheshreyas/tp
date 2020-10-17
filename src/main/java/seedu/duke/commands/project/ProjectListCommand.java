@@ -2,6 +2,7 @@ package seedu.duke.commands.project;
 
 import seedu.duke.commands.Command;
 import seedu.duke.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 /**
  * Prints a list of existing tasks.
@@ -10,14 +11,9 @@ public class ProjectListCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
         if (projects.getNumberOfProjects() == 0) {
-            return "Project list is empty!!";
+            return Ui.printEmptyProjectListMessage(); //----------REPLACE WITH EXCEPTION
         } else {
-            String output = "";
-            output += "List of Projects:";
-            for (int i = 0; i < projects.getProjectList().size(); i++) {
-                output += "\n     " + (i + 1) + "." + projects.getProject(i);
-            }
-            return output;
+            return Ui.printProjectListMessage(projects);
         }
     }
 

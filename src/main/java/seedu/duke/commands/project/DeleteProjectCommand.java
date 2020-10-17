@@ -1,7 +1,9 @@
 package seedu.duke.commands.project;
 
 import seedu.duke.commands.Command;
+import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 public class DeleteProjectCommand extends Command {
 
@@ -12,8 +14,9 @@ public class DeleteProjectCommand extends Command {
     }
 
     public String executeCommand(ProjectList projects) {
+        Project projectToBeDeleted = projects.getProject(itemIndex);
         projects.deleteProject(itemIndex);
-        return "Project deleted";
+        return Ui.printProjectDeletedMessage(projectToBeDeleted);
     }
 
     public Boolean isExit() {

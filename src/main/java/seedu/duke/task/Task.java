@@ -26,6 +26,10 @@ public class Task {
         this.date = date;
     }
 
+    public String getTaskDescription() {
+        return description;
+    }
+
     public String getDateString() {
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
