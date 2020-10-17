@@ -26,8 +26,7 @@ List of Projects:
      3.skillsfuture
 ____________________________________________________________
 ____________________________________________________________
-Switched to Project "operation x"
-<project description empty> | <project deadline empty> | <team members involved empty>
+<project description empty> | <project deadline empty>
 ____________________________________________________________
 ____________________________________________________________
 Project description added "the way".
@@ -37,8 +36,7 @@ ____________________________________________________________
 java.lang.NullPointerException
 ____________________________________________________________
 ____________________________________________________________
-Switched to Project "operation x"
-the way | <project deadline empty> | <team members involved empty>
+the way | <project deadline empty>
 ____________________________________________________________
 ____________________________________________________________
 Task list is empty!!
