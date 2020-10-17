@@ -1,1 +1,1 @@
-project n/p1listproject n/p2listproject n/p3listproject n/p4listselect p/1task n/this is task1listtask n/this is task2listtask n/this is task3listselect t/2deadline t/2 d/2020-10-17listmember m/doritomembersmember m/chicken ricemembersremove 2membersbye
+project n/p1listproject n/p2listproject n/p3listproject n/p4listselect p/1task n/this is task1listtask n/this is task2listtask n/this is task3listselect t/2deadline t/2 d/2020-10-17listmember m/doritomembersmember m/chicken ricemembersremove m/2membersbye
