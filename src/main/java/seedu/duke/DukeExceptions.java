@@ -17,7 +17,7 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("Project","Command incomplete!, You need to include a project description.");
         exceptionMessageList.put("Delete Project","Command incomplete! You need to mention the project Id");
         exceptionMessageList.put("Task Description","Command incomplete!, You need to include a task description.");
-        exceptionMessageList.put("Member","Command incomplete! You need to mention Member's name");
+        exceptionMessageList.put("Member","Command incorect! You need to mention Member's name");
         exceptionMessageList.put("Delete Task","Command incomplete! You need to mention the project Id");
         exceptionMessageList.put("Switch","You are already in project view");
         exceptionMessageList.put("Add Project","You cannot add tasks in project view");
