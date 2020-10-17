@@ -19,7 +19,7 @@ public class TaskSelectCommand extends Command {
             return projects.get(projectIndex).selectTask(taskIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.size() == 0) {
-              return ("I am empty!!!"); //----------REPLACE WITH EXCEPTION
+                return ("I am empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
                 return ("Invalid project ID"); //----------REPLACE WITH EXCEPTION
             }
