@@ -86,22 +86,29 @@ public class Ui {
         return "Task \"" + taskName + "\" removed!!";
     }
 
-    public static String printHomeView(ProjectList projects) {
-        int numberOfProjects = projects.getNumberOfProjects();
+    public static String printHomeView(ArrayList<Project> projects) {
+        int numberOfProjects = projects.size();
         String[][] data = new String[100][];
-        for (int i = 0; i < numberOfProjects; i++) {
-            data[i][0] = projects.getProject(i).getProjectName();
-        }
-        for (int j = 0; j < numberOfProjects; j++) {
-            data[j][1] = projects.getProject(j).getDescription();
-        }
-        String output = MESSAGE_SINGLE_LINE;
-        output += "\n|     Project Name     |     Description     |";
-        output += "\n============================================================";
+
+//        for (int i = 0; i < numberOfProjects; i++) {
+//            data[i][0] = projects.get(i).getProjectName();
+//        }
+//        for (int j = 0; j < numberOfProjects; j++) {
+//            data[j][1] = projects.get(j).getDescription();
+//        }
+        String output = "\n|         Project Name         |          Description          |";
+        output += "\n================================================================";
         for (int k = 0; k < numberOfProjects; k++) {
-            output += "\n|     " + data[k][0] + "     |     " + data[k][1] + "     |";
+            String projectName = projects.get(k).getProjectName();
+            String projectDescription = projects.get(k).getDescription();
+            int lengthOfProjectName = projectName.length();
+            int lengthOfProjectDescription = projectDescription.length();
+            int amountOfPaddingForName = (30 - lengthOfProjectName) / 2;
+            int amountOfPaddingForDescription = (31 - lengthOfProjectDescription) / 2;
+            String paddedProjectName = String.format("%-" + amountOfPaddingForName + "s", projectName);
+            String paddedProjectDescription = String.format("%-" + amountOfPaddingForDescription+ "s", projectDescription);
+            output += "\n|" + paddedProjectName +  "|" + paddedProjectDescription + "|";
         }
-        output += "\n" + MESSAGE_SINGLE_LINE;
         return output;
     }
 
