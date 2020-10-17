@@ -40,6 +40,10 @@ public class Project {
         return projectDescription;
     }
 
+    public String getProjectName() {
+        return projectName;
+    }
+
     public int getNumberTasks() {
         return tasks.size();
     }

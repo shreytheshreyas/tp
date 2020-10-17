@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.PrintHomeViewCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
@@ -176,6 +177,9 @@ public class Parser {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input");
             }
+            break;
+        case "display":
+            commandType = new PrintHomeViewCommand();
             break;
         default:
             break;
