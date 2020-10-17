@@ -1,15 +1,13 @@
 package seedu.duke.project;
 
 import seedu.duke.task.Task;
-import seedu.duke.task.TaskList;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Project {
     protected String projectName;
     protected boolean isDone;
-    private TaskList tasks;
+    private ArrayList<Task> tasks;
     private String projectDescription;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
@@ -18,26 +16,20 @@ public class Project {
     public Project(String projectName) {
         this.projectName = projectName;
         this.isDone = false;
-        this.tasks = new TaskList();
+        this.tasks = new ArrayList<>();
         this.projectDescription = "";
     }
 
-    public String getStatusIcon() {
-        
-        return (isDone ? "done" : "not done"); //return tick or X symbols
-        
+    public Task getTask(int taskIndex) {
+        return tasks.get(taskIndex);
     }
 
-    public TaskList getTaskList() {
-        return tasks;
+    public void createTask(Task task) {
+        tasks.add(task);
     }
 
-    public ArrayList<Task> getTasks() {
-        return tasks.getTaskList();
-    }
-
-    public String createTask(String description) {
-        return tasks.createTask(description);
+    public void deleteTask(int taskIndex) {
+        tasks.remove(taskIndex);
     }
 
     public void addDescription(String projectDescription) {
@@ -48,12 +40,8 @@ public class Project {
         return projectDescription;
     }
 
-    public String selectTask(int index) {
-        return tasks.selectTask(index);
-    }
-
-    public String deleteTask(int index) {
-        return tasks.deleteTask(index);
+    public int getNumberTasks() {
+        return tasks.size();
     }
 
     /**

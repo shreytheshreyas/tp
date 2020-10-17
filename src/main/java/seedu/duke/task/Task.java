@@ -26,8 +26,8 @@ public class Task {
         this.date = date;
     }
 
-    public String getStatusIcon() {
-        return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
+    public String getTaskDescription() {
+        return description;
     }
 
     public String getDateString() {

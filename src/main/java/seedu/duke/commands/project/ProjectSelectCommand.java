@@ -15,7 +15,7 @@ public class ProjectSelectCommand extends Command {
         try {
             return projects.selectProject(itemIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            if (projects.getProjectList().size() == 0) {
+            if (projects.getNumberOfProjects() == 0) {
                 return "I am empty!!!";
             } else {
                 return "Invalid project ID";
