@@ -17,9 +17,7 @@ public class TaskListCommand extends Command {
 
     public String executeCommand(ProjectList projects) {
         Project project = projects.getProject(projectIndex);
-
         int numberOfTasks = project.getNumberTasks();
-
         if (numberOfTasks == 0) {
             return "Task list is empty!!";
         } else {

@@ -50,22 +50,26 @@ public class Ui {
         String output = "";
         output += "List of Projects:";
         for (int i = 0; i < projects.getProjectList().size(); i++) {
-            output += "\n     " + (i + 1) + "." + projects.getProjectList().get(i);
+            output += "\n     " + (i + 1) + "." + projects.getProject(i);
         }
         return output;
     }
 
     public static String printTaskListMessage(Project project) {
-        String output = "";
-        output += "List of Tasks:";
-        for (int i = 0; i < project.getTasks().size(); i++) {
-            output += "\n     " + (i + 1) + "." + project.getTasks().get(i);
+        int numberOfTasks = project.getNumberTasks();
+        String output = "List of Tasks:";
+        for (int i = 0; i < numberOfTasks; i++) {
+            output += "\n     " + (i + 1) + "." + project.getTask(i);
         }
         return output;
     }
 
     public static String printProjectCreatedMessage(String projectName) {
         return "Project \"" + projectName + "\" created!!";
+    }
+
+    public static String printProjectDescriptionAddedMessage(Project project) {
+        return "Project description added \"" + project.getDescription() + "\".";
     }
 
     public static String printEmptyAdditionalProjectInformationMessage() {
@@ -77,8 +81,8 @@ public class Ui {
         return "Created: " + newTask.toString();
     }
 
-    public static String printTaskDeletedMessage(String taskDescription) {
-        return "Task \"" + taskDescription + "\" removed!!";
+    public static String printTaskDeletedMessage(String taskName) {
+        return "Task \"" + taskName + "\" removed!!";
     }
 
 
