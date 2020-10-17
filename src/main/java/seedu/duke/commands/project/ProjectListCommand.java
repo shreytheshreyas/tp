@@ -13,7 +13,7 @@ public class ProjectListCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects) {
         if (projects.size() == 0) {
-           return Ui.printEmptyProjectListMessage(); //----------REPLACE WITH EXCEPTION
+            return Ui.printEmptyProjectListMessage(); //----------REPLACE WITH EXCEPTION
         } else {
             return Ui.printProjectListMessage(projects);
         }
