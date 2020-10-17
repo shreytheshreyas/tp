@@ -97,16 +97,14 @@ public class Ui {
 //            data[j][1] = projects.get(j).getDescription();
 //        }
         String output = "\n|         Project Name         |          Description          |";
-        output += "\n================================================================";
+        output +=       "\n|==============================|===============================|";
         for (int k = 0; k < numberOfProjects; k++) {
             String projectName = projects.get(k).getProjectName();
             String projectDescription = projects.get(k).getDescription();
             int lengthOfProjectName = projectName.length();
             int lengthOfProjectDescription = projectDescription.length();
-            int amountOfPaddingForName = (30 - lengthOfProjectName) / 2;
-            int amountOfPaddingForDescription = (31 - lengthOfProjectDescription) / 2;
-            String paddedProjectName = String.format("%-" + amountOfPaddingForName + "s", projectName);
-            String paddedProjectDescription = String.format("%-" + amountOfPaddingForDescription+ "s", projectDescription);
+            String paddedProjectName = String.format("%-30s", projectName);
+            String paddedProjectDescription = String.format("%-31s", projectDescription);
             output += "\n|" + paddedProjectName +  "|" + paddedProjectDescription + "|";
         }
         return output;
