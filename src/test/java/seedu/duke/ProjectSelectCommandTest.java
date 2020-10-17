@@ -1,27 +1,21 @@
 package seedu.duke;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.project.ProjectDescriptionCommand;
-import seedu.duke.commands.task.TaskCommand;
-import seedu.duke.project.Project;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.ui.Ui;
-import seedu.duke.project.ProjectList;
+import seedu.duke.project.Project;
 import seedu.duke.task.Task;
-
+import seedu.duke.ui.Ui;
 import java.util.ArrayList;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class ProjectDescriptionCommandTest {
+public class ProjectSelectCommandTest {
     static ArrayList<Project> projects;
     static Ui ui = new Ui();
 
     @BeforeAll
-    static void createProjectList() {
+    static void testSetup() {
         projects = new ArrayList<>();
         Project projectOne = new Project("Project One");
         Project projectTwo = new Project("Project Two");
@@ -32,13 +26,20 @@ public class ProjectDescriptionCommandTest {
         projectTwo.addDescription("Do CS2113 Tutorial by today");
     }
 
+    // add deadline to test after it has been implemented
     @Test
-    void executeCommand_projectList_projectDescriptionAdded() {
-        ProjectDescriptionCommand addDescription = new ProjectDescriptionCommand("Do CS2113 Tutorial by today", 1);
-        String actualOutput = addDescription.executeCommand(projects);
-        String expectedOutput = "Project description added \"Do CS2113 Tutorial by today\".";
+    void executeCommand_validProjectIDWithDescription_additionalInformation() {
+        ProjectSelectCommand selectProject = new ProjectSelectCommand(1);
+        String expectedOutput =  "Do CS2113 Tutorial by today | <project deadline empty>";
+        String actualOutput = selectProject.executeCommand(projects);
         assertEquals(expectedOutput, actualOutput);
     }
 
-
+    @Test
+    void executeCommand_invalidProjectIDWithDescription_additionalInformation() {
+        ProjectSelectCommand selectProject = new ProjectSelectCommand(-5);
+        String expectedOutput =  "Project ID does not exist!";
+        String actualOutput = selectProject.executeCommand(projects);
+        assertEquals(expectedOutput, actualOutput);
+    }
 }

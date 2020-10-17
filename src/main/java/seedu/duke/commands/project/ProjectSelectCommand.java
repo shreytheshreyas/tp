@@ -3,6 +3,7 @@ package seedu.duke.commands.project;
 import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -16,19 +17,13 @@ public class ProjectSelectCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects) {
         try {
-            System.out.println("Switched to Project \"" + projects.get(projectIndex) + "\"");
-            if (projects.get(projectIndex).getDescription().equals("")) {
-                return "<project description empty> | <project deadline empty> | "
-                        + "<team members involved empty>";
-            } else {
-                return projects.get(projectIndex).getDescription()
-                        + " | <project deadline empty> | <team members involved empty>";
-            }
+            Ui.printProjectSelectedMessage(projects, projectIndex);
+            return projects.get(projectIndex).toString();
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.size() == 0) {
-                return "I am empty!!!";
+                return "Project List is Empty!";
             } else {
-                return "Invalid project ID";
+                return "Project ID does not exist!";
             }
         }
     }
