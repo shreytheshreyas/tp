@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
@@ -41,10 +42,6 @@ public class Parser {
             commandType = checkAction(inputCommand); //----------ADD TRY CATCH (EXCEPTION)
         }
         return commandType;
-    }
-
-    static void setProjectIndex(int newIndex) {
-        projectIndex = newIndex;
     }
 
     /**
@@ -147,13 +144,8 @@ public class Parser {
                 commandType = new TaskDeleteCommand(taskIndex, projectIndex);
             }
             break;
-        case "switch":
-            if (!isProjectListView) {
-                System.out.println("Switched to Project View!");
-                projectIndex = -1;
-            } else {
-                throw new DukeExceptions("Switch"); // REPLACED WITH EXCEPTION
-            }
+        case "home":
+            commandType = new HomeCommand(projectIndex);
             break;
         case "member":
             String memberName = "";
@@ -181,6 +173,14 @@ public class Parser {
             break;
         }
         return commandType;
+    }
+
+    /**
+     * For home command to set the new value for projectindex
+     * @param newProjectIndex
+     */
+    public static void setProjectIndex(int newProjectIndex) {
+        projectIndex = newProjectIndex;
     }
 
 }
