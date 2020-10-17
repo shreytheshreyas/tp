@@ -25,7 +25,7 @@ public class DukeExceptions extends Exception {
         //file handler exceptions
         exceptionMessageList.put("Create File","The file could not be created");
         exceptionMessageList.put("Open File","The file could not be opened");
-        exceptionMessageList.put("default","☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+        exceptionMessageList.put("default","OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 
     public String toString() {

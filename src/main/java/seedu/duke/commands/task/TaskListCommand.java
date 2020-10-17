@@ -2,7 +2,7 @@ package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
+import java.util.ArrayList;
 import seedu.duke.ui.Ui;
 
 /**
@@ -15,8 +15,8 @@ public class TaskListCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public String executeCommand(ProjectList projects) {
-        Project project = projects.getProject(projectIndex);
+    public String executeCommand(ArrayList<Project> projects) {
+        Project project = projects.get(projectIndex);
         int numberOfTasks = project.getNumberTasks();
         if (numberOfTasks == 0) {
             return "Task list is empty!!";
