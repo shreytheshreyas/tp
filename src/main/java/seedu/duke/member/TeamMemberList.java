@@ -30,7 +30,7 @@ public class TeamMemberList {
         String listOfMembers = "";
         int i = 0;
         for (TeamMember member : memberList) {
-            String memberLine = (i + 1) + ". " + member.name + "\n";
+            String memberLine = (i + 1) + ". " + member.getName() + "\n";
             listOfMembers += memberLine;
             i++;
         }
