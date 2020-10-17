@@ -176,8 +176,8 @@ public class Parser {
     }
 
     /**
-     * For home command to set the new value for projectindex
-     * @param newProjectIndex
+     * For home command to set the new value for projectindex.
+     * @param newProjectIndex new value
      */
     public static void setProjectIndex(int newProjectIndex) {
         projectIndex = newProjectIndex;
