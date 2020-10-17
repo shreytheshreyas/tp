@@ -4,7 +4,6 @@ import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
-import seedu.duke.task.TaskList;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

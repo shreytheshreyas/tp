@@ -18,13 +18,14 @@ public class TaskListCommand extends Command {
     public String executeCommand(ArrayList<Project> projects) {
         Project project = projects.get(projectIndex);
 
-        if (project.getTasks().size() == 0) {
+        int numberOfTasks = project.getNumberTasks();
+
+        if (numberOfTasks == 0) {
             return "Task list is empty!!";
         } else {
-            String output = "";
-            output += "List of Tasks:";
-            for (int i = 0; i < project.getTasks().size(); i++) {
-                output += "\n     " + (i + 1) + "." + project.getTasks().get(i);
+            String output = "List of Tasks:";
+            for (int i = 0; i < numberOfTasks; i++) {
+                output += "\n     " + (i + 1) + "." + project.getTask(i);
             }
             return output;
         }
