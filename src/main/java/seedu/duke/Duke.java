@@ -1,9 +1,12 @@
 package seedu.duke;
 
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
+import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.ui.Ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Duke {
@@ -11,9 +14,12 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
+
+    private static ArrayList<TeamMember> members = new ArrayList<>();
+    private static ArrayList<Project> projects =  new ArrayList<>();
+
     public static void main(String[] args) throws DukeExceptions {
 
-        ProjectList projects = new ProjectList();
         Ui ui = new Ui();
 
         ui.printWelcome();

@@ -4,6 +4,8 @@ import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
+import java.util.ArrayList;
+
 public class Ui {
 
     private static final String MESSAGE_SINGLE_LINE = "____________________________________________________________";
@@ -46,11 +48,11 @@ public class Ui {
         return "Project list is empty!!";
     }
 
-    public static String printProjectListMessage(ProjectList projects) {
+    public static String printProjectListMessage(ArrayList<Project> projects) {
         String output = "";
         output += "List of Projects:";
-        for (int i = 0; i < projects.getProjectList().size(); i++) {
-            output += "\n     " + (i + 1) + "." + projects.getProject(i);
+        for (int i = 0; i < projects.size(); i++) {
+            output += "\n     " + (i + 1) + "." + projects.get(i);
         }
         return output;
     }
