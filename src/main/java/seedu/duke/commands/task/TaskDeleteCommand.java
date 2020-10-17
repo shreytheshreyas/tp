@@ -4,6 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
+import seedu.duke.ui.Ui;
 
 public class TaskDeleteCommand extends Command {
 
@@ -19,8 +20,9 @@ public class TaskDeleteCommand extends Command {
     public String executeCommand(ProjectList projects) {
         try {
             Project project = projects.getProject(projectIndex);
+            String taskToBeDeleted = project.getTask(itemIndex).getTaskDescription();
             project.deleteTask(itemIndex);
-            return "Task " + (itemIndex + 1) + " removed!!";
+            return Ui.printTaskDeletedMessage(taskToBeDeleted);
         } catch (ArrayIndexOutOfBoundsException e) {
             return "There is an ERROR in TASKLIST!!";
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
