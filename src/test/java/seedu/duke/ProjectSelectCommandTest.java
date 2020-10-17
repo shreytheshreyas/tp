@@ -28,7 +28,7 @@ public class ProjectSelectCommandTest {
 
     // add deadline to test after it has been implemented
     @Test
-    void executeCommand_validProjectIDWithDescription_additionalInformation() {
+    void executeCommand_validProjectIdWithDescription_additionalInformation() {
         ProjectSelectCommand selectProject = new ProjectSelectCommand(1);
         String expectedOutput =  "Do CS2113 Tutorial by today | <project deadline empty>";
         String actualOutput = selectProject.executeCommand(projects);
@@ -36,7 +36,7 @@ public class ProjectSelectCommandTest {
     }
 
     @Test
-    void executeCommand_invalidProjectIDWithDescription_additionalInformation() {
+    void executeCommand_invalidProjectIdWithDescription_additionalInformation() {
         ProjectSelectCommand selectProject = new ProjectSelectCommand(-5);
         String expectedOutput =  "Project ID does not exist!";
         String actualOutput = selectProject.executeCommand(projects);
