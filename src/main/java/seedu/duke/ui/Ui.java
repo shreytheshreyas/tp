@@ -91,5 +91,13 @@ public class Ui {
         return "Selected Task: " + taskName;
     }
 
+    public static String printInHomeViewMessage() {
+        return "Already in Home View!";
+    }
+
+    public static String printSwitchedToHomeViewMessage() {
+        return "Switched to Home View";
+    }
+
 
 }
