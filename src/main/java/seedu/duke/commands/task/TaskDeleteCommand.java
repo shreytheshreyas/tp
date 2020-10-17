@@ -21,15 +21,16 @@ public class TaskDeleteCommand extends Command {
     @Override
     public String executeCommand(ArrayList<Project> projects) {
         try {
-            return projects.get(projectIndex).deleteTask(itemIndex);
+            Project selectedProject = projects.get(projectIndex);
+            Task taskToDelete = selectedProject.getTask(itemIndex);
+            selectedProject.deleteTask(itemIndex);
+            return "Task " + "\"" + taskToDelete.getDescription() + "\"" + " removed!!";
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.size() == 0) {
                 return ("Task list is empty!!!"); //----------REPLACE WITH EXCEPTION
             } else {
                 return ("Invalid Task number"); //----------REPLACE WITH EXCEPTION
             }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return "There is an ERROR in TASKLIST!!";
         }
     }
 

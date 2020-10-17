@@ -20,7 +20,9 @@ public class TaskCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects) {
         Project project = projects.get(projectIndex);
-        return project.createTask(description);
+        Task newTask = new Task(description);
+        project.createTask(newTask);
+        return "Created: " + description;
     }
 
     public Boolean isExit() {

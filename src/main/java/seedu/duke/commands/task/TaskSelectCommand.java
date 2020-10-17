@@ -16,7 +16,7 @@ public class TaskSelectCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects) {
         try {
-            return projects.get(projectIndex).selectTask(itemIndex);
+            return projects.get(projectIndex).selectTask(taskIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.size() == 0) {
               return ("I am empty!!!"); //----------REPLACE WITH EXCEPTION

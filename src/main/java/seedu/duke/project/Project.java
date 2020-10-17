@@ -42,16 +42,11 @@ public class Project {
         return projectDescription;
     }
 
-    public String selectTask(int index) {
-        return tasks.selectTask(index);
-    }
 
     public static ArrayList<TeamMember> getMembers() {
         return members;
     }
 
-    public String deleteTask(int index) {
-        return tasks.deleteTask(index);
     public int getNumberTasks() {
         return tasks.size();
     }
@@ -63,8 +58,21 @@ public class Project {
      */
     @Override
     public String toString() {
-        
+
         return projectName;
-        
+
+    }
+
+    public ArrayList<Task> getTaskList() {
+        return tasks;
+    }
+
+    public String selectTask(int taskId) {
+        try {
+            Task selectedTask = tasks.get(taskId);
+            return "Selected Task: " + selectedTask.toString();
+        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
+            return "Task ID does not exist.";
+        }
     }
 }
