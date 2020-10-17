@@ -84,7 +84,19 @@ public class Ui {
     }
 
     public static String printTaskDeletedMessage(String taskName) {
-        return "Task \"" + taskName + "\" removed!!";
+        return "Task \"" + taskName + "\" removed!";
+    }
+
+    public static String printTaskSelectedMessage(String taskName) {
+        return "Selected Task: " + taskName;
+    }
+
+    public static String printInHomeViewMessage() {
+        return "Already in Home View!";
+    }
+
+    public static String printSwitchedToHomeViewMessage() {
+        return "Switched to Home View";
     }
 
 

@@ -2,6 +2,7 @@ package seedu.duke.commands;
 
 import seedu.duke.Parser;
 import seedu.duke.project.Project;
+import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
@@ -16,10 +17,10 @@ public class HomeCommand extends Command {
     @Override
     public String executeCommand(ArrayList<Project> projects) {
         if (projectIndex == -1) {
-            return "Already in Home View!";
+            return Ui.printInHomeViewMessage();
         } else {
             Parser.setProjectIndex(-1);
-            return "Switched to Home View";
+            return Ui.printSwitchedToHomeViewMessage();
         }
 
     }

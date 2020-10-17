@@ -13,6 +13,7 @@ public class TaskDeleteCommand extends Command {
 
     private int itemIndex;
     private int projectIndex;
+    Project selectedProject;
 
     public TaskDeleteCommand(int itemIndex, int projectIndex) {
         this.itemIndex = itemIndex;
@@ -22,17 +23,16 @@ public class TaskDeleteCommand extends Command {
     @Override
     public String executeCommand(ArrayList<Project> projects) {
         try {
-            Project selectedProject = projects.get(projectIndex);
+            selectedProject = projects.get(projectIndex);
+            //Get task before deletion
             String taskToBeDeleted = selectedProject.getTask(itemIndex).getTaskDescription();
             selectedProject.deleteTask(itemIndex);
             return Ui.printTaskDeletedMessage(taskToBeDeleted);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return "There is an ERROR in TASKLIST!!";
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            if (projects.size() == 0) { // TODO: this should be changed to check the number of tasks
-                return ("Task list is empty!!!"); //----------REPLACE WITH EXCEPTION
+            if (projects.size() == 0) {
+                return ("Project List is Empty!"); //----------REPLACE WITH EXCEPTION
             } else {
-                return ("Invalid Task number"); //----------REPLACE WITH EXCEPTION
+                return ("Task ID does not exist!"); //----------REPLACE WITH EXCEPTION
             }
         }
     }
