@@ -68,11 +68,6 @@ public class Project {
     }
 
     public String selectTask(int taskId) {
-        try {
-            Task selectedTask = tasks.get(taskId);
-            return "Selected Task: " + selectedTask.toString();
-        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            return "Task ID does not exist.";
-        }
+        return tasks.get(taskId).toString();
     }
 }

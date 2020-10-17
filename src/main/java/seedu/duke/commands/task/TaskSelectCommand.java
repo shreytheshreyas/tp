@@ -16,12 +16,12 @@ public class TaskSelectCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects) {
         try {
-            return projects.get(projectIndex).selectTask(taskIndex);
+            return "Selected Task: " + projects.get(projectIndex).selectTask(taskIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
             if (projects.size() == 0) {
-                return ("I am empty!!!"); //----------REPLACE WITH EXCEPTION
+                return ("Project List is Empty!"); //----------REPLACE WITH EXCEPTION
             } else {
-                return ("Invalid project ID"); //----------REPLACE WITH EXCEPTION
+                return ("Task ID does not exist!"); //----------REPLACE WITH EXCEPTION
             }
     
         }
