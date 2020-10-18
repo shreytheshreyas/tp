@@ -1,5 +1,7 @@
 package seedu.duke.task;
 
+import seedu.duke.member.TeamMember;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,6 +18,7 @@ public class Task {
     protected String description;
     protected boolean isDone;
     protected LocalDate date;
+    protected TeamMember member;
 
     public Task(String description) {
         this.description = description;
@@ -32,6 +35,14 @@ public class Task {
 
     public String getDateString() {
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    }
+
+    public TeamMember getMember() {
+        return member;
+    }
+
+    public void setMember(TeamMember newMember) {
+        member = newMember;
     }
 
     /**

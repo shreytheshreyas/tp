@@ -15,5 +15,6 @@ public abstract class Command {
      * Returns an exit flag that is determined by user's command.
      * @return Terminate the program if user's command equals 'bye'
      */
+
     public abstract Boolean isExit();
 }
