@@ -10,27 +10,19 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
 public class ProjectDeadlineCommand extends Command {
-    private String projectIdInput;
-    private String dateString;
+    private int projectIndex;
+    private LocalDate date;
 
-    public ProjectDeadlineCommand(String projectIdInput, String dateString) {
-        this.projectIdInput = projectIdInput;
-        this.dateString = dateString;
+    public ProjectDeadlineCommand(int projectIndex, LocalDate date) {
+        this.projectIndex = projectIndex;
+        this.date = date;
     }
 
     public String executeCommand(ArrayList<Project> projects) {
-        try {
-            int projectId = Integer.parseInt(projectIdInput) - 1;
-            LocalDate date = LocalDate.parse(dateString);
-            Project project = projects.get(projectId);
-            project.addProjectDeadline(date);
-            return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                    + " added to Project " + project.getProjectName();
-        } catch (NullPointerException | StringIndexOutOfBoundsException | DateTimeParseException e) {
-            return "Date must be specified in format YYYY-MM-DD";
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            return "Project ID not specified";
-        }
+        Project project = projects.get(projectIndex);
+        project.addProjectDeadline(date);
+        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName();
     }
 
     public Boolean isExit() {
