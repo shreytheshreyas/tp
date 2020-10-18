@@ -4,6 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
+import seedu.duke.commands.member.AssignMemberToTask;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
 import seedu.duke.commands.project.ProjectDeleteCommand;
@@ -193,6 +194,11 @@ public class Parser {
         case "remove":
             commandType = getRemoveTeamMemberCommand(params);
             break;
+        case "assign":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new AssignMemberToTask(params, projectIndex);
         default:
             break;
         }

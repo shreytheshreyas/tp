@@ -99,5 +99,8 @@ public class Ui {
         return "Switched to Home View";
     }
 
+    public static String printMemberAssignedMessage(String memberName, String taskName) {
+        return memberName + " has been assigned to " + taskName;
+    }
 
 }
