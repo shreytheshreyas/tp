@@ -5,11 +5,7 @@ import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
-import seedu.duke.commands.project.DeleteProjectCommand;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectDescriptionCommand;
-import seedu.duke.commands.project.ProjectListCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.project.*;
 import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
@@ -122,19 +118,19 @@ public class Parser {
             }
             break;
         case "deadline":
-            if (!isProjectListView) {
+            if (isProjectListView) {
+                String projectIdString = inputs[1];
+                String dateString = inputs[2];
+                commandType = new ProjectDeadlineCommand(projectIdString, dateString);
+            } else {
                 try {
                     int taskIndex = Integer.parseInt(inputs[1]) - 1;
                     String dateString = inputs[2];
                     LocalDate date = LocalDate.parse(dateString);
                     commandType = new DeadlineCommand(projectIndex, taskIndex, date);
-                } catch (NullPointerException e) {
+                } catch (NullPointerException | StringIndexOutOfBoundsException | DateTimeParseException e) {
                     ui.printOutput("Date must be specified in format YYYY-MM-DD");
-                } catch (StringIndexOutOfBoundsException e) {
-                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
-                } catch (DateTimeParseException e) {
-                    ui.printOutput("Date must be specified in format YYYY-MM-DD");
-                } catch (NumberFormatException e) {
+                } catch (NumberFormatException | IndexOutOfBoundsException e) {
                     System.out.println("Task Index not specified");
                 }
             }

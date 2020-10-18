@@ -4,12 +4,16 @@ import seedu.duke.member.TeamMember;
 import seedu.duke.task.Task;
 
 import java.util.ArrayList;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Project {
     protected String projectName;
     protected boolean isDone;
     private ArrayList<Task> tasks;
     private String projectDescription;
+    private LocalDate date;
     private static ArrayList<TeamMember> members = new ArrayList<>();
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
@@ -42,13 +46,20 @@ public class Project {
         return projectDescription;
     }
 
-
     public static ArrayList<TeamMember> getMembers() {
         return members;
     }
 
     public int getNumberTasks() {
         return tasks.size();
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void addProjectDeadline(LocalDate date) {
+        this.date = date;
     }
 
     /**
