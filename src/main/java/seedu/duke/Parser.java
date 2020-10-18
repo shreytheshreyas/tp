@@ -4,7 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
-import seedu.duke.commands.member.AssignMemberToTask;
+import seedu.duke.commands.member.AssignMemberToTaskCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
 import seedu.duke.commands.project.ProjectDeleteCommand;
@@ -12,11 +12,7 @@ import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.commands.task.TaskCommand;
-import seedu.duke.commands.task.TaskDeleteCommand;
-import seedu.duke.commands.task.TaskListCommand;
-import seedu.duke.commands.task.TaskSelectCommand;
-import seedu.duke.commands.task.DeadlineCommand;    
+import seedu.duke.commands.task.*;
 import seedu.duke.ui.Ui;
 import java.util.HashMap;
 
@@ -198,7 +194,14 @@ public class Parser {
             if (isHomeView) {
                 throw new DukeExceptions("mustBeInProjectView");
             }
-            commandType = new AssignMemberToTask(params, projectIndex);
+            commandType = new AssignMemberToTaskCommand(params, projectIndex);
+            break;
+        case "priority":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new TaskAssignPriorityCommand(params, projectIndex);
+            break;
         default:
             break;
         }

@@ -12,15 +12,14 @@ import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
-public class AssignMemberToTask extends Command {
-
+public class AssignMemberToTaskCommand extends Command {
 
     private int taskIndex;
     private int projectIndex;
     private String memberName;
     HashMap<String, String> params;
 
-    public AssignMemberToTask(HashMap<String, String> params, int projectIndex)
+    public AssignMemberToTaskCommand(HashMap<String, String> params, int projectIndex)
             throws DukeExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
@@ -43,7 +42,7 @@ public class AssignMemberToTask extends Command {
         Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
         TeamMember member = new TeamMember(memberName);
         selectedTask.setMember(member);
-        return Ui.printMemberAssignedMessage(memberName, selectedTask.getTaskDescription());
+        return Ui.printMemberAssignedToTaskMessage(memberName, selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {
