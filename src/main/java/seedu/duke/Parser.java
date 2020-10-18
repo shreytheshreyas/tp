@@ -199,6 +199,7 @@ public class Parser {
                 throw new DukeExceptions("mustBeInProjectView");
             }
             commandType = new AssignMemberToTask(params, projectIndex);
+            break;
         default:
             break;
         }
