@@ -67,7 +67,7 @@ public class Ui {
     }
 
     public static String printProjectCreatedMessage(String projectName) {
-        return "Project \"" + projectName + "\" created!!";
+        return "Project \"" + projectName + "\" created!";
     }
 
     public static String printProjectDescriptionAddedMessage(Project project) {
@@ -79,8 +79,8 @@ public class Ui {
                 + "<team members involved empty>";
     }
 
-    public static String printTaskCreatedMessage(Task newTask) {
-        return "Created: " + newTask.toString();
+    public static String printTaskCreatedMessage(String taskName) {
+        return "Task \"" + taskName + "\" created!";
     }
 
     public static String printTaskDeletedMessage(String taskName) {

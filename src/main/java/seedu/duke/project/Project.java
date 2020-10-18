@@ -10,23 +10,34 @@ public class Project {
     protected boolean isDone;
     private ArrayList<Task> tasks;
     private String projectDescription;
-    private static ArrayList<TeamMember> members = new ArrayList<>();
+    private String projectDeadline;
+    private static ArrayList<TeamMember> members;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
+
+    public String getProjectDeadline() {
+        return projectDeadline;
+    }
+
+    public void setProjectDeadline(String projectDeadline) {
+        this.projectDeadline = projectDeadline;
+    }
 
     public Project(String projectName) {
         this.projectName = projectName;
         this.isDone = false;
         this.tasks = new ArrayList<>();
-        this.projectDescription = "";
+        this.projectDescription = "<project description empty>";
+        this.projectDeadline = "<project deadline empty>";
+        members = new ArrayList<>();
     }
 
     public Task getTask(int taskIndex) {
         return tasks.get(taskIndex);
     }
 
-    public void createTask(Task task) {
+    public void addTask(Task task) {
         tasks.add(task);
     }
 
@@ -58,9 +69,7 @@ public class Project {
      */
     @Override
     public String toString() {
-
         return projectName;
-
     }
 
     public ArrayList<Task> getTaskList() {

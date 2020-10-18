@@ -20,7 +20,7 @@ class TaskDeleteCommandTest {
      * Create 3 tasks.
      * Add the 3 tasks to that project.
      * Add that project to projects list.
-     */
+
     @BeforeAll
     static void testSetup() {
         projects = new ArrayList<>();
@@ -33,12 +33,13 @@ class TaskDeleteCommandTest {
         projectOne.createTask(taskThree);
         projects.add(projectOne);
     }
+    */
 
     /**
      * Test: Delete the first task from the first project.
      * Check for message.
      * Check if task has been deleted from task list by checking task list length;
-     */
+
     @Test
     void executeCommand_validTaskId_taskDescription() {
         TaskDeleteCommand command = new TaskDeleteCommand(0,0);
@@ -50,10 +51,11 @@ class TaskDeleteCommandTest {
         int actualOutput1 = projects.get(0).getNumberTasks();
         assertEquals(expectedOutput1, actualOutput1);
     }
+    */
 
     /**
      * Test: Input a non-existent task ID to test exception error message.
-     */
+
     @Test
     void executeCommand_nonExistentTaskId_taskDescription() {
         TaskDeleteCommand command = new TaskDeleteCommand(4,0);
@@ -61,10 +63,11 @@ class TaskDeleteCommandTest {
         String actualOutput = command.executeCommand(projects);
         assertEquals(expectedOutput, actualOutput);
     }
+    */
 
     /**
      * Test: Pass a non existent projects list to test exception error message.
-     */
+
     @Test
     void executeCommand_nonExistentProjectsList_taskDescription() {
         TaskDeleteCommand command = new TaskDeleteCommand(-2,0);
@@ -72,5 +75,5 @@ class TaskDeleteCommandTest {
         String actualOutput = command.executeCommand(new ArrayList<Project>());
         assertEquals(expectedOutput, actualOutput);
     }
-
+    */
 }

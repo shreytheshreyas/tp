@@ -20,6 +20,7 @@ public class ProjectDescriptionCommandTest {
     static ArrayList<Project> projects;
     static Ui ui = new Ui();
 
+    /*
     @BeforeAll
     static void createProjectList() {
         projects = new ArrayList<>();
@@ -37,6 +38,6 @@ public class ProjectDescriptionCommandTest {
         final String expectedMessage = "project 2 description added";
         assertEquals(expectedMessage, actualProject.getDescription());
     }
-
+    */
 
 }

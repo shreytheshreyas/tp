@@ -1,10 +1,9 @@
-package seedu.duke.commands.task;
+package seedu.duke.commands.project;
 
-import seedu.duke.Duke;
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
-import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.project.Project;
+import seedu.duke.project.ProjectList;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -12,22 +11,20 @@ import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
-public class TaskSelectCommand extends Command {
+public class ProjectDeleteCommand extends Command {
 
-    private int taskIndex;
     private int projectIndex;
     HashMap<String, String> params;
 
-    public TaskSelectCommand(HashMap<String, String> params, int projectIndex)
+    public ProjectDeleteCommand(HashMap<String, String> params)
             throws DukeExceptions {
         this.params = params;
-        this.projectIndex = projectIndex;
         this.parse();
     }
 
     public void parse() throws DukeExceptions {
         try {
-            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+            projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTaskID");
         }
@@ -37,12 +34,12 @@ public class TaskSelectCommand extends Command {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
-        return Ui.printTaskSelectedMessage(selectedTask);
+        Project projectToBeDeleted = projects.get(projectIndex);
+        projects.remove(projectIndex);
+        return Ui.printProjectDeletedMessage(projectToBeDeleted);
     }
 
     public Boolean isExit() {
         return false;
     }
-
 }
