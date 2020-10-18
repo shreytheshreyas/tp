@@ -18,7 +18,7 @@ public class TaskAssignPriorityCommand extends Command {
     private String priority;
     HashMap<String, String> params;
 
-    public TaskAssignPriorityCommand (HashMap<String, String> params, int projectIndex)
+    public TaskAssignPriorityCommand(HashMap<String, String> params, int projectIndex)
             throws DukeExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
