@@ -16,9 +16,12 @@ import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.DeadlineCommand;    
 import seedu.duke.ui.Ui;
+import java.util.HashMap;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Parser {
 
@@ -47,44 +50,47 @@ public class Parser {
         projectIndex = newIndex;
     }
 
-    public static int extractIndex(String index) {
+    public static int extractIndex(String index)  {
         return Integer.parseInt(index) - 1;
     }
 
-    public static String inputTextField(String[] inputs) {
-        String description = "";
-
-        for (int i = 1; i < inputs.length; i++) {
-            if (i == inputs.length - 1) {
-                description += inputs[i];
-            } else {
-                description += inputs[i] + " ";
-            }
+    public static HashMap<String, String> getParams(String paramsString) {
+        HashMap<String, String> inputParams = new HashMap<>();
+        Pattern p = Pattern.compile(".\\/.+?(?=\\s.\\/.+)|.\\/.+");
+        String test = paramsString;
+        Matcher m = p.matcher(test);
+        while (m.find()) {
+            String[] keyAndValue = m.group().split("/");
+            String paramType = keyAndValue[0];
+            String paramValue = keyAndValue[1];
+            inputParams.put(paramType, paramValue);
         }
-        return description;
+        return inputParams;
     }
 
-    public static Command getRemoveTeamMemberCommand(String[] inputs) {
-        Command commandType = null;
+    public static String getHashValue(HashMap<String, String> hashmap, String key) throws DukeExceptions {
+        if (!hashmap.containsKey(key)) {
+            throw new DukeExceptions("default");
+        } else {
+            return hashmap.get(key);
+        }
+    }
+
+    public static Command getRemoveTeamMemberCommand(HashMap<String, String> params) throws DukeExceptions {
+        Command commandType;
         try {
-            int memberIndex = extractIndex(inputs[1]);
+            int memberIndex = extractIndex(getHashValue(params, "m"));
             commandType = new DeleteTeamMemberCommand(memberIndex);
         } catch (NumberFormatException e) {
-            System.out.println("Invalid input");
+            throw new DukeExceptions("IndexNotFound");
         }
-
         return commandType;
     }
 
-    public static Command getAddMemberCommand(String[] inputs) throws DukeExceptions {
+    public static Command getAddMemberCommand(HashMap<String, String> params) throws DukeExceptions {
         Command commandType;
-        if (inputs[1].contains("m/")) {
-            inputs[1] = inputs[1].replaceFirst("m/","");
-            String memberName = inputTextField(inputs);
-            commandType = new AddTeamMemberCommand(memberName);
-        } else {
-            throw new DukeExceptions("default");
-        }
+        String memberName = getHashValue(params, "m");
+        commandType = new AddTeamMemberCommand(memberName);
         return commandType;
     }
 
@@ -98,71 +104,69 @@ public class Parser {
 
     }
 
-    public static Command getDeleteCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
+    public static Command getDeleteCommand(HashMap<String, String> params, boolean isProjectListView)
+            throws DukeExceptions {
         Command commandType;
-        if (isProjectListView && inputs[1].contains("p/")) {
-            inputs[1] = inputs[1].replaceFirst("p/","");
-            projectIndex = extractIndex(inputs[1]);
-            commandType = new DeleteProjectCommand(projectIndex);
-            projectIndex = -1;
-        } else if (inputs[1].contains("t/")) {
-            inputs[1] = inputs[1].replaceFirst("p/","");
-            taskIndex = extractIndex(inputs[1]);
-            commandType = new TaskDeleteCommand(taskIndex, projectIndex);
-        } else {
-            throw new DukeExceptions("default");
+        try {
+            if (isProjectListView) {
+                projectIndex = extractIndex(getHashValue(params, "p"));
+                commandType = new DeleteProjectCommand(projectIndex);
+                projectIndex = -1;
+            } else {
+                taskIndex = extractIndex(getHashValue(params, "t"));
+                commandType = new TaskDeleteCommand(taskIndex, projectIndex);
+            }
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("IndexNotFound");
         }
         return commandType;
     }
 
-    public static Command getDeadlineCommand(Ui ui, boolean isProjectView, String[] inputs) throws DukeExceptions {
-        Command commandType = null;
+    public static Command getDeadlineCommand(HashMap<String, String> params, boolean isProjectView)
+            throws DukeExceptions {
+        Command commandType;
 
         try {
-            if (!isProjectView && inputs[1].contains("t/") && inputs[2].contains("d/")) {
-                inputs[1] = inputs[1].replaceFirst("t/", "");
-                inputs[2] = inputs[2].replaceFirst("d/", "");
-                int taskIndex = extractIndex(inputs[1]);
-                String dateString = inputs[2];
-                LocalDate date = LocalDate.parse(dateString);
+            if (!isProjectView) {
+                int taskIndex = extractIndex(getHashValue(params, "t"));
+                LocalDate date = LocalDate.parse(getHashValue(params, "d"));
                 commandType = new DeadlineCommand(projectIndex, taskIndex, date);
             } else {
                 throw new DukeExceptions("default");
             }
 
         } catch (NullPointerException e) {
-            ui.printOutput("Date must be specified in format YYYY-MM-DD");
+            throw new DukeExceptions("WrongDateFormat");
         } catch (StringIndexOutOfBoundsException e) {
-            ui.printOutput("Date must be specified in format YYYY-MM-DD");
+            throw new DukeExceptions("WrongDateFormat");
         } catch (DateTimeParseException e) {
-            ui.printOutput("Date must be specified in format YYYY-MM-DD");
+            throw new DukeExceptions("WrongDateFormat");
         } catch (NumberFormatException e) {
-            System.out.println("Task Index not specified");
+            throw new DukeExceptions("IndexNotFound");
         }
 
         return commandType;
     }
 
-    public static Command getTaskCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
+    public static Command getTaskCommand(HashMap<String, String> params, boolean isProjectListView)
+            throws DukeExceptions {
         Command commandType;
         String taskDescription;
-
-        if (!isProjectListView && inputs[1].contains("n/")) {
-            inputs[1] = inputs[1].replaceFirst("n/","");
-            taskDescription = inputTextField(inputs);
-            commandType = new TaskCommand(taskDescription,projectIndex);
+        if (!isProjectListView) {
+            taskDescription = getHashValue(params, "n");
+            commandType = new TaskCommand(taskDescription, projectIndex);
         } else {
             throw new DukeExceptions("default");
         }
         return commandType;
     }
 
-    public static Command getProjectCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
+    public static Command getProjectCommand(HashMap<String, String> params, boolean isProjectListView)
+            throws DukeExceptions {
         Command commandType;
         String description;
-        if (isProjectListView && inputs[1].contains("n/")) {
-            inputs[1] = inputs[1].replaceFirst("n/","");
-            description = inputTextField(inputs);
+        if (isProjectListView) {
+            description = getHashValue(params, "n");
             commandType = new ProjectCommand(description);
         } else {
             throw new DukeExceptions("Add Task"); // REPLACED WITH EXCEPTION // change key descriptions
@@ -170,33 +174,34 @@ public class Parser {
         return commandType;
     }
 
-    public static Command getDescriptionCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
+    public static Command getDescriptionCommand(HashMap<String, String> params, boolean isProjectListView)
+            throws DukeExceptions {
         Command commandType;
         String description;
         if (isProjectListView) {
             throw new DukeExceptions("default"); // replace with exception
         } else {
-            description = inputTextField(inputs);
+            description = params.get("d");
             commandType = new ProjectDescriptionCommand(description, projectIndex);
         }
         return commandType;
     }
 
-    public static Command getSelectCommand(String[] inputs, boolean isProjectListView) throws DukeExceptions {
+    public static Command getSelectCommand(HashMap<String, String> params, boolean isProjectListView)
+            throws DukeExceptions {
         Command commandType;
-        if (isProjectListView && inputs[1].contains("p/")) {
-            inputs[1] = inputs[1].replaceFirst("p/","");
-            projectIndex = extractIndex(inputs[1]);
-            commandType = new ProjectSelectCommand(projectIndex);
-        } else if (inputs[1].contains("t/")) {
-            inputs[1] = inputs[1].replaceFirst("t/","");
-            taskIndex = extractIndex(inputs[1]);
-            commandType = new TaskSelectCommand(taskIndex, projectIndex);
-        } else {
-            throw new DukeExceptions("default");
+        try {
+            if (isProjectListView) {
+                projectIndex = extractIndex(getHashValue(params, "p"));
+                commandType = new ProjectSelectCommand(projectIndex);
+            } else {
+                taskIndex = extractIndex(getHashValue(params, "t"));
+                commandType = new TaskSelectCommand(taskIndex, projectIndex);
+            }
+            return commandType;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("IndexNotFound");
         }
-
-        return commandType;
     }
 
     public static Command getListCommandType(boolean isProjectListView) {
@@ -211,45 +216,49 @@ public class Parser {
      */
     public static Command checkAction(String inputCommand) throws DukeExceptions {
         Command commandType = null;
-        String[] inputs = inputCommand.split("\\s+");
+        String[] inputs = inputCommand.split("\\s+", 2);
         String taskType = inputs[0];
-        String description;
+
+        HashMap<String, String> params = new HashMap<>();
+        if (inputs.length == 2) {
+            String paramsString = inputs[1];
+            params = getParams(paramsString);
+        }
         boolean isProjectListView = (projectIndex == -1); //In main project list view
-        Ui ui = new Ui();
 
         switch (taskType) {
         case "list":
             commandType = getListCommandType(isProjectListView);
             break;
         case "select":
-            commandType = getSelectCommand(inputs, isProjectListView);
+            commandType = getSelectCommand(params, isProjectListView);
             break;
         case "description":
-            commandType = getDescriptionCommand(inputs, isProjectListView);
+            commandType = getDescriptionCommand(params, isProjectListView);
             break;
         case "project":
-            commandType = getProjectCommand(inputs, isProjectListView);
+            commandType = getProjectCommand(params, isProjectListView);
             break;
         case "task":
-            commandType = getTaskCommand(inputs, isProjectListView);
+            commandType = getTaskCommand(params, isProjectListView);
             break;
         case "deadline":
-            commandType = getDeadlineCommand(ui,isProjectListView,inputs);
+            commandType = getDeadlineCommand(params, isProjectListView);
             break;
         case "delete":
-            commandType = getDeleteCommand(inputs, isProjectListView);
+            commandType = getDeleteCommand(params, isProjectListView);
             break;
         case "switch":
             switchViewModes(isProjectListView);
             break;
         case "member":
-            commandType = getAddMemberCommand(inputs);
+            commandType = getAddMemberCommand(params);
             break;
         case "members":
             commandType = new ListTeamMembersCommand();
             break;
         case "remove":
-            commandType = getRemoveTeamMemberCommand(inputs);
+            commandType = getRemoveTeamMemberCommand(params);
             break;
         default:
             break;
