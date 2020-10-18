@@ -32,7 +32,7 @@ public class Ui {
         System.out.println(MESSAGE_SINGLE_LINE);
     }
 
-    public void printOutput(String output) {
+    public static void printOutput(String output) {
         System.out.println(output);
     }
 

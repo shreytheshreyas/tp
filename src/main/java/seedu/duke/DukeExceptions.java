@@ -22,6 +22,8 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("Switch","You are already in project view");
         exceptionMessageList.put("Add Project","You cannot add tasks in project view");
         exceptionMessageList.put("Add Task","You cannot add projects in task view");
+        exceptionMessageList.put("WrongDateFormat", "Date must be specified in format YYYY-MM-DD");
+        exceptionMessageList.put("IndexNotFound", "Index not specified");
         //file handler exceptions
         exceptionMessageList.put("Create File","The file could not be created");
         exceptionMessageList.put("Open File","The file could not be opened");
