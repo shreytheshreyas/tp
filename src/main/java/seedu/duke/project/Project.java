@@ -58,14 +58,6 @@ public class Project {
         return projectName;
     }
 
-    public LocalDate getProjectDeadline() {
-        return projectDeadline;
-    }
-
-    public void setProjectDeadline(LocalDate projectDeadline) {
-       this.projectDeadline = projectDeadline;
-    }
-
     /**
      * Returns details of the specified task.
      *

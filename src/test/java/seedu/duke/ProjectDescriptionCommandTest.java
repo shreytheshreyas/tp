@@ -20,7 +20,7 @@ public class ProjectDescriptionCommandTest {
     static ArrayList<Project> projects;
     static Ui ui = new Ui();
 
-    /*
+
     @BeforeAll
     static void createProjectList() {
         projects = new ArrayList<>();
@@ -40,6 +40,6 @@ public class ProjectDescriptionCommandTest {
         String expectedOutput = "Project description added \"Do CS2113 Tutorial by today\".";
         assertEquals(expectedOutput, actualOutput);
     }
-    */
+
 
 }
