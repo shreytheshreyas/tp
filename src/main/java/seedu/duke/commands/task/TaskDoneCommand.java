@@ -25,11 +25,7 @@ public class TaskDoneCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        try {
-            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
-        }
+        taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
     }
 
     public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
