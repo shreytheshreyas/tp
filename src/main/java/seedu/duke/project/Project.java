@@ -79,4 +79,8 @@ public class Project {
     public String selectTask(int taskId) {
         return tasks.get(taskId).toString();
     }
+
+    public boolean geStatus() {
+        return isDone;
+    }
 }

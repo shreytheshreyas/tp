@@ -99,5 +99,37 @@ public class Ui {
         return "Switched to Home View";
     }
 
+    public static String projectViewMessage(Project project) {
+        try {
+            String projectTitle = "Project \"" + project.toString() + "\"";
+            String taskListTitle = "\n ---------------------\n| TASK LIST           |\n ---------------------";
+            String STATUS_SPACES = "      "; // 6
+            String DESCRIPTION_SPACES = "                   "; // 19
+            String DEADLINE_SPACES = "                "; // 16
+            Integer PRIORITY_SPACES = 6;
+            String tableLabel = "Status   Description        Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved\n" +
+                    "----------------------------------------------------------------------------------------|------------------";
+            Integer i = 0;
+            String currentTaskLine = "";
+            String taskLines = "\n";
+            for(; i < project.getNumberTasks(); i++) {
+                Task currentTask = project.getTaskList().get(i);
+                String status = currentTask.isDone() ? "(✔)" : "(✘)";
+                String description = currentTask.getTaskDescription();
+                String deadline = "20 Oct 2020"; // placeholder
+//                String deadline = currentTask.getDateString();
+                currentTaskLine = status + STATUS_SPACES + description
+                        + (DESCRIPTION_SPACES.substring(0, DESCRIPTION_SPACES.length() - description.length()))
+                        + deadline + (DEADLINE_SPACES.substring(0, DEADLINE_SPACES.length() - deadline.length()));
+                taskLines += (currentTaskLine + "\n");
+            }
+            return projectTitle + "\n" + taskListTitle + "\n" + tableLabel + taskLines;
+        } catch (Error e) {
+            System.out.println(e.getMessage());
+        }
+        return "hi";
+//        return projectTitle + "\n" + taskListTitle + "\n";
+    }
+
 
 }

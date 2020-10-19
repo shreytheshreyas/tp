@@ -6,6 +6,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
+import seedu.duke.ui.Ui;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -38,12 +39,14 @@ public class ProjectSelectCommand extends Command {
             throw new DukeExceptions("emptyProjectList");
         }
         Project selectedProject = projects.get(projectIndex);
-        System.out.println("Switched to Project \"" + selectedProject + "\"");
+//        System.out.println("Switched to Project \"" + selectedProject + "\"");
         String projectDescription = selectedProject.getDescription();
         String projectDeadline = selectedProject.getProjectDeadline();
         //For small sam => help me implement this
+        String projectView = Ui.projectViewMessage(selectedProject);
         String members = "<team members involved empty>";
-        return projectDescription + " | " + projectDeadline + " | " + members;
+//        return projectDescription + " | " + projectDeadline + " | " + members;
+        return projectView;
     }
 
     public Boolean isExit() {
