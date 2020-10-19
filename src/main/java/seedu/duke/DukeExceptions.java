@@ -7,7 +7,7 @@ public class DukeExceptions extends Exception {
     private HashMap<String,String> exceptionMessageList = new HashMap<>();
     private String messageType;
 
-    DukeExceptions(String messageType) {
+    public DukeExceptions(String messageType) {
         initializeMap();
         this.messageType = messageType;
     }
@@ -17,15 +17,22 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("Project","Command incomplete!, You need to include a project description.");
         exceptionMessageList.put("Delete Project","Command incomplete! You need to mention the project Id");
         exceptionMessageList.put("Task Description","Command incomplete!, You need to include a task description.");
-        exceptionMessageList.put("Member","Command incomplete! You need to mention Member's name");
+        exceptionMessageList.put("Member","Command incorect! You need to mention Member's name");
         exceptionMessageList.put("Delete Task","Command incomplete! You need to mention the project Id");
         exceptionMessageList.put("Switch","You are already in project view");
         exceptionMessageList.put("Add Project","You cannot add tasks in project view");
         exceptionMessageList.put("Add Task","You cannot add projects in task view");
+        exceptionMessageList.put("WrongDateFormat", "Date must be specified in format YYYY-MM-DD");
+        exceptionMessageList.put("IndexNotFound", "Index not specified");
         //file handler exceptions
         exceptionMessageList.put("Create File","The file could not be created");
         exceptionMessageList.put("Open File","The file could not be opened");
         exceptionMessageList.put("default","OOPS!!! I'm sorry, but I don't know what that means :-(");
+        exceptionMessageList.put("mustBeInHomeView","You must be in Home View to do that!");
+        exceptionMessageList.put("mustBeInProjectView","You must be in Project View to do that!");
+        exceptionMessageList.put("emptyProjectList","Project list is empty!");
+        exceptionMessageList.put("invalidTaskID","Task ID does not exist!");
+        exceptionMessageList.put("invalidProjectID","Project ID does not exist!");
     }
 
     public String toString() {

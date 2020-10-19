@@ -32,7 +32,7 @@ public class Ui {
         System.out.println(MESSAGE_SINGLE_LINE);
     }
 
-    public void printOutput(String output) {
+    public static void printOutput(String output) {
         System.out.println(output);
     }
 
@@ -67,7 +67,7 @@ public class Ui {
     }
 
     public static String printProjectCreatedMessage(String projectName) {
-        return "Project \"" + projectName + "\" created!!";
+        return "Project \"" + projectName + "\" created!";
     }
 
     public static String printProjectDescriptionAddedMessage(Project project) {
@@ -83,12 +83,24 @@ public class Ui {
                 + "<team members involved empty>";
     }
 
-    public static String printTaskCreatedMessage(Task newTask) {
-        return "Created: " + newTask.toString();
+    public static String printTaskCreatedMessage(String taskName) {
+        return "Task \"" + taskName + "\" created!";
     }
 
     public static String printTaskDeletedMessage(String taskName) {
-        return "Task \"" + taskName + "\" removed!!";
+        return "Task \"" + taskName + "\" removed!";
+    }
+
+    public static String printTaskSelectedMessage(String taskName) {
+        return "Selected Task: " + taskName;
+    }
+
+    public static String printInHomeViewMessage() {
+        return "Already in Home View!";
+    }
+
+    public static String printSwitchedToHomeViewMessage() {
+        return "Switched to Home View";
     }
 
 

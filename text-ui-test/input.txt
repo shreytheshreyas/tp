@@ -1,1 +1,1 @@
-project operation xproject division qproject skillsfuturelistdelete 2listselect 1description the wayswitchselect 1listtask phase one /t2020-06-12task launch /t2020-04-13listdelete 1listselect 1membersmember john paul johnmember matthew ganimembersremove 1membersbye
+project n/p1listproject n/p2listproject n/p3listproject n/p4listselect p/1task n/this is task1listtask n/this is task2listtask n/this is task3listselect t/2deadline t/2 d/2020-10-17listmember m/doritomembersmember m/chicken ricemembersremove m/2membersbye

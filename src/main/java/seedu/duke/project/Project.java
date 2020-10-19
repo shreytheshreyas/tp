@@ -12,10 +12,9 @@ public class Project {
     private ArrayList<Task> tasks;
     private String projectDescription;
     private LocalDate projectDeadline;
-    private static ArrayList<TeamMember> members = new ArrayList<>();
+    private static ArrayList<TeamMember> members;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
-
 
     public Project(String projectName) {
         this.projectName = projectName;
@@ -23,13 +22,14 @@ public class Project {
         this.tasks = new ArrayList<>();
         this.projectDescription = "";
         this.projectDeadline = null;
+        members = new ArrayList<>();
     }
 
     public Task getTask(int taskIndex) {
         return tasks.get(taskIndex);
     }
 
-    public void createTask(Task task) {
+    public void addTask(Task task) {
         tasks.add(task);
     }
 
@@ -58,6 +58,14 @@ public class Project {
         return projectName;
     }
 
+    public LocalDate getProjectDeadline() {
+        return projectDeadline;
+    }
+
+    public void setProjectDeadline(LocalDate projectDeadline) {
+       this.projectDeadline = projectDeadline;
+    }
+
     /**
      * Returns details of the specified task.
      *
@@ -81,11 +89,6 @@ public class Project {
     }
 
     public String selectTask(int taskId) {
-        try {
-            Task selectedTask = tasks.get(taskId);
-            return "Selected Task: " + selectedTask.toString();
-        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            return "Task ID does not exist.";
-        }
+        return tasks.get(taskId).toString();
     }
 }
