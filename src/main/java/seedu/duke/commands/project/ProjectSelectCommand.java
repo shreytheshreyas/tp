@@ -5,9 +5,7 @@ import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,7 +27,7 @@ public class ProjectSelectCommand extends Command {
         Parser.setProjectIndex(projectIndex);
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
@@ -39,8 +37,8 @@ public class ProjectSelectCommand extends Command {
             String projectDescription = selectedProject.getDescription();
             String projectDeadline = selectedProject.getProjectDeadline();
             //For small sam => help me implement this
-            String members = "<team members involved empty>";
-            return projectDescription + " | " + projectDeadline + " | " + members;
+            String member = "<team members involved empty>";
+            return projectDescription + " | " + projectDeadline + " | " + member;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }

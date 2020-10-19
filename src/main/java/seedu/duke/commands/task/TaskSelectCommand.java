@@ -1,9 +1,8 @@
 package seedu.duke.commands.task;
 
-import seedu.duke.Duke;
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
-import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
@@ -29,7 +28,7 @@ public class TaskSelectCommand extends Command {
         taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }

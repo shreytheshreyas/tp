@@ -2,8 +2,8 @@ package seedu.duke.commands.project;
 
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class ProjectDeleteCommand extends Command {
         projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
