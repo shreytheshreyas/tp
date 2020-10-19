@@ -25,25 +25,25 @@ public class ProjectSelectCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        try {
-            projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-            Parser.setProjectIndex(projectIndex);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidProjectID");
-        }
+        projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
+        Parser.setProjectIndex(projectIndex);
     }
 
     public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        Project selectedProject = projects.get(projectIndex);
-        System.out.println("Switched to Project \"" + selectedProject + "\"");
-        String projectDescription = selectedProject.getDescription();
-        String projectDeadline = selectedProject.getProjectDeadline();
-        //For small sam => help me implement this
-        String members = "<team members involved empty>";
-        return projectDescription + " | " + projectDeadline + " | " + members;
+        try {
+            Project selectedProject = projects.get(projectIndex);
+            System.out.println("Switched to Project \"" + selectedProject + "\"");
+            String projectDescription = selectedProject.getDescription();
+            String projectDeadline = selectedProject.getProjectDeadline();
+            //For small sam => help me implement this
+            String members = "<team members involved empty>";
+            return projectDescription + " | " + projectDeadline + " | " + members;
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidProjectID");
+        }
     }
 
     public Boolean isExit() {
