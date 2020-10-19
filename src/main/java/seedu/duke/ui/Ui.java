@@ -83,6 +83,10 @@ public class Ui {
         return "Task \"" + taskName + "\" created!";
     }
 
+    public static String printTaskDoneMessage(String taskName) {
+        return "Task \"" + taskName + "\" is done!";
+    }
+
     public static String printTaskDeletedMessage(String taskName) {
         return "Task \"" + taskName + "\" removed!";
     }
