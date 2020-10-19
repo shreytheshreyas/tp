@@ -5,32 +5,36 @@ import seedu.duke.task.Task;
 
 import java.util.ArrayList;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Project {
     protected String projectName;
     protected boolean isDone;
     private ArrayList<Task> tasks;
     private String projectDescription;
-    private LocalDate date;
-    private static ArrayList<TeamMember> members = new ArrayList<>();
+    private LocalDate projectDeadline;
+    private static ArrayList<TeamMember> members;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
+
+    public LocalDate getProjectDeadline() {
+        return projectDeadline;
+    }
 
     public Project(String projectName) {
         this.projectName = projectName;
         this.isDone = false;
         this.tasks = new ArrayList<>();
-        this.projectDescription = "";
+        this.projectDescription = "<project description empty>";
+        this.projectDeadline = null;
+        members = new ArrayList<>();
     }
 
     public Task getTask(int taskIndex) {
         return tasks.get(taskIndex);
     }
 
-    public void createTask(Task task) {
+    public void addTask(Task task) {
         tasks.add(task);
     }
 
@@ -59,7 +63,7 @@ public class Project {
     }
 
     public void addProjectDeadline(LocalDate date) {
-        this.date = date;
+        this.projectDeadline = date;
     }
 
     /**
@@ -69,9 +73,7 @@ public class Project {
      */
     @Override
     public String toString() {
-
         return projectName;
-
     }
 
     public ArrayList<Task> getTaskList() {
@@ -79,11 +81,6 @@ public class Project {
     }
 
     public String selectTask(int taskId) {
-        try {
-            Task selectedTask = tasks.get(taskId);
-            return "Selected Task: " + selectedTask.toString();
-        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            return "Task ID does not exist.";
-        }
+        return tasks.get(taskId).toString();
     }
 }
