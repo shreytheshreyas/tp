@@ -4,6 +4,8 @@ import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Ui {
@@ -74,8 +76,9 @@ public class Ui {
         return "Project description added \"" + project.getDescription() + "\".";
     }
 
-    public static String printProjectSelectedMessage(ArrayList<Project> projects, int projectIndex) {
-        return "Switched to Project \"" + projects.get(projectIndex).getProjectName() + "\"";
+    public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
+        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName();
     }
 
     public static String printEmptyAdditionalProjectInformationMessage() {

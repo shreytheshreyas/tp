@@ -95,16 +95,6 @@ public class Parser {
         return commandType;
     }
 
-    public static void switchViewModes(boolean isProjectListView) throws DukeExceptions {
-        if (!isProjectListView) {
-            System.out.println("Switched to Project View!");
-            projectIndex = -1;
-        } else {
-            throw new DukeExceptions("Switch"); // REPLACED WITH EXCEPTION
-        }
-
-    }
-
     public static Command getDeadlineCommand(HashMap<String, String> params, boolean isProjectListView)
             throws DukeExceptions {
         Command commandType = null;
@@ -118,7 +108,7 @@ public class Parser {
                 LocalDate date = LocalDate.parse(getHashValue(params, "d"));
                 commandType = new DeadlineCommand(projectIndex, taskIndex, date);
             }
-        } catch (NullPointerException | StringIndexOutOfBoundsException | DateTimeParseException e) {
+        } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
             throw new DukeExceptions("WrongDateFormat");
         } catch (NumberFormatException e) {
             throw new DukeExceptions("IndexNotFound");
