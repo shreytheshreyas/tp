@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
@@ -18,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProjectDescriptionCommandTest {
     static ArrayList<Project> projects;
+    static ArrayList<TeamMember> teamMembers;
     static Ui ui = new Ui();
 
 
@@ -36,7 +38,7 @@ public class ProjectDescriptionCommandTest {
     @Test
     void executeCommand_projectList_projectDescriptionAdded() {
         ProjectDescriptionCommand addDescription = new ProjectDescriptionCommand("Do CS2113 Tutorial by today", 1);
-        String actualOutput = addDescription.executeCommand(projects);
+        String actualOutput = addDescription.executeCommand(projects, teamMembers);
         String expectedOutput = "Project description added \"Do CS2113 Tutorial by today\".";
         assertEquals(expectedOutput, actualOutput);
     }

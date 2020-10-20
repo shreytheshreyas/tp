@@ -12,7 +12,8 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TeamMemberAssignToTaskCommandTest {
     static ArrayList<Project> projects;
@@ -46,7 +47,7 @@ class TeamMemberAssignToTaskCommandTest {
     }
 
     /**
-     * Assign member 1 (Arnold) to task 1 (Task One)
+     * Assign member 1 (Arnold) to task 1 (Task One).
      * @throws DukeExceptions exception message
      */
     @Test
@@ -65,8 +66,8 @@ class TeamMemberAssignToTaskCommandTest {
         params.put("m", "1");
         TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
         String expectedOutput = "Team Members list is empty!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class,
-                () -> command.executeCommand(projects, new ArrayList<TeamMember>()));
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+                command.executeCommand(projects, new ArrayList<TeamMember>()));
         assertEquals(expectedOutput, exception.toString());
     }
 
@@ -76,8 +77,8 @@ class TeamMemberAssignToTaskCommandTest {
         params.put("m", "1");
         TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
         String expectedOutput = "Task ID does not exist!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class,
-                () -> command.executeCommand(projects, teamMembers));
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+                command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 

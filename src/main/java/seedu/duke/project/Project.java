@@ -54,6 +54,7 @@ public class Project {
     public String getProjectName() {
         return projectName;
     }
+
     /**
      * Returns details of the specified task.
      *

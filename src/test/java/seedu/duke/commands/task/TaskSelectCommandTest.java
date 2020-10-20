@@ -65,8 +65,8 @@ class TaskSelectCommandTest {
         params.put("t", "4");
         TaskSelectCommand command = new TaskSelectCommand(params,0);
         String expectedOutput = "Task ID does not exist!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class,
-                () -> command.executeCommand(projects, teamMembers));
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+                command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 
@@ -78,8 +78,8 @@ class TaskSelectCommandTest {
         params.put("t", "1");
         TaskSelectCommand command = new TaskSelectCommand(params,0);
         String expectedOutput = "Project list is empty!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class,
-                () -> command.executeCommand(new ArrayList<Project>(), teamMembers));
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+                command.executeCommand(new ArrayList<Project>(), teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 }

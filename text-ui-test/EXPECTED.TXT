@@ -36,8 +36,8 @@ List of Projects:
      4.p4
 ____________________________________________________________
 ____________________________________________________________
-Switched to Project "p1"
-<project description empty> | <project deadline empty>
+Switched to Project "<project description empty> | <project deadline empty>"
+<project description empty> | <project deadline empty> | <team members involved empty>
 ____________________________________________________________
 ____________________________________________________________
 Task "this is task1" created!
