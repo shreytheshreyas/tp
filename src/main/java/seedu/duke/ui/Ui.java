@@ -103,12 +103,21 @@ public class Ui {
         return "Switched to Home View";
     }
 
+<<<<<<< HEAD
     public static String printMemberAssignedMessage(String memberName, String taskName) {
         return "\"" + memberName + "\" has been assigned to \"" + taskName + "\"";
     }
 
     public static String printMemberRemovedMessage(String memberName) {
         return "\"" + memberName + "\" has been removed";
+=======
+    public static String printMemberAssignedToTaskMessage(String memberName, String taskName) {
+        return "Member \"" + memberName + "\" has been assigned to \"" + taskName + "\"";
+    }
+
+    public static String printPriorityAssignedToTaskMessage(String priority, String taskName) {
+        return "Priority \"" + priority + "\" has been assigned to \"" + taskName + "\"";
+>>>>>>> Assign-priority-to-task
     }
 
 }

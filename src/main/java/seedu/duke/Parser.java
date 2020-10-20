@@ -12,11 +12,13 @@ import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.commands.task.TaskCommand;
-import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.DeadlineCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
-import seedu.duke.commands.task.DeadlineCommand;    
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskAssignPriorityCommand;
+
 import seedu.duke.ui.Ui;
 import java.util.HashMap;
 
@@ -199,6 +201,12 @@ public class Parser {
                 throw new DukeExceptions("mustBeInProjectView");
             }
             commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
+            break;
+        case "priority":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new TaskAssignPriorityCommand(params, projectIndex);
             break;
         default:
             break;
