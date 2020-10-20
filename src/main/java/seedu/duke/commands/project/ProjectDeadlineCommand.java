@@ -1,5 +1,6 @@
 package seedu.duke.commands.project;
 
+import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
@@ -18,11 +19,15 @@ public class ProjectDeadlineCommand extends Command {
         this.date = date;
     }
 
-    public String executeCommand(ArrayList<Project> projects) {
-        Project project = projects.get(projectIndex);
-        project.addProjectDeadline(date);
-        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                + " added to Project " + project.getProjectName();
+    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+        try {
+            Project project = projects.get(projectIndex);
+            project.addProjectDeadline(date);
+            return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                    + " added to Project " + project.getProjectName();
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidProjectID");
+        }
     }
 
     public Boolean isExit() {
