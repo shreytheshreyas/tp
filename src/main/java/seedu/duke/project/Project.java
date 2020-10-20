@@ -6,8 +6,9 @@ import seedu.duke.task.Task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Collections;
 
-public class Project {
+public class Project implements Comparable<Project> {
     protected String projectName;
     protected boolean isDone;
     private ArrayList<Task> tasks;
@@ -24,6 +25,14 @@ public class Project {
         this.projectDescription = "";
         this.projectDeadline = null;
         members = new ArrayList<>();
+    }
+
+    @Override
+    public int compareTo(Project project) {
+        if (getProjectDeadline() == null || project.getProjectDeadline() == null) {
+            return 0;
+        }
+        return getProjectDeadline().compareTo(project.getProjectDeadline());
     }
 
     public Task getTask(int taskIndex) {
@@ -60,6 +69,10 @@ public class Project {
 
     public void addProjectDeadline(LocalDate date) {
         this.projectDeadline = date;
+    }
+
+    public LocalDate getProjectDeadline() {
+        return this.projectDeadline;
     }
 
     /**
