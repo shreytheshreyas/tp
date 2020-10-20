@@ -60,7 +60,7 @@ public class TeamMemberAssignToTaskCommand extends Command {
         }
 
         selectedTask.setMember(teamMember);
-        return Ui.printMemberAssignedMessage(teamMember.getName(), selectedTask.getTaskDescription());
+        return Ui.printMemberAssignedToTaskMessage(teamMember.getName(), selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {

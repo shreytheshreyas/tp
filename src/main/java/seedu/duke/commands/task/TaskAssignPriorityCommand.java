@@ -28,12 +28,8 @@ public class TaskAssignPriorityCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        try {
-            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-            priority = getHashValue(params, "p");
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
-        }
+        taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+        priority = getHashValue(params, "p");
     }
 
     public String executeCommand(ArrayList<Project> projects,
@@ -41,9 +37,13 @@ public class TaskAssignPriorityCommand extends Command {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
-        selectedTask.setPriority(priority);
-        return Ui.printPriorityAssignedToTaskMessage(priority, selectedTask.getTaskDescription());
+        try {
+            Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
+            selectedTask.setPriority(priority);
+            return Ui.printPriorityAssignedToTaskMessage(priority, selectedTask.getTaskDescription());
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     public Boolean isExit() {

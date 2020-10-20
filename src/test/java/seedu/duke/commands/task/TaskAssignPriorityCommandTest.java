@@ -1,9 +1,8 @@
-package seedu.duke.commands.member;
+package seedu.duke.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeExceptions;
-import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
@@ -12,10 +11,9 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
-class TeamMemberAssignToTaskCommandTest {
+class TaskAssignPriorityCommandTest {
     static ArrayList<Project> projects;
     static ArrayList<TeamMember> teamMembers;
     static HashMap<String, String> params;
@@ -41,41 +39,30 @@ class TeamMemberAssignToTaskCommandTest {
         projectOne.addTask(taskTwo);
         projectOne.addTask(taskThree);
         projects.add(projectOne);
-        teamMembers.add(new TeamMember("Arnold"));
-        teamMembers.add(new TeamMember("Julian"));
-        teamMembers.add(new TeamMember("Victor"));
     }
 
     /**
-     * Assign member 1 (Arnold) to task 1 (Task One).
-     * @throws DukeExceptions exception message
+     * Test: Assign priority HIGH to first task.
+     * Check for message.
      */
     @Test
-    void executeCommand_validTaskIdMemberId_memberAssignedMessage() throws DukeExceptions {
+    void executeCommand_validPriorityAndTaskId_priorityAssignedToTask() throws DukeExceptions {
+        params.put("p", "HIGH");
         params.put("t", "1");
-        params.put("m", "1");
-        TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
-        String expectedOutput = Ui.printMemberAssignedToTaskMessage("Arnold", "Task One");
+        TaskAssignPriorityCommand command = new TaskAssignPriorityCommand(params, 0);
+        String expectedOutput = Ui.printPriorityAssignedToTaskMessage("HIGH", "Task One");
         String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
 
+    /**
+     * Test: Assign priority HIGH to non existent task.
+     */
     @Test
-    void executeCommand_nonExistentMemberId_memberAssignedMessage() throws DukeExceptions {
-        params.put("t", "1");
-        params.put("m", "1");
-        TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
-        String expectedOutput = "Team Members list is empty!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
-                command.executeCommand(projects, new ArrayList<TeamMember>()));
-        assertEquals(expectedOutput, exception.toString());
-    }
-
-    @Test
-    void executeCommand_nonExistentTaskId_memberAssignedMessage() throws DukeExceptions {
+    void executeCommand_nonExistentTaskId_invalidTaskId() throws DukeExceptions {
+        params.put("p", "HIGH");
         params.put("t", "5");
-        params.put("m", "1");
-        TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
+        TaskAssignPriorityCommand command = new TaskAssignPriorityCommand(params, 0);
         String expectedOutput = "Task ID does not exist!";
         DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
