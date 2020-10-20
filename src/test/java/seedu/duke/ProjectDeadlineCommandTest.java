@@ -58,10 +58,10 @@ public class ProjectDeadlineCommandTest {
     }
 
     @Test
-    void executeCommand_invalidDeadlineFormat_addDeadlineToProject() {
+    void executeCommand_invalidDeadlineFormat_addDeadlineToProject() throws DukeExceptions {
         String expectedOutput = "Date must be specified in format YYYY-MM-DD";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
-            Parser.parse("deadline p/2 d/2020-31-31");;
+            Parser.parse("deadline p/2 d/2020-31-31");
         });
         assertEquals(expectedOutput, actualOutputException.toString());
     }

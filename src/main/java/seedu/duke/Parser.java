@@ -110,9 +110,9 @@ public class Parser {
         Command commandType = null;
         try {
             if (isProjectListView) {
-                int projectIndex = extractIndex(getHashValue(params, "p"));
+                int projectId = extractIndex(getHashValue(params, "p"));
                 LocalDate date = LocalDate.parse(getHashValue(params, "d"));
-                commandType = new ProjectDeadlineCommand(projectIndex, date);
+                commandType = new ProjectDeadlineCommand(projectId, date);
             } else {
                 int taskIndex = extractIndex(getHashValue(params, "t"));
                 LocalDate date = LocalDate.parse(getHashValue(params, "d"));
