@@ -5,6 +5,7 @@ import seedu.duke.task.Task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Project {
     protected String projectName;
@@ -45,7 +46,6 @@ public class Project {
         return projectDescription;
     }
 
-
     public static ArrayList<TeamMember> getMembers() {
         return members;
     }
@@ -58,6 +58,10 @@ public class Project {
         return projectName;
     }
 
+    public void addProjectDeadline(LocalDate date) {
+        this.projectDeadline = date;
+    }
+
     /**
      * Returns details of the specified task.
      *
@@ -66,11 +70,11 @@ public class Project {
     @Override
     public String toString() {
         if (!projectDescription.equals("") & projectDeadline != null) {
-            return projectDescription + " | " + projectDeadline;
+            return "Description: " + projectDescription + " | Deadline: " + projectDeadline;
         } else if (!projectDescription.equals("") & projectDeadline == null) {
-            return projectDescription + " | <project deadline empty>";
+            return "Description: " + projectDescription + " | <project deadline empty>";
         } else if (projectDeadline != null) {
-            return "<project description empty> | " + projectDeadline;
+            return "<project description empty> | Deadline: " + projectDeadline;
         } else {
             return "<project description empty> | <project deadline empty>";
         }

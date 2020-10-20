@@ -7,6 +7,8 @@ import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -27,15 +29,15 @@ public class ProjectSelectCommandTest {
         projects.add(projectTwo);
         projects.add(projectThree);
         projectTwo.addDescription("Do CS2113 Tutorial by today");
+        projectTwo.addProjectDeadline(LocalDate.parse("2020-12-31"));
     }
 
-    // add deadline to test after it has been implemented
     @Test
     void executeCommand_validProjectIdWithDescription_additionalInformation() throws DukeExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
-        String expectedOutput =  "Do CS2113 Tutorial by today | <project deadline empty>";
+        String expectedOutput =  "Description: Do CS2113 Tutorial by today | Deadline: 2020-12-31";
         String actualOutput = selectProject.executeCommand(projects);
         assertEquals(expectedOutput, actualOutput);
     }
