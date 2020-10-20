@@ -27,8 +27,12 @@ public class ProjectSelectCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-        Parser.setProjectIndex(projectIndex);
+        try {
+            projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
+            Parser.setProjectIndex(projectIndex);
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidProjectID");
+        }
     }
 
     public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
@@ -39,7 +43,7 @@ public class ProjectSelectCommand extends Command {
             Project selectedProject = projects.get(projectIndex);
             System.out.println("Switched to Project \"" + selectedProject.getProjectName() + "\"");
             return selectedProject.toString();
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }
     }
