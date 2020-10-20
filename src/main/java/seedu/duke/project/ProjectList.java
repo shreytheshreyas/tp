@@ -41,7 +41,7 @@ public class ProjectList {
     }
 
     public String selectProject(int projectIndex) {
-        System.out.println("Switched to Project \"" + this.getProject(projectIndex) + "\"");
+        System.out.println("Switched to Project \"" + this.getProject(projectIndex).getProjectName() + "\"");
         if (this.getProject(projectIndex).getDescription().equals("")) {
             return Ui.printEmptyAdditionalProjectInformationMessage();
         } else {
