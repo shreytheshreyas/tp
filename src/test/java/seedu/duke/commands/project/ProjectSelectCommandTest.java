@@ -1,7 +1,8 @@
-package seedu.duke;
+package seedu.duke.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeExceptions;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.member.TeamMember;
@@ -37,7 +38,7 @@ public class ProjectSelectCommandTest {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
-        String expectedOutput =  "Do CS2113 Tutorial by today | <project deadline empty>";
+        String expectedOutput =  "Do CS2113 Tutorial by today | <project deadline empty> | <team members involved empty>";
         String actualOutput = selectProject.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
