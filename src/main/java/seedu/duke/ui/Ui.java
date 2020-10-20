@@ -4,6 +4,10 @@ import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 public class Ui {
 
     private static final String MESSAGE_SINGLE_LINE = "____________________________________________________________";
@@ -30,7 +34,7 @@ public class Ui {
         System.out.println(MESSAGE_SINGLE_LINE);
     }
 
-    public void printOutput(String output) {
+    public static void printOutput(String output) {
         System.out.println(output);
     }
 
@@ -38,19 +42,19 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
-    public static String printProjectDeletedMessage(Project projectName) {
-        return "Project \"" + projectName + "\" deleted";
+    public static String printProjectDeletedMessage(Project project) {
+        return "Project \"" + project.getProjectName() + "\" deleted";
     }
 
     public static String printEmptyProjectListMessage() {
         return "Project list is empty!!";
     }
 
-    public static String printProjectListMessage(ProjectList projects) {
+    public static String printProjectListMessage(ArrayList<Project> projects) {
         String output = "";
         output += "List of Projects:";
-        for (int i = 0; i < projects.getProjectList().size(); i++) {
-            output += "\n     " + (i + 1) + "." + projects.getProject(i);
+        for (int i = 0; i < projects.size(); i++) {
+            output += "\n     " + (i + 1) + "." + projects.get(i).getProjectName();
         }
         return output;
     }
@@ -65,11 +69,16 @@ public class Ui {
     }
 
     public static String printProjectCreatedMessage(String projectName) {
-        return "Project \"" + projectName + "\" created!!";
+        return "Project \"" + projectName + "\" created!";
     }
 
     public static String printProjectDescriptionAddedMessage(Project project) {
         return "Project description added \"" + project.getDescription() + "\".";
+    }
+
+    public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
+        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName();
     }
 
     public static String printEmptyAdditionalProjectInformationMessage() {
@@ -77,12 +86,24 @@ public class Ui {
                 + "<team members involved empty>";
     }
 
-    public static String printTaskCreatedMessage(Task newTask) {
-        return "Created: " + newTask.toString();
+    public static String printTaskCreatedMessage(String taskName) {
+        return "Task \"" + taskName + "\" created!";
     }
 
     public static String printTaskDeletedMessage(String taskName) {
-        return "Task \"" + taskName + "\" removed!!";
+        return "Task \"" + taskName + "\" removed!";
+    }
+
+    public static String printTaskSelectedMessage(String taskName) {
+        return "Selected Task: " + taskName;
+    }
+
+    public static String printInHomeViewMessage() {
+        return "Already in Home View!";
+    }
+
+    public static String printSwitchedToHomeViewMessage() {
+        return "Switched to Home View";
     }
 
 

@@ -1,29 +1,47 @@
 package seedu.duke.commands.task;
 
+import seedu.duke.Duke;
+import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
+import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
+import seedu.duke.ui.Ui;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static seedu.duke.Parser.getHashValue;
 
 public class TaskSelectCommand extends Command {
 
     private int taskIndex;
     private int projectIndex;
+    HashMap<String, String> params;
 
-    public TaskSelectCommand(int taskIndex, int projectIndex) {
-        this.taskIndex = taskIndex;
+    public TaskSelectCommand(HashMap<String, String> params, int projectIndex)
+            throws DukeExceptions {
+        this.params = params;
         this.projectIndex = projectIndex;
+        this.parse();
     }
 
-    public String executeCommand(ProjectList projects) {
+    public void parse() throws DukeExceptions {
         try {
-            Project project = projects.getProject(projectIndex);
-            return "Selected Task: " + project.getTask(taskIndex);
-        } catch (NumberFormatException | IndexOutOfBoundsException | NullPointerException e) {
-            if (projects.getNumberOfProjects() == 0) {
-                return ("I am empty!!!"); //----------REPLACE WITH EXCEPTION
-            } else {
-                return ("Invalid project ID"); //----------REPLACE WITH EXCEPTION
-            }
+            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
+    }
+
+    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+        if (projects.size() == 0) {
+            throw new DukeExceptions("emptyProjectList");
+        }
+        try {
+            String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
+            return Ui.printTaskSelectedMessage(selectedTask);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTaskID");
         }
     }
 
