@@ -38,7 +38,9 @@ public class ProjectSelectCommandTest {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
-        String expectedOutput =  "Do CS2113 Tutorial by today | <project deadline empty> | <team members involved empty>";
+        String expectedOutput =  "Do CS2113 Tutorial by today " +
+                "| <project deadline empty> " +
+                "| <team members involved empty>";
         String actualOutput = selectProject.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
