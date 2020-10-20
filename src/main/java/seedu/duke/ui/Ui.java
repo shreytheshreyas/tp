@@ -90,6 +90,14 @@ public class Ui {
         return "Task \"" + taskName + "\" created!";
     }
 
+    public static String printEstimateAddedMessage(String taskName, int hours, int minutes) {
+        return "Task \"" + taskName + "\" has estimated time of " + hours + " hours and " + minutes + " minutes";
+    }
+
+    public static String printActualDurationAddedMessage(String taskName, int hours, int minutes) {
+        return "Task \"" + taskName + "\" took " + hours + " hours and " + minutes + " minutes to be completed.";
+    }
+
     public static String printTaskDoneMessage(String taskName) {
         return "Task \"" + taskName + "\" is done!";
     }
