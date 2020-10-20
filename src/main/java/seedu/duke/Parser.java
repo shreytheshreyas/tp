@@ -4,6 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
+import seedu.duke.commands.member.AssignMemberToProjectCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
 import seedu.duke.commands.project.ProjectDeadlineCommand;
@@ -194,6 +195,9 @@ public class Parser {
         case "remove":
             commandType = getRemoveTeamMemberCommand(params);
             break;
+        case "allocate":
+            commandType = new AssignMemberToProjectCommand(params,isHomeView);
+
         default:
             break;
         }

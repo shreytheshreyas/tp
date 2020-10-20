@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.DukeExceptions;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 
 import java.util.ArrayList;

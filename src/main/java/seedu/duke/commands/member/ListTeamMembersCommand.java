@@ -23,7 +23,7 @@ public class ListTeamMembersCommand extends Command {
         String listOfMembers = "";
         int i = 0;
         for (TeamMember member : Project.getMembers()) {
-            String memberLine = (i + 1) + ". " + member.getName() + "\n";
+            String memberLine = (i + 1) + ". " + member.getName() + "\t\t" + member.getAssignedProjectId() + "\n";
             listOfMembers += memberLine;
             i++;
         }
