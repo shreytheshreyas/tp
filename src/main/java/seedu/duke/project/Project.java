@@ -51,10 +51,6 @@ public class Project {
         return projectDescription;
     }
 
-    public int getNumberTasks() {
-        return tasks.size();
-    }
-
     /**
      * Returns details of the specified task.
      *

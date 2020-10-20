@@ -2,17 +2,22 @@ package seedu.duke.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeExceptions;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TaskDeleteCommandTest {
     static ArrayList<Project> projects;
-    static Ui ui = new Ui();
+    static ArrayList<TeamMember> teamMembers;
+    static HashMap<String, String> params;
 
     /**
      * Create 1 projects list
@@ -20,60 +25,61 @@ class TaskDeleteCommandTest {
      * Create 3 tasks.
      * Add the 3 tasks to that project.
      * Add that project to projects list.
-
+     */
     @BeforeAll
     static void testSetup() {
+        params = new HashMap<>();
+        teamMembers = new ArrayList<>();
         projects = new ArrayList<>();
         Project projectOne = new Project("Project One");
         Task taskOne = new Task("Task One");
         Task taskTwo = new Task("Task Two");
         Task taskThree = new Task("Task Three");
-        projectOne.createTask(taskOne);
-        projectOne.createTask(taskTwo);
-        projectOne.createTask(taskThree);
+        projectOne.addTask(taskOne);
+        projectOne.addTask(taskTwo);
+        projectOne.addTask(taskThree);
         projects.add(projectOne);
     }
-    */
 
     /**
      * Test: Delete the first task from the first project.
      * Check for message.
      * Check if task has been deleted from task list by checking task list length;
-
+     */
     @Test
-    void executeCommand_validTaskId_taskDescription() {
-        TaskDeleteCommand command = new TaskDeleteCommand(0,0);
+    void executeCommand_validTaskId_taskDescription() throws DukeExceptions {
+        params.put("t", "1");
+        TaskDeleteCommand command = new TaskDeleteCommand(params,0);
         String expectedOutput0 = "Task \"Task One\" removed!";
-        String actualOutput0 = command.executeCommand(projects);
+        String actualOutput0 = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput0, actualOutput0);
 
         int expectedOutput1 = 2;
-        int actualOutput1 = projects.get(0).getNumberTasks();
+        int actualOutput1 = projects.get(0).getTaskList().size();
         assertEquals(expectedOutput1, actualOutput1);
     }
-    */
 
     /**
      * Test: Input a non-existent task ID to test exception error message.
-
+     */
     @Test
-    void executeCommand_nonExistentTaskId_taskDescription() {
-        TaskDeleteCommand command = new TaskDeleteCommand(4,0);
+    void executeCommand_nonExistentTaskId_taskDescription() throws DukeExceptions {
+        params.put("t", "4");
+        TaskDeleteCommand command = new TaskDeleteCommand(params,0);
         String expectedOutput = "Task ID does not exist!";
-        String actualOutput = command.executeCommand(projects);
-        assertEquals(expectedOutput, actualOutput);
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () -> command.executeCommand(projects, teamMembers));
+        assertEquals(expectedOutput, exception.toString());
     }
-    */
 
     /**
      * Test: Pass a non existent projects list to test exception error message.
-
+     */
     @Test
-    void executeCommand_nonExistentProjectsList_taskDescription() {
-        TaskDeleteCommand command = new TaskDeleteCommand(-2,0);
-        String expectedOutput = "Project List is Empty!";
-        String actualOutput = command.executeCommand(new ArrayList<Project>());
-        assertEquals(expectedOutput, actualOutput);
+    void executeCommand_nonExistentProjectsList_taskDescription() throws DukeExceptions {
+        params.put("t", "1");
+        TaskDeleteCommand command = new TaskDeleteCommand(params,0);
+        String expectedOutput = "Project list is empty!";
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () -> command.executeCommand(new ArrayList<Project>(), teamMembers));
+        assertEquals(expectedOutput, exception.toString());
     }
-    */
 }

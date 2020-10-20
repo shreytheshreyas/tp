@@ -58,7 +58,7 @@ public class Ui {
     }
 
     public static String printTaskListMessage(Project project) {
-        int numberOfTasks = project.getNumberTasks();
+        int numberOfTasks = project.getTaskList().size();
         String output = "List of Tasks:";
         for (int i = 0; i < numberOfTasks; i++) {
             output += "\n     " + (i + 1) + "." + project.getTask(i);
