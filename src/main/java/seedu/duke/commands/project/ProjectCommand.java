@@ -28,7 +28,7 @@ public class ProjectCommand extends Command {
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         Project newProject = new Project(description);
         projects.add(newProject);
-        return Ui.printProjectCreatedMessage(newProject.toString());
+        return Ui.printProjectCreatedMessage(newProject.getProjectName());
     }
 
     public Boolean isExit() {

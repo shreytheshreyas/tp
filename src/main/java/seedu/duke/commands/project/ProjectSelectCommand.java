@@ -5,7 +5,6 @@ import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,8 +15,7 @@ public class ProjectSelectCommand extends Command {
     private int projectIndex;
     HashMap<String, String> params;
 
-    public ProjectSelectCommand(HashMap<String, String> params)
-            throws DukeExceptions {
+    public ProjectSelectCommand(HashMap<String, String> params) throws DukeExceptions {
         this.params = params;
         this.parse();
     }

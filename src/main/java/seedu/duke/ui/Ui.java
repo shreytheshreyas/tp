@@ -40,8 +40,8 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
-    public static String printProjectDeletedMessage(Project projectName) {
-        return "Project \"" + projectName + "\" deleted";
+    public static String printProjectDeletedMessage(Project project) {
+        return "Project \"" + project.getProjectName() + "\" deleted";
     }
 
     public static String printEmptyProjectListMessage() {
@@ -52,7 +52,7 @@ public class Ui {
         String output = "";
         output += "List of Projects:";
         for (int i = 0; i < projects.size(); i++) {
-            output += "\n     " + (i + 1) + "." + projects.get(i);
+            output += "\n     " + (i + 1) + "." + projects.get(i).getProjectName();
         }
         return output;
     }
@@ -72,6 +72,10 @@ public class Ui {
 
     public static String printProjectDescriptionAddedMessage(Project project) {
         return "Project description added \"" + project.getDescription() + "\".";
+    }
+
+    public static String printProjectSelectedMessage(ArrayList<Project> projects, int projectIndex) {
+        return "Switched to Project \"" + projects.get(projectIndex).getProjectName() + "\"";
     }
 
     public static String printEmptyAdditionalProjectInformationMessage() {
