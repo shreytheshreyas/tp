@@ -12,12 +12,13 @@ import seedu.duke.commands.project.ProjectDeleteCommand;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.DeadlineCommand;
-
+import seedu.duke.commands.task.TaskDoneCommand;
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.ui.Ui;
 import java.util.HashMap;
 
 import java.time.LocalDate;
@@ -174,6 +175,12 @@ public class Parser {
                 throw new DukeExceptions("mustBeInProjectView");
             }
             commandType = new TaskCommand(params, projectIndex);
+            break;
+        case "done":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new TaskDoneCommand(params, projectIndex);
             break;
         case "deadline":
             commandType = getDeadlineCommand(params, isHomeView);
