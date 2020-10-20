@@ -44,7 +44,7 @@ public class AssignMemberToTaskCommand extends Command {
         Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
         TeamMember member = new TeamMember(memberName);
         selectedTask.setMember(member);
-        return Ui.printMemberAssignedMessage(memberName, selectedTask.getTaskDescription());
+        return Ui.printMemberAssignedToTaskMessage(memberName, selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {
