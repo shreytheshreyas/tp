@@ -43,7 +43,7 @@ public class Parser {
      * Parses user input into project command for execution.
      *
      * @param inputCommand Full user input command string
-     * @return Command object corresponding to the input command of the user
+     * @return Command object corres    ponding to the input command of the user
      */
     public static Command parse(String inputCommand) throws DukeExceptions {
         Command commandType;

@@ -42,6 +42,10 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
+    public static String printMemberRemovedMessage(String name) {
+        return "Team member \"" + name + "\" has been removed";
+    }
+
     public static String printProjectDeletedMessage(Project project) {
         return "Project \"" + project.getProjectName() + "\" deleted";
     }
