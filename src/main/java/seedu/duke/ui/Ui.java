@@ -74,6 +74,10 @@ public class Ui {
         return "Project description added \"" + project.getDescription() + "\".";
     }
 
+    public static String printProjectDoneMessage(String projectName) {
+        return "Project \"" + projectName + "\" is done!";
+    }
+
     public static String printEmptyAdditionalProjectInformationMessage() {
         return "<project description empty> | <project deadline empty> | "
                 + "<team members involved empty>";

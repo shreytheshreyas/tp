@@ -6,11 +6,7 @@ import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
-import seedu.duke.commands.project.ProjectDeleteCommand;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectDescriptionCommand;
-import seedu.duke.commands.project.ProjectListCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.project.*;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
@@ -177,7 +173,8 @@ public class Parser {
             break;
         case "done":
             if (isHomeView) {
-                throw new DukeExceptions("mustBeInProjectView");
+                commandType = new ProjectDoneCommand(params, projectIndex);
+                break;
             }
             commandType = new TaskDoneCommand(params, projectIndex);
             break;

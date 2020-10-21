@@ -49,6 +49,10 @@ public class Task {
         member = newMember;
     }
 
+    public boolean getStatus() {
+        return isDone;
+    }
+
     /**
      * Returns details of the specified task.
      *

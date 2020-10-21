@@ -79,4 +79,22 @@ public class Project {
     public String selectTask(int taskId) {
         return tasks.get(taskId).toString();
     }
+
+    public boolean getStatus() {
+        if (isDone) {
+            return isDone;
+        }
+
+        for(Task task : tasks) {
+            if (!(task.getStatus())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void markAsDone() {
+        this.isDone = true;
+    }
 }
