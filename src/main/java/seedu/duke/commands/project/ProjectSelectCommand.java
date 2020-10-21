@@ -45,9 +45,9 @@ public class ProjectSelectCommand extends Command {
             String projectDescription = selectedProject.getDescription();
             LocalDate projectDeadline = selectedProject.getProjectDeadline();
             //For small sam => help me implement this
-            String member = "<team members involved empty>";
+            String member = "team members involved empty";
             return projectDescription + " | " + projectDeadline + " | " + member;
-        } catch (NumberFormatException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }
     }
