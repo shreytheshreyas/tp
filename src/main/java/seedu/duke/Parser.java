@@ -17,12 +17,14 @@ import seedu.duke.commands.project.ProjectDeleteCommand;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.DeadlineCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
-import seedu.duke.commands.task.DeadlineCommand;
-import seedu.duke.commands.task.TaskDoneCommand;
 import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskAssignPriorityCommand;
+import seedu.duke.commands.task.TaskDoneCommand;
+
 import seedu.duke.ui.Ui;
 import java.util.HashMap;
 
@@ -41,7 +43,7 @@ public class Parser {
      * Parses user input into project command for execution.
      *
      * @param inputCommand Full user input command string
-     * @return Command object corresponding to the input command of the user
+     * @return Command object corres    ponding to the input command of the user
      */
     public static Command parse(String inputCommand) throws DukeExceptions {
         Command commandType;
@@ -211,6 +213,12 @@ public class Parser {
                 throw new DukeExceptions("mustBeInProjectView");
             }
             commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
+            break;
+        case "priority":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new TaskAssignPriorityCommand(params, projectIndex);
             break;
         default:
             break;

@@ -42,6 +42,10 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
+    public static String printMemberRemovedMessage(String name) {
+        return "Team member \"" + name + "\" has been removed";
+    }
+
     public static String printProjectDeletedMessage(Project project) {
         return "Project \"" + project.getProjectName() + "\" deleted";
     }
@@ -110,12 +114,12 @@ public class Ui {
         return "Switched to Home View";
     }
 
-    public static String printMemberAssignedMessage(String memberName, String taskName) {
-        return "\"" + memberName + "\" has been assigned to \"" + taskName + "\"";
+    public static String printMemberAssignedToTaskMessage(String memberName, String taskName) {
+        return "Member \"" + memberName + "\" has been assigned to \"" + taskName + "\"";
     }
 
-    public static String printMemberRemovedMessage(String memberName) {
-        return "\"" + memberName + "\" has been removed";
+    public static String printPriorityAssignedToTaskMessage(String priority, String taskName) {
+        return "Priority \"" + priority + "\" has been assigned to \"" + taskName + "\"";
     }
 
 }

@@ -1,4 +1,4 @@
-package seedu.duke.commands.member;
+package seedu.duke.commands.task;
 
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
@@ -12,14 +12,14 @@ import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
-public class TeamMemberAssignToTaskCommand extends Command {
+public class TaskAssignPriorityCommand extends Command {
 
     private int taskIndex;
     private int projectIndex;
-    private int memberIndex;
+    private String priority;
     HashMap<String, String> params;
 
-    public TeamMemberAssignToTaskCommand(HashMap<String, String> params, int projectIndex)
+    public TaskAssignPriorityCommand(HashMap<String, String> params, int projectIndex)
             throws DukeExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
@@ -29,23 +29,24 @@ public class TeamMemberAssignToTaskCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-            memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
+            priority = getHashValue(params, "p");
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTaskID");
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects,
+                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
         Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
-        TeamMember member = teamMembers.get(memberIndex);
-        selectedTask.setMember(member);
-        return Ui.printMemberAssignedToTaskMessage(member.getName(), selectedTask.getTaskDescription());
+        selectedTask.setPriority(priority);
+        return Ui.printPriorityAssignedToTaskMessage(priority, selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {
         return false;
     }
+
 }
