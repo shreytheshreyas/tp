@@ -195,11 +195,14 @@ public class Parser {
         case "remove":
             commandType = getRemoveTeamMemberCommand(params);
             break;
-        case "allocate":
-            commandType = new AssignMemberToProjectCommand(params,isHomeView);
-
-        default:
+        case "assign":
+            if(isHomeView) {
+                commandType = new AssignMemberToProjectCommand(params, isHomeView);
+            } else {
+                throw new DukeExceptions("default");
+            }
             break;
+        default: throw new DukeExceptions("default");
         }
         return commandType;
     }

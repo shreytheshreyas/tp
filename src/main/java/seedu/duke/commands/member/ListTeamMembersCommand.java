@@ -23,7 +23,9 @@ public class ListTeamMembersCommand extends Command {
         String listOfMembers = "";
         int i = 0;
         for (TeamMember member : Project.getMembers()) {
-            String memberLine = (i + 1) + ". " + member.getName() + "\t\t" + member.getAssignedProjectId() + "\n";
+            String assignmentStatus = (member.getAssignedProjectId() == 0) ? "Not assigned to a project "
+                                    : "assigned to project " + member.getAssignedProjectId();
+            String memberLine = (i + 1) + ". " + member.getName() + ": \t" + assignmentStatus + "\n";
             listOfMembers += memberLine;
             i++;
         }
