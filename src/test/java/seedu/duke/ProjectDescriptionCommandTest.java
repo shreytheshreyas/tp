@@ -20,24 +20,26 @@ public class ProjectDescriptionCommandTest {
     static ArrayList<Project> projects;
     static Ui ui = new Ui();
 
-    /*
+
     @BeforeAll
     static void createProjectList() {
         projects = new ArrayList<>();
-        ui.printOutput(new ProjectCommand("project1").executeCommand(projects));
-        ui.printOutput(new ProjectCommand("project2").executeCommand(projects));
-        ui.printOutput(new ProjectCommand("project3").executeCommand(projects));
-        ui.printOutput(new ProjectSelectCommand(1).executeCommand(projects));
+        Project projectOne = new Project("Project One");
+        Project projectTwo = new Project("Project Two");
+        Project projectThree = new Project("Project Three");
+        projects.add(projectOne);
+        projects.add(projectTwo);
+        projects.add(projectThree);
+        projectTwo.addDescription("Do CS2113 Tutorial by today");
     }
 
     @Test
-    void executeCommand_projectList_descriptionAdded() {
-        ProjectDescriptionCommand addDescription = new ProjectDescriptionCommand("project 2 description added", 1);
-        addDescription.executeCommand(projects);
-        Project actualProject = projects.get(1);
-        final String expectedMessage = "project 2 description added";
-        assertEquals(expectedMessage, actualProject.getDescription());
+    void executeCommand_projectList_projectDescriptionAdded() {
+        ProjectDescriptionCommand addDescription = new ProjectDescriptionCommand("Do CS2113 Tutorial by today", 1);
+        String actualOutput = addDescription.executeCommand(projects);
+        String expectedOutput = "Project description added \"Do CS2113 Tutorial by today\".";
+        assertEquals(expectedOutput, actualOutput);
     }
-    */
+
 
 }

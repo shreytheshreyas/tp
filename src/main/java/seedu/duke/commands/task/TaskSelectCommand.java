@@ -25,7 +25,11 @@ public class TaskSelectCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+        try {
+            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
@@ -35,7 +39,7 @@ public class TaskSelectCommand extends Command {
         try {
             String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
             return Ui.printTaskSelectedMessage(selectedTask);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTaskID");
         }
     }
