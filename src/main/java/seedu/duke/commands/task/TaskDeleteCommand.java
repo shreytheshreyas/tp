@@ -30,7 +30,7 @@ public class TaskDeleteCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidTaskID");
         }
     }
@@ -40,11 +40,15 @@ public class TaskDeleteCommand extends Command {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        Project selectedProject = projects.get(projectIndex);
-        //Get task before deletion
-        String taskToBeDeleted = selectedProject.getTask(taskIndex).getTaskDescription();
-        selectedProject.deleteTask(taskIndex);
-        return Ui.printTaskDeletedMessage(taskToBeDeleted);
+        try {
+            Project selectedProject = projects.get(projectIndex);
+            //Get task before deletion
+            String taskToBeDeleted = selectedProject.getTask(taskIndex).getTaskDescription();
+            selectedProject.deleteTask(taskIndex);
+            return Ui.printTaskDeletedMessage(taskToBeDeleted);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     @Override

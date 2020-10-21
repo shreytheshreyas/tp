@@ -28,7 +28,7 @@ public class TaskSelectCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidTaskID");
         }
     }
@@ -37,8 +37,12 @@ public class TaskSelectCommand extends Command {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
-        return Ui.printTaskSelectedMessage(selectedTask);
+        try {
+            String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
+            return Ui.printTaskSelectedMessage(selectedTask);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     public Boolean isExit() {

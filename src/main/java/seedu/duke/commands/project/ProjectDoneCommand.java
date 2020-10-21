@@ -34,7 +34,7 @@ public class ProjectDoneCommand extends Command {
         try {
             Project project = projects.get(projectIndex);
             project.markAsDone();
-            return Ui.printProjectDoneMessage(project.toString());
+            return Ui.printProjectDoneMessage(project.getProjectName());
         }  catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }

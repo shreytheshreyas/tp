@@ -6,7 +6,13 @@ import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.member.AddTeamMemberCommand;
 import seedu.duke.commands.member.DeleteTeamMemberCommand;
 import seedu.duke.commands.member.ListTeamMembersCommand;
-import seedu.duke.commands.project.*;
+import seedu.duke.commands.project.ProjectDeadlineCommand;
+import seedu.duke.commands.project.ProjectDescriptionCommand;
+import seedu.duke.commands.project.ProjectDeleteCommand;
+import seedu.duke.commands.project.ProjectCommand;
+import seedu.duke.commands.project.ProjectListCommand;
+import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.project.ProjectDoneCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
@@ -91,24 +97,24 @@ public class Parser {
         return commandType;
     }
 
-    public static Command getDeadlineCommand(HashMap<String, String> params, boolean isProjectView)
+    public static Command getDeadlineCommand(HashMap<String, String> params, boolean isProjectListView)
             throws DukeExceptions {
         Command commandType = null;
-
         try {
-            if (!isProjectView) {
+            if (isProjectListView) {
+                int projectId = extractIndex(getHashValue(params, "p"));
+                LocalDate date = LocalDate.parse(getHashValue(params, "d"));
+                commandType = new ProjectDeadlineCommand(projectId, date);
+            } else {
                 int taskIndex = extractIndex(getHashValue(params, "t"));
                 LocalDate date = LocalDate.parse(getHashValue(params, "d"));
                 commandType = new DeadlineCommand(projectIndex, taskIndex, date);
-            } else {
-                throw new DukeExceptions("default");
             }
         } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
-            Ui.printOutput("Date must be specified in format YYYY-MM-DD");
+            throw new DukeExceptions("WrongDateFormat");
         } catch (NumberFormatException e) {
             throw new DukeExceptions("IndexNotFound");
         }
-
         return commandType;
     }
 

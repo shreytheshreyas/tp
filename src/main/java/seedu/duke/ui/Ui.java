@@ -4,6 +4,8 @@ import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Ui {
@@ -40,8 +42,8 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
-    public static String printProjectDeletedMessage(Project projectName) {
-        return "Project \"" + projectName + "\" deleted";
+    public static String printProjectDeletedMessage(Project project) {
+        return "Project \"" + project.getProjectName() + "\" deleted";
     }
 
     public static String printEmptyProjectListMessage() {
@@ -52,7 +54,7 @@ public class Ui {
         String output = "";
         output += "List of Projects:";
         for (int i = 0; i < projects.size(); i++) {
-            output += "\n     " + (i + 1) + "." + projects.get(i);
+            output += "\n     " + (i + 1) + "." + projects.get(i).getProjectName();
         }
         return output;
     }
@@ -76,6 +78,11 @@ public class Ui {
 
     public static String printProjectDoneMessage(String projectName) {
         return "Project \"" + projectName + "\" is done!";
+    }
+
+    public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
+        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName();
     }
 
     public static String printEmptyAdditionalProjectInformationMessage() {
