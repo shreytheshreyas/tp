@@ -203,7 +203,7 @@ public class Parser {
             commandType = getRemoveTeamMemberCommand(params);
             break;
         case "assign":
-            if(isHomeView) {
+            if (isHomeView) {
                 commandType = new AssignMemberToProjectCommand(params, isHomeView);
             } else {
                 throw new DukeExceptions("default");

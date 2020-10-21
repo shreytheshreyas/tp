@@ -15,15 +15,16 @@ public class AssignMemberToProjectCommand extends Command {
     private boolean isProjectView;
     private HashMap<String, String> paramsList;
 
-    public AssignMemberToProjectCommand (HashMap<String,String> paramsList, boolean isProjectView) throws DukeExceptions{
+    public AssignMemberToProjectCommand(HashMap<String,String> paramsList, boolean isProjectView)
+            throws DukeExceptions {
         this.paramsList = paramsList;
         this.isProjectView = isProjectView;
         parse();
     }
 
     public void parse() throws DukeExceptions {
-        if(isProjectView) {
-            try{
+        if (isProjectView) {
+            try {
                 projectIndex = Integer.parseInt(getHashValue(paramsList,"p"));
                 memberIndex = Integer.parseInt(getHashValue(paramsList,"m")) - 1;
             } catch (IndexOutOfBoundsException e) {

@@ -9,7 +9,7 @@ public class TeamMember {
         assignedProjectId = 0;
     }
 
-    public void setAssignedProjectId(int assignedProjectId){
+    public void setAssignedProjectId(int assignedProjectId) {
         this.assignedProjectId = assignedProjectId;
     }
 
