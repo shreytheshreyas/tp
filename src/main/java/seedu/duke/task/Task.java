@@ -38,6 +38,10 @@ public class Task {
         this.date = date;
     }
 
+    public void markAsDone() {
+        this.isDone = true;
+    }
+
     public String getTaskDescription() {
         return description;
     }

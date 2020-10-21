@@ -2,13 +2,12 @@ package seedu.duke.commands.task;
 
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import seedu.duke.project.ProjectList;
-import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
 import static seedu.duke.Parser.getHashValue;
@@ -30,21 +29,25 @@ public class TaskDeleteCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidTaskID");
         }
     }
 
     @Override
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        Project selectedProject = projects.get(projectIndex);
-        //Get task before deletion
-        String taskToBeDeleted = selectedProject.getTask(taskIndex).getTaskDescription();
-        selectedProject.deleteTask(taskIndex);
-        return Ui.printTaskDeletedMessage(taskToBeDeleted);
+        try {
+            Project selectedProject = projects.get(projectIndex);
+            //Get task before deletion
+            String taskToBeDeleted = selectedProject.getTask(taskIndex).getTaskDescription();
+            selectedProject.deleteTask(taskIndex);
+            return Ui.printTaskDeletedMessage(taskToBeDeleted);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     @Override

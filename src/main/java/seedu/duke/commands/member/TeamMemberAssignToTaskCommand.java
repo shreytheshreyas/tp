@@ -12,14 +12,14 @@ import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
-public class AssignMemberToTaskCommand extends Command {
+public class TeamMemberAssignToTaskCommand extends Command {
 
     private int taskIndex;
     private int projectIndex;
-    private String memberName;
+    private int memberIndex;
     HashMap<String, String> params;
 
-    public AssignMemberToTaskCommand(HashMap<String, String> params, int projectIndex)
+    public TeamMemberAssignToTaskCommand(HashMap<String, String> params, int projectIndex)
             throws DukeExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
@@ -29,20 +29,20 @@ public class AssignMemberToTaskCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-            memberName = getHashValue(params, "m");
+            memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTaskID");
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
         Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
-        TeamMember member = new TeamMember(memberName);
+        TeamMember member = teamMembers.get(memberIndex);
         selectedTask.setMember(member);
-        return Ui.printMemberAssignedToTaskMessage(memberName, selectedTask.getTaskDescription());
+        return Ui.printMemberAssignedToTaskMessage(member.getName(), selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {

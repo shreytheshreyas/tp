@@ -36,8 +36,8 @@ List of Projects:
      4.p4
 ____________________________________________________________
 ____________________________________________________________
-Switched to Project "p1"
-<project description empty> | <project deadline empty> | <team members involved empty>
+Switched to Project "Description: <project description empty> | <project deadline empty>"
+<project description empty> | null | team members involved empty
 ____________________________________________________________
 ____________________________________________________________
 Task "this is task1" created!
@@ -91,7 +91,7 @@ ____________________________________________________________
 
 ____________________________________________________________
 ____________________________________________________________
-Member removed
+"chicken rice" has been removed
 ____________________________________________________________
 ____________________________________________________________
 1. dorito

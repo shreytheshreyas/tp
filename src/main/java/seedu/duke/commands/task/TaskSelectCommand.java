@@ -1,9 +1,8 @@
 package seedu.duke.commands.task;
 
-import seedu.duke.Duke;
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
-import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
@@ -28,17 +27,21 @@ public class TaskSelectCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidTaskID");
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
-        return Ui.printTaskSelectedMessage(selectedTask);
+        try {
+            String selectedTask = projects.get(projectIndex).selectTask(taskIndex);
+            return Ui.printTaskSelectedMessage(selectedTask);
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     public Boolean isExit() {
