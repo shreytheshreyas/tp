@@ -93,7 +93,7 @@ public class Project {
             return isDone;
         }
 
-        for(Task task : tasks) {
+        for (Task task : tasks) {
             if (!(task.getStatus())) {
                 return false;
             }
