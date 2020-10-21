@@ -11,7 +11,7 @@ import seedu.duke.ui.Ui;
  */
 public class ProjectListCommand extends Command {
 
-    public String executeCommand(ArrayList<Project> projects) {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         if (projects.size() == 0) {
             return Ui.printEmptyProjectListMessage(); //----------REPLACE WITH EXCEPTION
         } else {
