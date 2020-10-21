@@ -47,7 +47,7 @@ public class ProjectSelectCommand extends Command {
             //For small sam => help me implement this
             String member = "<team members involved empty>";
             return projectDescription + " | " + projectDeadline + " | " + member;
-        } catch (IndexOutOfBoundsException e) {
+        } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidProjectID");
         }
     }

@@ -13,7 +13,6 @@ public class Project {
     private ArrayList<Task> tasks;
     private String projectDescription;
     private LocalDate projectDeadline;
-
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
