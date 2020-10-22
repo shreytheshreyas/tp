@@ -2,6 +2,7 @@ package seedu.duke.commands.task;
 
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
@@ -36,7 +37,7 @@ public class ActualTimeCommand extends Command {
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws DukeExceptions {
         try {
             Project project = projects.get(projectIndex);
             Task task = project.getTask(taskIndex);
