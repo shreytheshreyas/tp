@@ -35,6 +35,7 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("invalidProjectID","Project ID does not exist!");
         exceptionMessageList.put("taskNotDone","Task must be marked as done before adding "
                 + "actual duration taken to complete!");
+        exceptionMessageList.put("emptyTeamMembersList","Team Members list is empty!");
     }
 
     public String toString() {

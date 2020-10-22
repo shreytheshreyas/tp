@@ -1,6 +1,7 @@
 package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import java.util.ArrayList;
 import seedu.duke.ui.Ui;
@@ -15,7 +16,7 @@ public class TaskListCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public String executeCommand(ArrayList<Project> projects) {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         Project project = projects.get(projectIndex);
         int numberOfTasks = project.getNumberTasks();
         if (numberOfTasks == 0) {

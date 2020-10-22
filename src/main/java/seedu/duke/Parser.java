@@ -3,9 +3,12 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HomeCommand;
-import seedu.duke.commands.member.AddTeamMemberCommand;
-import seedu.duke.commands.member.DeleteTeamMemberCommand;
-import seedu.duke.commands.member.ListTeamMembersCommand;
+
+import seedu.duke.commands.member.TeamMemberAddCommand;
+import seedu.duke.commands.member.TeamMemberAssignToTaskCommand;
+import seedu.duke.commands.member.TeamMemberDeleteCommand;
+import seedu.duke.commands.member.TeamMembersListCommand;
+
 import seedu.duke.commands.project.ProjectDeadlineCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectDeleteCommand;
@@ -20,6 +23,9 @@ import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.DeadlineCommand;
 import seedu.duke.commands.task.TaskListCommand;
+import seedu.duke.commands.task.TaskAssignPriorityCommand;
+
+import seedu.duke.ui.Ui;
 import java.util.HashMap;
 
 import java.time.LocalDate;
@@ -83,7 +89,7 @@ public class Parser {
         Command commandType;
         try {
             int memberIndex = extractIndex(getHashValue(params, "m"));
-            commandType = new DeleteTeamMemberCommand(memberIndex);
+            commandType = new TeamMemberDeleteCommand(memberIndex);
         } catch (NumberFormatException e) {
             throw new DukeExceptions("IndexNotFound");
         }
@@ -93,7 +99,7 @@ public class Parser {
     public static Command getAddMemberCommand(HashMap<String, String> params) throws DukeExceptions {
         Command commandType;
         String memberName = getHashValue(params, "m");
-        commandType = new AddTeamMemberCommand(memberName);
+        commandType = new TeamMemberAddCommand(memberName);
         return commandType;
     }
 
@@ -203,10 +209,22 @@ public class Parser {
             commandType = getAddMemberCommand(params);
             break;
         case "members":
-            commandType = new ListTeamMembersCommand();
+            commandType = new TeamMembersListCommand();
             break;
         case "remove":
             commandType = getRemoveTeamMemberCommand(params);
+            break;
+        case "assign":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
+            break;
+        case "priority":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new TaskAssignPriorityCommand(params, projectIndex);
             break;
         default:
             break;

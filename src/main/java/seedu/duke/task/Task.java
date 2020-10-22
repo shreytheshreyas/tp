@@ -21,6 +21,15 @@ public class Task {
     protected TeamMember member;
     protected int estimateInMinutes = 0;
     protected int actualInMinutes;
+    protected String priority;
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
 
     public Task(String description) {
         this.description = description;
