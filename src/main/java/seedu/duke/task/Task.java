@@ -44,6 +44,14 @@ public class Task {
         this.estimateInMinutes = durationInMinutes;
     }
 
+    public int getEstimate() {
+        return estimateInMinutes;
+    }
+
+    public int getActual() {
+        return actualInMinutes;
+    }
+
     public void addActual(int durationInMinutes) {
         this.actualInMinutes = durationInMinutes;
     }

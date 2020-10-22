@@ -42,8 +42,8 @@ public class EstimatedTimeCommand extends Command {
             Project project = projects.get(projectIndex);
             Task task = project.getTask(taskIndex);
             task.addEstimate(durationInMinutes);
-            int hours = durationInMinutes / 60;
-            int minutes = durationInMinutes % 60;
+            int hours = task.getEstimate() / 60;
+            int minutes = task.getEstimate() % 60;
             return Ui.printEstimateAddedMessage(task.getDescription(), hours, minutes);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTaskID");

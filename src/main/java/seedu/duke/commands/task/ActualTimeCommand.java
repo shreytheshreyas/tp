@@ -45,8 +45,8 @@ public class ActualTimeCommand extends Command {
                 throw new DukeExceptions("taskNotDone");
             }
             task.addActual(durationInMinutes);
-            int hours = durationInMinutes / 60;
-            int minutes = durationInMinutes % 60;
+            int hours = task.getActual() / 60;
+            int minutes = task.getActual() % 60;
             return Ui.printActualDurationAddedMessage(task.getDescription(), hours, minutes);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTaskID");
