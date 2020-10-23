@@ -4,6 +4,8 @@ import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Ui {
@@ -40,8 +42,8 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
-    public static String printProjectDeletedMessage(Project projectName) {
-        return "Project \"" + projectName + "\" deleted";
+    public static String printProjectDeletedMessage(Project project) {
+        return "Project \"" + project.getProjectName() + "\" deleted";
     }
 
     public static String printEmptyProjectListMessage() {
@@ -52,7 +54,7 @@ public class Ui {
         String output = "";
         output += "List of Projects:";
         for (int i = 0; i < projects.size(); i++) {
-            output += "\n     " + (i + 1) + "." + projects.get(i);
+            output += "\n     " + (i + 1) + "." + projects.get(i).getProjectName();
         }
         return output;
     }
@@ -74,6 +76,11 @@ public class Ui {
         return "Project description added \"" + project.getDescription() + "\".";
     }
 
+    public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
+        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName();
+    }
+
     public static String printEmptyAdditionalProjectInformationMessage() {
         return "<project description empty> | <project deadline empty> | "
                 + "<team members involved empty>";
@@ -81,6 +88,10 @@ public class Ui {
 
     public static String printTaskCreatedMessage(String taskName) {
         return "Task \"" + taskName + "\" created!";
+    }
+
+    public static String printTaskDoneMessage(String taskName) {
+        return "Task \"" + taskName + "\" is done!";
     }
 
     public static String printTaskDeletedMessage(String taskName) {
@@ -101,7 +112,7 @@ public class Ui {
 
     public static String projectViewMessage(Project project) {
         try {
-            String projectTitle = "Project \"" + project.toString() + "\"";
+            String projectTitle = "Project \"" + project.getProjectName() + "\"";
             String taskListTitle = "\n ---------------------\n| TASK LIST           |\n ---------------------";
             String STATUS_SPACES = "      "; // 6
             String DESCRIPTION_SPACES = "                   "; // 19
