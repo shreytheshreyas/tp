@@ -1,6 +1,7 @@
 package seedu.duke.commands;
 
 import seedu.duke.Parser;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
@@ -15,7 +16,7 @@ public class HomeCommand extends Command {
     }
 
     @Override
-    public String executeCommand(ArrayList<Project> projects) {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         if (projectIndex == -1) {
             return Ui.printInHomeViewMessage();
         } else {

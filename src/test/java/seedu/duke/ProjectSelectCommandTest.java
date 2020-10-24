@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
@@ -17,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProjectSelectCommandTest {
     static ArrayList<Project> projects;
+    static ArrayList<TeamMember> teamMembers;
     static Ui ui = new Ui();
 
     @BeforeAll
@@ -37,8 +39,8 @@ public class ProjectSelectCommandTest {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
-        String expectedOutput =  "Description: Do CS2113 Tutorial by today | Deadline: 2020-12-31";
-        String actualOutput = selectProject.executeCommand(projects);
+        String expectedOutput =  "Do CS2113 Tutorial by today | 2020-12-31 | team members involved empty";
+        String actualOutput = selectProject.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
 
@@ -49,7 +51,7 @@ public class ProjectSelectCommandTest {
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
         String expectedOutput = "Project ID does not exist!";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
-            selectProject.executeCommand(projects);
+            selectProject.executeCommand(projects, teamMembers);
         });
         assertEquals(expectedOutput, actualOutputException.toString());
     }

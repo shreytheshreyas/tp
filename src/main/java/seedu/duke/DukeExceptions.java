@@ -33,6 +33,7 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("emptyProjectList","Project list is empty!");
         exceptionMessageList.put("invalidTaskID","Task ID does not exist!");
         exceptionMessageList.put("invalidProjectID","Project ID does not exist!");
+        exceptionMessageList.put("emptyTeamMembersList","Team Members list is empty!");
     }
 
     public String toString() {

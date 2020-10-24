@@ -35,14 +35,18 @@ public class ProjectSelectCommand extends Command {
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
         try {
             Project selectedProject = projects.get(projectIndex);
-            System.out.println("Switched to Project \"" + selectedProject.getProjectName() + "\"");
-            return selectedProject.toString();
+            System.out.println("Switched to Project \"" + selectedProject + "\"");
+            String projectDescription = selectedProject.getDescription();
+            LocalDate projectDeadline = selectedProject.getProjectDeadline();
+            //For small sam => help me implement this
+            String member = "team members involved empty";
+            return projectDescription + " | " + projectDeadline + " | " + member;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }
