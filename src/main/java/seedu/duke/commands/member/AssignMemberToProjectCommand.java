@@ -1,5 +1,6 @@
 package seedu.duke.commands.member;
 
+import java.lang.reflect.Array;
 import java.util.HashMap;
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
@@ -36,11 +37,11 @@ public class AssignMemberToProjectCommand extends Command {
     }
 
     @Override
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
-        if (memberIndex > Project.getMembers().size()) {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+        if (memberIndex > teamMembers.size()) {
             throw new DukeExceptions("default");
         }
-        TeamMember requiredMember = Project.getMembers().get(memberIndex);
+        TeamMember requiredMember = teamMembers.get(memberIndex);
         requiredMember.setAssignedProjectId(projectIndex);
         return "Member assigned to project";
     }

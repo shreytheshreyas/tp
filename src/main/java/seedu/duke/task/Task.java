@@ -19,6 +19,15 @@ public class Task {
     protected boolean isDone;
     protected LocalDate date;
     protected TeamMember member;
+    protected String priority;
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
 
     public Task(String description) {
         this.description = description;

@@ -5,14 +5,15 @@ import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Represents an executable command.
  */
 public abstract class Command {
 
-    public abstract String executeCommand(ArrayList<Project> projects) throws DukeExceptions;
+    public abstract String executeCommand(ArrayList<Project> projects,
+                                          ArrayList<TeamMember> teamMembers)
+            throws DukeExceptions;
 
     /**
      * Returns an exit flag that is determined by user's command.
