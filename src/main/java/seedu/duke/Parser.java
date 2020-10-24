@@ -220,8 +220,7 @@ public class Parser {
             }
             commandType = new TaskAssignPriorityCommand(params, projectIndex);
             break;
-        default:
-            break;
+        default: throw new DukeExceptions("default");
         }
         return commandType;
     }

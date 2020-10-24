@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Task {
+public class Task implements Comparable<Task> {
     public String getDescription() {
         return description;
     }
@@ -32,6 +32,7 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.priority = "none";
     }
 
     public void addDeadline(LocalDate date) {
@@ -81,5 +82,10 @@ public class Task {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int compareTo(Task o) {
+        return this.priority.compareToIgnoreCase(o.priority);
     }
 }

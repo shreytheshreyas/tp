@@ -6,6 +6,7 @@ import seedu.duke.task.Task;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.time.LocalDate;
+import java.util.Collections;
 
 public class Project {
     protected String projectName;
@@ -22,6 +23,10 @@ public class Project {
         this.tasks = new ArrayList<>();
         this.projectDescription = "<project description empty>";
         this.projectDeadline = null;
+    }
+
+    public void sortTasksList() {
+        Collections.sort(tasks);
     }
 
     public Task getTask(int taskIndex) {
