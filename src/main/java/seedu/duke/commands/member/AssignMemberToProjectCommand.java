@@ -29,7 +29,7 @@ public class AssignMemberToProjectCommand extends Command {
                 projectIndex = Integer.parseInt(getHashValue(paramsList,"p"));
                 memberIndex = Integer.parseInt(getHashValue(paramsList,"m")) - 1;
             } catch (IndexOutOfBoundsException e) {
-                System.out.println("There is no project with this respective Id");
+                throw new DukeExceptions("default");
             }
         } else {
             throw new DukeExceptions("default");
@@ -38,12 +38,15 @@ public class AssignMemberToProjectCommand extends Command {
 
     @Override
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
-        if (memberIndex > teamMembers.size()) {
-            throw new DukeExceptions("default");
+        if (memberIndex > teamMembers.size() || memberIndex < 0) {
+            throw new DukeExceptions("invalidMemberID");
+        }
+        if (projectIndex > teamMembers.size() || projectIndex < 0) {
+            throw new DukeExceptions("invalidProjectID");
         }
         TeamMember requiredMember = teamMembers.get(memberIndex);
         requiredMember.setAssignedProjectId(projectIndex);
-        return "Member assigned to project";
+        return requiredMember + " assigned to project " + requiredMember.getAssignedProjectId();
     }
 
     public Boolean isExit() {
