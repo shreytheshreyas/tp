@@ -14,11 +14,13 @@ java -jar {file path}/ezManager.jar
 
 ## Features 
 
-### Project Commands
+### **Project Commands**
 ### Adding a project: `project`
 Adds a new project to the project list.
 
 Format: `project n/PROJECT_NAME`
+
+* The user must be in Home View before adding a new project.  
 
 Example of usage: 
 
@@ -26,7 +28,7 @@ Example of usage:
 to the project list.
 
 ### Selecting a project: `select`
-Select a new project to the project list.
+Select a new project from the project list.
 
 Format: `select p/PROJECT_INDEX`
 
@@ -55,7 +57,7 @@ Marks an existing project as done.
 Format: `done p/PROJECT_INDEX`
 
 * The `PROJECT_INDEX` must be a positive integer.
-* The project must exist before it can be selected.
+* The project must exist before it can be marked as done.
 * The user must be in Home View before marking a project
 as done.  
 
@@ -97,7 +99,7 @@ Example of usage:
 `Project for Company X` to the first project.
 
 ### Deleting a project: `delete`
-Select a new project to the project list.
+Delete a project from the project list.
 
 Format: `delete p/PROJECT_INDEX`
 
@@ -108,11 +110,13 @@ Example of usage:
 
 * `delete p/1`. Deletes the first project in the project list.
 
-### Task Commands
+### **Task Commands**
 ### Adding a task: `task`
 Adds a new task to task list.
 
 Format: `task n/TASK_NAME`
+
+* The user must be in Project View before adding a new task.  
 
 Example of usage: 
 
@@ -120,7 +124,7 @@ Example of usage:
 to the task list.
 
 ### Selecting a task: `select`
-Select a task from the project list.
+Selects a task from the project list.
 
 Format: `task p/TASK_INDEX`
 
@@ -146,7 +150,7 @@ Example of usage:
 ### Marking a task as done: `done`
 Marks an existing task as done.
 
-Format: `done t/PROJECT_INDEX`
+Format: `done t/TASK_INDEX`
 
 * The `TASK_INDEX` must be a positive integer.
 * The task must exist before it can be selected.
