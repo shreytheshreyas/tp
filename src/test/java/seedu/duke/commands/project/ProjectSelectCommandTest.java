@@ -1,7 +1,8 @@
-package seedu.duke;
+package seedu.duke.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeExceptions;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.member.TeamMember;
@@ -17,8 +18,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProjectSelectCommandTest {
-    static ArrayList<Project> projects;
     static ArrayList<TeamMember> teamMembers;
+    static ArrayList<Project> projects;
     static Ui ui = new Ui();
 
     @BeforeAll
