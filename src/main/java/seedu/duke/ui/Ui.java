@@ -4,6 +4,8 @@ import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Ui {
@@ -40,6 +42,10 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
+    public static String printMemberRemovedMessage(String name) {
+        return "Team member \"" + name + "\" has been removed";
+    }
+
     public static String printProjectDeletedMessage(Project project) {
         return "Project \"" + project.getProjectName() + "\" deleted";
     }
@@ -74,8 +80,9 @@ public class Ui {
         return "Project description added \"" + project.getDescription() + "\".";
     }
 
-    public static String printProjectSelectedMessage(ArrayList<Project> projects, int projectIndex) {
-        return "Switched to Project \"" + projects.get(projectIndex).getProjectName() + "\"";
+    public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
+        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName();
     }
 
     public static String printEmptyAdditionalProjectInformationMessage() {
@@ -85,6 +92,18 @@ public class Ui {
 
     public static String printTaskCreatedMessage(String taskName) {
         return "Task \"" + taskName + "\" created!";
+    }
+
+    public static String printEstimateAddedMessage(String taskName, int hours, int minutes) {
+        return "Task \"" + taskName + "\" has estimated time of " + hours + " hours and " + minutes + " minutes";
+    }
+
+    public static String printActualDurationAddedMessage(String taskName, int hours, int minutes) {
+        return "Task \"" + taskName + "\" took " + hours + " hours and " + minutes + " minutes to be completed.";
+    }
+
+    public static String printTaskDoneMessage(String taskName) {
+        return "Task \"" + taskName + "\" is done!";
     }
 
     public static String printTaskDeletedMessage(String taskName) {
@@ -101,10 +120,6 @@ public class Ui {
 
     public static String printSwitchedToHomeViewMessage() {
         return "Switched to Home View";
-    }
-
-    public static String printMemberRemovedMessage(String memberName) {
-        return "\"" + memberName + "\" has been removed";
     }
 
     public static String printMemberAssignedToTaskMessage(String memberName, String taskName) {

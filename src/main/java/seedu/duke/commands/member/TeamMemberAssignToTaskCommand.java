@@ -14,7 +14,6 @@ import static seedu.duke.Parser.getHashValue;
 
 public class TeamMemberAssignToTaskCommand extends Command {
 
-
     private int taskIndex;
     private int projectIndex;
     private int memberIndex;
@@ -59,8 +58,10 @@ public class TeamMemberAssignToTaskCommand extends Command {
             throw new DukeExceptions("invalidTeamMemberID");
         }
 
-        selectedTask.setMember(teamMember);
-        return Ui.printMemberAssignedToTaskMessage(teamMember.getName(), selectedTask.getTaskDescription());
+        selectedTask = projects.get(projectIndex).getTask(taskIndex);
+        TeamMember member = teamMembers.get(memberIndex);
+        selectedTask.setMember(member);
+        return Ui.printMemberAssignedToTaskMessage(member.getName(), selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {

@@ -23,7 +23,11 @@ public class ProjectDeleteCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
+        try {
+            projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
@@ -34,8 +38,8 @@ public class ProjectDeleteCommand extends Command {
             Project projectToBeDeleted = projects.get(projectIndex);
             projects.remove(projectIndex);
             return Ui.printProjectDeletedMessage(projectToBeDeleted);
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidProjectID");
         }
     }
 

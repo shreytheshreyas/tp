@@ -3,20 +3,25 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HomeCommand;
+import seedu.duke.commands.member.AssignMemberToProjectCommand;
 import seedu.duke.commands.member.TeamMemberAddCommand;
 import seedu.duke.commands.member.TeamMemberAssignToTaskCommand;
 import seedu.duke.commands.member.TeamMemberDeleteCommand;
 import seedu.duke.commands.member.TeamMembersListCommand;
+import seedu.duke.commands.project.ProjectDeadlineCommand;
+import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectDeleteCommand;
 import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.task.ActualTimeCommand;
+import seedu.duke.commands.task.EstimatedTimeCommand;
+import seedu.duke.commands.task.TaskDoneCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.DeadlineCommand;
 import seedu.duke.commands.task.TaskListCommand;
-import seedu.duke.commands.task.TaskSelectCommand;
-import seedu.duke.commands.task.TaskCommand;
-import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskAssignPriorityCommand;
 
 import seedu.duke.ui.Ui;
@@ -97,24 +102,24 @@ public class Parser {
         return commandType;
     }
 
-    public static Command getDeadlineCommand(HashMap<String, String> params, boolean isProjectView)
+    public static Command getDeadlineCommand(HashMap<String, String> params, boolean isProjectListView)
             throws DukeExceptions {
         Command commandType = null;
-
         try {
-            if (!isProjectView) {
+            if (isProjectListView) {
+                int projectId = extractIndex(getHashValue(params, "p"));
+                LocalDate date = LocalDate.parse(getHashValue(params, "d"));
+                commandType = new ProjectDeadlineCommand(projectId, date);
+            } else {
                 int taskIndex = extractIndex(getHashValue(params, "t"));
                 LocalDate date = LocalDate.parse(getHashValue(params, "d"));
                 commandType = new DeadlineCommand(projectIndex, taskIndex, date);
-            } else {
-                throw new DukeExceptions("default");
             }
         } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
-            Ui.printOutput("Date must be specified in format YYYY-MM-DD");
+            throw new DukeExceptions("WrongDateFormat");
         } catch (NumberFormatException e) {
             throw new DukeExceptions("IndexNotFound");
         }
-
         return commandType;
     }
 
@@ -177,12 +182,24 @@ public class Parser {
             }
             commandType = new TaskCommand(params, projectIndex);
             break;
+        case "done":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            commandType = new TaskDoneCommand(params, projectIndex);
+            break;
         case "deadline":
             commandType = getDeadlineCommand(params, isHomeView);
             break;
         case "delete":
             commandType = (isHomeView)
                     ? new ProjectDeleteCommand(params) : new TaskDeleteCommand(params, projectIndex);
+            break;
+        case "actual":
+            commandType = new ActualTimeCommand(params, projectIndex);
+            break;
+        case "estimate":
+            commandType = new EstimatedTimeCommand(params, projectIndex);
             break;
         case "home":
             commandType = new HomeCommand(projectIndex);
@@ -198,9 +215,10 @@ public class Parser {
             break;
         case "assign":
             if (isHomeView) {
-                throw new DukeExceptions("mustBeInProjectView");
+                commandType = new AssignMemberToProjectCommand(params, isHomeView);
+            } else {
+                commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
             }
-            commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
             break;
         case "priority":
             if (isHomeView) {
@@ -208,8 +226,7 @@ public class Parser {
             }
             commandType = new TaskAssignPriorityCommand(params, projectIndex);
             break;
-        default:
-            break;
+        default: throw new DukeExceptions("default");
         }
         return commandType;
     }

@@ -5,6 +5,12 @@ import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
+import seedu.duke.project.ProjectList;
+import seedu.duke.ui.Ui;
+
+import java.lang.reflect.Array;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -21,8 +27,12 @@ public class ProjectSelectCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-        Parser.setProjectIndex(projectIndex);
+        try {
+            projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
+            Parser.setProjectIndex(projectIndex);
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidProjectID");
+        }
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
@@ -33,11 +43,11 @@ public class ProjectSelectCommand extends Command {
             Project selectedProject = projects.get(projectIndex);
             System.out.println("Switched to Project \"" + selectedProject + "\"");
             String projectDescription = selectedProject.getDescription();
-            String projectDeadline = selectedProject.getProjectDeadline();
+            LocalDate projectDeadline = selectedProject.getProjectDeadline();
             //For small sam => help me implement this
-            String member = "<team members involved empty>";
+            String member = "team members involved empty";
             return projectDescription + " | " + projectDeadline + " | " + member;
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }
     }

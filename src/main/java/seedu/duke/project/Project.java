@@ -5,13 +5,14 @@ import seedu.duke.task.Task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.time.LocalDate;
 
 public class Project {
     protected String projectName;
     protected boolean isDone;
     private ArrayList<Task> tasks;
     private String projectDescription;
-    private String projectDeadline;
+    private LocalDate projectDeadline;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
@@ -20,15 +21,7 @@ public class Project {
         this.isDone = false;
         this.tasks = new ArrayList<>();
         this.projectDescription = "<project description empty>";
-        this.projectDeadline = "<project deadline empty>";
-    }
-
-    public String getProjectDeadline() {
-        return projectDeadline;
-    }
-
-    public void setProjectDeadline(String projectDeadline) {
-        this.projectDeadline = projectDeadline;
+        this.projectDeadline = null;
     }
 
     public Task getTask(int taskIndex) {
@@ -55,6 +48,14 @@ public class Project {
         return projectName;
     }
 
+    public void addProjectDeadline(LocalDate date) {
+        this.projectDeadline = date;
+    }
+
+    public LocalDate getProjectDeadline() {
+        return this.projectDeadline;
+    }
+
     /**
      * Returns details of the specified task.
      *
@@ -63,11 +64,11 @@ public class Project {
     @Override
     public String toString() {
         if (!projectDescription.equals("") & projectDeadline != null) {
-            return projectDescription + " | " + projectDeadline;
+            return "Description: " + projectDescription + " | Deadline: " + projectDeadline;
         } else if (!projectDescription.equals("") & projectDeadline == null) {
-            return projectDescription + " | <project deadline empty>";
+            return "Description: " + projectDescription + " | <project deadline empty>";
         } else if (projectDeadline != null) {
-            return "<project description empty> | " + projectDeadline;
+            return "<project description empty> | Deadline: " + projectDeadline;
         } else {
             return "<project description empty> | <project deadline empty>";
         }
