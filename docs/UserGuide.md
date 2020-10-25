@@ -12,7 +12,43 @@ projects, tasks and team members all in one app.
 1. Open Command Prompt (on Windows) or Terminal (n Mac) and type
 java -jar {file path}/ezManager.jar
 
+## Terminologies
+- **HomeView**: Refers to the state of the program in HomeView.
+In this view, you can execute project and member commands but
+you cannot execute task commands.
+
+- **ProjectView**: Refers to the state of the program in ProjectView.
+In this view, you can execute task and member commands but
+you cannot execute project commands.
+
+- **Project list**: Refers to the list of projects currently
+existing in the system
+
+- **Task list**: Refers to the list of tasks currently
+existing in the system
+
+- **Member list**: Refers to the list of members currently
+existing in the system
+
+- **PROJECT_INDEX**: Every existing project would be assigned
+a positive integer. Hence, the PROJECT_INDEX refers to this
+positive integer. You can retrieve the PROJECT_INDEXes of 
+all projects by using the `list` command in HomeView
+
+- **TASK_INDEX**: Every existing task would be assigned
+a positive integer. Hence, the TASK_INDEX refers to this
+positive integer. You can retrieve the TASK_INDEXes of 
+all tasks by using the `list` command in ProjectView
+
 ## Features 
+
+### Switching from ProjectView to HomeView
+Switches from ProjectView to HomeView
+
+Format: `home`
+
+* You must be in ProjectView before you can switch to HomeView   
+
 
 ### **Project Commands**
 ### Adding a project: `project`
@@ -20,7 +56,7 @@ Adds a new project to the project list.
 
 Format: `project n/PROJECT_NAME`
 
-* The user must be in Home View before adding a new project.  
+* You must be in HomeView before adding a new project.  
 
 Example of usage: 
 
@@ -34,7 +70,7 @@ Format: `select p/PROJECT_INDEX`
 
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist before it can be selected.
-* The user must be in Home View before selecting a project.  
+* You must be in HomeView before selecting a project.  
 
 Example of usage: 
 
@@ -45,7 +81,7 @@ Displays all the projects in the project list.
 
 Format: `list`
 
-* The user must be in Home View before listing all projects.  
+* The user must be in HomeView before listing all projects.  
 
 Example of usage: 
 
@@ -58,7 +94,7 @@ Format: `done p/PROJECT_INDEX`
 
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist before it can be marked as done.
-* The user must be in Home View before marking a project
+* You must be in HomeView before marking a project
 as done.  
 
 Example of usage: 
@@ -74,7 +110,7 @@ Format: `deadline p/PROJECT_INDEX d/DATE`
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist before a deadline can be added.
 * The `DATE` must be of the form `YYYY-MM-DD`
-* The user must be in Home View before adding a deadline
+* You must be in HomeView before adding a deadline
 to a project.  
 
 Example of usage: 
@@ -90,7 +126,7 @@ Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist before a description can be added.
-* The user must be in Home View before adding a description
+* You must be in HomeView before adding a description
 to a project.  
 
 Example of usage: 
@@ -105,7 +141,7 @@ Format: `delete p/PROJECT_INDEX`
 
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist in the project list before it can be deleted.
-* The user must be in Home View before deleting a project.  
+* You must be in HomeView before deleting a project.  
 
 Example of usage: 
 
@@ -117,7 +153,7 @@ Adds a new task to the task list.
 
 Format: `task n/TASK_NAME`
 
-* The user must be in Project View before adding a new task.  
+* You must be in ProjectView before adding a new task.  
 
 Example of usage: 
 
@@ -131,7 +167,7 @@ Format: `task p/TASK_INDEX`
 
 * The `TASK_INDEX` must be a positive integer.
 * The task must exist before it can be selected.
-* The user must be in Project View before selecting a task.  
+* You must be in ProjectView before selecting a task.  
 
 Example of usage: 
 
@@ -142,7 +178,7 @@ Displays all the tasks in the task list.
 
 Format: `list`
 
-* The user must be Project View before listing all tasks.  
+* You must be ProjectView before listing all tasks.  
 
 Example of usage: 
 
@@ -155,7 +191,7 @@ Format: `done t/TASK_INDEX`
 
 * The `TASK_INDEX` must be a positive integer.
 * The task must exist before it can be selected.
-* The user must be in Project View before marking a task
+* You must be in ProjectView before marking a task
 as done.  
 
 Example of usage: 
@@ -171,7 +207,7 @@ Format: `deadline t/TASK_INDEX d/DATE`
 * The `TASK_INDEX` must be a positive integer.
 * The task must exist before a deadline can be added.
 * The `DATE` must be of the form `YYYY-MM-DD`
-* The user must be in Project View before adding a deadline
+* You must be in ProjectView before adding a deadline
 to a task.  
 
 Example of usage: 
@@ -186,13 +222,13 @@ Format: `description t/TASK_INDEX d/DESCRIPTION`
 
 * The `TASK_INDEX` must be a positive integer.
 * The task must exist before a description can be added.
-* The user must be in Project View before adding a description
+* You must be in ProjectView before adding a description
 to a task.  
 
 Example of usage: 
 
-* `description p/1 d/Project for Comapany X`. Adds the description 
-`Project for Company X` to the first task in the task list.
+* `description p/1 d/The bug reports are 2 pages long`. Adds the description 
+`The bug reports are 2 pages long` to the first task in the task list.
 
 ### Deleting a task: `delete`
 Deletes a task from the task list.
@@ -201,7 +237,7 @@ Format: `delete t/TASK_INDEX`
 
 * The `TASK_INDEX` must be a positive integer.
 * The task must exist in the task list before it can be deleted.
-* The user must be in Project View before deleting a task.  
+* You must be in ProjectView before deleting a task.  
 
 Example of usage: 
 
@@ -238,7 +274,7 @@ Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
 * The `MEMBER_INDEX` must be a positive integer.
 * The project must exist before it can be assined to.
 * The member must exist before they can be assined.
-* The user must be in Home View before assigning
+* You must be in HomeView before assigning
 a member to a project.
 
 Example of usage: 
@@ -255,7 +291,7 @@ Format: `assign t/TASK_INDEX m/MEMBER_INDEX`
 * The `MEMBER_INDEX` must be a positive integer.
 * The task must exist before it can be assined to.
 * The member must exist before they can be assined.
-* The user must be in Project View before assigning
+* You must be in ProjectView before assigning
 a member to a task.
 
 Example of usage: 
@@ -283,6 +319,26 @@ Example of usage:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Commands | Action | Examples |
+| -------- | ------ | -------- |
+| project | Creates a new project in the project list | `project n/Web Development Project` |
+| task    | Creates a new task in the task list | `task n/Deploy Version 2.0` |
+| member  | Creates a new member in the member list | `member n/John Doe` |
+| list    | If in HomeView, displays the project list | `list` |  
+| list    | If in ProjectView, displays the task list | `list` |
+| select  | If in HomeView, selects the specified project and program enters ProjectView | `select p/1` |  
+| select  | If in ProjectView, selects the specified task | `select t/1` |
+| done    | If in HomeView, marks the specified project as done | `done p/1` |  
+| done    | If in ProjectView, marks the specified task as done | `done t/1` |
+| delete  | If in HomeView, deletes the specified project | `delete p/1` |  
+| delete  | If in ProjectView, deletes the specified task | `delete t/1` |
+| description | If in HomeView, assigns a description to the specified project | `description p/1 d/Project for Company X` |  
+| description | If in ProjectView, assigns a description to the specified task | `description t/1 d/The bug reports are 2 pages long` |
+| deadline | If in HomeView, assigns a deadline to the specified project | `deadline p/1 d/2020-10-25` |  
+| deadline | If in ProjectView, assigns a deadline to the specified task | `deadline t/1 d/2020-10-25` |
+| priority | If in ProjectView, assigns a priority to the specified task | `priority t/1 p/1` |
+| home    | Switches from ProjectView to HomeView | `home` |
+| members | Displays the member list | `members` |
+| assign  | If in HomeView, assigns member to specified project | `assign p/1 m/1` |  
+| assign  | If in ProjectView, assigns member to specified task | `assign t/1 m/1` |
+| remove  | Removes specified member from the member list | `remove m/1` |
