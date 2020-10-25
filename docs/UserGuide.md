@@ -13,7 +13,7 @@ projects, tasks and team members all in one app.
 1. [Quick Start](#quick-start)
 2. [Terminologies](#terminologies)
 3. [Features](#features)
-    1. [Switching From ProjectView to HomeView](#switching-from-projectview-to-homeview)
+    1. [Switching From ProjectView to HomeView](#switching-from-projectview-to-homeview-home)
     2. [Project Commands](#project-commands)
         1. [Adding a project](#adding-a-project-project)
         2. [Selecting a project](#selecting-a-project-select)
@@ -41,9 +41,9 @@ projects, tasks and team members all in one app.
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `EZ Manager` from [here](http://link.to/duke).
+1. Download the latest version of `EZ Manager` from [here](http://link.to/duke).
 1. Copy the JAR  file into an empty new folder. Take note of the file path
-1. Open Command Prompt (on Windows) or Terminal (n Mac) and type
+1. Open Command Prompt (on Windows) or Terminal (on Mac) and type
 java -jar {file path}/ezManager.jar
 
 ## Terminologies
@@ -77,7 +77,7 @@ all tasks by using the `list` command in ProjectView
 ## Features 
 
 ### Switching from ProjectView to HomeView
-Switches from ProjectView to HomeView
+Switches from ProjectView to HomeView: `home`
 
 Format: `home`
 
