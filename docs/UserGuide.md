@@ -104,6 +104,7 @@ Delete a project from the project list.
 Format: `delete p/PROJECT_INDEX`
 
 * The `PROJECT_INDEX` must be a positive integer.
+* The project must exist in the project list before it can be deleted.
 * The user must be in Home View before deleting a project.  
 
 Example of usage: 
@@ -112,7 +113,7 @@ Example of usage:
 
 ### **Task Commands**
 ### Adding a task: `task`
-Adds a new task to task list.
+Adds a new task to the task list.
 
 Format: `task n/TASK_NAME`
 
@@ -199,11 +200,80 @@ Deletes a task from the task list.
 Format: `delete t/TASK_INDEX`
 
 * The `TASK_INDEX` must be a positive integer.
+* The task must exist in the task list before it can be deleted.
 * The user must be in Project View before deleting a task.  
 
 Example of usage: 
 
 * `delete t/1`. Deletes the first task in the task list.
+
+### **Member Commands**
+### Adding a member: `member`
+Adds a new member to the member list.
+
+Format: `member n/MEMBER_NAME`
+
+Example of usage: 
+
+* `member n/John Doe`. Adds the member 'John Doe'
+to the member list.
+
+* `select t/1`. Selects the first task from the task list.
+
+### Viewing the member list: `members`
+Displays all the members in the task list.
+
+Format: `members`
+
+Example of usage: 
+
+* `members`. Shows all the members in the member list.
+
+### Assigning a member to a project: `assign`
+Assigns an existing member to an existing project.
+
+Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The `MEMBER_INDEX` must be a positive integer.
+* The project must exist before it can be assined to.
+* The member must exist before they can be assined.
+* The user must be in Home View before assigning
+a member to a project.
+
+Example of usage: 
+
+* `assing p/1 m/1`. Assigns the first member in the member list
+to the first project in the project list
+
+### Assigning a member to a task: `assign`
+Assigns an existing member to an existing task.
+
+Format: `assign t/TASK_INDEX m/MEMBER_INDEX`
+
+* The `TASK_INDEX` must be a positive integer.
+* The `MEMBER_INDEX` must be a positive integer.
+* The task must exist before it can be assined to.
+* The member must exist before they can be assined.
+* The user must be in Project View before assigning
+a member to a task.
+
+Example of usage: 
+
+* `assing t/1 m/1`. Assigns the first member in the member list
+to the first task in the task list
+
+### Removing a member: `remove`
+Removes an existing member from the member list.
+
+Format: `remove m/MEMBER_INDEX`
+
+* The `MEMBER_INDEX` must be a positive integer.
+* The member must exist before they can be removed.
+
+Example of usage: 
+
+* `remove m/1`. Removes the first member from the member list.
 
 ## FAQ
 
