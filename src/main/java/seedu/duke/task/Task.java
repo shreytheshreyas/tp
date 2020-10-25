@@ -19,6 +19,17 @@ public class Task {
     protected boolean isDone;
     protected LocalDate date;
     protected TeamMember member;
+    protected int estimateInMinutes = 0;
+    protected int actualInMinutes;
+    protected String priority;
+
+    public String getPriority() {
+        return priority;
+    }
+
+    public void setPriority(String priority) {
+        this.priority = priority;
+    }
 
     public Task(String description) {
         this.description = description;
@@ -27,6 +38,22 @@ public class Task {
 
     public void addDeadline(LocalDate date) {
         this.date = date;
+    }
+
+    public void addEstimate(int durationInMinutes) {
+        this.estimateInMinutes = durationInMinutes;
+    }
+
+    public int getEstimate() {
+        return estimateInMinutes;
+    }
+
+    public int getActual() {
+        return actualInMinutes;
+    }
+
+    public void addActual(int durationInMinutes) {
+        this.actualInMinutes = durationInMinutes;
     }
 
     public void markAsDone() {
@@ -59,6 +86,17 @@ public class Task {
         String taskStatus = description;
         if (date != null) {
             taskStatus += " | " + getDateString();
+        }
+        if (estimateInMinutes != 0) {
+            int hours = estimateInMinutes / 60;
+            int minutes = estimateInMinutes % 60;
+            taskStatus += " | " + "Estimated: " + hours + " hours " + minutes + " minutes";
+        }
+
+        if (actualInMinutes != 0) {
+            int hours = actualInMinutes / 60;
+            int minutes = actualInMinutes % 60;
+            taskStatus += " | " + "Actual: " + hours + " hours " + minutes + " minutes";
         }
         return taskStatus;
     }

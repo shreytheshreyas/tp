@@ -14,7 +14,6 @@ public class Project implements Comparable<Project> {
     private ArrayList<Task> tasks;
     private String projectDescription;
     private LocalDate projectDeadline;
-    private static ArrayList<TeamMember> members;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
@@ -22,9 +21,8 @@ public class Project implements Comparable<Project> {
         this.projectName = projectName;
         this.isDone = false;
         this.tasks = new ArrayList<>();
-        this.projectDescription = "";
+        this.projectDescription = "<project description empty>";
         this.projectDeadline = null;
-        members = new ArrayList<>();
     }
 
     @Override
@@ -53,10 +51,6 @@ public class Project implements Comparable<Project> {
 
     public String getDescription() {
         return projectDescription;
-    }
-
-    public static ArrayList<TeamMember> getMembers() {
-        return members;
     }
 
     public int getNumberTasks() {
