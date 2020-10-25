@@ -1,4 +1,8 @@
 # User Guide
+This user guide will explain how to use the software tool,
+EZ Manager. You can navigate to the different sections of
+this guide using the Table of Content. Each content is linked
+to its respective sections. 
 
 ## Introduction
 EZ Manager is a CLI (Command Line Interface) software tool 
@@ -8,6 +12,32 @@ projects, tasks and team members all in one app.
 ## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Terminologies](#terminologies)
+3. [Features](#features)
+    1. [Switching From ProjectView to HomeView](#switching-from-projectview-to-homeview)
+    2. [Project Commands](#project-commands)
+        1. [Adding a project](#adding-a-project-project)
+        2. [Selecting a project](#selecting-a-project-select)
+        3. [Viewing the project list](#viewing-the-project-list-list)
+        4. [Marking a project as done](#marking-a-project-as-done-done)
+        5. [Adding a deadline to a project](#adding-a-deadline-to-a-project-deadline)
+        6. [Adding a description to a project](#adding-a-description-to-a-project-description)
+        7. [Deleting a project](#deleting-a-project-delete)
+    3. [Task Commands](#task-commands)
+        1. [Adding a task](#task-commands)
+        2. [Selecting a task](#selecting-a-task-select)
+        3. [Viewing the task list](#viewing-the-task-list-list)
+        4. [Marking a task as done](#marking-a-task-as-done-done)
+        5. [Adding a deadline to a task](#adding-a-deadline-to-a-task-deadline)
+        6. [Adding a description to a task](#adding-a-description-to-a-task-deadline)
+        7. [Deleting a task](#deleting-a-task-delete)
+    4. [Member Commands](#member-commands)
+        1. [Adding a member](#adding-a-member-member)
+        2. [Viewing the member list](#viewing-the-member-list-members)
+        3. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
+        4. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
+        5. [Removing a member](#removing-a-member-remove)
+4. [FAQ](#faq)
+5. [Command Summary](#command-summary)
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
@@ -91,7 +121,7 @@ Example of usage:
 
 * `list`. Shows all the projects in the project list.
 
-### Marking projects as done: `done`
+### Marking a project as done: `done`
 Marks an existing project as done.
 
 Format: `done p/PROJECT_INDEX`
