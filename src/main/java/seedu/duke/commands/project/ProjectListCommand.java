@@ -18,20 +18,24 @@ public class ProjectListCommand extends Command {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         } else {
-            int projectCounter = 0;
-            int i = 0;
-            while (projectCounter < projects.size()) {
-                if (projects.get(i).getProjectDeadline() == null) {
-                    Project projectWithNullDeadline = projects.get(i);
-                    projects.remove(i);
-                    projects.add(projectWithNullDeadline);
-                } else {
-                    i++;
+            try {
+                int projectCounter = 0;
+                int i = 0;
+                while (projectCounter < projects.size()) {
+                    if (projects.get(i).getProjectDeadline() == null) {
+                        Project projectWithNullDeadline = projects.get(i);
+                        projects.remove(i);
+                        projects.add(projectWithNullDeadline);
+                    } else {
+                        i++;
+                    }
+                    projectCounter++;
                 }
-                projectCounter++;
+                Collections.sort(projects);
+                return Ui.printProjectListMessage(projects);
+            } catch (IndexOutOfBoundsException e) {
+                throw new DukeExceptions("invalidProjectID");
             }
-            Collections.sort(projects);
-            return Ui.printProjectListMessage(projects);
         }
     }
 
