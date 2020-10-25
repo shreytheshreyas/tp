@@ -39,7 +39,7 @@ public class ProjectSelectCommandTest {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
-        String expectedOutput =  "Do CS2113 Tutorial by today | 2020-12-31 | team members involved empty";
+        String expectedOutput =  "Description: Do CS2113 Tutorial by today | Deadline: 2020-12-31";
         String actualOutput = selectProject.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
