@@ -5,6 +5,10 @@ EZ Manager is a CLI (Command Line Interface) software tool
 for Software Engineering Project Managers to manage their 
 projects, tasks and team members all in one app.
 
+## Table of Contents
+1. [Quick Start](#quick-start)
+2. [Terminologies](#terminologies)
+
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
 1. Down the latest version of `EZ Manager` from [here](http://link.to/duke).
