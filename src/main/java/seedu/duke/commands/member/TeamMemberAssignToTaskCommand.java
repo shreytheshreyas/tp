@@ -27,19 +27,38 @@ public class TeamMemberAssignToTaskCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        try {
-            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-            memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
-        }
+        taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+        memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects,
+                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-        Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
+        if (projects.get(projectIndex).getTaskList().size() == 0) {
+            throw new DukeExceptions("emptyTaskList");
+        }
+        if (teamMembers.size() == 0) {
+            throw new DukeExceptions("emptyTeamMembersList");
+        }
+
+        Task selectedTask;
+        TeamMember teamMember;
+
+        try {
+            selectedTask = projects.get(projectIndex).getTask(taskIndex);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
+
+        try {
+            teamMember = teamMembers.get(memberIndex);
+        } catch (NumberFormatException | IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidTeamMemberID");
+        }
+
+        selectedTask = projects.get(projectIndex).getTask(taskIndex);
         TeamMember member = teamMembers.get(memberIndex);
         selectedTask.setMember(member);
         return Ui.printMemberAssignedToTaskMessage(member.getName(), selectedTask.getTaskDescription());
