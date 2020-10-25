@@ -11,19 +11,19 @@ import seedu.duke.commands.member.TeamMembersListCommand;
 
 import seedu.duke.commands.project.ProjectDeadlineCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
-
-
 import seedu.duke.commands.project.ProjectDeleteCommand;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.task.ActualTimeCommand;
+import seedu.duke.commands.task.EstimatedTimeCommand;
+import seedu.duke.commands.task.TaskDoneCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.DeadlineCommand;
 import seedu.duke.commands.task.TaskListCommand;
-import seedu.duke.commands.task.TaskSelectCommand;
-import seedu.duke.commands.task.TaskCommand;
-import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskAssignPriorityCommand;
-import seedu.duke.commands.task.TaskDoneCommand;
 
 import seedu.duke.ui.Ui;
 import java.util.HashMap;
@@ -43,7 +43,7 @@ public class Parser {
      * Parses user input into project command for execution.
      *
      * @param inputCommand Full user input command string
-     * @return Command object corres    ponding to the input command of the user
+     * @return Command object corresponding to the input command of the user
      */
     public static Command parse(String inputCommand) throws DukeExceptions {
         Command commandType;
@@ -195,6 +195,12 @@ public class Parser {
         case "delete":
             commandType = (isHomeView)
                     ? new ProjectDeleteCommand(params) : new TaskDeleteCommand(params, projectIndex);
+            break;
+        case "actual":
+            commandType = new ActualTimeCommand(params, projectIndex);
+            break;
+        case "estimate":
+            commandType = new EstimatedTimeCommand(params, projectIndex);
             break;
         case "home":
             commandType = new HomeCommand(projectIndex);
