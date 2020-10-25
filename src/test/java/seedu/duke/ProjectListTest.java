@@ -3,6 +3,7 @@ package seedu.duke;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.commands.project.ProjectListCommand;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 
 import java.time.LocalDate;
@@ -12,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ProjectListTest {
     static ArrayList<Project> projects;
+    static ArrayList<TeamMember> teamMembers;
 
     @BeforeAll
     static void createProjectList() {
@@ -33,7 +35,7 @@ public class ProjectListTest {
                 + "     1.CS2113 Tutorial (2019-01-01) \n"
                 + "     2.Drink Water (2020-12-31) \n"
                 + "     3.Fire";
-        String actualOutput = command.executeCommand(projects);
+        String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
 
