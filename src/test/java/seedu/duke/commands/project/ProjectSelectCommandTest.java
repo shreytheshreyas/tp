@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class ProjectSelectCommandTest {
     static ArrayList<TeamMember> teamMembers;
     static ArrayList<Project> projects;
-    static ArrayList<TeamMember> teamMembers;
     static Ui ui = new Ui();
 
     @BeforeAll
@@ -41,13 +40,7 @@ public class ProjectSelectCommandTest {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
-<<<<<<< HEAD:src/test/java/seedu/duke/commands/project/ProjectSelectCommandTest.java
-        String expectedOutput =  "Do CS2113 Tutorial by today "
-                + "| <project deadline empty> "
-                + "| <team members involved empty>";
-=======
         String expectedOutput =  "Do CS2113 Tutorial by today | 2020-12-31 | team members involved empty";
->>>>>>> a662c703b102739430d8dca4a3521929d158f360:src/test/java/seedu/duke/ProjectSelectCommandTest.java
         String actualOutput = selectProject.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
