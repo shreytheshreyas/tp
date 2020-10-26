@@ -1,23 +1,14 @@
+Members 
+sam chris
+samuel Leow
+sean tan
+
 Project how are you
 status false
 projectDescription <project description empty>
 projectDeadline 2020-10-02
 startTasks 
 ho ho | 2020-12-25 | sam chris
-merry christmas sam | 2021-12-25 | 2021-12-25
-endTasks
-
-Project howdy
-status false
-projectDescription <project description empty>
-projectDeadline 2020-10-20
-startTasks 
-endTasks
-
-Project one more
-status false
-projectDescription <project description empty>
-projectDeadline 2020-10-28
-startTasks 
+merry christmas sam | 2021-12-25
 endTasks
 

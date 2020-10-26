@@ -25,4 +25,8 @@ public class TeamMember {
     public String toString() {
         return name;
     }
+
+    public String saveFormat() {
+        return this.toString();
+    }
 }

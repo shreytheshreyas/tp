@@ -29,7 +29,7 @@ public class Storage {
         private LocalDate projectDeadline;
         private static ArrayList<TeamMember> members;
      */
-    public static ArrayList<Project> loadProjects() throws DukeExceptions {
+    public static ArrayList<Project> loadProjects(ArrayList<TeamMember> members) throws DukeExceptions {
         try {
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             ArrayList<Project> projects = new ArrayList<>();
@@ -44,9 +44,11 @@ public class Storage {
                     Project newProject = new Project(projectName);
                     // TODO: set the projects stuff
                     newProject.addProjectDeadline(deadlineDate);
+
+
                     // begin adding tasks to project
                     currentLine = s.nextLine().trim();
-                    while(!currentLine.equals("endTasks")) {
+                    while (!currentLine.equals("endTasks")) {
                         if (currentLine.equals("startTasks")) {
                             currentLine = s.nextLine();
                             continue;
@@ -62,7 +64,11 @@ public class Storage {
 
                         taskString = taskString.substring(taskString.indexOf("|") + 1);
                         if (currentLine.length() > 1) {
-                            newTask.setMember(new TeamMember(taskString.trim()));
+                            for (TeamMember member : members) {
+                                if (member.getName().equals(taskString.trim())) {
+                                    newTask.setMember(member);
+                                }
+                            }
                         }
 
                         newProject.addTask(newTask);
@@ -82,22 +88,50 @@ public class Storage {
         return temp;
     }
 
-    public static void save(ArrayList<Project> projects) {
+    public ArrayList<TeamMember> loadTeamMembers() {
+        try {
+            Scanner s = new Scanner(f);
+            String currentLine = s.nextLine();
+            ArrayList<TeamMember> members = new ArrayList<>();
+
+            while (!currentLine.equals("Project") && currentLine.length() > 1) {
+                if (currentLine.trim().equals("Members")) {
+                    currentLine = s.nextLine();
+                    continue;
+                }
+                TeamMember newMember = new TeamMember(currentLine.trim());
+                members.add(newMember);
+                currentLine = s.nextLine();
+            }
+
+            return members;
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        return new ArrayList<>();
+    }
+
+    public static void save(ArrayList<Project> projects, ArrayList<TeamMember> members) {
         try {
             // empty current saved items;
             FileWriter clear = new FileWriter(f);
             clear.write("");
             clear.close();
             int i;
-            for(i = 0; i < projects.size(); i++) {
+            FileWriter fw = new FileWriter(f, true);
+            fw.write("Members \n");
+            for (TeamMember member : members) {
+                fw.write(member.saveFormat() + "\n");
+            }
+
+            fw.write("\n");
+
+            for (i = 0; i < projects.size(); i++) {
                 Project project = projects.get(i);
-
-                FileWriter fw = new FileWriter(f, true);
-
                 fw.write(project.saveFormat() + "\n");
                 fw.close();
-
             }
+
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

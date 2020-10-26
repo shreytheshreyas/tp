@@ -23,10 +23,16 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            ArrayList<Project> loadedProjects = storage.loadProjects();
+            ArrayList<TeamMember> loadedMembers = storage.loadTeamMembers();
+            for (TeamMember member : loadedMembers) {
+                teamMembers.add(member);
+            }
+
+            ArrayList<Project> loadedProjects = storage.loadProjects(teamMembers);
             for (Project project : loadedProjects) {
                 projects.add(project);
             }
+
         } catch (DukeExceptions e) {
             System.out.println("hi");
         }
@@ -52,7 +58,7 @@ public class Duke {
             ui.printLine();
         }
 
-        Storage.save(projects);
+        Storage.save(projects, teamMembers);
     }
 
     public static void main(String[] args) throws DukeExceptions {
