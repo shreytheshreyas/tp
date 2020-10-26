@@ -136,7 +136,7 @@ public class Storage {
             FileWriter clear = new FileWriter(f);
             clear.write("");
             clear.close();
-            int i;
+
             FileWriter fw = new FileWriter(f, true);
             fw.write("Members \n");
             for (TeamMember member : members) {
@@ -144,7 +144,8 @@ public class Storage {
             }
 
             fw.write("\n");
-
+            
+            int i;
             for (i = 0; i < projects.size(); i++) {
                 Project project = projects.get(i);
                 fw.write(project.saveFormat() + "\n");
