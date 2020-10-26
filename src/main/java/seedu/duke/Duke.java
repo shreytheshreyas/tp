@@ -14,7 +14,7 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    private static ArrayList<TeamMember> members = new ArrayList<>();
+    private static ArrayList<TeamMember> teamMembers = new ArrayList<>();
     private static ArrayList<Project> projects =  new ArrayList<>();
     private Storage storage;
     private Ui ui;
@@ -44,7 +44,7 @@ public class Duke {
             try {
                 Command commandInput = Parser.parse(in.nextLine());
                 ui.printLine();
-                String output = commandInput.executeCommand(projects);
+                String output = commandInput.executeCommand(projects, teamMembers);
                 ui.printOutput(output);
                 isExit = commandInput.isExit();
             } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | DukeExceptions e) {

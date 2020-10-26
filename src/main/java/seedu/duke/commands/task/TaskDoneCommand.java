@@ -3,6 +3,7 @@ package seedu.duke.commands.task;
 import seedu.duke.Duke;
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
@@ -33,7 +34,8 @@ public class TaskDoneCommand extends Command {
 
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects,
+                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         Project project = projects.get(projectIndex);
         try {
             Task selectedTask = project.getTask(taskIndex);
