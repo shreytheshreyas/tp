@@ -11,8 +11,8 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.duke.Parser.getHashValue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TaskEditCommandTest {
 
