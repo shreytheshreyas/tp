@@ -90,4 +90,31 @@ public class Project implements Comparable<Project> {
     public String selectTask(int taskId) {
         return tasks.get(taskId).toString();
     }
+
+    /*
+        Project “projectName”
+        status isDone;
+        tasks
+        1. task, description, isDone, date, member, estimateInMinutes, actualInMinutes, priority
+        projectDescription “hello…”
+        projectDeadline
+        members
+        1. name; assignedProjectId;
+    */
+    public String saveFormat() {
+        String projectNameLine = "Project " + projectName;
+        String statusLine = "status " + isDone;
+        String projectDescriptionLine = "projectDescription " + projectDescription;
+        String projectDeadlineLine = "projectDeadline " + projectDeadline;
+        String tasksLines = "startTasks \n";
+        if (tasks.size() > 0) {
+            for (Task task : tasks) {
+                tasksLines += (task.saveFormat() + "\n");
+            }
+        }
+        tasksLines += "endTasks";
+
+        return projectNameLine + "\n" + statusLine + "\n" + projectDescriptionLine + "\n"
+                + projectDeadlineLine + "\n" + tasksLines + "\n";
+    }
 }

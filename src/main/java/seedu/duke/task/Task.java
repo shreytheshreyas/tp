@@ -101,6 +101,32 @@ public class Task {
         return taskStatus;
     }
 
+    public String saveFormat() {
+        String taskLine = description;
+
+        if (date != null) {
+            taskLine += " | " + date.toString();
+        }
+
+        if (member != null) {
+            taskLine += " | " + member.getName();
+        }
+
+        if (estimateInMinutes != 0) {
+            int hours = estimateInMinutes / 60;
+            int minutes = estimateInMinutes % 60;
+            taskLine += " | " + "Estimated: " + hours + " hours " + minutes + " minutes";
+        }
+
+        if (actualInMinutes != 0) {
+            int hours = actualInMinutes / 60;
+            int minutes = actualInMinutes % 60;
+            taskLine += " | " + "Actual: " + hours + " hours " + minutes + " minutes";
+        }
+        return taskLine;
+
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Task) {

@@ -23,17 +23,16 @@ public class Duke {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
-            ArrayList<Project> loadedProjects = storage.load();
+            ArrayList<Project> loadedProjects = storage.loadProjects();
             for (Project project : loadedProjects) {
                 projects.add(project);
             }
-        } catch (DukeException e) {
-            ui.showLoadingError();
-            tasks = new TaskList();
+        } catch (DukeExceptions e) {
+            System.out.println("hi");
         }
     }
 
-    public static void main(String[] args) throws DukeExceptions {
+    public static void run() {
         Ui ui = new Ui();
 
         ui.printWelcome();
@@ -53,6 +52,11 @@ public class Duke {
             ui.printLine();
         }
 
+        Storage.save(projects);
+    }
+
+    public static void main(String[] args) throws DukeExceptions {
+        new Duke("ezmanager.txt").run();
     }
 
 }
