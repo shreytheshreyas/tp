@@ -26,7 +26,7 @@ public class AssignMemberToProjectCommand extends Command {
     public void parse() throws DukeExceptions {
         if (isProjectView) {
             try {
-                projectIndex = Integer.parseInt(getHashValue(paramsList,"p")) -1;
+                projectIndex = Integer.parseInt(getHashValue(paramsList,"p")) - 1;
                 memberIndex = Integer.parseInt(getHashValue(paramsList,"m")) - 1;
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeExceptions("default");
