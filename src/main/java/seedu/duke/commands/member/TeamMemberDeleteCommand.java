@@ -39,7 +39,7 @@ public class TeamMemberDeleteCommand extends Command {
             teamMembers.remove(memberIndex);
             return Ui.printMemberRemovedMessage(memberToBeRemoved.getName());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidMemberID");
+            throw new DukeExceptions("invalidTeamMemberID");
         }
     }
 
