@@ -113,18 +113,13 @@ public class Task {
         }
 
         if (estimateInMinutes != 0) {
-            int hours = estimateInMinutes / 60;
-            int minutes = estimateInMinutes % 60;
-            taskLine += " | " + "Estimated: " + hours + " hours " + minutes + " minutes";
+            taskLine += " | " + "estimateInMinutesStart " + estimateInMinutes + " estimateInMinutesEnd";
         }
 
         if (actualInMinutes != 0) {
-            int hours = actualInMinutes / 60;
-            int minutes = actualInMinutes % 60;
-            taskLine += " | " + "Actual: " + hours + " hours " + minutes + " minutes";
+            taskLine += " | " + "actualInMinutesStart " + actualInMinutes + " actualInMinutesEnd";
         }
         return taskLine;
-
     }
 
     @Override

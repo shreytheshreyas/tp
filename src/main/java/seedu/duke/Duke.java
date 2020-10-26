@@ -34,7 +34,7 @@ public class Duke {
             }
 
         } catch (DukeExceptions e) {
-            System.out.println("hi");
+            System.out.println(e.getMessage());
         }
     }
 

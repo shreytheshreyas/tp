@@ -71,6 +71,25 @@ public class Storage {
                             }
                         }
 
+                        taskString = taskString.replace("estimateInMinutesStart", "");
+                        int estimateInMinutesEndIndex = taskString.indexOf("estimateInMinutesEnd");
+                        if (estimateInMinutesEndIndex != -1) {
+                            String estimate = taskString.substring(0, estimateInMinutesEndIndex);
+                            if (estimate.length() > 1) {
+                                newTask.addEstimate(Integer.parseInt(estimate.trim()));
+                            }
+                        }
+
+                        taskString = taskString.substring(estimateInMinutesEndIndex + 20);
+                        taskString = taskString.replace("| actualInMinutesStart", "");
+                        if (taskString.indexOf("actualInMinutesEnd") != -1) {
+                            String estimate = taskString.substring(0, taskString.indexOf("actualInMinutesEnd"));
+                            if (estimate.length() > 1) {
+                                newTask.addActual(Integer.parseInt(estimate.trim()));
+                            }
+                        }
+
+
                         newProject.addTask(newTask);
                         currentLine = s.nextLine();
                     }

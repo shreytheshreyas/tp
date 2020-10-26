@@ -8,7 +8,7 @@ status false
 projectDescription <project description empty>
 projectDeadline 2020-10-02
 startTasks 
-ho ho | 2020-12-25 | sam chris
-merry christmas sam | 2021-12-25
+ho ho | 2020-12-25 | estimateInMinutesStart 70 estimateInMinutesEnd
+merry christmas sam | 2021-12-25 | estimateInMinutesStart 184 estimateInMinutesEnd | actualInMinutesStart 62 actualInMinutesEnd
 endTasks
 
