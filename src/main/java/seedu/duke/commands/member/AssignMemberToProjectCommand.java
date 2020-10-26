@@ -26,7 +26,7 @@ public class AssignMemberToProjectCommand extends Command {
     public void parse() throws DukeExceptions {
         if (isProjectView) {
             try {
-                projectIndex = Integer.parseInt(getHashValue(paramsList,"p"));
+                projectIndex = Integer.parseInt(getHashValue(paramsList,"p")) -1;
                 memberIndex = Integer.parseInt(getHashValue(paramsList,"m")) - 1;
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeExceptions("default");
@@ -46,7 +46,8 @@ public class AssignMemberToProjectCommand extends Command {
         }
         TeamMember requiredMember = teamMembers.get(memberIndex);
         requiredMember.setAssignedProjectId(projectIndex);
-        return requiredMember + " assigned to project " + requiredMember.getAssignedProjectId();
+        projects.get(projectIndex).addTeamMemberToProject(requiredMember);
+        return requiredMember + " assigned to Project \"" + projects.get(projectIndex).getProjectName() + "\"";
     }
 
     public Boolean isExit() {

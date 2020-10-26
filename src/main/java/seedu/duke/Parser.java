@@ -140,6 +140,10 @@ public class Parser {
         return isProjectListView ? new ProjectListCommand() : new TaskListCommand(projectIndex);
     }
 
+//    public static Command getTeamMemberListCommand(boolean isHomeView) {
+//        return isHomeView ? new TeamMembersListCommand() : new TeamMembersListCommand();
+//    }
+
     /**
      * Parses user input related to tasks into command for execution.
      *
@@ -208,7 +212,7 @@ public class Parser {
             commandType = getAddMemberCommand(params);
             break;
         case "members":
-            commandType = new TeamMembersListCommand();
+            commandType = new TeamMembersListCommand(isHomeView, projectIndex);
             break;
         case "remove":
             commandType = getRemoveTeamMemberCommand(params);
