@@ -1,27 +1,23 @@
 package seedu.duke.commands.project;
 
 import seedu.duke.DukeExceptions;
-import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.ui.Ui;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
-public class ProjectSelectCommand extends Command {
+public class ProjectDeleteCommand extends Command {
 
     private int projectIndex;
     HashMap<String, String> params;
 
-    public ProjectSelectCommand(HashMap<String, String> params) throws DukeExceptions {
+    public ProjectDeleteCommand(HashMap<String, String> params)
+            throws DukeExceptions {
         this.params = params;
         this.parse();
     }
@@ -29,9 +25,8 @@ public class ProjectSelectCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-            Parser.setProjectIndex(projectIndex);
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidProjectID");
+            throw new DukeExceptions("invalidTaskID");
         }
     }
 
@@ -40,10 +35,9 @@ public class ProjectSelectCommand extends Command {
             throw new DukeExceptions("emptyProjectList");
         }
         try {
-            Project selectedProject = projects.get(projectIndex);
-            System.out.println("Switched to Project \"" + selectedProject.getProjectName() + "\"");
-            //For small sam => help me implement this
-            return selectedProject.toString();
+            Project projectToBeDeleted = projects.get(projectIndex);
+            projects.remove(projectIndex);
+            return Ui.printProjectDeletedMessage(projectToBeDeleted);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }
@@ -52,5 +46,4 @@ public class ProjectSelectCommand extends Command {
     public Boolean isExit() {
         return false;
     }
-
 }

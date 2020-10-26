@@ -1,6 +1,7 @@
 package seedu.duke.commands.task;
 
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 
@@ -19,7 +20,7 @@ public class DeadlineCommand extends Command {
         this.date = date;
     }
 
-    public String executeCommand(ArrayList<Project> projects) {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         Project project = projects.get(projectIndex);
         Task task = project.getTaskList().get(taskIndex);
         task.addDeadline(date);

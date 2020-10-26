@@ -1,29 +1,38 @@
 package seedu.duke.commands.task;
 
+import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import static seedu.duke.Parser.getHashValue;
 
 public class TaskCommand extends Command {
 
-    private String description;
     private int projectIndex;
+    private String description;
+    HashMap<String, String> params;
 
-    public TaskCommand(String description, int projectIndex) {
-        this.description = description;
+    public TaskCommand(HashMap<String, String> params, int projectIndex) throws DukeExceptions {
+        this.params = params;
         this.projectIndex = projectIndex;
+        this.parse();
     }
 
-    public String executeCommand(ArrayList<Project> projects) {
+    public void parse() throws DukeExceptions {
+        this.description = getHashValue(params, "n");
+    }
+
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         Project project = projects.get(projectIndex);
         Task newTask = new Task(description);
-        project.createTask(newTask);
-        return Ui.printTaskCreatedMessage(newTask);
+        project.addTask(newTask);
+        return Ui.printTaskCreatedMessage(newTask.toString());
     }
 
     public Boolean isExit() {
