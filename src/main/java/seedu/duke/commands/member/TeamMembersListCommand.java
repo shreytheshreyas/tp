@@ -8,11 +8,6 @@ import java.util.ArrayList;
 
 public class TeamMembersListCommand extends Command {
 
-    private String name;
-
-    public TeamMembersListCommand() {
-    }
-
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         if (teamMembers.size() == 0) {
             return "No team members have been added.";
@@ -21,9 +16,10 @@ public class TeamMembersListCommand extends Command {
         String listOfMembers = "";
         int i = 0;
         for (TeamMember member : teamMembers) {
-            String assignmentStatus = (member.getAssignedProjectId() == 0) ? "Not assigned to a project "
-                                    : "assigned to project " + member.getAssignedProjectId();
+            String assignmentStatus = (member.getAssignedProjectId() == 0)
+                    ? "Not assigned to a project " : "assigned to project " + member.getAssignedProjectId();
             String memberLine = (i + 1) + ". " + member.getName() + ": \t" + assignmentStatus + "\n";
+            System.out.println(memberLine);
             i++;
         }
 
