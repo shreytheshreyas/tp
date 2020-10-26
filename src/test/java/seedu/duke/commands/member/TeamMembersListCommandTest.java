@@ -10,7 +10,7 @@ import seedu.duke.project.Project;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TeamMembersListCommandTest {
     static ArrayList<Project> projects;

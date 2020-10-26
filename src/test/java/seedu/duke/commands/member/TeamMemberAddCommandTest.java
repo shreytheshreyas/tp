@@ -11,7 +11,7 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TeamMemberAddCommandTest {
     static ArrayList<Project> projects;
