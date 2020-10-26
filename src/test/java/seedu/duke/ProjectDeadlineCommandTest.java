@@ -36,6 +36,7 @@ public class ProjectDeadlineCommandTest {
         projects.add(projectOne);
         projects.add(projectTwo);
         projects.add(projectThree);
+        params = new HashMap<>();
     }
 
     /**
@@ -43,7 +44,7 @@ public class ProjectDeadlineCommandTest {
      */
     @Test
     void executeCommand_validProjectId_addDeadlineToProject() throws DukeExceptions {
-        params.put("p", "1");
+        params.put("p", "2");
         params.put("d", "2020-12-31");
         ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
         String expectedOutput = "Deadline 31/12/2020 added to Project Fire";

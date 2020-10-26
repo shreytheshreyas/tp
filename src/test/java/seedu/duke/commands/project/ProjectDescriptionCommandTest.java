@@ -23,7 +23,7 @@ public class ProjectDescriptionCommandTest {
     static ArrayList<Project> projects;
     static ArrayList<TeamMember> teamMembers;
     static Ui ui = new Ui();
-    HashMap<String, String> params;
+    static HashMap<String, String> params;
 
     @BeforeAll
     static void createProjectList() {
@@ -35,6 +35,7 @@ public class ProjectDescriptionCommandTest {
         projects.add(projectTwo);
         projects.add(projectThree);
         projectTwo.addDescription("Do CS2113 Tutorial by today");
+        params = new HashMap<>();
     }
 
     @Test
