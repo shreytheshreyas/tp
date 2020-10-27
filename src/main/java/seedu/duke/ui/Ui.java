@@ -69,6 +69,8 @@ public class Ui {
         for (int i = 0; i < numberOfTasks; i++) {
             output += "\n     " + (i + 1) + "." + project.getTask(i);
         }
+
+        output += "\n\nThe most time consuming so far:\n" + project.maxTimeTask();
         return output;
     }
 

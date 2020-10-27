@@ -36,6 +36,16 @@ public class Project {
         tasks.remove(taskIndex);
     }
 
+    public Task maxTimeTask() {
+        Task tempTask = new Task("\tNo tasks have been completed");
+        tempTask.addActual(0);
+        for(Task task: tasks) {
+            if(task.getActual() > tempTask.getActual()) {
+                tempTask = task;
+            }
+        }
+        return tempTask;
+    }
     public void addDescription(String projectDescription) {
         this.projectDescription = projectDescription;
     }
