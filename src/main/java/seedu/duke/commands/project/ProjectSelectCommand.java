@@ -41,12 +41,9 @@ public class ProjectSelectCommand extends Command {
         }
         try {
             Project selectedProject = projects.get(projectIndex);
-            System.out.println("Switched to Project \"" + selectedProject + "\"");
-            String projectDescription = selectedProject.getDescription();
-            LocalDate projectDeadline = selectedProject.getProjectDeadline();
+            System.out.println("Switched to Project \"" + selectedProject.getProjectName() + "\"");
             //For small sam => help me implement this
-            String member = "team members involved empty";
-            return projectDescription + " | " + projectDeadline + " | " + member;
+            return selectedProject.toString();
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }

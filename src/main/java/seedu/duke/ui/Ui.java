@@ -51,22 +51,23 @@ public class Ui {
         return "Project \"" + project.getProjectName() + "\" deleted";
     }
 
-    public static String printEmptyProjectListMessage() {
-        return "Project list is empty!!";
-    }
-
     public static String printProjectListMessage(ArrayList<Project> projects) {
         String output = "";
         output += "List of Projects:";
         for (int i = 0; i < projects.size(); i++) {
             output += "\n     " + (i + 1) + "." + projects.get(i).getProjectName();
+            if (projects.get(i).getProjectDeadline() != null) {
+                output += " (" + projects.get(i).getProjectDeadline() + ") ";
+            }
         }
         return output;
     }
 
     public static String printTaskListMessage(Project project) {
-        int numberOfTasks = project.getNumberTasks();
+        
         project.sortTasksList();
+        int numberOfTasks = project.getTaskList().size();
+
         String output = "List of Tasks:";
 
         for (int i = 0; i < numberOfTasks; i++) {
@@ -96,6 +97,14 @@ public class Ui {
 
     public static String printTaskCreatedMessage(String taskName) {
         return "Task \"" + taskName + "\" created!";
+    }
+
+    public static String printEstimateAddedMessage(String taskName, int hours, int minutes) {
+        return "Task \"" + taskName + "\" has estimated time of " + hours + " hours and " + minutes + " minutes";
+    }
+
+    public static String printActualDurationAddedMessage(String taskName, int hours, int minutes) {
+        return "Task \"" + taskName + "\" took " + hours + " hours and " + minutes + " minutes to be completed.";
     }
 
     public static String printTaskDoneMessage(String taskName) {

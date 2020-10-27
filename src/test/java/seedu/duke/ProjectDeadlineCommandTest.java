@@ -49,7 +49,7 @@ public class ProjectDeadlineCommandTest {
 
 
     @Test
-    void executeCommand_invalidProjectId_addDeadlineToProject() {
+    void executeCommand_invalidProjectId_exceptionThrown() {
         LocalDate date = LocalDate.parse("2020-12-31");
         ProjectDeadlineCommand command = new ProjectDeadlineCommand(-5,date);
         String expectedOutput = "Project ID does not exist!";

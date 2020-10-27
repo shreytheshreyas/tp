@@ -1,5 +1,6 @@
 package seedu.duke.commands.task;
 
+import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
@@ -17,11 +18,12 @@ public class TaskListCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
+    public String executeCommand(ArrayList<Project> projects,
+                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         Project project = projects.get(projectIndex);
-        int numberOfTasks = project.getNumberTasks();
+        int numberOfTasks = project.getTaskList().size();
         if (numberOfTasks == 0) {
-            return "Task list is empty!!";
+            throw new DukeExceptions("emptyTaskList");
         } else {
             return Ui.printTaskListMessage(project);
         }

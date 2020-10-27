@@ -32,8 +32,13 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("mustBeInProjectView","You must be in Project View to do that!");
         exceptionMessageList.put("emptyProjectList","Project list is empty!");
         exceptionMessageList.put("invalidTaskID","Task ID does not exist!");
+        exceptionMessageList.put("invalidTeamMemberID","Team Member ID does not exist!");
         exceptionMessageList.put("invalidProjectID","Project ID does not exist!");
+        exceptionMessageList.put("taskNotDone","Task must be marked as done before adding "
+                + "actual duration taken to complete!");
         exceptionMessageList.put("emptyTeamMembersList","Team Members list is empty!");
+        exceptionMessageList.put("emptyTaskList","Task list is empty!");
+        exceptionMessageList.put("invalidMemberID","The member ID entered does not exist");
     }
 
     public String toString() {
