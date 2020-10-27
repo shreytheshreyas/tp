@@ -47,7 +47,8 @@ public class AssignMemberToProjectCommand extends Command {
         TeamMember requiredMember = teamMembers.get(memberIndex);
         requiredMember.setAssignedProjectId(projectIndex);
         requiredMember.assignProject(projects.get(projectIndex));
-        return requiredMember + " assigned to project " + requiredMember.getAssignedProjectId();
+        projects.get(projectIndex).addTeamMemberToProject(requiredMember);
+        return requiredMember + " assigned to Project \"" + projects.get(projectIndex).getProjectName() + "\"";
     }
 
     public Boolean isExit() {
