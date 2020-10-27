@@ -35,7 +35,11 @@ public class ProjectSelectCommand extends Command {
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+        if (projects.size() == 0) {
+            throw new DukeExceptions("emptyProjectList");
+        }
+
         try {
             Project selectedProject = projects.get(projectIndex);
             String projectView = Ui.projectViewMessage(selectedProject);

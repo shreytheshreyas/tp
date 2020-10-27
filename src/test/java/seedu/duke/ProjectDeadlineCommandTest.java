@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.commands.project.ProjectDeadlineCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
@@ -20,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ProjectDeadlineCommandTest {
     static ArrayList<Project> projects;
+    static ArrayList<TeamMember> teamMembers;
     static Ui ui = new Ui();
 
     @BeforeAll
@@ -41,18 +43,18 @@ public class ProjectDeadlineCommandTest {
         LocalDate date = LocalDate.parse("2020-12-31");
         ProjectDeadlineCommand command = new ProjectDeadlineCommand(1, date);
         String expectedOutput = "Deadline 31/12/2020 added to Project Fire";
-        String actualOutput = command.executeCommand(projects);
+        String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
 
 
     @Test
-    void executeCommand_invalidProjectId_addDeadlineToProject() {
+    void executeCommand_invalidProjectId_exceptionThrown() {
         LocalDate date = LocalDate.parse("2020-12-31");
         ProjectDeadlineCommand command = new ProjectDeadlineCommand(-5,date);
         String expectedOutput = "Project ID does not exist!";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
-            command.executeCommand(projects);
+            command.executeCommand(projects, teamMembers);
         });
         assertEquals(expectedOutput, actualOutputException.toString());
     }
