@@ -3,12 +3,11 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HomeCommand;
-
+import seedu.duke.commands.member.AssignMemberToProjectCommand;
 import seedu.duke.commands.member.TeamMemberAddCommand;
 import seedu.duke.commands.member.TeamMemberAssignToTaskCommand;
 import seedu.duke.commands.member.TeamMemberDeleteCommand;
 import seedu.duke.commands.member.TeamMembersListCommand;
-
 import seedu.duke.commands.project.ProjectDeadlineCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectDeleteCommand;
@@ -209,16 +208,17 @@ public class Parser {
             commandType = getAddMemberCommand(params);
             break;
         case "members":
-            commandType = new TeamMembersListCommand();
+            commandType = new TeamMembersListCommand(isHomeView, projectIndex);
             break;
         case "remove":
             commandType = getRemoveTeamMemberCommand(params);
             break;
         case "assign":
             if (isHomeView) {
-                throw new DukeExceptions("mustBeInProjectView");
+                commandType = new AssignMemberToProjectCommand(params, isHomeView);
+            } else {
+                commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
             }
-            commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
             break;
         case "priority":
             if (isHomeView) {
@@ -230,6 +230,8 @@ public class Parser {
         }
         return commandType;
     }
+
+
 
 }
 

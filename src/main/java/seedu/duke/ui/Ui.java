@@ -50,21 +50,20 @@ public class Ui {
         return "Project \"" + project.getProjectName() + "\" deleted";
     }
 
-    public static String printEmptyProjectListMessage() {
-        return "Project list is empty!!";
-    }
-
     public static String printProjectListMessage(ArrayList<Project> projects) {
         String output = "";
         output += "List of Projects:";
         for (int i = 0; i < projects.size(); i++) {
             output += "\n     " + (i + 1) + "." + projects.get(i).getProjectName();
+            if (projects.get(i).getProjectDeadline() != null) {
+                output += " (" + projects.get(i).getProjectDeadline() + ") ";
+            }
         }
         return output;
     }
 
     public static String printTaskListMessage(Project project) {
-        int numberOfTasks = project.getNumberTasks();
+        int numberOfTasks = project.getTaskList().size();
         String output = "List of Tasks:";
         for (int i = 0; i < numberOfTasks; i++) {
             output += "\n     " + (i + 1) + "." + project.getTask(i);
