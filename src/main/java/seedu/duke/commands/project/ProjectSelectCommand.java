@@ -40,7 +40,6 @@ public class ProjectSelectCommand extends Command {
             throw new DukeExceptions("emptyProjectList");
         }
         try {
-            System.out.println(projectIndex);
             Project selectedProject = projects.get(projectIndex);
             String projectView = Ui.projectViewMessage(selectedProject);
             return projectView;
