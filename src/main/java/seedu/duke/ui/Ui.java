@@ -126,6 +126,7 @@ public class Ui {
         try {
             String projectTitle = "Project \"" + project.getProjectName() + "\"";
             String taskListTitle = "\n ---------------------\n| TASK LIST           |\n ---------------------";
+            String membersListTitle = "\n ---------------------\n| MEMBERS LIST        |\n ---------------------";
             String STATUS_SPACES = "      "; // 6
             String DESCRIPTION_SPACES = "                   "; // 19
             String DEADLINE_SPACES = "                "; // 16
@@ -139,63 +140,79 @@ public class Ui {
             Integer i = 0;
             String currentTaskLine = "";
             String taskLines = "\n";
-            for(; i < project.getTaskList().size(); i++) {
-                Task currentTask = project.getTaskList().get(i);
-                String status = currentTask.isDone() ? "(Y)" : "(N)";
-                String description = currentTask.getTaskDescription();
-                String deadline = currentTask.getDateString();
-                String priority = currentTask.getPriority();
-                Integer estimate = currentTask.getEstimate();
-                Integer actual = currentTask.getActual();
-                TeamMember member = currentTask.getMember();
-                String memberName;
+            if (project.getTaskList().size() > 0) {
+                for(; i < project.getTaskList().size(); i++) {
+                    Task currentTask = project.getTaskList().get(i);
+                    String status = currentTask.isDone() ? "(Y)" : "(N)";
+                    String description = currentTask.getTaskDescription();
+                    String deadline = currentTask.getDateString();
+                    String priority = currentTask.getPriority();
+                    Integer estimate = currentTask.getEstimate();
+                    Integer actual = currentTask.getActual();
+                    TeamMember member = currentTask.getMember();
+                    String memberName;
 
-                currentTaskLine = status + STATUS_SPACES + description
-                        + (DESCRIPTION_SPACES.substring(0, DESCRIPTION_SPACES.length() - description.length()));
-                if (deadline.length() > 0) {
-                    currentTaskLine += (deadline);
-                } else {
-                    currentTaskLine += "—";
+                    currentTaskLine = status + STATUS_SPACES + description
+                            + (DESCRIPTION_SPACES.substring(0, DESCRIPTION_SPACES.length() - description.length()));
+                    if (deadline.length() > 0) {
+                        currentTaskLine += (deadline);
+                    } else {
+                        currentTaskLine += "—";
+                    }
+
+                    currentTaskLine += (DEADLINE_SPACES.substring(0, DEADLINE_SPACES.length() - deadline.length()));
+
+                    if (priority.length() > 0) {
+                        currentTaskLine += (priority);
+                    } else {
+                        currentTaskLine += "—";
+                    }
+                    currentTaskLine += (PRIORITY_SPACES.substring(0, PRIORITY_SPACES.length() - priority.length()));
+
+                    if (estimate > 1) {
+                        currentTaskLine += (estimate / 60);
+                        extra = estimate.toString().length() - 1;
+                    } else {
+                        currentTaskLine += "—";
+                        extra = 0;
+                    }
+                    currentTaskLine += (EXPECTED_SPACES.substring(0, EXPECTED_SPACES.length() - estimate.toString().length() + extra));
+
+                    if (actual > 1) {
+                        currentTaskLine += (actual / 60);
+                        extra = actual.toString().length() - 1;
+                    } else {
+                        currentTaskLine += "—";
+                    }
+                    currentTaskLine += (ACTUAL_SPACES.substring(0, ACTUAL_SPACES.length() - actual.toString().length() + extra));
+
+                    if (member != null) {
+                        currentTaskLine += "| " + member.getName();
+                        memberName = member.getName();
+                    } else {
+                        currentTaskLine += "| —";
+                        memberName = "| —";
+                    }
+                    currentTaskLine += (MEMBERS_SPACES.substring(0, MEMBERS_SPACES.length() - memberName.length()));
+
+                    taskLines += (currentTaskLine + "\n");
                 }
-
-                currentTaskLine += (DEADLINE_SPACES.substring(0, DEADLINE_SPACES.length() - deadline.length()));
-
-                if (priority.length() > 0) {
-                    currentTaskLine += (priority);
-                } else {
-                    currentTaskLine += "—";
-                }
-                currentTaskLine += (PRIORITY_SPACES.substring(0, PRIORITY_SPACES.length() - priority.length()));
-
-                if (estimate > 1) {
-                    currentTaskLine += (estimate / 60);
-                    extra = estimate.toString().length() - 1;
-                } else {
-                    currentTaskLine += "—";
-                    extra = 0;
-                }
-                currentTaskLine += (EXPECTED_SPACES.substring(0, EXPECTED_SPACES.length() - estimate.toString().length() + extra));
-
-                if (actual > 1) {
-                    currentTaskLine += (actual / 60);
-                    extra = actual.toString().length() - 1;
-                } else {
-                    currentTaskLine += "—";
-                }
-                currentTaskLine += (ACTUAL_SPACES.substring(0, ACTUAL_SPACES.length() - actual.toString().length() + extra));
-
-                if (member != null) {
-                    currentTaskLine += "| " + member.getName();
-                    memberName = member.getName();
-                } else {
-                    currentTaskLine += "| —";
-                    memberName = "| —";
-                }
-                currentTaskLine += (MEMBERS_SPACES.substring(0, MEMBERS_SPACES.length() - memberName.length()));
-
-                taskLines += (currentTaskLine + "\n");
+            } else {
+                taskLines += "No tasks have been added to this project.";
             }
-            return projectTitle + "\n" + taskListTitle + "\n" + tableLabel + taskLines;
+
+
+            ArrayList<TeamMember> members = project.getTeamMembers();
+            String membersListLines = "";
+            if (members.size() > 0 ) {
+                for (int j = 0; j < members.size(); j++) {
+                    membersListLines += (j+1) + ". " + members.get(j).getName() + "\n";
+                }
+            } else {
+                membersListLines += "No team members have been assigned to this project.";
+            }
+
+            return projectTitle + "\n" + taskListTitle + "\n" + (project.getTaskList().size() > 0 ? tableLabel : "") + taskLines + "\n \n" + membersListTitle + "\n" + membersListLines;
         } catch (Error e) {
             System.out.println(e.getMessage());
         }

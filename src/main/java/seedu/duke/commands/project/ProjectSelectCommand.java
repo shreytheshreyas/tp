@@ -39,7 +39,6 @@ public class ProjectSelectCommand extends Command {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");
         }
-
         try {
             Project selectedProject = projects.get(projectIndex);
             String projectView = Ui.projectViewMessage(selectedProject);
