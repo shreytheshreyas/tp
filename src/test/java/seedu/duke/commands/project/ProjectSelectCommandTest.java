@@ -39,20 +39,20 @@ public class ProjectSelectCommandTest {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
-        String expectedOutput =  "Project \"Project Two\"\n" +
-                "\n" +
-                " ---------------------\n" +
-                "| TASK LIST           |\n" +
-                " ---------------------\n" +
-                "\n" +
-                "No tasks have been added to this project.\n" +
-                " \n" +
-                "\n" +
-                " ---------------------\n" +
-                "| MEMBERS LIST        |\n" +
-                " ---------------------\n" +
-                "No team members have been assigned to this project.\n" +
-                "____________________________________________________________\n";
+        String expectedOutput =  "Project \"Project Two\"\n"
+                + "\n"
+                + " ---------------------\n"
+                + "| TASK LIST           |\n"
+                + " ---------------------\n"
+                + "\n"
+                + "No tasks have been added to this project.\n"
+                + " \n"
+                + "\n"
+                + " ---------------------\n"
+                + "| MEMBERS LIST        |\n"
+                + " ---------------------\n"
+                + "No team members have been assigned to this project.\n"
+                + "____________________________________________________________\n";
         String actualOutput = selectProject.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
