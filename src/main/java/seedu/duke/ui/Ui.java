@@ -127,48 +127,48 @@ public class Ui {
             String projectTitle = "Project \"" + project.getProjectName() + "\"";
             String taskListTitle = "\n ---------------------\n| TASK LIST           |\n ---------------------";
             String membersListTitle = "\n ---------------------\n| MEMBERS LIST        |\n ---------------------";
-            String STATUS_SPACES = "      "; // 6
-            String DESCRIPTION_SPACES = "                   "; // 19
-            String DEADLINE_SPACES = "                "; // 16
-            String PRIORITY_SPACES = "              "; // 14
-            String EXPECTED_SPACES = "                 "; // 17
-            String ACTUAL_SPACES = "             "; // 13
-            String MEMBERS_SPACES = "                "; // 16
-            String tableLabel = "Status   Description        Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved\n" +
-                    "----------------------------------------------------------------------------------------|------------------";
+            String statusSpaces = "      "; // 6
+            String descriptionSpaces = "                   "; // 19
+            String deadlineSpaces = "                "; // 16
+            String prioritySpaces = "              "; // 14
+            String expectedSpaces = "                 "; // 17
+            String actualSpaces = "             "; // 13
+            String membersSpaces = "                "; // 16
+            String tableLabel = "Status   Description        "
+                                + "Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved\n"
+                                + "------------------------------------------------"
+                                + "----------------------------------------|------------------";
             Integer extra = 0;
             Integer i = 0;
             String currentTaskLine = "";
             String taskLines = "\n";
             if (project.getTaskList().size() > 0) {
-                for(; i < project.getTaskList().size(); i++) {
+                for (; i < project.getTaskList().size(); i++) {
                     Task currentTask = project.getTaskList().get(i);
                     String status = currentTask.isDone() ? "(Y)" : "(N)";
                     String description = currentTask.getTaskDescription();
                     String deadline = currentTask.getDateString();
-                    String priority = currentTask.getPriority();
-                    Integer estimate = currentTask.getEstimate();
-                    Integer actual = currentTask.getActual();
-                    TeamMember member = currentTask.getMember();
                     String memberName;
 
-                    currentTaskLine = status + STATUS_SPACES + description
-                            + (DESCRIPTION_SPACES.substring(0, DESCRIPTION_SPACES.length() - description.length()));
+                    currentTaskLine = status + statusSpaces + description
+                            + (descriptionSpaces.substring(0, descriptionSpaces.length() - description.length()));
                     if (deadline.length() > 0) {
                         currentTaskLine += (deadline);
                     } else {
                         currentTaskLine += "—";
                     }
 
-                    currentTaskLine += (DEADLINE_SPACES.substring(0, DEADLINE_SPACES.length() - deadline.length()));
+                    currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
 
+                    String priority = currentTask.getPriority();
                     if (priority.length() > 0) {
                         currentTaskLine += (priority);
                     } else {
                         currentTaskLine += "—";
                     }
-                    currentTaskLine += (PRIORITY_SPACES.substring(0, PRIORITY_SPACES.length() - priority.length()));
+                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
 
+                    Integer estimate = currentTask.getEstimate();
                     if (estimate > 1) {
                         currentTaskLine += (estimate / 60);
                         extra = estimate.toString().length() - 1;
@@ -176,16 +176,21 @@ public class Ui {
                         currentTaskLine += "—";
                         extra = 0;
                     }
-                    currentTaskLine += (EXPECTED_SPACES.substring(0, EXPECTED_SPACES.length() - estimate.toString().length() + extra));
+                    currentTaskLine += (expectedSpaces.substring(0, expectedSpaces.length()
+                                    - estimate.toString().length() + extra));
 
+                    Integer actual = currentTask.getActual();
                     if (actual > 1) {
                         currentTaskLine += (actual / 60);
-                        extra = actual.toString().length() - 1;
                     } else {
                         currentTaskLine += "—";
                     }
-                    currentTaskLine += (ACTUAL_SPACES.substring(0, ACTUAL_SPACES.length() - actual.toString().length() + extra));
 
+                    extra = actual.toString().length() - 1;
+                    currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
+                                    - actual.toString().length() + extra));
+
+                    TeamMember member = currentTask.getMember();
                     if (member != null) {
                         currentTaskLine += "| " + member.getName();
                         memberName = member.getName();
@@ -193,7 +198,7 @@ public class Ui {
                         currentTaskLine += "| —";
                         memberName = "| —";
                     }
-                    currentTaskLine += (MEMBERS_SPACES.substring(0, MEMBERS_SPACES.length() - memberName.length()));
+                    currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
 
                     taskLines += (currentTaskLine + "\n");
                 }
@@ -201,18 +206,19 @@ public class Ui {
                 taskLines += "No tasks have been added to this project.";
             }
 
-
             ArrayList<TeamMember> members = project.getTeamMembers();
             String membersListLines = "";
-            if (members.size() > 0 ) {
+            if (members.size() > 0) {
                 for (int j = 0; j < members.size(); j++) {
-                    membersListLines += (j+1) + ". " + members.get(j).getName() + "\n";
+                    membersListLines += (j + 1) + ". " + members.get(j).getName() + "\n";
                 }
             } else {
                 membersListLines += "No team members have been assigned to this project.";
             }
 
-            return projectTitle + "\n" + taskListTitle + "\n" + (project.getTaskList().size() > 0 ? tableLabel : "") + taskLines + "\n \n" + membersListTitle + "\n" + membersListLines;
+            return projectTitle + "\n" + taskListTitle + "\n"
+                    + (project.getTaskList().size() > 0 ? tableLabel : "") + taskLines
+                    + "\n \n" + membersListTitle + "\n" + membersListLines;
         } catch (Error e) {
             System.out.println(e.getMessage());
         }
