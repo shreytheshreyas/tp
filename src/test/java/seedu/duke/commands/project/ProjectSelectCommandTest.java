@@ -51,8 +51,7 @@ public class ProjectSelectCommandTest {
                 + " ---------------------\n"
                 + "| MEMBERS LIST        |\n"
                 + " ---------------------\n"
-                + "No team members have been assigned to this project.\n"
-                + "____________________________________________________________\n";
+                + "No team members have been assigned to this project.";
         String actualOutput = selectProject.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
