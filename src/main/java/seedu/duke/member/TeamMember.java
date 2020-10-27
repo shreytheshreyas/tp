@@ -12,14 +12,7 @@ public class TeamMember {
     public TeamMember(String name) {
         this.name = name;
         assignedProjectId = -1;
-    }
-
-    public void setAssignedProjectId(int assignedProjectId) {
-        this.assignedProjectId = assignedProjectId;
-    }
-
-    public int getAssignedProjectId() {
-        return assignedProjectId;
+        this.assignedProjects = new ArrayList<>();
     }
 
     public void assignProject(Project project) {

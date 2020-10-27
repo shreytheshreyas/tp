@@ -137,21 +137,23 @@ public class Ui {
         output += "\nName                      Role              Projects Involved              ";
         output += "\n---------------------------------------------------------------------------";
         for (TeamMember member : teamMembers) {
-            String memberName = member.toString();
+            String memberName = member.getName();
             String paddedMemberName = String.format("%-26s", memberName);
             //String memberRole;
             output += "\n" + paddedMemberName + "                  ";
             if (member.getAssignedProjects() != null) {
                 for (int i = 0; i < member.getAssignedProjects().size(); i++) {
                     Project assignedProject = member.getAssignedProjects().get(i);
-                    String paddedAssignedProject = String.format("%-30s", assignedProject.toString());
+                    String paddedAssignedProject = String.format("%-28s", assignedProject.getProjectName());
                     if (i == 0) {
-                        output += ">" + paddedAssignedProject;
+                        output += "1. " + paddedAssignedProject;
                     } else {
-                        output += "\n                                            >" + paddedAssignedProject;
+                        output += "\n                                            "
+                                + (i + 1) + ". " + paddedAssignedProject;
                     }
                 }
             }
+            output += System.lineSeparator();
         }
         return output;
     }

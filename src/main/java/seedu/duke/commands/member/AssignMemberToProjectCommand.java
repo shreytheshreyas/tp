@@ -45,7 +45,6 @@ public class AssignMemberToProjectCommand extends Command {
             throw new DukeExceptions("invalidProjectID");
         }
         TeamMember requiredMember = teamMembers.get(memberIndex);
-        requiredMember.setAssignedProjectId(projectIndex);
         requiredMember.assignProject(projects.get(projectIndex));
         projects.get(projectIndex).addTeamMemberToProject(requiredMember);
         return requiredMember + " assigned to Project \"" + projects.get(projectIndex).getProjectName() + "\"";
