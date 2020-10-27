@@ -64,7 +64,7 @@ public class Ui {
     }
 
     public static String printTaskListMessage(Project project) {
-        
+
         project.sortTasksList();
         int numberOfTasks = project.getTaskList().size();
 
@@ -131,7 +131,7 @@ public class Ui {
         return "Member \"" + memberName + "\" has been assigned to \"" + taskName + "\"";
     }
 
-    public static String printPriorityAssignedToTaskMessage(String priority, String taskName) {
+    public static String printPriorityAssignedToTaskMessage(int priority, String taskName) {
         return "Priority \"" + priority + "\" has been assigned to \"" + taskName + "\"";
     }
 

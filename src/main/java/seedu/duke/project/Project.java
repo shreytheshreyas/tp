@@ -29,7 +29,7 @@ public class Project implements Comparable<Project> {
 
 
     public void sortTasksList() {
-        Collections.sort(tasks);
+        //Collections.sort(tasks);
     }
     public int compareTo(Project project) {
         if (getProjectDeadline() == null || project.getProjectDeadline() == null) {

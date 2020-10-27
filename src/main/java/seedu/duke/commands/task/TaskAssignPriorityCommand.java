@@ -17,7 +17,7 @@ public class TaskAssignPriorityCommand extends Command {
 
     private int taskIndex;
     private int projectIndex;
-    private String priority;
+    private int priority;
     HashMap<String, String> params;
 
     public TaskAssignPriorityCommand(HashMap<String, String> params, int projectIndex)
@@ -28,10 +28,13 @@ public class TaskAssignPriorityCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        priority = getHashValue(params, "p");
+        try {
+            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+            priority = Integer.parseInt(getHashValue(params, "p"));
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("priorityFormatError");
+        }
     }
-
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {

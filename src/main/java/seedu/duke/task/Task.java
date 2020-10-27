@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Task implements Comparable<Task> {
+public class Task {
     public String getDescription() {
         return description;
     }
@@ -21,20 +21,21 @@ public class Task implements Comparable<Task> {
     protected TeamMember member;
     protected int estimateInMinutes = 0;
     protected int actualInMinutes;
-    protected String priority;
+    //protected String priority;
+    protected int priority;
 
-    public String getPriority() {
+    public int  getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
     public Task(String description) {
         this.description = description;
         this.isDone = false;
-        this.priority = "none";
+        this.priority = 0;
     }
 
     public void addDeadline(LocalDate date) {
@@ -69,6 +70,7 @@ public class Task implements Comparable<Task> {
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
+    public LocalDate getDeadline() {return this.date;}
     public TeamMember getMember() {
         return member;
     }
@@ -113,8 +115,8 @@ public class Task implements Comparable<Task> {
         }
     }
 
-    @Override
-    public int compareTo(Task o) {
-        return this.priority.compareToIgnoreCase(o.priority);
-    }
+//    @Override
+//    public int compareTo(Task o) {
+//        return this.priority.compareToIgnoreCase(o.priority);
+//    }
 }

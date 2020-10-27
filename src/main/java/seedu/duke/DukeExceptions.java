@@ -39,6 +39,7 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("emptyTeamMembersList","Team Members list is empty!");
         exceptionMessageList.put("emptyTaskList","Task list is empty!");
         exceptionMessageList.put("invalidMemberID","The member ID entered does not exist");
+        exceptionMessageList.put("priorityFormatError","The priority should be a number");
     }
 
     public String toString() {
