@@ -48,7 +48,7 @@ public class AssignMemberToProjectCommandTest {
         params.put("p","1");
 
         AssignMemberToProjectCommand assignProject = new AssignMemberToProjectCommand(params,true);
-        String expectedOutput = "Member 2 assigned to project 1";
+        String expectedOutput = "Member 2 assigned to Project \"Project 1\"";
         String actualOutput = assignProject.executeCommand(projects,teamMembers);
         assertEquals(expectedOutput,actualOutput);
     }
