@@ -20,7 +20,7 @@ public class Task {
     protected LocalDate date;
     protected TeamMember member;
     protected int estimateInMinutes = 0;
-    protected int actualInMinutes;
+    protected int actualInMinutes = 0;
     protected String priority;
 
     public String getPriority() {
