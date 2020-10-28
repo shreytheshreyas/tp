@@ -35,7 +35,9 @@ public class Task {
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+        this.date = null;
         this.priority = 0;
+        actualInMinutes = 0;
     }
 
     public void addDeadline(LocalDate date) {
@@ -70,7 +72,10 @@ public class Task {
         return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
     }
 
-    public LocalDate getDeadline() {return this.date;}
+    public LocalDate getDeadline() {
+        return this.date;
+    }
+
     public TeamMember getMember() {
         return member;
     }
@@ -115,8 +120,5 @@ public class Task {
         }
     }
 
-//    @Override
-//    public int compareTo(Task o) {
-//        return this.priority.compareToIgnoreCase(o.priority);
-//    }
+
 }

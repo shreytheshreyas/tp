@@ -35,6 +35,7 @@ public class TaskAssignPriorityCommand extends Command {
             throw new DukeExceptions("priorityFormatError");
         }
     }
+
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {

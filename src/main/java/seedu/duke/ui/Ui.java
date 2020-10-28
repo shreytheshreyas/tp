@@ -71,8 +71,10 @@ public class Ui {
         String output = "List of Tasks:";
 
         for (int i = 0; i < numberOfTasks; i++) {
-            output += "\n     " + (i + 1) + "." + project.getTask(i) + "|"
-                       + "priority: " + project.getTask(i).getPriority();
+
+            output += "\n     " + (i + 1) + "." + project.getTask(i)
+                    + ((project.getTask(i).getPriority() != 0) ? "|"
+                    + "priority: " + project.getTask(i).getPriority() : "");
         }
         return output;
     }

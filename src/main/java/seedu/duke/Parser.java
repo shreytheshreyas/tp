@@ -14,7 +14,16 @@ import seedu.duke.commands.project.ProjectDeleteCommand;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.commands.task.*;
+import seedu.duke.commands.task.ActualTimeCommand;
+import seedu.duke.commands.task.EstimatedTimeCommand;
+import seedu.duke.commands.task.TaskDoneCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskSelectCommand;
+import seedu.duke.commands.task.DeadlineCommand;
+import seedu.duke.commands.task.TaskListCommand;
+import seedu.duke.commands.task.TaskAssignPriorityCommand;
+import seedu.duke.commands.task.TaskSortCommand;
 
 import seedu.duke.ui.Ui;
 import java.util.HashMap;
