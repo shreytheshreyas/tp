@@ -47,6 +47,20 @@ public class Project implements Comparable<Project> {
         tasks.remove(taskIndex);
     }
 
+    public int getNumberOfTask() {
+        return tasks.size();
+    }
+
+    public int getNumberOfFinishedTask() {
+        int finishedTaskCounter = 0;
+        for (Task task : tasks) {
+            if (task.isDone()) {
+                finishedTaskCounter++;
+            }
+        }
+        return finishedTaskCounter;
+    }
+
     public void addDescription(String projectDescription) {
         this.projectDescription = projectDescription;
     }
@@ -101,7 +115,21 @@ public class Project implements Comparable<Project> {
         return tasks.get(taskId).toString();
     }
 
-    public boolean geStatus() {
-        return isDone;
+    public boolean getStatus() {
+        if (isDone) {
+            return isDone;
+        }
+
+        for (Task task : tasks) {
+            if (!(task.getStatus())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void markAsDone() {
+        this.isDone = true;
     }
 }
