@@ -2,25 +2,21 @@ package seedu.duke.commands.project;
 
 import seedu.duke.DukeExceptions;
 import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import seedu.duke.ui.Ui;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
-public class ProjectDeadlineCommand extends Command {
+public class ProjectDoneCommand extends Command {
+
     private int projectIndex;
-    private LocalDate date;
     HashMap<String, String> params;
 
-    public ProjectDeadlineCommand(HashMap<String, String> params) throws DukeExceptions {
+    public ProjectDoneCommand(HashMap<String, String> params, int projectIndex) throws DukeExceptions {
         this.params = params;
         this.parse();
     }
@@ -28,21 +24,18 @@ public class ProjectDeadlineCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-            date = LocalDate.parse(getHashValue(params, "d"));
         } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidProjectID");
-        } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
-            throw new DukeExceptions("WrongDateFormat");
         }
+
     }
 
-    public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects) throws DukeExceptions {
         try {
             Project project = projects.get(projectIndex);
-            project.addProjectDeadline(date);
-            return Ui.printProjectDeadlineAddedMessage(project, date);
-        } catch (IndexOutOfBoundsException e) {
+            project.markAsDone();
+            return Ui.printProjectDoneMessage(project.getProjectName());
+        }  catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }
     }
@@ -51,4 +44,13 @@ public class ProjectDeadlineCommand extends Command {
         return false;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof ProjectDoneCommand) {
+            ProjectDoneCommand taskCommand = (ProjectDoneCommand) obj;
+            return (this.projectIndex == taskCommand.projectIndex);
+        } else {
+            return false;
+        }
+    }
 }

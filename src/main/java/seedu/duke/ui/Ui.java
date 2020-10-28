@@ -79,6 +79,10 @@ public class Ui {
         return "Project description added \"" + project.getDescription() + "\".";
     }
 
+    public static String printProjectDoneMessage(String projectName) {
+        return "Project \"" + projectName + "\" is done!";
+    }
+
     public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
         return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 + " added to Project " + project.getProjectName();

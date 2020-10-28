@@ -37,11 +37,12 @@ public class AssignMemberToProjectCommand extends Command {
     }
 
     @Override
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
-        if (memberIndex > teamMembers.size() || memberIndex < 0) {
-            throw new DukeExceptions("invalidMemberID");
+    public String executeCommand(ArrayList<Project> projects,
+                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+        if (memberIndex >= teamMembers.size() || memberIndex < 0) {
+            throw new DukeExceptions("invalidTeamMemberID");
         }
-        if (projectIndex > teamMembers.size() || projectIndex < 0) {
+        if (projectIndex >= teamMembers.size() || projectIndex < 0) {
             throw new DukeExceptions("invalidProjectID");
         }
         TeamMember requiredMember = teamMembers.get(memberIndex);
