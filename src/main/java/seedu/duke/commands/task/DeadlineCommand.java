@@ -21,6 +21,7 @@ public class DeadlineCommand extends Command {
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
+        assert projectIndex >= 0: projectIndex;
         Project project = projects.get(projectIndex);
         Task task = project.getTaskList().get(taskIndex);
         task.addDeadline(date);
