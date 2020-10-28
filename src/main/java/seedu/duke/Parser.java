@@ -36,7 +36,6 @@ public class Parser {
 
     private static final String INPUT_COMMAND_BYE = "bye";
     private static int projectIndex = -1;
-    private static int taskIndex = -1;
 
     /**
      * Parses user input into project command for execution.
@@ -107,6 +106,7 @@ public class Parser {
         case "list":
             commandType = (isHomeView)
                     ? new ProjectListCommand() : new TaskListCommand(projectIndex);
+            System.out.println(projectIndex);
             break;
         case "select":
             commandType = (isHomeView)
