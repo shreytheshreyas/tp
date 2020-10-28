@@ -37,7 +37,7 @@ public class TeamMemberHoursCommand extends Command {
             TeamMember member = members.get(memberIndex);
             for (int i = 0; i < member.getTasks().size(); i++) {
                 Task task = member.getTasks().get(i);
-                hoursWorked += task.getActual()/60.0;
+                hoursWorked += task.getActual() / 60.0;
             }
             return Ui.printHoursWorkedMessage(member.getName(), hoursWorked);
         } catch (IndexOutOfBoundsException e) {
