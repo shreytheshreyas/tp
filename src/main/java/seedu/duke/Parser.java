@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
+import seedu.duke.commands.PrintHomeViewCommand;
 import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.member.AssignMemberToProjectCommand;
 import seedu.duke.commands.member.TeamMemberAddCommand;
@@ -171,6 +172,9 @@ public class Parser {
             } else {
                 commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
             }
+            break;
+        case "display":
+            commandType = new PrintHomeViewCommand();
             break;
         case "priority":
             if (isHomeView) {
