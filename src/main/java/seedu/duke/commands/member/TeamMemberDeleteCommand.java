@@ -7,12 +7,25 @@ import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import static seedu.duke.Parser.getHashValue;
 
 public class TeamMemberDeleteCommand extends Command {
     private int memberIndex;
+    HashMap<String, String> params;
 
-    public TeamMemberDeleteCommand(int memberIndex) {
-        this.memberIndex = memberIndex;
+    public TeamMemberDeleteCommand(HashMap<String, String> params) throws DukeExceptions {
+        this.params = params;
+        this.parse();
+    }
+
+    public void parse() throws DukeExceptions {
+        try {
+            memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
     }
 
     @Override
@@ -25,8 +38,8 @@ public class TeamMemberDeleteCommand extends Command {
             TeamMember memberToBeRemoved = teamMembers.get(memberIndex);
             teamMembers.remove(memberIndex);
             return Ui.printMemberRemovedMessage(memberToBeRemoved.getName());
-        } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
+        } catch (IndexOutOfBoundsException e) {
+            throw new DukeExceptions("invalidMemberID");
         }
     }
 
