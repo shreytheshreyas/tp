@@ -58,6 +58,10 @@ public class Parser {
         projectIndex = newIndex;
     }
 
+    public static int getProjectIndex() {
+        return projectIndex;
+    }
+
     public static HashMap<String, String> getParams(String paramsString) {
         HashMap<String, String> inputParams = new HashMap<>();
         Pattern p = Pattern.compile(".\\/.+?(?=\\s.\\/.+)|.\\/.+");

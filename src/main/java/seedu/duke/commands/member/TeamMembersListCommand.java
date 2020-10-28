@@ -23,9 +23,10 @@ public class TeamMembersListCommand extends Command {
         }
         String listOfMembers = "List of members:";
         int i = 0;
+
         if (isHomeView) {
             for (TeamMember member : teamMembers) {
-                String assignmentStatus = (member.getAssignedProjectId() == -1) ? "Not assigned to a project "
+                String assignmentStatus = (member.getAssignedProjectId() == -1) ? "Not assigned to a project"
                         : "Assigned to Project \""
                         + projects.get(member.getAssignedProjectId()).getProjectName() + "\"";
                 listOfMembers += "\n" + (i + 1) + ". " + member.getName() + ": \t" + assignmentStatus;

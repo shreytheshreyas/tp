@@ -1,7 +1,8 @@
-package seedu.duke;
+package seedu.duke.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import seedu.duke.DukeExceptions;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
