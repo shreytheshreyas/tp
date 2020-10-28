@@ -1,33 +1,349 @@
 # User Guide
+This user guide will explain how to use the software tool,
+EZ Manager. You can navigate to the different sections of
+this guide using the Table of Content. Each content is linked
+to its respective sections. 
 
 ## Introduction
+EZ Manager is a CLI (Command Line Interface) software tool 
+for Software Engineering Project Managers to manage their 
+projects, tasks and team members all in one app.
 
-{Give a product intro}
+## Table of Contents
+1. [Quick Start](#quick-start)
+2. [Terminologies](#terminologies)
+3. [Features](#features)
+    1. [Switching From ProjectView to HomeView](#switching-from-projectview-to-homeview-home)
+    2. [Project Commands](#project-commands)
+        1. [Adding a project](#adding-a-project-project)
+        2. [Selecting a project](#selecting-a-project-select)
+        3. [Viewing the project list](#viewing-the-project-list-list)
+        4. [Marking a project as done](#marking-a-project-as-done-done)
+        5. [Adding a deadline to a project](#adding-a-deadline-to-a-project-deadline)
+        6. [Adding a description to a project](#adding-a-description-to-a-project-description)
+        7. [Deleting a project](#deleting-a-project-delete)
+    3. [Task Commands](#task-commands)
+        1. [Adding a task](#task-commands)
+        2. [Selecting a task](#selecting-a-task-select)
+        3. [Viewing the task list](#viewing-the-task-list-list)
+        4. [Marking a task as done](#marking-a-task-as-done-done)
+        5. [Adding a deadline to a task](#adding-a-deadline-to-a-task-deadline)
+        6. [Adding a description to a task](#adding-a-description-to-a-task-deadline)
+        7. [Deleting a task](#deleting-a-task-delete)
+    4. [Member Commands](#member-commands)
+        1. [Adding a member](#adding-a-member-member)
+        2. [Viewing the member list](#viewing-the-member-list-members)
+        3. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
+        4. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
+        5. [Removing a member](#removing-a-member-remove)
+4. [FAQ](#faq)
+5. [Command Summary](#command-summary)
 
 ## Quick Start
-
-{Give steps to get started quickly}
-
 1. Ensure that you have Java 11 or above installed.
-1. Down the latest version of `Duke` from [here](http://link.to/duke).
+1. Download the latest version of `EZ Manager` from [here](http://link.to/duke).
+1. Copy the JAR  file into an empty new folder. Take note of the file path
+1. Open Command Prompt (on Windows) or Terminal (on Mac) and type
+java -jar {file path}/ezManager.jar
+
+## Terminologies
+- **HomeView**: Refers to the state of the program in HomeView.
+In this view, you can execute project and member commands but
+you cannot execute task commands.
+
+- **ProjectView**: Refers to the state of the program in ProjectView.
+In this view, you can execute task and member commands but
+you cannot execute project commands.
+
+- **Project list**: Refers to the list of projects currently
+existing in the system
+
+- **Task list**: Refers to the list of tasks currently
+existing in the system
+
+- **Member list**: Refers to the list of members currently
+existing in the system
+
+- **PROJECT_INDEX**: Every existing project would be assigned
+a positive integer. Hence, the PROJECT_INDEX refers to this
+positive integer. You can retrieve the PROJECT_INDEXes of 
+all projects by using the `list` command in HomeView
+
+- **TASK_INDEX**: Every existing task would be assigned
+a positive integer. Hence, the TASK_INDEX refers to this
+positive integer. You can retrieve the TASK_INDEXes of 
+all tasks by using the `list` command in ProjectView
 
 ## Features 
 
-{Give detailed description of each feature}
+### Switching from ProjectView to HomeView
+Switches from ProjectView to HomeView: `home`
 
-### Adding a todo: `todo`
-Adds a new item to the list of todo items.
+Format: `home`
 
-Format: `todo n/TODO_NAME d/DEADLINE`
+* You must be in ProjectView before you can switch to HomeView   
 
-* The `DEADLINE` can be in a natural language format.
-* The `TODO_NAME` cannot contain punctuation.  
+
+### **Project Commands**
+### Adding a project: `project`
+Adds a new project to the project list.
+
+Format: `project n/PROJECT_NAME`
+
+* You must be in HomeView before adding a new project.  
 
 Example of usage: 
 
-`todo n/Write the rest of the User Guide d/next week`
+* `project n/Web Development`. Adds the project 'Web Development'
+to the project list.
 
-`todo n/Refactor the User Guide to remove passive voice d/13/04/2020`
+### Selecting a project: `select`
+Select a new project from the project list.
+
+Format: `select p/PROJECT_INDEX`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The project must exist before it can be selected.
+* You must be in HomeView before selecting a project.  
+
+Example of usage: 
+
+* `select p/1`. Selects the first project in the project list.
+
+### Viewing the project list: `list`
+Displays all the projects in the project list.
+
+Format: `list`
+
+* The user must be in HomeView before listing all projects.  
+
+Example of usage: 
+
+* `list`. Shows all the projects in the project list.
+
+### Marking a project as done: `done`
+Marks an existing project as done.
+
+Format: `done p/PROJECT_INDEX`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The project must exist before it can be marked as done.
+* You must be in HomeView before marking a project
+as done.  
+
+Example of usage: 
+
+* `done p/1`. Marks the first project in the project list 
+as done.
+
+### Adding a deadline to a project: `deadline`
+Adds a deadline to an existing project.
+
+Format: `deadline p/PROJECT_INDEX d/DATE`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The project must exist before a deadline can be added.
+* The `DATE` must be of the form `YYYY-MM-DD`
+* You must be in HomeView before adding a deadline
+to a project.  
+
+Example of usage: 
+
+* `deadline p/1 d/2020-10-25`. Adds the deadline 25/10/2020
+to the first project.
+
+### Adding a description to a project: `description`
+***=============> NOT IMPLEMENTED AS INTENDED <=============*** .  
+Adds a description to an existing project.
+
+Format: `description p/PROJECT_INDEX d/DESCRIPTION`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The project must exist before a description can be added.
+* You must be in HomeView before adding a description
+to a project.  
+
+Example of usage: 
+
+* `description p/1 d/Project for Comapany X`. Adds the description 
+`Project for Company X` to the first project.
+
+### Deleting a project: `delete`
+Delete a project from the project list.
+
+Format: `delete p/PROJECT_INDEX`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The project must exist in the project list before it can be deleted.
+* You must be in HomeView before deleting a project.  
+
+Example of usage: 
+
+* `delete p/1`. Deletes the first project in the project list.
+
+### **Task Commands**
+### Adding a task: `task`
+Adds a new task to the task list.
+
+Format: `task n/TASK_NAME`
+
+* You must be in ProjectView before adding a new task.  
+
+Example of usage: 
+
+* `task n/Deploy Version 2.0`. Adds the task 'Deploy Version 2.0'
+to the task list.
+
+### Selecting a task: `select`
+Selects a task from the project list.
+
+Format: `task p/TASK_INDEX`
+
+* The `TASK_INDEX` must be a positive integer.
+* The task must exist before it can be selected.
+* You must be in ProjectView before selecting a task.  
+
+Example of usage: 
+
+* `select t/1`. Selects the first task from the task list.
+
+### Viewing the task list: `list`
+Displays all the tasks in the task list.
+
+Format: `list`
+
+* You must be ProjectView before listing all tasks.  
+
+Example of usage: 
+
+* `list`. Shows all the tasks in the task list.
+
+### Marking a task as done: `done`
+Marks an existing task as done.
+
+Format: `done t/TASK_INDEX`
+
+* The `TASK_INDEX` must be a positive integer.
+* The task must exist before it can be selected.
+* You must be in ProjectView before marking a task
+as done.  
+
+Example of usage: 
+
+* `done t/1`. Marks the first task in the task list 
+as done.
+
+### Adding a deadline to a task: `deadline`
+Adds a deadline to an existing task.
+
+Format: `deadline t/TASK_INDEX d/DATE`
+
+* The `TASK_INDEX` must be a positive integer.
+* The task must exist before a deadline can be added.
+* The `DATE` must be of the form `YYYY-MM-DD`
+* You must be in ProjectView before adding a deadline
+to a task.  
+
+Example of usage: 
+
+* `deadline t/1 d/2020-10-25`. Adds the deadline 25/10/2020
+to the first task in the task list.
+
+### Adding a description to a task: `description`
+Adds a description to an existing task.
+
+Format: `description t/TASK_INDEX d/DESCRIPTION`
+
+* The `TASK_INDEX` must be a positive integer.
+* The task must exist before a description can be added.
+* You must be in ProjectView before adding a description
+to a task.  
+
+Example of usage: 
+
+* `description p/1 d/The bug reports are 2 pages long`. Adds the description 
+`The bug reports are 2 pages long` to the first task in the task list.
+
+### Deleting a task: `delete`
+Deletes a task from the task list.
+
+Format: `delete t/TASK_INDEX`
+
+* The `TASK_INDEX` must be a positive integer.
+* The task must exist in the task list before it can be deleted.
+* You must be in ProjectView before deleting a task.  
+
+Example of usage: 
+
+* `delete t/1`. Deletes the first task in the task list.
+
+### **Member Commands**
+### Adding a member: `member`
+Adds a new member to the member list.
+
+Format: `member n/MEMBER_NAME`
+
+Example of usage: 
+
+* `member n/John Doe`. Adds the member 'John Doe'
+to the member list.
+
+* `select t/1`. Selects the first task from the task list.
+
+### Viewing the member list: `members`
+Displays all the members in the task list.
+
+Format: `members`
+
+Example of usage: 
+
+* `members`. Shows all the members in the member list.
+
+### Assigning a member to a project: `assign`
+Assigns an existing member to an existing project.
+
+Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The `MEMBER_INDEX` must be a positive integer.
+* The project must exist before it can be assined to.
+* The member must exist before they can be assined.
+* You must be in HomeView before assigning
+a member to a project.
+
+Example of usage: 
+
+* `assing p/1 m/1`. Assigns the first member in the member list
+to the first project in the project list
+
+### Assigning a member to a task: `assign`
+Assigns an existing member to an existing task.
+
+Format: `assign t/TASK_INDEX m/MEMBER_INDEX`
+
+* The `TASK_INDEX` must be a positive integer.
+* The `MEMBER_INDEX` must be a positive integer.
+* The task must exist before it can be assined to.
+* The member must exist before they can be assined.
+* You must be in ProjectView before assigning
+a member to a task.
+
+Example of usage: 
+
+* `assing t/1 m/1`. Assigns the first member in the member list
+to the first task in the task list
+
+### Removing a member: `remove`
+Removes an existing member from the member list.
+
+Format: `remove m/MEMBER_INDEX`
+
+* The `MEMBER_INDEX` must be a positive integer.
+* The member must exist before they can be removed.
+
+Example of usage: 
+
+* `remove m/1`. Removes the first member from the member list.
 
 ## FAQ
 
@@ -37,6 +353,26 @@ Example of usage:
 
 ## Command Summary
 
-{Give a 'cheat sheet' of commands here}
-
-* Add todo `todo n/TODO_NAME d/DEADLINE`
+| Commands | Action | Examples |
+| -------- | ------ | -------- |
+| project | Creates a new project in the project list | `project n/Web Development Project` |
+| task    | Creates a new task in the task list | `task n/Deploy Version 2.0` |
+| member  | Creates a new member in the member list | `member n/John Doe` |
+| list    | If in HomeView, displays the project list | `list` |  
+| list    | If in ProjectView, displays the task list | `list` |
+| select  | If in HomeView, selects the specified project and program enters ProjectView | `select p/1` |  
+| select  | If in ProjectView, selects the specified task | `select t/1` |
+| done    | If in HomeView, marks the specified project as done | `done p/1` |  
+| done    | If in ProjectView, marks the specified task as done | `done t/1` |
+| delete  | If in HomeView, deletes the specified project | `delete p/1` |  
+| delete  | If in ProjectView, deletes the specified task | `delete t/1` |
+| description | If in HomeView, assigns a description to the specified project | `description p/1 d/Project for Company X` |  
+| description | If in ProjectView, assigns a description to the specified task | `description t/1 d/The bug reports are 2 pages long` |
+| deadline | If in HomeView, assigns a deadline to the specified project | `deadline p/1 d/2020-10-25` |  
+| deadline | If in ProjectView, assigns a deadline to the specified task | `deadline t/1 d/2020-10-25` |
+| priority | If in ProjectView, assigns a priority to the specified task | `priority t/1 p/1` |
+| home    | Switches from ProjectView to HomeView | `home` |
+| members | Displays the member list | `members` |
+| assign  | If in HomeView, assigns member to specified project | `assign p/1 m/1` |  
+| assign  | If in ProjectView, assigns member to specified task | `assign t/1 m/1` |
+| remove  | Removes specified member from the member list | `remove m/1` |

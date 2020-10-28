@@ -1,11 +1,9 @@
-package seedu.duke.commands.task;
+package seedu.duke.commands.member;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeExceptions;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
@@ -14,14 +12,14 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class TaskSelectCommandTest {
+class TeamMemberAssignToTaskCommandTest {
     static ArrayList<Project> projects;
     static ArrayList<TeamMember> teamMembers;
     static HashMap<String, String> params;
+    static Ui ui = new Ui();
 
     /**
      * Create 1 projects list
@@ -29,7 +27,7 @@ class TaskSelectCommandTest {
      * Create 3 tasks.
      * Add the 3 tasks to that project.
      * Add that project to projects list.
-    */
+     */
     @BeforeAll
     static void testSetup() {
         params = new HashMap<>();
@@ -43,43 +41,45 @@ class TaskSelectCommandTest {
         projectOne.addTask(taskTwo);
         projectOne.addTask(taskThree);
         projects.add(projectOne);
+        teamMembers.add(new TeamMember("Arnold"));
+        teamMembers.add(new TeamMember("Julian"));
+        teamMembers.add(new TeamMember("Victor"));
     }
 
     /**
-     * Test: Select the first task from the first project.
-    */
+     * Assign member 1 (Arnold) to task 1 (Task One).
+     * @throws DukeExceptions exception message
+     */
     @Test
-    void executeCommand_validTaskId_taskDescription() throws DukeExceptions {
+    void executeCommand_validTaskIdMemberId_memberAssignedMessage() throws DukeExceptions {
         params.put("t", "1");
-        TaskSelectCommand command = new TaskSelectCommand(params,0);
-        String expectedOutput = "Selected Task: Task One";
+        params.put("m", "1");
+        TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
+        String expectedOutput = Ui.printMemberAssignedToTaskMessage("Arnold", "Task One");
         String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
 
-    /**
-     * Test: Input a non-existent task ID to test exception error message.
-    */
     @Test
-    void executeCommand_nonExistentTaskId_taskDescription() throws DukeExceptions {
-        params.put("t", "4");
-        TaskSelectCommand command = new TaskSelectCommand(params,0);
+    void executeCommand_nonExistentMemberId_memberAssignedMessage() throws DukeExceptions {
+        params.put("t", "1");
+        params.put("m", "1");
+        TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
+        String expectedOutput = "Team Members list is empty!";
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+                command.executeCommand(projects, new ArrayList<TeamMember>()));
+        assertEquals(expectedOutput, exception.toString());
+    }
+
+    @Test
+    void executeCommand_nonExistentTaskId_memberAssignedMessage() throws DukeExceptions {
+        params.put("t", "5");
+        params.put("m", "1");
+        TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
         String expectedOutput = "Task ID does not exist!";
         DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 
-    /**
-     * Test: Pass a non existent projects list to test exception error message.
-    */
-    @Test
-    void executeCommand_nonExistentProjectsList_taskDescription() throws DukeExceptions {
-        params.put("t", "1");
-        TaskSelectCommand command = new TaskSelectCommand(params,0);
-        String expectedOutput = "Project list is empty!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
-                command.executeCommand(new ArrayList<Project>(), teamMembers));
-        assertEquals(expectedOutput, exception.toString());
-    }
 }

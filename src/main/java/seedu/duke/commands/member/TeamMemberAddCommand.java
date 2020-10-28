@@ -1,6 +1,7 @@
-package seedu.duke.commands.project;
+package seedu.duke.commands.member;
 
 import seedu.duke.DukeExceptions;
+import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
@@ -11,24 +12,24 @@ import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
-public class ProjectCommand extends Command {
+public class TeamMemberAddCommand extends Command {
 
-    private String description;
+    private String name;
     HashMap<String, String> params;
 
-    public ProjectCommand(HashMap<String, String> params) throws DukeExceptions {
+    public TeamMemberAddCommand(HashMap<String, String> params) throws DukeExceptions {
         this.params = params;
         this.parse();
     }
 
     public void parse() throws DukeExceptions {
-        this.description = getHashValue(params, "n");
+        name = getHashValue(params, "m");
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
-        Project newProject = new Project(description);
-        projects.add(newProject);
-        return Ui.printProjectCreatedMessage(newProject.getProjectName());
+        TeamMember newMember = new TeamMember(name);
+        teamMembers.add(newMember);
+        return Ui.printMemberAddedMessage(name);
     }
 
     public Boolean isExit() {

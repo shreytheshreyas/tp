@@ -3,7 +3,6 @@ package seedu.duke;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
@@ -14,7 +13,7 @@ public class Duke {
     /**
      * Main entry-point for the java.duke.Duke application.
      */
-    private static ArrayList<TeamMember> members = new ArrayList<>();
+    private static ArrayList<TeamMember> teamMembers = new ArrayList<>();
     private static ArrayList<Project> projects =  new ArrayList<>();
 
     public static void main(String[] args) throws DukeExceptions {
@@ -28,7 +27,7 @@ public class Duke {
             try {
                 Command commandInput = Parser.parse(in.nextLine());
                 ui.printLine();
-                String output = commandInput.executeCommand(projects);
+                String output = commandInput.executeCommand(projects, teamMembers);
                 ui.printOutput(output);
                 isExit = commandInput.isExit();
             } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | DukeExceptions e) {

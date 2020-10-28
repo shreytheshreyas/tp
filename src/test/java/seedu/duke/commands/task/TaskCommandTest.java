@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
