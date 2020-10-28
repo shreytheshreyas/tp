@@ -14,6 +14,7 @@ import seedu.duke.commands.project.ProjectDeleteCommand;
 import seedu.duke.commands.project.ProjectCommand;
 import seedu.duke.commands.project.ProjectListCommand;
 import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.project.ProjectDoneCommand;
 import seedu.duke.commands.task.TaskAssignPriorityCommand;
 import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
@@ -132,7 +133,8 @@ public class Parser {
             break;
         case "done":
             if (isHomeView) {
-                throw new DukeExceptions("mustBeInProjectView");
+                commandType = new ProjectDoneCommand(params, projectIndex);
+                break;
             }
             commandType = new TaskDoneCommand(params, projectIndex);
             break;
