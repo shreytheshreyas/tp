@@ -41,9 +41,8 @@ public class ProjectSelectCommand extends Command {
         }
         try {
             Project selectedProject = projects.get(projectIndex);
-            System.out.println("Switched to Project \"" + selectedProject.getProjectName() + "\"");
-            //For small sam => help me implement this
-            return selectedProject.toString();
+            String projectView = Ui.projectViewMessage(selectedProject);
+            return projectView;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }
