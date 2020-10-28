@@ -154,7 +154,7 @@ public class Parser {
             commandType = new TeamMemberAddCommand(params);
             break;
         case "members":
-            commandType = new TeamMembersListCommand();
+            commandType = new TeamMembersListCommand(isHomeView, projectIndex);
             break;
         case "remove":
             commandType = new TeamMemberDeleteCommand(params);

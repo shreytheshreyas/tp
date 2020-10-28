@@ -6,7 +6,7 @@ public class TeamMember {
 
     public TeamMember(String name) {
         this.name = name;
-        assignedProjectId = 0;
+        assignedProjectId = -1;
     }
 
     public void setAssignedProjectId(int assignedProjectId) {
