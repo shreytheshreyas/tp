@@ -118,9 +118,11 @@ public class Ui {
         output += "\n ---------------------- ";
         output += "\n| PROJECT LIST         |";
         output += "\n ---------------------- \n";
-        output += "\nStatus     Project Name                       Deadline      Tasks Completed";
+        output += "\nIndex      Project Name                       Deadline      Tasks Completed";
         output += "\n---------------------------------------------------------------------------";
+        int projectIndex = 1;
         for (Project project : projects) {
+            String paddedProjectIndex = String.format("%-11s", projectIndex + ".");
             String projectName = project.getProjectName();
             String paddedProjectName = String.format("%-35s", projectName);
             String paddedProjectDeadline;
@@ -133,18 +135,21 @@ public class Ui {
             String taskCompleted = project.getNumberOfFinishedTask() + "/"
                     + project.getNumberOfTask();
             String paddedTaskCompleted = String.format("%-15s", taskCompleted);
-            output += "\n           " + paddedProjectName + paddedProjectDeadline + paddedTaskCompleted;
+            output += "\n" + paddedProjectIndex + paddedProjectName + paddedProjectDeadline + paddedTaskCompleted;
+            projectIndex++;
         }
         output += "\n\n ---------------------- ";
         output += "\n| MEMBERS LIST         |";
         output += "\n ---------------------- \n";
-        output += "\nName                      Role              Projects Involved              ";
+        output += "\nIndex      Member Name                        Projects Involved              ";
         output += "\n---------------------------------------------------------------------------";
+        int memberIndex = 1;
         for (TeamMember member : teamMembers) {
+            String paddedMemberIndex = String.format("%-11s", memberIndex + ".");
             String memberName = member.getName();
-            String paddedMemberName = String.format("%-26s", memberName);
+            String paddedMemberName = String.format("%-17s", memberName);
             //String memberRole;
-            output += "\n" + paddedMemberName + "                  ";
+            output += "\n" + paddedMemberIndex + paddedMemberName + "                  ";
             if (member.getAssignedProjects() != null) {
                 for (int i = 0; i < member.getAssignedProjects().size(); i++) {
                     Project assignedProject = member.getAssignedProjects().get(i);
@@ -152,12 +157,13 @@ public class Ui {
                     if (i == 0) {
                         output += "1. " + paddedAssignedProject;
                     } else {
-                        output += "\n                                            "
+                        output += "\n                                              "
                                 + (i + 1) + ". " + paddedAssignedProject;
                     }
                 }
             }
             output += System.lineSeparator();
+            memberIndex++;
         }
         return output;
     }
