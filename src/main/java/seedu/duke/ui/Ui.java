@@ -223,13 +223,13 @@ public class Ui {
 
                     currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
 
-                    String priority = currentTask.getPriority();
-                    if (priority.length() > 0) {
+                    int priority = currentTask.getPriority();
+                    if (priority > 0) {
                         currentTaskLine += (priority);
                     } else {
                         currentTaskLine += "—";
                     }
-                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
+                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - 1));
 
                     Integer estimate = currentTask.getEstimate();
                     if (estimate > 1) {
@@ -291,7 +291,7 @@ public class Ui {
         return "Member \"" + memberName + "\" has been assigned to \"" + taskName + "\"";
     }
 
-    public static String printPriorityAssignedToTaskMessage(String priority, String taskName) {
+    public static String printPriorityAssignedToTaskMessage(int priority, String taskName) {
         return "Priority \"" + priority + "\" has been assigned to \"" + taskName + "\"";
     }
 
