@@ -22,13 +22,13 @@ public class Task {
     protected ArrayList<TeamMember> members = new ArrayList<>();
     protected int estimateInMinutes = 0;
     protected int actualInMinutes = 0;
-    protected String priority = "";
+    protected int priority;
 
-    public String getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(String priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
