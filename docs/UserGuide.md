@@ -12,32 +12,32 @@ projects, tasks and team members all in one app.
 ## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Terminologies](#terminologies)
-3. [Features](#features)
-    1. [Switching From ProjectView to HomeView](#switching-from-projectview-to-homeview-home)
-    2. [Project Commands](#project-commands)
-        1. [Adding a project](#adding-a-project-project)
-        2. [Selecting a project](#selecting-a-project-select)
-        3. [Viewing the project list](#viewing-the-project-list-list)
+3. [Home View](#Home-View)
+    1. [Accessing Home View](#accessing-home-view)
+    2. [Commands](#home-view-commands)
+        1. [Viewing the updated Home View](#viewing-the-project-list-list)
+        2. [Adding a project](#adding-a-project-project)
+        3. [Selecting a project](#selecting-a-project-select)
         4. [Marking a project as done](#marking-a-project-as-done-done)
         5. [Adding a deadline to a project](#adding-a-deadline-to-a-project-deadline)
         6. [Adding a description to a project](#adding-a-description-to-a-project-description)
         7. [Deleting a project](#deleting-a-project-delete)
-    3. [Task Commands](#task-commands)
-        1. [Adding a task](#task-commands)
-        2. [Selecting a task](#selecting-a-task-select)
-        3. [Viewing the task list](#viewing-the-task-list-list)
+        8. [Adding a member](#adding-a-member-member)
+        9. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
+        10. [Removing a member](#removing-a-member-remove)
+4. [Project View](#Project-View)
+    1. [Accessing Home View](#accessing-home-view)
+    2. [Commands](#project-view-commands)
+        1. [Viewing the updated Project View](#viewing-the-project-list-list)
+        2. [Adding a task](#task-commands)
+        3. [Selecting a task](#selecting-a-task-select)
         4. [Marking a task as done](#marking-a-task-as-done-done)
         5. [Adding a deadline to a task](#adding-a-deadline-to-a-task-deadline)
         6. [Adding a description to a task](#adding-a-description-to-a-task-deadline)
         7. [Deleting a task](#deleting-a-task-delete)
-    4. [Member Commands](#member-commands)
-        1. [Adding a member](#adding-a-member-member)
-        2. [Viewing the member list](#viewing-the-member-list-members)
-        3. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
-        4. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
-        5. [Removing a member](#removing-a-member-remove)
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
+        8. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
+5. [FAQ](#faq)
+6. [Command Summary](#command-summary)
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
@@ -86,7 +86,7 @@ enables the Home View commands in this section.
 
 Format: `home`
 
-### **Commands**
+### Home View Commands
 ### Viewing the updated Home View: `list`
 Displays the updated Home View to user.
 
@@ -222,7 +222,7 @@ The manager can add and edit tasks and assign members to tasks.
 ### Accessing Project View
 This view is accessed by [selecting a project](#selecting-a-project-select) from the Home View.
 
-### Commands
+### Project View Commands
 ### Viewing the updated Project View: `list`
 Displays the updated project View to user.
 
@@ -340,8 +340,8 @@ to the first task in the task list
 | project | Creates a new project in the project list | `project n/Web Development Project` |
 | task    | Creates a new task in the task list | `task n/Deploy Version 2.0` |
 | member  | Creates a new member in the member list | `member n/John Doe` |
-| list    | If in HomeView, displays the project list | `list` |  
-| list    | If in ProjectView, displays the task list | `list` |
+| list    | If in Home View, displays the updated Home View | `list` |  
+| list    | If in Project View, displays the updated Project View | `list` |
 | select  | If in HomeView, selects the specified project and program enters ProjectView | `select p/1` |  
 | select  | If in ProjectView, selects the specified task | `select t/1` |
 | done    | If in HomeView, marks the specified project as done | `done p/1` |  
@@ -354,7 +354,6 @@ to the first task in the task list
 | deadline | If in ProjectView, assigns a deadline to the specified task | `deadline t/1 d/2020-10-25` |
 | priority | If in ProjectView, assigns a priority to the specified task | `priority t/1 p/1` |
 | home    | Switches from ProjectView to HomeView | `home` |
-| members | Displays the member list | `members` |
 | assign  | If in HomeView, assigns member to specified project | `assign p/1 m/1` |  
 | assign  | If in ProjectView, assigns member to specified task | `assign t/1 m/1` |
 | remove  | Removes specified member from the member list | `remove m/1` |
