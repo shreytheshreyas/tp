@@ -38,6 +38,7 @@ public class DukeExceptions extends Exception {
                 + "actual duration taken to complete!");
         exceptionMessageList.put("emptyTeamMembersList","Team Members list is empty!");
         exceptionMessageList.put("emptyTaskList","Task list is empty!");
+        exceptionMessageList.put("indexNonInteger","Index must be an integer!");
     }
 
     public String toString() {
