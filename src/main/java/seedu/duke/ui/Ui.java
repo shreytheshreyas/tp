@@ -185,13 +185,14 @@ public class Ui {
     public static String projectViewMessage(Project project) {
         try {
             String projectTitle = "Project \"" + project.getProjectName() + "\"";
+            String projectDescription = "\n" + "Description:" + "\n" + project.getDescription();
             String taskListTitle = "\n ---------------------\n| TASK LIST           |\n ---------------------";
             String membersListTitle = "\n ---------------------\n| MEMBERS LIST        |\n ---------------------";
             String indexSpaces = "      "; // 6
             String statusSpaces = "      "; // 6
             String descriptionSpaces = "                   "; // 19
             String deadlineSpaces = "                "; // 16
-            String prioritySpaces = "              "; // 14
+            String prioritySpaces = "            "; // 12
             String expectedSpaces = "                 "; // 17
             String actualSpaces = "             "; // 13
             String membersSpaces = "                "; // 16
@@ -277,7 +278,7 @@ public class Ui {
                 membersListLines += "No team members have been assigned to this project.";
             }
 
-            return projectTitle + "\n" + taskListTitle + "\n"
+            return projectTitle + "\n" + projectDescription + "\n" + taskListTitle + "\n"
                     + (project.getTaskList().size() > 0 ? tableLabel : "") + taskLines
                     + "\n \n" + membersListTitle + "\n" + membersListLines;
         } catch (Error e) {

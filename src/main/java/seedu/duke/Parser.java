@@ -115,9 +115,6 @@ public class Parser {
                     ? new ProjectSelectCommand(params) : new TaskSelectCommand(params, projectIndex);
             break;
         case "description":
-            if (isHomeView) {
-                throw new DukeExceptions("mustBeInProjectView");
-            }
             commandType = new ProjectDescriptionCommand(params, projectIndex);
             break;
         case "project":
