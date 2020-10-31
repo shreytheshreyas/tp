@@ -211,7 +211,6 @@ public class Ui {
                     String status = currentTask.isDone() ? "(Y)" : "(N)";
                     String description = currentTask.getTaskDescription();
                     String deadline = currentTask.getDateString();
-                    String memberName = null;
 
                     currentTaskLine = index + indexSpaces + status + statusSpaces + description
                             + (descriptionSpaces.substring(0, descriptionSpaces.length() - description.length()));
@@ -253,15 +252,16 @@ public class Ui {
                     currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
                             - actual.toString().length() + extra));
 
+                    String memberName = null;
                     ArrayList<TeamMember> members = currentTask.getMembers();
-                        currentTaskLine += "|";
-                        memberName = "|";
-                        for (TeamMember member : members) {
-                            currentTaskLine += member.getName() + "|";
-                            memberName = member.getName();
-                        }
-                //currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
-                taskLines += (currentTaskLine + "\n");
+                    currentTaskLine += "|";
+                    memberName = "|";
+                    for (TeamMember member : members) {
+                        currentTaskLine += member.getName() + "|";
+                        memberName = member.getName();
+                    }
+                    //currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
+                    taskLines += (currentTaskLine + "\n");
                 }
             } else {
                 taskLines += "No tasks have been added to this project.";
