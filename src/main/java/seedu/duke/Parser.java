@@ -108,7 +108,7 @@ public class Parser {
         switch (taskType) {
         case "list":
             commandType = (isHomeView)
-                    ? new ProjectListCommand() : new TaskListCommand(projectIndex);
+                    ? new PrintHomeViewCommand() : new TaskListCommand(projectIndex);
             break;
         case "select":
             commandType = (isHomeView)
