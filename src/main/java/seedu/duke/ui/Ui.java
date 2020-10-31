@@ -211,7 +211,7 @@ public class Ui {
                     String status = currentTask.isDone() ? "(Y)" : "(N)";
                     String description = currentTask.getTaskDescription();
                     String deadline = currentTask.getDateString();
-                    String memberName;
+                    String memberName = null;
 
                     currentTaskLine = index + indexSpaces + status + statusSpaces + description
                             + (descriptionSpaces.substring(0, descriptionSpaces.length() - description.length()));
@@ -240,7 +240,7 @@ public class Ui {
                         extra = 0;
                     }
                     currentTaskLine += (expectedSpaces.substring(0, expectedSpaces.length()
-                                    - estimate.toString().length() + extra));
+                            - estimate.toString().length() + extra));
 
                     Integer actual = currentTask.getActual();
                     if (actual > 1) {
@@ -251,19 +251,17 @@ public class Ui {
 
                     extra = actual.toString().length() - 1;
                     currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
-                                    - actual.toString().length() + extra));
+                            - actual.toString().length() + extra));
 
-                    TeamMember member = currentTask.getMember();
-                    if (member != null) {
-                        currentTaskLine += "| " + member.getName();
-                        memberName = member.getName();
-                    } else {
-                        currentTaskLine += "| —";
-                        memberName = "| —";
-                    }
-                    currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
-
-                    taskLines += (currentTaskLine + "\n");
+                    ArrayList<TeamMember> members = currentTask.getMembers();
+                        currentTaskLine += "|";
+                        memberName = "|";
+                        for (TeamMember member : members) {
+                            currentTaskLine += member.getName() + "|";
+                            memberName = member.getName();
+                        }
+                //currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
+                taskLines += (currentTaskLine + "\n");
                 }
             } else {
                 taskLines += "No tasks have been added to this project.";
