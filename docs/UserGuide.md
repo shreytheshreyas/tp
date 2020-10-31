@@ -74,17 +74,17 @@ a positive integer. Hence, the TASK_INDEX refers to this
 positive integer. You can retrieve the TASK_INDEXes of 
 all tasks by using the `list` command in ProjectView
 
-## Features 
+## Home View
+The Home View displays the full list of projects and members that are under a manager's purview. 
+The manager can add and edit projects and members from this view.
 
-### Switching from ProjectView to HomeView
-Switches from ProjectView to HomeView: `home`
+### Accessing Home View
+Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
+enables the Home View commands in this section.
 
 Format: `home`
 
-* You must be in ProjectView before you can switch to HomeView   
-
-
-### **Home View Commands**
+### **Commands**
 ### Adding a project: `project`
 Adds a new project to the project list.
 
@@ -219,7 +219,14 @@ Example of usage:
 
 * `remove m/1`. Removes the first member from the member list.
 
-### **Project View Commands**
+## Project View
+The Project View displays the full list of tasks and members in a particular project.
+The manager can add and edit tasks and assign members to tasks.
+
+### Accessing Project View
+This view is accessed by [selecting a project](#selecting-a-project-select) from the Home View.
+
+### Commands
 ### Adding a task: `task`
 Adds a new task to the task list.
 
