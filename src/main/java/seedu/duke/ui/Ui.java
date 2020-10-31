@@ -187,6 +187,7 @@ public class Ui {
             String projectTitle = "Project \"" + project.getProjectName() + "\"";
             String taskListTitle = "\n ---------------------\n| TASK LIST           |\n ---------------------";
             String membersListTitle = "\n ---------------------\n| MEMBERS LIST        |\n ---------------------";
+            String indexSpaces = "      "; // 6
             String statusSpaces = "      "; // 6
             String descriptionSpaces = "                   "; // 19
             String deadlineSpaces = "                "; // 16
@@ -194,23 +195,25 @@ public class Ui {
             String expectedSpaces = "                 "; // 17
             String actualSpaces = "             "; // 13
             String membersSpaces = "                "; // 16
-            String tableLabel = "Status   Description        "
+            String tableLabel = "Index  Status   Description        "
                                 + "Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved\n"
                                 + "------------------------------------------------"
-                                + "----------------------------------------|------------------";
+                                + "-----------------------------------------------|------------------";
             Integer extra = 0;
             Integer i = 0;
+            int index;
             String currentTaskLine = "";
             String taskLines = "\n";
             if (project.getTaskList().size() > 0) {
                 for (; i < project.getTaskList().size(); i++) {
+                    index = i + 1;
                     Task currentTask = project.getTaskList().get(i);
                     String status = currentTask.isDone() ? "(Y)" : "(N)";
                     String description = currentTask.getTaskDescription();
                     String deadline = currentTask.getDateString();
                     String memberName;
 
-                    currentTaskLine = status + statusSpaces + description
+                    currentTaskLine = index + indexSpaces + status + statusSpaces + description
                             + (descriptionSpaces.substring(0, descriptionSpaces.length() - description.length()));
                     if (deadline.length() > 0) {
                         currentTaskLine += (deadline);
