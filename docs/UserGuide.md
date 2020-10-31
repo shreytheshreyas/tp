@@ -12,10 +12,10 @@ projects, tasks and team members all in one app.
 ## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Terminologies](#terminologies)
-3. [Home View](#Home-View)
+3. [Home View](#home-view)
     1. [Accessing Home View](#accessing-home-view)
     2. [Commands](#home-view-commands)
-        1. [Viewing the updated Home View](#viewing-the-project-list-list)
+        1. [Viewing the updated Home View](#viewing-the-updated-home-view-list)
         2. [Adding a project](#adding-a-project-project)
         3. [Selecting a project](#selecting-a-project-select)
         4. [Marking a project as done](#marking-a-project-as-done-done)
@@ -25,17 +25,16 @@ projects, tasks and team members all in one app.
         8. [Adding a member](#adding-a-member-member)
         9. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
         10. [Removing a member](#removing-a-member-remove)
-4. [Project View](#Project-View)
+4. [Project View](#project-view)
     1. [Accessing Home View](#accessing-home-view)
     2. [Commands](#project-view-commands)
-        1. [Viewing the updated Project View](#viewing-the-project-list-list)
-        2. [Adding a task](#task-commands)
+        1. [Viewing the updated Project View](#viewing-the-updated-project-view-list)
+        2. [Adding a task](#adding-a-task-task)
         3. [Selecting a task](#selecting-a-task-select)
         4. [Marking a task as done](#marking-a-task-as-done-done)
         5. [Adding a deadline to a task](#adding-a-deadline-to-a-task-deadline)
-        6. [Adding a description to a task](#adding-a-description-to-a-task-deadline)
-        7. [Deleting a task](#deleting-a-task-delete)
-        8. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
+        6. [Deleting a task](#deleting-a-task-delete)
+        7. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
 5. [FAQ](#faq)
 6. [Command Summary](#command-summary)
 
@@ -324,8 +323,6 @@ Example of usage:
 
 * `assing t/1 m/1`. Assigns the first member in the member list
 to the first task in the task list
-
-### **Member Commands**
 
 ## FAQ
 
