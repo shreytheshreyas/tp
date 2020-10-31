@@ -87,6 +87,11 @@ enables the Home View commands in this section.
 Format: `home`
 
 ### **Commands**
+### Viewing the updated Home View: `list`
+Displays the updated Home View to user.
+
+Format: `list`
+
 ### Adding a project: `project`
 Adds a new project to the project list.
 
@@ -111,17 +116,6 @@ Format: `select p/PROJECT_INDEX`
 Example of usage: 
 
 * `select p/1`. Selects the first project in the project list.
-
-### Viewing the project list: `list`
-Displays all the projects in the project list.
-
-Format: `list`
-
-* The user must be in HomeView before listing all projects.  
-
-Example of usage: 
-
-* `list`. Shows all the projects in the project list.
 
 ### Marking a project as done: `done`
 Marks an existing project as done.
@@ -229,6 +223,11 @@ The manager can add and edit tasks and assign members to tasks.
 This view is accessed by [selecting a project](#selecting-a-project-select) from the Home View.
 
 ### Commands
+### Viewing the updated Project View: `list`
+Displays the updated project View to user.
+
+Format: `list`
+
 ### Adding a task: `task`
 Adds a new task to the task list.
 
