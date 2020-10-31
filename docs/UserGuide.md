@@ -78,6 +78,8 @@ all tasks by using the `list` command in ProjectView
 The Home View displays the full list of projects and members that are under a manager's purview. 
 The manager can add and edit projects and members from this view.
 
+![](HomeViewScreenshot.png?raw=true)
+
 ### Accessing Home View
 Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
 enables the Home View commands in this section.
