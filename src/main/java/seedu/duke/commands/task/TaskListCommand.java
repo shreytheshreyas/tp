@@ -19,13 +19,9 @@ public class TaskListCommand extends Command {
 
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws DukeExceptions {
-        Project project = projects.get(projectIndex);
-        int numberOfTasks = project.getTaskList().size();
-        if (numberOfTasks == 0) {
-            throw new DukeExceptions("emptyTaskList");
-        } else {
-            return Ui.printTaskListMessage(project);
-        }
+        Project selectedProject = projects.get(projectIndex);
+        String projectView = Ui.projectViewMessage(selectedProject);
+        return projectView;
     }
 
     public Boolean isExit() {
