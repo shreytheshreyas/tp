@@ -20,11 +20,11 @@ public class Task {
     protected LocalDate date;
     protected TeamMember member;
     protected int estimateInMinutes = 0;
-    protected int actualInMinutes;
+    protected int actualInMinutes = 0;
     protected String priority;
 
     public String getPriority() {
-        return priority;
+        return (priority != null) ? priority : "—";
     }
 
     public void setPriority(String priority) {
@@ -65,7 +65,7 @@ public class Task {
     }
 
     public String getDateString() {
-        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return (date != null) ? date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "—";
     }
 
     public TeamMember getMember() {
@@ -74,6 +74,10 @@ public class Task {
 
     public void setMember(TeamMember newMember) {
         member = newMember;
+    }
+
+    public boolean getStatus() {
+        return isDone;
     }
 
     /**

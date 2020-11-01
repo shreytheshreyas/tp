@@ -1,9 +1,9 @@
 package seedu.duke.ui;
 
+import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -81,6 +81,10 @@ public class Ui {
         return "Project description added \"" + project.getDescription() + "\".";
     }
 
+    public static String printProjectDoneMessage(String projectName) {
+        return "Project \"" + projectName + "\" is done!";
+    }
+
     public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
         return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 + " added to Project " + project.getProjectName();
@@ -111,6 +115,55 @@ public class Ui {
         return "Task \"" + taskName + "\" removed!";
     }
 
+    public static String printHomeView(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
+        String output = "Hello! Welcome to EZ Manager!\n";
+        output += "\n ---------------------- ";
+        output += "\n| PROJECT LIST         |";
+        output += "\n ---------------------- \n";
+        output += "\nStatus     Project Name                       Deadline      Tasks Completed";
+        output += "\n---------------------------------------------------------------------------";
+        for (Project project : projects) {
+            String projectName = project.getProjectName();
+            String paddedProjectName = String.format("%-35s", projectName);
+            String paddedProjectDeadline;
+            if (project.getProjectDeadline() != null) {
+                String projectDeadline = project.getProjectDeadline().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+                paddedProjectDeadline = String.format("%-14s", projectDeadline);
+            } else {
+                paddedProjectDeadline = String.format("%-14s", "-");
+            }
+            String taskCompleted = project.getNumberOfFinishedTask() + "/"
+                    + project.getNumberOfTask();
+            String paddedTaskCompleted = String.format("%-15s", taskCompleted);
+            output += "\n           " + paddedProjectName + paddedProjectDeadline + paddedTaskCompleted;
+        }
+        output += "\n\n ---------------------- ";
+        output += "\n| MEMBERS LIST         |";
+        output += "\n ---------------------- \n";
+        output += "\nName                      Role              Projects Involved              ";
+        output += "\n---------------------------------------------------------------------------";
+        for (TeamMember member : teamMembers) {
+            String memberName = member.getName();
+            String paddedMemberName = String.format("%-26s", memberName);
+            //String memberRole;
+            output += "\n" + paddedMemberName + "                  ";
+            if (member.getAssignedProjects() != null) {
+                for (int i = 0; i < member.getAssignedProjects().size(); i++) {
+                    Project assignedProject = member.getAssignedProjects().get(i);
+                    String paddedAssignedProject = String.format("%-28s", assignedProject.getProjectName());
+                    if (i == 0) {
+                        output += "1. " + paddedAssignedProject;
+                    } else {
+                        output += "\n                                            "
+                                + (i + 1) + ". " + paddedAssignedProject;
+                    }
+                }
+            }
+            output += System.lineSeparator();
+        }
+        return output;
+    }
+
     public static String printTaskSelectedMessage(String taskName) {
         return "Selected Task: " + taskName;
     }
@@ -121,6 +174,109 @@ public class Ui {
 
     public static String printSwitchedToHomeViewMessage() {
         return "Switched to Home View";
+    }
+
+    public static String projectViewMessage(Project project) {
+        try {
+            String projectTitle = "Project \"" + project.getProjectName() + "\"";
+            String taskListTitle = "\n ---------------------\n| TASK LIST           |\n ---------------------";
+            String membersListTitle = "\n ---------------------\n| MEMBERS LIST        |\n ---------------------";
+            String statusSpaces = "      "; // 6
+            String descriptionSpaces = "                   "; // 19
+            String deadlineSpaces = "                "; // 16
+            String prioritySpaces = "              "; // 14
+            String expectedSpaces = "                 "; // 17
+            String actualSpaces = "             "; // 13
+            String membersSpaces = "                "; // 16
+            String tableLabel = "Status   Description        "
+                                + "Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved\n"
+                                + "------------------------------------------------"
+                                + "----------------------------------------|------------------";
+            Integer extra = 0;
+            Integer i = 0;
+            String currentTaskLine = "";
+            String taskLines = "\n";
+            if (project.getTaskList().size() > 0) {
+                for (; i < project.getTaskList().size(); i++) {
+                    Task currentTask = project.getTaskList().get(i);
+                    String status = currentTask.isDone() ? "(Y)" : "(N)";
+                    String description = currentTask.getTaskDescription();
+                    String deadline = currentTask.getDateString();
+                    String memberName;
+
+                    currentTaskLine = status + statusSpaces + description
+                            + (descriptionSpaces.substring(0, descriptionSpaces.length() - description.length()));
+                    if (deadline.length() > 0) {
+                        currentTaskLine += (deadline);
+                    } else {
+                        currentTaskLine += "—";
+                    }
+
+                    currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
+
+                    String priority = currentTask.getPriority();
+                    if (priority.length() > 0) {
+                        currentTaskLine += (priority);
+                    } else {
+                        currentTaskLine += "—";
+                    }
+                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
+
+                    Integer estimate = currentTask.getEstimate();
+                    if (estimate > 1) {
+                        currentTaskLine += (estimate / 60);
+                        extra = estimate.toString().length() - 1;
+                    } else {
+                        currentTaskLine += "—";
+                        extra = 0;
+                    }
+                    currentTaskLine += (expectedSpaces.substring(0, expectedSpaces.length()
+                                    - estimate.toString().length() + extra));
+
+                    Integer actual = currentTask.getActual();
+                    if (actual > 1) {
+                        currentTaskLine += (actual / 60);
+                    } else {
+                        currentTaskLine += "—";
+                    }
+
+                    extra = actual.toString().length() - 1;
+                    currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
+                                    - actual.toString().length() + extra));
+
+                    TeamMember member = currentTask.getMember();
+                    if (member != null) {
+                        currentTaskLine += "| " + member.getName();
+                        memberName = member.getName();
+                    } else {
+                        currentTaskLine += "| —";
+                        memberName = "| —";
+                    }
+                    currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
+
+                    taskLines += (currentTaskLine + "\n");
+                }
+            } else {
+                taskLines += "No tasks have been added to this project.";
+            }
+
+            ArrayList<TeamMember> members = project.getTeamMembers();
+            String membersListLines = "";
+            if (members.size() > 0) {
+                for (int j = 0; j < members.size(); j++) {
+                    membersListLines += (j + 1) + ". " + members.get(j).getName() + "\n";
+                }
+            } else {
+                membersListLines += "No team members have been assigned to this project.";
+            }
+
+            return projectTitle + "\n" + taskListTitle + "\n"
+                    + (project.getTaskList().size() > 0 ? tableLabel : "") + taskLines
+                    + "\n \n" + membersListTitle + "\n" + membersListLines;
+        } catch (Error e) {
+            System.out.println(e.getMessage());
+        }
+        return "hi";
     }
 
     public static String printMemberAssignedToTaskMessage(String memberName, String taskName) {
