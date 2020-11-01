@@ -26,7 +26,7 @@ projects, tasks and team members all in one app.
         9. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
         10. [Removing a member](#removing-a-member-remove)
 4. [Project View](#project-view)
-    1. [Accessing Home View](#accessing-home-view)
+    1. [Accessing Project View](#accessing-project-view)
     2. [Commands](#project-view-commands)
         1. [Viewing the updated Project View](#viewing-the-updated-project-view-list)
         2. [Adding a task](#adding-a-task-task)
