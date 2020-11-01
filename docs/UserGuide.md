@@ -42,7 +42,7 @@ projects, tasks and team members all in one app.
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `EZ Manager` from [here](http://link.to/duke).
+1. Download the latest version of `EZ Manager` from [here](https://github.com/AY2021S1-CS2113T-T09-1/tp/releases).
 1. Copy the JAR  file into an empty new folder. Take note of the file path
 1. Open Command Prompt (on Windows) or Terminal (on Mac) and type
 java -jar {file path}/ezManager.jar
