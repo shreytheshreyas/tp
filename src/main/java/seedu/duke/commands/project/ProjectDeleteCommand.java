@@ -26,7 +26,7 @@ public class ProjectDeleteCommand extends Command {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new DukeExceptions("invalidProjectID");
         }
     }
 
