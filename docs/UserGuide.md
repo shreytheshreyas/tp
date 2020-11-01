@@ -201,7 +201,7 @@ a member to a project.
 
 Example of usage: 
 
-* `assing p/1 m/1`. Assigns the first member in the member list
+* `assign p/1 m/1`. Assigns the first member in the member list
 to the first project in the project list
 
 ### Removing a member: `remove`
