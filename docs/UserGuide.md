@@ -358,8 +358,8 @@ Format: `bye`
 
 | Commands | Action | Examples |
 | -------- | ------ | -------- |
-| project | Creates a new project in the project list | `project n/Web Development Project` |
-| task    | Creates a new task in the task list | `task n/Deploy Version 2.0` |
+| project | Creates a new project in the project list in Home View | `project n/Web Development Project` |
+| task    | Creates a new task in the task list in Project View| `task n/Deploy Version 2.0` |
 | member  | Creates a new member in the member list | `member n/John Doe` |
 | list    | If in Home View, displays the updated Home View | `list` |  
 | list    | If in Project View, displays the updated Project View | `list` |
