@@ -12,36 +12,37 @@ projects, tasks and team members all in one app.
 ## Table of Contents
 1. [Quick Start](#quick-start)
 2. [Terminologies](#terminologies)
-3. [Features](#features)
-    1. [Switching From ProjectView to HomeView](#switching-from-projectview-to-homeview-home)
-    2. [Project Commands](#project-commands)
-        1. [Adding a project](#adding-a-project-project)
-        2. [Selecting a project](#selecting-a-project-select)
-        3. [Viewing the project list](#viewing-the-project-list-list)
+3. [Home View](#home-view)
+    1. [Accessing Home View](#accessing-home-view)
+    2. [Commands](#home-view-commands)
+        1. [Viewing the updated Home View](#viewing-the-updated-home-view-list)
+        2. [Adding a project](#adding-a-project-project)
+        3. [Selecting a project](#selecting-a-project-select)
         4. [Marking a project as done](#marking-a-project-as-done-done)
         5. [Adding a deadline to a project](#adding-a-deadline-to-a-project-deadline)
         6. [Adding a description to a project](#adding-a-description-to-a-project-description)
         7. [Deleting a project](#deleting-a-project-delete)
-    3. [Task Commands](#task-commands)
-        1. [Adding a task](#task-commands)
-        2. [Selecting a task](#selecting-a-task-select)
-        3. [Viewing the task list](#viewing-the-task-list-list)
+        8. [Adding a member](#adding-a-member-member)
+        9. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
+        10. [Removing a member](#removing-a-member-remove)
+4. [Project View](#project-view)
+    1. [Accessing Project View](#accessing-project-view)
+    2. [Commands](#project-view-commands)
+        1. [Viewing the updated Project View](#viewing-the-updated-project-view-list)
+        2. [Adding a task](#adding-a-task-task)
+        3. [Selecting a task](#selecting-a-task-select)
         4. [Marking a task as done](#marking-a-task-as-done-done)
         5. [Adding a deadline to a task](#adding-a-deadline-to-a-task-deadline)
-        6. [Adding a description to a task](#adding-a-description-to-a-task-deadline)
+        6. [Adding a priority to a task](#adding-a-priority-to-a-task-deadline)
         7. [Deleting a task](#deleting-a-task-delete)
-    4. [Member Commands](#member-commands)
-        1. [Adding a member](#adding-a-member-member)
-        2. [Viewing the member list](#viewing-the-member-list-members)
-        3. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
-        4. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
-        5. [Removing a member](#removing-a-member-remove)
-4. [FAQ](#faq)
-5. [Command Summary](#command-summary)
+        8. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
+5. [Exiting EZ Manager](#exiting-ez-manager)
+6. [FAQ](#faq)
+7. [Command Summary](#command-summary)
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `EZ Manager` from [here](http://link.to/duke).
+1. Download the latest version of `EZ Manager` from [here](https://github.com/AY2021S1-CS2113T-T09-1/tp/releases).
 1. Copy the JAR  file into an empty new folder. Take note of the file path
 1. Open Command Prompt (on Windows) or Terminal (on Mac) and type
 java -jar {file path}/ezManager.jar
@@ -74,17 +75,24 @@ a positive integer. Hence, the TASK_INDEX refers to this
 positive integer. You can retrieve the TASK_INDEXes of 
 all tasks by using the `list` command in ProjectView
 
-## Features 
+## Home View
+The Home View displays the full list of projects and members that are under a manager's purview. 
+The manager can add and edit projects and members from this view.
 
-### Switching from ProjectView to HomeView
-Switches from ProjectView to HomeView: `home`
+![](HomeViewScreenshot.png?raw=true)
+
+### Accessing Home View
+Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
+enables the Home View commands in this section.
 
 Format: `home`
 
-* You must be in ProjectView before you can switch to HomeView   
+### Home View Commands
+### Viewing the updated Home View: `list`
+Displays the updated Home View to user.
 
+Format: `list`
 
-### **Project Commands**
 ### Adding a project: `project`
 Adds a new project to the project list.
 
@@ -109,17 +117,6 @@ Format: `select p/PROJECT_INDEX`
 Example of usage: 
 
 * `select p/1`. Selects the first project in the project list.
-
-### Viewing the project list: `list`
-Displays all the projects in the project list.
-
-Format: `list`
-
-* The user must be in HomeView before listing all projects.  
-
-Example of usage: 
-
-* `list`. Shows all the projects in the project list.
 
 ### Marking a project as done: `done`
 Marks an existing project as done.
@@ -153,15 +150,12 @@ Example of usage:
 to the first project.
 
 ### Adding a description to a project: `description`
-***=============> NOT IMPLEMENTED AS INTENDED <=============*** .  
 Adds a description to an existing project.
 
 Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist before a description can be added.
-* You must be in HomeView before adding a description
-to a project.  
 
 Example of usage: 
 
@@ -181,7 +175,60 @@ Example of usage:
 
 * `delete p/1`. Deletes the first project in the project list.
 
-### **Task Commands**
+### Adding a member: `member`
+Adds a new member to the member list.
+
+Format: `member n/MEMBER_NAME`
+
+Example of usage: 
+
+* `member n/John Doe`. Adds the member 'John Doe'
+to the member list.
+
+* `select t/1`. Selects the first task from the task list.
+
+### Assigning a member to a project: `assign`
+Assigns an existing member to an existing project.
+
+Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
+
+* The `PROJECT_INDEX` must be a positive integer.
+* The `MEMBER_INDEX` must be a positive integer.
+* The project must exist before it can be assined to.
+* The member must exist before they can be assined.
+* You must be in HomeView before assigning
+a member to a project.
+
+Example of usage: 
+
+* `assign p/1 m/1`. Assigns the first member in the member list
+to the first project in the project list
+
+### Removing a member: `remove`
+Removes an existing member from the member list.
+
+Format: `remove m/MEMBER_INDEX`
+
+* The `MEMBER_INDEX` must be a positive integer.
+* The member must exist before they can be removed.
+
+Example of usage: 
+
+* `remove m/1`. Removes the first member from the member list.
+
+## Project View
+The Project View displays the full list of tasks and members in a particular project.
+The manager can add and edit tasks and assign members to tasks.
+
+### Accessing Project View
+This view is accessed by [selecting a project](#selecting-a-project-select) from the Home View.
+
+### Project View Commands
+### Viewing the updated Project View: `list`
+Displays the updated project View to user.
+
+Format: `list`
+
 ### Adding a task: `task`
 Adds a new task to the task list.
 
@@ -197,7 +244,7 @@ to the task list.
 ### Selecting a task: `select`
 Selects a task from the project list.
 
-Format: `task p/TASK_INDEX`
+Format: `select t/TASK_INDEX`
 
 * The `TASK_INDEX` must be a positive integer.
 * The task must exist before it can be selected.
@@ -212,7 +259,7 @@ Displays all the tasks in the task list.
 
 Format: `list`
 
-* You must be ProjectView before listing all tasks.  
+* You must be Project View before listing all tasks.  
 
 Example of usage: 
 
@@ -249,20 +296,22 @@ Example of usage:
 * `deadline t/1 d/2020-10-25`. Adds the deadline 25/10/2020
 to the first task in the task list.
 
-### Adding a description to a task: `description`
-Adds a description to an existing task.
+### Adding a priority to a task: `priority`
+Adds a priority to an existing task.
+1 denotes the highest priority.
 
-Format: `description t/TASK_INDEX d/DESCRIPTION`
+Format: `priority t/TASK_INDEX p/PRIORITY`
 
 * The `TASK_INDEX` must be a positive integer.
-* The task must exist before a description can be added.
-* You must be in ProjectView before adding a description
+* The task must exist before a deadline can be added.
+* The `PRIORITY` must be a positive interger.
+* You must be in ProjectView before adding a deadline
 to a task.  
 
 Example of usage: 
 
-* `description p/1 d/The bug reports are 2 pages long`. Adds the description 
-`The bug reports are 2 pages long` to the first task in the task list.
+* `priority t/1 p/1`. Adds the highest priority, 1,
+to the first task in the task list.
 
 ### Deleting a task: `delete`
 Deletes a task from the task list.
@@ -276,45 +325,6 @@ Format: `delete t/TASK_INDEX`
 Example of usage: 
 
 * `delete t/1`. Deletes the first task in the task list.
-
-### **Member Commands**
-### Adding a member: `member`
-Adds a new member to the member list.
-
-Format: `member n/MEMBER_NAME`
-
-Example of usage: 
-
-* `member n/John Doe`. Adds the member 'John Doe'
-to the member list.
-
-* `select t/1`. Selects the first task from the task list.
-
-### Viewing the member list: `members`
-Displays all the members in the task list.
-
-Format: `members`
-
-Example of usage: 
-
-* `members`. Shows all the members in the member list.
-
-### Assigning a member to a project: `assign`
-Assigns an existing member to an existing project.
-
-Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
-
-* The `PROJECT_INDEX` must be a positive integer.
-* The `MEMBER_INDEX` must be a positive integer.
-* The project must exist before it can be assined to.
-* The member must exist before they can be assined.
-* You must be in HomeView before assigning
-a member to a project.
-
-Example of usage: 
-
-* `assing p/1 m/1`. Assigns the first member in the member list
-to the first project in the project list
 
 ### Assigning a member to a task: `assign`
 Assigns an existing member to an existing task.
@@ -330,20 +340,13 @@ a member to a task.
 
 Example of usage: 
 
-* `assing t/1 m/1`. Assigns the first member in the member list
+* `assign t/1 m/1`. Assigns the first member in the member list
 to the first task in the task list
 
-### Removing a member: `remove`
-Removes an existing member from the member list.
+### Exiting Ez Manager: `bye`
+You can exit the program with the `bye` command.
 
-Format: `remove m/MEMBER_INDEX`
-
-* The `MEMBER_INDEX` must be a positive integer.
-* The member must exist before they can be removed.
-
-Example of usage: 
-
-* `remove m/1`. Removes the first member from the member list.
+Format: `bye`
 
 ## FAQ
 
@@ -355,11 +358,11 @@ Example of usage:
 
 | Commands | Action | Examples |
 | -------- | ------ | -------- |
-| project | Creates a new project in the project list | `project n/Web Development Project` |
-| task    | Creates a new task in the task list | `task n/Deploy Version 2.0` |
+| project | Creates a new project in the project list in Home View | `project n/Web Development Project` |
+| task    | Creates a new task in the task list in Project View| `task n/Deploy Version 2.0` |
 | member  | Creates a new member in the member list | `member n/John Doe` |
-| list    | If in HomeView, displays the project list | `list` |  
-| list    | If in ProjectView, displays the task list | `list` |
+| list    | If in Home View, displays the updated Home View | `list` |  
+| list    | If in Project View, displays the updated Project View | `list` |
 | select  | If in HomeView, selects the specified project and program enters ProjectView | `select p/1` |  
 | select  | If in ProjectView, selects the specified task | `select t/1` |
 | done    | If in HomeView, marks the specified project as done | `done p/1` |  
@@ -372,7 +375,6 @@ Example of usage:
 | deadline | If in ProjectView, assigns a deadline to the specified task | `deadline t/1 d/2020-10-25` |
 | priority | If in ProjectView, assigns a priority to the specified task | `priority t/1 p/1` |
 | home    | Switches from ProjectView to HomeView | `home` |
-| members | Displays the member list | `members` |
 | assign  | If in HomeView, assigns member to specified project | `assign p/1 m/1` |  
 | assign  | If in ProjectView, assigns member to specified task | `assign t/1 m/1` |
 | remove  | Removes specified member from the member list | `remove m/1` |

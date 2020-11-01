@@ -18,12 +18,11 @@ public class HomeCommand extends Command {
     @Override
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         if (projectIndex == -1) {
-            return Ui.printInHomeViewMessage();
+            return Ui.printHomeView(projects, teamMembers);
         } else {
             Parser.setProjectIndex(-1);
-            return Ui.printSwitchedToHomeViewMessage();
+            return Ui.printHomeView(projects, teamMembers);
         }
-
     }
 
     @Override

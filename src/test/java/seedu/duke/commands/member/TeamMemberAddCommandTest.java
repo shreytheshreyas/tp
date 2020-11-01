@@ -28,7 +28,7 @@ class TeamMemberAddCommandTest {
 
     @Test
     public void executeCommand_validMemberName_memberAddedMessage() throws DukeExceptions {
-        params.put("m", "John Doe");
+        params.put("n", "John Doe");
         TeamMemberAddCommand command = new TeamMemberAddCommand(params);
         String expectedOutput = Ui.printMemberAddedMessage("John Doe");
         String actualOuput = command.executeCommand(projects, teamMembers);

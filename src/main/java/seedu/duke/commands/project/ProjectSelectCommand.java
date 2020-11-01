@@ -29,7 +29,6 @@ public class ProjectSelectCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-            Parser.setProjectIndex(projectIndex);
         } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidProjectID");
         }
@@ -41,6 +40,7 @@ public class ProjectSelectCommand extends Command {
         }
         try {
             Project selectedProject = projects.get(projectIndex);
+            Parser.setProjectIndex(projectIndex);
             String projectView = Ui.projectViewMessage(selectedProject);
             return projectView;
         } catch (IndexOutOfBoundsException e) {

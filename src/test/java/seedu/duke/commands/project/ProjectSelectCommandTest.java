@@ -41,6 +41,11 @@ public class ProjectSelectCommandTest {
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
         String expectedOutput =  "Project \"Project Two\"\n"
                 + "\n"
+                + "Description:"
+                + "\n"
+                + "<project description empty>"
+                + "\n"
+                + "\n"
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"

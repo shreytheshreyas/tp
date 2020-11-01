@@ -108,16 +108,13 @@ public class Parser {
         switch (taskType) {
         case "list":
             commandType = (isHomeView)
-                    ? new ProjectListCommand() : new TaskListCommand(projectIndex);
+                    ? new PrintHomeViewCommand() : new TaskListCommand(projectIndex);
             break;
         case "select":
             commandType = (isHomeView)
                     ? new ProjectSelectCommand(params) : new TaskSelectCommand(params, projectIndex);
             break;
         case "description":
-            if (isHomeView) {
-                throw new DukeExceptions("mustBeInProjectView");
-            }
             commandType = new ProjectDescriptionCommand(params, projectIndex);
             break;
         case "project":

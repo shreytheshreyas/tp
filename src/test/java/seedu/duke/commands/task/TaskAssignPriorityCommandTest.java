@@ -48,10 +48,10 @@ class TaskAssignPriorityCommandTest {
      */
     @Test
     void executeCommand_validPriorityAndTaskId_priorityAssignedToTask() throws DukeExceptions {
-        params.put("p", "HIGH");
+        params.put("p", "1");
         params.put("t", "1");
         TaskAssignPriorityCommand command = new TaskAssignPriorityCommand(params, 0);
-        String expectedOutput = Ui.printPriorityAssignedToTaskMessage("HIGH", "Task One");
+        String expectedOutput = Ui.printPriorityAssignedToTaskMessage(1, "Task One");
         String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
@@ -61,7 +61,7 @@ class TaskAssignPriorityCommandTest {
      */
     @Test
     void executeCommand_nonExistentTaskId_invalidTaskId() throws DukeExceptions {
-        params.put("p", "HIGH");
+        params.put("p", "1");
         params.put("t", "5");
         TaskAssignPriorityCommand command = new TaskAssignPriorityCommand(params, 0);
         String expectedOutput = "Task ID does not exist!";

@@ -27,6 +27,9 @@ public class ProjectDescriptionCommand extends Command {
 
     public void parse() throws DukeExceptions {
         projectDescription = getHashValue(params, "d");
+        if (projectIndex == -1) {
+            projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
+        }
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
