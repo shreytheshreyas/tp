@@ -191,9 +191,9 @@ public class Ui {
             String indexSpaces = "      "; // 6
             String statusSpaces = "      "; // 6
             String descriptionSpaces = "                   "; // 19
-            String deadlineSpaces = "                "; // 16
-            String prioritySpaces = "            "; // 12
-            String expectedSpaces = "                 "; // 17
+            String deadlineSpaces = "               "; // 16
+            String prioritySpaces = "              "; // 11
+            String expectedSpaces = "                 "; // 18
             String actualSpaces = "             "; // 13
             String membersSpaces = "                "; // 16
             String tableLabel = "Index  Status   Description        "
@@ -218,25 +218,25 @@ public class Ui {
                     if (deadline.length() > 0) {
                         currentTaskLine += (deadline);
                     } else {
-                        currentTaskLine += "—";
+                        currentTaskLine += "-";
                     }
 
                     currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
 
-                    String priority = currentTask.getPriority();
-                    if (priority.length() > 0) {
+                    int priority = currentTask.getPriority();
+                    if (priority > 0) {
                         currentTaskLine += (priority);
                     } else {
-                        currentTaskLine += "—";
+                        currentTaskLine += "-";
                     }
-                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
+                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - 1));
 
                     Integer estimate = currentTask.getEstimate();
                     if (estimate > 1) {
                         currentTaskLine += (estimate / 60);
                         extra = estimate.toString().length() - 1;
                     } else {
-                        currentTaskLine += "—";
+                        currentTaskLine += "-";
                         extra = 0;
                     }
                     currentTaskLine += (expectedSpaces.substring(0, expectedSpaces.length()
@@ -246,7 +246,7 @@ public class Ui {
                     if (actual > 1) {
                         currentTaskLine += (actual / 60);
                     } else {
-                        currentTaskLine += "—";
+                        currentTaskLine += "-";
                     }
 
                     extra = actual.toString().length() - 1;
@@ -291,7 +291,7 @@ public class Ui {
         return "Member \"" + memberName + "\" has been assigned to \"" + taskName + "\"";
     }
 
-    public static String printPriorityAssignedToTaskMessage(String priority, String taskName) {
+    public static String printPriorityAssignedToTaskMessage(int priority, String taskName) {
         return "Priority \"" + priority + "\" has been assigned to \"" + taskName + "\"";
     }
 
