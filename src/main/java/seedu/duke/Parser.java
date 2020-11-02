@@ -65,7 +65,8 @@ public class Parser {
 
     public static HashMap<String, String> getParams(String paramsString) {
         HashMap<String, String> inputParams = new HashMap<>();
-        //Extracts parameter terms with each parameter term containing a parameter type, forward slash, then parameter value
+        //Extracts parameter terms with each parameter term containing a parameter type,
+        // forward slash, then parameter value
         Pattern p = Pattern.compile(".\\/.+?(?=\\s.\\/.+)|.\\/.+");
         Matcher m = p.matcher(paramsString);
         while (m.find()) {
@@ -159,7 +160,8 @@ public class Parser {
             break;
         case "assign":
             commandType = (isHomeView)
-                    ? new AssignMemberToProjectCommand(params, isHomeView) : new TeamMemberAssignToTaskCommand(params, projectIndex);
+                    ? new AssignMemberToProjectCommand(params, isHomeView)
+                    : new TeamMemberAssignToTaskCommand(params, projectIndex);
             break;
         case "priority":
             if (isHomeView) {

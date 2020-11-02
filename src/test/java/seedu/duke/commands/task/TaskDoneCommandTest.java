@@ -9,7 +9,8 @@ import seedu.duke.task.Task;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TaskDoneCommandTest {
     static ArrayList<Project> projects;
@@ -47,7 +48,7 @@ class TaskDoneCommandTest {
         params.put("t", "5");
         TaskDoneCommand newCommand = new TaskDoneCommand(params, 1);
         Throwable actualOutputException = assertThrows(DukeExceptions.class,
-                () -> newCommand.executeCommand(projects, new ArrayList<>()));
+            () -> newCommand.executeCommand(projects, new ArrayList<>()));
         String expectedOutput = "Task ID does not exist!";
         assertEquals(expectedOutput, actualOutputException.toString());
     }

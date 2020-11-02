@@ -10,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class TaskAssignDeadlineCommandTest {
     static ArrayList<Project> projects;
@@ -49,7 +50,7 @@ class TaskAssignDeadlineCommandTest {
         params.put("d", "2020-09-1");
         params.put("t", "2");
         Throwable actualOutputException = assertThrows(DukeExceptions.class,
-                () -> new TaskAssignDeadlineCommand(params, 1));
+            () -> new TaskAssignDeadlineCommand(params, 1));
         String expectedOutput = "Date must be specified in format YYYY-MM-DD";
         assertEquals(expectedOutput, actualOutputException.toString());
     }
