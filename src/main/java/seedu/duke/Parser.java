@@ -38,7 +38,6 @@ public class Parser {
 
     private static final String INPUT_COMMAND_BYE = "bye";
     private static int projectIndex = -1;
-    private static int taskIndex = -1;
 
     /**
      * Parses user input into project command for execution.
@@ -66,9 +65,9 @@ public class Parser {
 
     public static HashMap<String, String> getParams(String paramsString) {
         HashMap<String, String> inputParams = new HashMap<>();
+        //Extracts parameter terms with each parameter term containing a parameter type, forward slash, then parameter value
         Pattern p = Pattern.compile(".\\/.+?(?=\\s.\\/.+)|.\\/.+");
-        String test = paramsString;
-        Matcher m = p.matcher(test);
+        Matcher m = p.matcher(paramsString);
         while (m.find()) {
             String[] keyAndValue = m.group().split("/");
             String paramType = keyAndValue[0];
@@ -111,8 +110,10 @@ public class Parser {
                     ? new PrintHomeViewCommand() : new TaskListCommand(projectIndex);
             break;
         case "select":
-            commandType = (isHomeView)
-                    ? new ProjectSelectCommand(params) : new TaskSelectCommand(params, projectIndex);
+            if (!isHomeView) {
+                throw new DukeExceptions("mustBeInHomeView");
+            }
+            commandType = new ProjectSelectCommand(params);
             break;
         case "description":
             commandType = new ProjectDescriptionCommand(params, projectIndex);
@@ -130,14 +131,10 @@ public class Parser {
             commandType = new TaskCommand(params, projectIndex);
             break;
         case "done":
-            if (isHomeView) {
-                commandType = new ProjectDoneCommand(params, projectIndex);
-                break;
-            }
-            commandType = new TaskDoneCommand(params, projectIndex);
+            commandType = (isHomeView)
+                    ? new ProjectDoneCommand(params, projectIndex) : new TaskDoneCommand(params, projectIndex);
             break;
         case "deadline":
-            //commandType = getDeadlineCommand(params, isHomeView);
             commandType = (isHomeView)
                     ? new ProjectDeadlineCommand(params) : new TaskAssignDeadlineCommand(params, projectIndex);
             break;
@@ -157,21 +154,12 @@ public class Parser {
         case "member":
             commandType = new TeamMemberAddCommand(params);
             break;
-        case "members":
-            commandType = new TeamMembersListCommand(isHomeView, projectIndex);
-            break;
         case "remove":
             commandType = new TeamMemberDeleteCommand(params);
             break;
         case "assign":
-            if (isHomeView) {
-                commandType = new AssignMemberToProjectCommand(params, isHomeView);
-            } else {
-                commandType = new TeamMemberAssignToTaskCommand(params, projectIndex);
-            }
-            break;
-        case "display":
-            commandType = new PrintHomeViewCommand();
+            commandType = (isHomeView)
+                    ? new AssignMemberToProjectCommand(params, isHomeView) : new TeamMemberAssignToTaskCommand(params, projectIndex);
             break;
         case "priority":
             if (isHomeView) {

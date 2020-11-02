@@ -50,14 +50,4 @@ public class TaskDoneCommand extends Command {
         return false;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof TaskDoneCommand) {
-            TaskDoneCommand taskCommand = (TaskDoneCommand) obj;
-            return ((this.taskIndex == taskCommand.taskIndex)
-                    && (this.projectIndex == taskCommand.projectIndex));
-        } else {
-            return false;
-        }
-    }
 }
