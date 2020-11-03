@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class Ui {
 
     private static final String MESSAGE_SINGLE_LINE = "____________________________________________________________";
-    private static final String MESSAGE_WELCOME = "Hello from Duke!\n"
+    private static final String MESSAGE_WELCOME = "Hello from EZ Manager!\n"
             + "What can I do for you?";
     private static final String MESSAGE_GOODBYE = "See you again!";
     private static final String MESSAGE_LOGO = " ____        _        \n"
@@ -23,7 +23,7 @@ public class Ui {
 
     public void printWelcome() {
         System.out.println(MESSAGE_SINGLE_LINE);
-        System.out.println(MESSAGE_LOGO);
+        //System.out.println(MESSAGE_LOGO);
         System.out.println(MESSAGE_WELCOME);
         System.out.println(MESSAGE_SINGLE_LINE);
     }
