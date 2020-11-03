@@ -5,6 +5,7 @@ import seedu.duke.member.TeamMember;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class Task {
     public String getDescription() {
@@ -18,13 +19,12 @@ public class Task {
     protected String description;
     protected boolean isDone;
     protected LocalDate date;
-    protected TeamMember member;
+    protected ArrayList<TeamMember> members = new ArrayList<>();
     protected int estimateInMinutes = 0;
     protected int actualInMinutes;
-    //protected String priority;
     protected int priority;
 
-    public int  getPriority() {
+    public int getPriority() {
         return priority;
     }
 
@@ -69,19 +69,24 @@ public class Task {
     }
 
     public String getDateString() {
-        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return (date != null) ? date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
     }
+
 
     public LocalDate getDeadline() {
         return this.date;
     }
 
-    public TeamMember getMember() {
-        return member;
+    public ArrayList<TeamMember> getMembers() {
+        return members;
     }
 
     public void setMember(TeamMember newMember) {
-        member = newMember;
+        members.add(newMember);
+    }
+
+    public boolean getStatus() {
+        return isDone;
     }
 
     /**

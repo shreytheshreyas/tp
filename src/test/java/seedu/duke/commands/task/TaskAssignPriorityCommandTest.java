@@ -61,7 +61,7 @@ class TaskAssignPriorityCommandTest {
      */
     @Test
     void executeCommand_nonExistentTaskId_invalidTaskId() throws DukeExceptions {
-        params.put("p", "2");
+        params.put("p", "1");
         params.put("t", "5");
         TaskAssignPriorityCommand command = new TaskAssignPriorityCommand(params, 0);
         String expectedOutput = "Task ID does not exist!";

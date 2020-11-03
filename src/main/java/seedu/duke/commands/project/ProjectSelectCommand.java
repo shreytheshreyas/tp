@@ -29,7 +29,6 @@ public class ProjectSelectCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-            Parser.setProjectIndex(projectIndex);
         } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidProjectID");
         }
@@ -41,9 +40,9 @@ public class ProjectSelectCommand extends Command {
         }
         try {
             Project selectedProject = projects.get(projectIndex);
-            System.out.println("Switched to Project \"" + selectedProject.getProjectName() + "\"");
-            //For small sam => help me implement this
-            return selectedProject.toString();
+            Parser.setProjectIndex(projectIndex);
+            String projectView = Ui.projectViewMessage(selectedProject);
+            return projectView;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }

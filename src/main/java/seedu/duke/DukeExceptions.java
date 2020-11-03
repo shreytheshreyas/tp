@@ -41,6 +41,7 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("invalidMemberID","The member ID entered does not exist");
         exceptionMessageList.put("priorityFormatError","The priority should be a number");
         exceptionMessageList.put("InvalidSortingParameter","You have entered the wrong sorting parameter");
+        exceptionMessageList.put("indexNonInteger","Index must be an integer!");
     }
 
     public String toString() {
