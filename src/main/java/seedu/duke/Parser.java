@@ -22,6 +22,7 @@ import seedu.duke.commands.task.TaskDoneCommand;
 import seedu.duke.commands.task.ActualTimeCommand;
 import seedu.duke.commands.task.EstimatedTimeCommand;
 import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskSortCommand;
 
 import java.util.HashMap;
 
@@ -153,6 +154,12 @@ public class Parser {
             break;
         case "bye":
             command = new ExitCommand();
+            break;
+        case "sort":
+            if (isHomeView) {
+                throw new DukeExceptions("mustBeInProjectView");
+            }
+            command = new TaskSortCommand(params, projectIndex);
             break;
         default:
             throw new DukeExceptions("default");
