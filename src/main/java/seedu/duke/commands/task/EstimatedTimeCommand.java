@@ -21,7 +21,7 @@ public class EstimatedTimeCommand extends Command {
 
     public EstimatedTimeCommand(HashMap<String, String> params, int projectIndex)
             throws DukeExceptions {
-        assert projectIndex >= 0: projectIndex;
+        assert projectIndex >= 0 : projectIndex;
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
