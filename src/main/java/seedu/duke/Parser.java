@@ -4,8 +4,7 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.PrintHomeViewCommand;
 import seedu.duke.commands.HomeCommand;
-import seedu.duke.commands.member.TeamMemberAddCommand;
-import seedu.duke.commands.member.TeamMemberDeleteCommand;
+import seedu.duke.commands.member.*;
 import seedu.duke.commands.project.ProjectDeadlineCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectDeleteCommand;
@@ -160,7 +159,7 @@ public class Parser {
             command = new TaskSortCommand(params, projectIndex);
             break;
         case "hours":
-            commandType = new TeamMemberHoursCommand(params, projectIndex);
+            command = new TeamMemberHoursCommand(params, projectIndex);
             break;
         default:
             throw new DukeExceptions("default");
