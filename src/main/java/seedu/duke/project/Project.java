@@ -27,12 +27,17 @@ public class Project implements Comparable<Project> {
         this.projectDeadline = null;
     }
 
-    @Override
+
+    public void sortTasksList() {
+        //Collections.sort(tasks);
+    }
+
     public int compareTo(Project project) {
         if (getProjectDeadline() == null || project.getProjectDeadline() == null) {
             return 0;
         }
         return getProjectDeadline().compareTo(project.getProjectDeadline());
+
     }
 
     public Task getTask(int taskIndex) {
@@ -45,6 +50,20 @@ public class Project implements Comparable<Project> {
 
     public void deleteTask(int taskIndex) {
         tasks.remove(taskIndex);
+    }
+
+    public int getNumberOfTask() {
+        return tasks.size();
+    }
+
+    public int getNumberOfFinishedTask() {
+        int finishedTaskCounter = 0;
+        for (Task task : tasks) {
+            if (task.isDone()) {
+                finishedTaskCounter++;
+            }
+        }
+        return finishedTaskCounter;
     }
 
     public void addDescription(String projectDescription) {
@@ -99,5 +118,23 @@ public class Project implements Comparable<Project> {
 
     public String selectTask(int taskId) {
         return tasks.get(taskId).toString();
+    }
+
+    public boolean getStatus() {
+        if (isDone) {
+            return isDone;
+        }
+
+        for (Task task : tasks) {
+            if (!(task.getStatus())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void markAsDone() {
+        this.isDone = true;
     }
 }
