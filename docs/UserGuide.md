@@ -156,10 +156,12 @@ Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist before a description can be added.
+* You must be in HomeView before adding a description
+to a project. 
 
 Example of usage: 
 
-* `description p/1 d/Project for Comapany X`. Adds the description 
+* `description p/1 d/Project for Company X`. Adds the description 
 `Project for Company X` to the first project.
 
 ### Deleting a project: `delete`
