@@ -90,6 +90,117 @@ Priority | As a ... | I want to ... | So that I can ...
 `*` | project manager | add the roles of my team members | allocate appropriate tasks to appropriate members
 `*` | project manager | send out reminders to my team members | have them shift gears or change something in real time  
 
+##Appendix C: Instructions for Manual Testing
+
+**<ins>Project-Specific Tests</ins>**
+
+*C.1 Creating a Project*
+1. Creating a Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the
+       application)
+    * Test case: `project n/p1`: A new project named as p1 should be created and added to the project list. A message will be displayed on the screen to ensure the user that the project has been created.
+    * Test case: `project p1`: Since the n/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
+    
+2. Creating a Project when you are in the Project-View
+    * Prerequisites: Required to be in Project-View
+    * Test case: `project n/p1`: Since the state of the program is in project view, the user will not be allowed to create a project and hence the program throws an exception.
+    
+*C.2 Deleting a Project*
+1. Deleting a Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the application)
+    * Test case: `delete p/1`: The project named as p1 will be deleted and from the project list. A message will be displayed on the screen to ensure the user that the project has been deleted.
+    * Test case: `delete p1`: Since the p/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
+
+2. Creating a Project when you are in the Project-View
+    * Prerequisites: Required to be in Project-View
+    * Test case: `project p/1`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+
+*C.3 Listing multiple Projects*
+1. Listing Projects when project list contains projects
+    * Prerequisites: Project list should at least have one project
+    * Test case: `list`: the list command will list all the projects present in the project list.
+    
+2. Creating a Project when you are in the Project-View
+    * Prerequisites: Project list should be empty
+    * Test case: `list`: Since the project list is empty, no projects will be displayed and, an exception will be shown saying that the project list is empty.
+    
+*C.4 Selecting a Project*
+1. Selecting a Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the application) and, the project p1 has already been created.
+    * Test case: `select p/1`: The project named as p1 will be will selected from the
+      project list and, you will enter project view of that respective project.
+    * Test case: `select p1`: Since the p/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
+      
+2. Selecting a Project when you are in the Project-View
+    * Prerequisites: Required to be in Project-View
+    * Test case: `select p/1`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+      
+*C.5 Providing a Description for a Project*
+1. Providing a description for the Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the application) and, the project p1 has already been created.
+    * Test case: `description d/This is a description`: Since we are not in the view of any project, we would not be able to add a description to any of them and hence the program will throw an exception.
+   
+2. Providing a description for the Project when you are in the Project-View 
+    * Prerequisites: A project p1 has to be created and, the program has to be in its project view
+    * Test case: `description d/This is a description`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+    
+**<ins>Task-Specific Tests</ins>**
+
+*C.6 Creating a Task*
+1. Creating a Task when you are in the Project-View
+    * Prerequisites: Only Required to be in Project View
+    * Test case: task `n/t1`: A new task named as t1 should be created and added to the task list of that project. A message will be displayed on the screen to ensure the user that the task has been created.
+
+2. Creating a Task when you are in the Home-View
+    * Prerequisites: Required to be in Home-View
+    * Test case: `project n/p1`: Since the state of the program is in Home view, the user will not be allowed to create a task and hence the program throws an exception.
+    
+*C.7 Deleting a Task*
+1. Deleting a Task when you are in the Project-View
+    * Prerequisites: Only Required to be in Project View 
+    * Test case: `delete t/1`: The first task of in the task list of the project will be deleted and, an acknowledgement message will be displayed on the screen to ensure the user that the required task has been deleted.
+    
+2. Deleting a Task when you are in the Home-View
+    * Prerequisites: Required to be in Home-View
+    * Test case: `delete t/p1`: Since the state of the program is in Home view, the user will not be allowed to delete a task and hence the program throws an exception.
+    
+*C.8 Selecting a Task*
+1. Selecting a Task when you are in the Project-View
+    * Prerequisites: Only Required to be in Project View (Initial state of the application)
+    * Test case: select t/1: The first task of in the task list of the project will be deleted and, an acknowledgement message will be displayed on the screen to ensure the user that the required task has been deleted.
+    
+2. Selecting a Task when you are in the Home-View
+    * Prerequisites: Required to be in Home-View
+    * Test case: delete `t/p1`: Since the state of the program is in Home view, the user will not be allowed to delete a task and hence the program throws an exception.
+    
+*C.9 Listing all Tasks in a Project*
+
+*C.10 Marking a Task as Completed*
+
+*C.11 Assigning a Deadline to a Task*
+
+*C.12 Assigning a Priority to a Task*
+
+*C.13 Assigning Estimated Completion Time to Task*
+
+*C.14 Assigning Actual Completion Time to Task*
+
+*C.15 Sorting Tasks in TaskList*
+
+**<ins>Member-Specific Tests</ins>**
+
+*C.16 Adding a Member*
+
+*C.17 Removing a Member*
+
+*C.18 Listing all Members*
+
+*C.19 Assigning a Member to a Project*
+
+*C.20 Assigning a Member to a Task*   
+
+
+
 
 
 
