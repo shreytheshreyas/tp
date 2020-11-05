@@ -12,16 +12,19 @@ import java.time.Period;
 
 public class Ui {
 
-    private static final String MESSAGE_SINGLE_LINE = "____________________________________________________________";
-    private static final String MESSAGE_WELCOME = "Hello from Duke!\n"
+    private static final String MESSAGE_SINGLE_LINE = "_____________________________________________________________________________________";
+    private static final String MESSAGE_WELCOME = "Hello from EzManager!\n"
             + "What can I do for you?";
     private static final String MESSAGE_GOODBYE = "See you again!";
-    private static final String MESSAGE_LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
+    private static final String MESSAGE_LOGO = " _____         ___     ___\n"
+            + "|  ___|       |   \\  /   |\n"
+            + "| |___  _____ |    \\/    | ______    ______  ______    ______  ______   _____  _____\n"
+            + "|  ___||___ / |  |\\  /|  ||  __  |  |  __  ||  __  |  |  __  ||  __  | / ___ \\|  ___|\n"
+            + "| |___   / /_ |  | \\/ |  || |__| |_ | |  | || |__| |_ | |  | || |__| ||   ___/|  |\n"
+            + "|_____| /____||__|    |__||________||_|  |_||________||_|  |_||____  ||______||__|\n"
+            + "                                                                   | |\n"
+            + "                                                               ____| |\n"
+            + "                                                              |______|\n";
 
     public void printWelcome() {
         System.out.println(MESSAGE_SINGLE_LINE);
@@ -94,14 +97,11 @@ public class Ui {
         return "Project \"" + projectName + "\" is done!";
     }
 
-    public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
-        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                + " added to Project " + project.getProjectName();
-    }
-
-    public static String printEmptyAdditionalProjectInformationMessage() {
-        return "<project description empty> | <project deadline empty> | "
-                + "<team members involved empty>";
+    public static String printProjectDeadlineAddedMessage(ArrayList<Project> projects, Project project, LocalDate date, ArrayList<TeamMember> members) {
+        String output =  "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName() + "\n\n";
+        output += printHomeView(projects, members);
+        return output;
     }
 
     public static String printTaskCreatedMessage(String taskName) {
@@ -125,12 +125,14 @@ public class Ui {
     }
 
     public static String printHomeView(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
-        String output = "Hello! Welcome to EZ Manager!\n";
+        String output = "EZ Manager Home View\n";
         output += "\n ---------------------- ";
         output += "\n| PROJECT LIST         |";
         output += "\n ---------------------- \n";
-        output += "\nIndex   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks                                 ";
-        output += "\n------------------------------------------------------------------------------------------------------------------------------------------------------";
+        output += "\nIndex   Status   Project Name             Project Description                "
+                + "Deadline     Tasks Completed     Remarks                                 ";
+        output += "\n---------------------------------------------------------------------------"
+                + "---------------------------------------------------------------------------";
         int projectIndex = 1;
         for (Project project : projects) {
             String paddedProjectIndex = String.format("%-8s", projectIndex + ".");
@@ -172,16 +174,16 @@ public class Ui {
                 ArrayList<Task> tasks = project.getTaskList();
                 LocalDate dateOfTaskWithNearestDeadline = null;
                 Task taskWithNearestDeadline = null;
-                for (int i = 0; i < tasks.size(); i++) {
-                    LocalDate deadlineOfTask = tasks.get(i).getDeadline();
+                for (Task task : tasks) {
+                    LocalDate deadlineOfTask = task.getDeadline();
                     if (deadlineOfTask == null) {
                         continue;
                     } else if (dateOfTaskWithNearestDeadline == null) {
                         dateOfTaskWithNearestDeadline = deadlineOfTask;
-                        taskWithNearestDeadline = tasks.get(i);
-                    } else if (deadlineOfTask.compareTo(dateOfTaskWithNearestDeadline) < 0){
+                        taskWithNearestDeadline = task;
+                    } else if (deadlineOfTask.compareTo(dateOfTaskWithNearestDeadline) < 0) {
                         dateOfTaskWithNearestDeadline = deadlineOfTask;
-                        taskWithNearestDeadline = tasks.get(i);
+                        taskWithNearestDeadline = task;
                     }
                 }
                 LocalDate currentDate = LocalDate.now();
@@ -206,7 +208,7 @@ public class Ui {
         output += "\n| MEMBERS LIST         |";
         output += "\n ---------------------- \n";
         output += "\nIndex      Member Name                        Projects Involved              ";
-        output += "\n---------------------------------------------------------------------------";
+        output += "\n-----------------------------------------------------------------------------";
         int j = 0;
         int memberIndex = 1;
         for (TeamMember member : teamMembers) {
