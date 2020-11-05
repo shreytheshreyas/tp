@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -40,11 +41,12 @@ public class Storage {
                     boolean status = Boolean.parseBoolean(s.nextLine().split(" ")[1]);
                     String projectDescription = s.nextLine().replaceFirst("projectDescription", "");
                     String deadline = s.nextLine().replaceFirst("projectDeadline", "").trim();
-                    LocalDate deadlineDate = LocalDate.parse(deadline);
-                    Project newProject = new Project(projectName);
-                    // TODO: set the projects stuff
-                    newProject.addProjectDeadline(deadlineDate);
 
+                    Project newProject = new Project(projectName);
+                    if (!deadline.equals("null")) {
+                        LocalDate deadlineDate = LocalDate.parse(deadline);
+                        newProject.addProjectDeadline(deadlineDate);
+                    }
 
                     // begin adding tasks to project
                     currentLine = s.nextLine().trim();
@@ -58,45 +60,95 @@ public class Storage {
 
                         Task newTask = new Task(currentLine.substring(0, taskDescriptionEndIndex - 1).trim());
                         String taskString = currentLine.substring(taskDescriptionEndIndex + 2);
-                        if (currentLine.length() > 9) {
-                            newTask.addDeadline(LocalDate.parse(taskString.substring(0, 10)));
+
+                        // is task done?
+                        int taskDoneStartIndex = taskString.indexOf("tS");
+                        int taskDoneEndIndex = taskString.indexOf("tE");
+                        if (taskDoneStartIndex != -1) {
+                            String isTaskDoneString = taskString.substring(taskDoneStartIndex+2, taskDoneEndIndex).trim();
+                            boolean isTaskDone = isTaskDoneString.equals("1") ? true : false;
+                            if (isTaskDone) {
+                                newTask.markAsDone();
+                            }
+
+                        }
+
+                        // extract deadline
+                        int deadlineStartIndex = taskString.indexOf("dS");
+                        int deadlineEndIndex = taskString.indexOf("dE");
+                        if (deadlineStartIndex != -1 && (deadlineEndIndex - deadlineStartIndex) > 4) {
+                            newTask.addDeadline(LocalDate.parse(taskString.substring(deadlineStartIndex+3, deadlineEndIndex)));
                         }
 
                         taskString = taskString.substring(taskString.indexOf("|") + 1);
-                        if (currentLine.length() > 1) {
-                            for (TeamMember member : members) {
-                                if (member.getName().equals(taskString.trim())) {
-                                    newTask.setMember(member);
-                                }
+
+                        int priorityStartIndex = taskString.indexOf("pS");
+                        int priorityEndIndex = taskString.indexOf("pE");
+                        if (priorityStartIndex != -1 && (priorityEndIndex - priorityStartIndex) > 4) {
+                            String priority = taskString.substring(priorityStartIndex+3, priorityEndIndex).trim();
+                            if (priority.length() >= 1) {
+                                newTask.setPriority(Integer.parseInt(priority));
                             }
                         }
 
-                        taskString = taskString.replace("estimateInMinutesStart", "");
-                        int estimateInMinutesEndIndex = taskString.indexOf("estimateInMinutesEnd");
-                        if (estimateInMinutesEndIndex != -1) {
-                            String estimate = taskString.substring(0, estimateInMinutesEndIndex);
+                        int estimateStartIndex = taskString.indexOf("eMS");
+                        int estimateEndIndex = taskString.indexOf("eME");
+                        if (estimateStartIndex != -1 && (estimateEndIndex - estimateStartIndex) > 8) {
+                            String estimate = taskString.substring(estimateStartIndex+3, estimateEndIndex);
                             if (estimate.length() > 1) {
                                 newTask.addEstimate(Integer.parseInt(estimate.trim()));
                             }
                         }
-
-                        taskString = taskString.substring(estimateInMinutesEndIndex + 20);
-                        taskString = taskString.replace("| actualInMinutesStart", "");
-                        if (taskString.indexOf("actualInMinutesEnd") != -1) {
-                            String estimate = taskString.substring(0, taskString.indexOf("actualInMinutesEnd"));
-                            if (estimate.length() > 1) {
-                                newTask.addActual(Integer.parseInt(estimate.trim()));
+                        int actualStartIndex = taskString.indexOf("aMS");
+                        int actualEndIndex = taskString.indexOf("aME");
+                        if (actualStartIndex != -1 && (actualEndIndex - actualStartIndex) > 8) {
+                            String actual = taskString.substring(actualStartIndex + 3, actualEndIndex);
+                            if (actual.length() > 1) {
+                                newTask.addActual(Integer.parseInt(actual.trim()));
                             }
                         }
 
+                        currentLine = s.nextLine();
+                        if (currentLine.equals("tMS")) {
+                            currentLine = s.nextLine();
+                            while (!currentLine.equals("tME")) {
+                                String memberName = currentLine;
+                                TeamMember member = getMember(memberName, members);
+                                newTask.setMember(member);
+                                currentLine = s.nextLine();
+                            }
+                        }
 
                         newProject.addTask(newTask);
+                        if (currentLine.equals("endTasks")) {
+                            break;
+                        }
                         currentLine = s.nextLine();
                     }
                     // end adding tasks to project
 
+                    // begin adding team members
+                    currentLine = s.nextLine();
+                    int projectMemberStartIndex = currentLine.indexOf("pMS");
+                    if (projectMemberStartIndex != -1) {
+                        while (!currentLine.equals("pME")) {
+                            if (currentLine.equals("pMS")) {
+                                currentLine = s.nextLine();
+                                continue;
+                            }
+                            TeamMember member = getMember(currentLine, members);
+                            if (member != null) {
+                                newProject.addTeamMemberToProject(member);
+                            }
+                            currentLine = s.nextLine();
+                        }
+                    }
+                    // end adding team members
+
                     projects.add(newProject);
-                    s.nextLine();
+                    if (s.hasNextLine()) {
+                        s.nextLine();
+                    }
                 }
             }
             return projects;
@@ -128,6 +180,16 @@ public class Storage {
             System.out.println(e.getMessage());
         }
         return new ArrayList<>();
+    }
+
+    public static TeamMember getMember(String name, ArrayList<TeamMember> members) {
+        for (TeamMember member : members) {
+            if (member.getName().equals(name)) {
+                return member;
+            }
+        }
+
+        return null;
     }
 
     public static void save(ArrayList<Project> projects, ArrayList<TeamMember> members) {

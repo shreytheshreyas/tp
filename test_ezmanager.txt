@@ -1,14 +1,21 @@
 Members 
-sam chris
-samuel Leow
-sean tan
+president
+vice president
+nacy palosi
 
-Project how are you
+Project elections
 status false
 projectDescription <project description empty>
-projectDeadline 2020-10-02
+projectDeadline null
 startTasks 
-ho ho | 2020-12-25 | estimateInMinutesStart 70 estimateInMinutesEnd
-merry christmas sam | 2021-12-25 | estimateInMinutesStart 184 estimateInMinutesEnd | actualInMinutesStart 62 actualInMinutesEnd
+first task | tS 1 tE | pS 0 pE
+tMS
+president
+vice president
+tME
+another task | tS 1 tE | pS 0 pE
 endTasks
-
+pMS
+president
+vice president
+pME

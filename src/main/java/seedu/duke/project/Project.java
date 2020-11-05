@@ -1,6 +1,7 @@
 package seedu.duke.project;
 
 import seedu.duke.member.TeamMember;
+import seedu.duke.storage.Storage;
 import seedu.duke.task.Task;
 
 import java.time.LocalDate;
@@ -119,16 +120,10 @@ public class Project implements Comparable<Project> {
     public String selectTask(int taskId) {
         return tasks.get(taskId).toString();
     }
-    
+
     /*
-        Project “projectName”
-        status isDone;
-        tasks
-        1. task, description, isDone, date, member, estimateInMinutes, actualInMinutes, priority
-        projectDescription “hello…”
-        projectDeadline
-        members
-        1. name; assignedProjectId;
+        Returns a string that will be saved in the text file.
+        @returns String
     */
     public String saveFormat() {
         String projectNameLine = "Project " + projectName;
@@ -143,8 +138,16 @@ public class Project implements Comparable<Project> {
         }
         tasksLines += "endTasks";
 
+        String membersLines = "pMS\n";
+        if (teamMembers.size() > 0) {
+            for (TeamMember member : teamMembers) {
+                membersLines += member.getName() + "\n";
+            }
+        }
+        membersLines += "pME";
+
         return projectNameLine + "\n" + statusLine + "\n" + projectDescriptionLine + "\n"
-                + projectDeadlineLine + "\n" + tasksLines + "\n";
+                + projectDeadlineLine + "\n" + tasksLines + "\n" + membersLines;
     }
 
     public boolean getStatus() {

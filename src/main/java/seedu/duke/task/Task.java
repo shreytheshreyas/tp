@@ -117,21 +117,30 @@ public class Task {
     public String saveFormat() {
         String taskLine = description;
 
+        taskLine += " | tS " + (isDone ? "1" : "0") + " tE";
+
         if (date != null) {
-            taskLine += " | " + date.toString();
+            taskLine += " | dS " + date.toString() + "dE";
         }
 
-        if (member != null) {
-            taskLine += " | " + member.getName();
-        }
+        taskLine += " | " + "pS " + priority + " pE";
 
         if (estimateInMinutes != 0) {
-            taskLine += " | " + "estimateInMinutesStart " + estimateInMinutes + " estimateInMinutesEnd";
+            taskLine += " | " + "eMS " + estimateInMinutes + " eME";
         }
 
         if (actualInMinutes != 0) {
-            taskLine += " | " + "actualInMinutesStart " + actualInMinutes + " actualInMinutesEnd";
+            taskLine += " | " + "aMS " + actualInMinutes + " aME";
         }
+
+        if (members.size() > 0) {
+            taskLine += "\ntMS\n"; // tMS stands for task member start
+            for (TeamMember member : members) {
+                taskLine += member.getName() + "\n";
+            }
+            taskLine += "tME";
+        }
+
         return taskLine;
     }
 
