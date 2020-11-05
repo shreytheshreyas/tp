@@ -1,21 +1,15 @@
-package seedu.duke;
+package seedu.duke.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.project.ProjectDeadlineCommand;
-import seedu.duke.commands.project.ProjectDescriptionCommand;
-import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.DukeExceptions;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.ui.Ui;
-import seedu.duke.project.ProjectList;
-import seedu.duke.task.Task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -23,6 +17,7 @@ public class ProjectDeadlineCommandTest {
     static ArrayList<Project> projects;
     static ArrayList<TeamMember> teamMembers;
     static Ui ui = new Ui();
+    static HashMap<String, String> params;
 
     @BeforeAll
     static void createProjectList() {
@@ -33,6 +28,7 @@ public class ProjectDeadlineCommandTest {
         projects.add(projectOne);
         projects.add(projectTwo);
         projects.add(projectThree);
+        params = new HashMap<>();
     }
 
     /**
@@ -40,8 +36,9 @@ public class ProjectDeadlineCommandTest {
      */
     @Test
     void executeCommand_validProjectId_addDeadlineToProject() throws DukeExceptions {
-        LocalDate date = LocalDate.parse("2020-12-31");
-        ProjectDeadlineCommand command = new ProjectDeadlineCommand(1, date);
+        params.put("p", "2");
+        params.put("d", "2020-12-31");
+        ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
         String expectedOutput = "Deadline 31/12/2020 added to Project Fire";
         String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
@@ -49,9 +46,10 @@ public class ProjectDeadlineCommandTest {
 
 
     @Test
-    void executeCommand_invalidProjectId_exceptionThrown() {
-        LocalDate date = LocalDate.parse("2020-12-31");
-        ProjectDeadlineCommand command = new ProjectDeadlineCommand(-5,date);
+    void executeCommand_invalidProjectId_exceptionThrown() throws DukeExceptions {
+        params.put("p", "-5");
+        params.put("d", "2020-12-31");
+        ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
         String expectedOutput = "Project ID does not exist!";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
             command.executeCommand(projects, teamMembers);

@@ -13,23 +13,23 @@ import java.util.ArrayList;
 public class AssignMemberToProjectCommand extends Command {
     private int memberIndex;
     private int projectIndex;
-    private boolean isProjectView;
+    private boolean isHomeView;
     private HashMap<String, String> paramsList;
 
-    public AssignMemberToProjectCommand(HashMap<String,String> paramsList, boolean isProjectView)
+    public AssignMemberToProjectCommand(HashMap<String,String> paramsList, boolean isHomeView)
             throws DukeExceptions {
         this.paramsList = paramsList;
-        this.isProjectView = isProjectView;
+        this.isHomeView = isHomeView;
         parse();
     }
 
     public void parse() throws DukeExceptions {
-        if (isProjectView) {
+        if (isHomeView) {
             try {
-                projectIndex = Integer.parseInt(getHashValue(paramsList,"p"));
+                projectIndex = Integer.parseInt(getHashValue(paramsList,"p")) - 1;
                 memberIndex = Integer.parseInt(getHashValue(paramsList,"m")) - 1;
-            } catch (IndexOutOfBoundsException e) {
-                throw new DukeExceptions("default");
+            } catch (NumberFormatException e) {
+                throw new DukeExceptions("indexNonInteger");
             }
         } else {
             throw new DukeExceptions("default");
@@ -37,16 +37,19 @@ public class AssignMemberToProjectCommand extends Command {
     }
 
     @Override
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
-        if (memberIndex > teamMembers.size() || memberIndex < 0) {
-            throw new DukeExceptions("invalidMemberID");
+    public String executeCommand(ArrayList<Project> projects,
+                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+        if (memberIndex >= teamMembers.size() || memberIndex < 0) {
+            throw new DukeExceptions("invalidTeamMemberID");
         }
-        if (projectIndex > teamMembers.size() || projectIndex < 0) {
+        if (projectIndex >= projects.size() || projectIndex < 0) {
             throw new DukeExceptions("invalidProjectID");
         }
+
         TeamMember requiredMember = teamMembers.get(memberIndex);
-        requiredMember.setAssignedProjectId(projectIndex);
-        return requiredMember + " assigned to project " + requiredMember.getAssignedProjectId();
+        requiredMember.assignProject(projects.get(projectIndex));
+        projects.get(projectIndex).addTeamMemberToProject(requiredMember);
+        return requiredMember + " assigned to Project \"" + projects.get(projectIndex).getProjectName() + "\"";
     }
 
     public Boolean isExit() {

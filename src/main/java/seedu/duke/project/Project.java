@@ -14,6 +14,7 @@ public class Project implements Comparable<Project> {
     private ArrayList<Task> tasks;
     private String projectDescription;
     private LocalDate projectDeadline;
+    private ArrayList<TeamMember> teamMembers;
     //private static final String TICK_MARK = "\u2713";
     //private static final String CROSS_MARK = "\u2718";
 
@@ -21,16 +22,22 @@ public class Project implements Comparable<Project> {
         this.projectName = projectName;
         this.isDone = false;
         this.tasks = new ArrayList<>();
+        this.teamMembers = new ArrayList<>();
         this.projectDescription = "<project description empty>";
         this.projectDeadline = null;
     }
 
-    @Override
+
+    public void sortTasksList() {
+        //Collections.sort(tasks);
+    }
+
     public int compareTo(Project project) {
         if (getProjectDeadline() == null || project.getProjectDeadline() == null) {
             return 0;
         }
         return getProjectDeadline().compareTo(project.getProjectDeadline());
+
     }
 
     public Task getTask(int taskIndex) {
@@ -43,6 +50,20 @@ public class Project implements Comparable<Project> {
 
     public void deleteTask(int taskIndex) {
         tasks.remove(taskIndex);
+    }
+
+    public int getNumberOfTask() {
+        return tasks.size();
+    }
+
+    public int getNumberOfFinishedTask() {
+        int finishedTaskCounter = 0;
+        for (Task task : tasks) {
+            if (task.isDone()) {
+                finishedTaskCounter++;
+            }
+        }
+        return finishedTaskCounter;
     }
 
     public void addDescription(String projectDescription) {
@@ -63,6 +84,14 @@ public class Project implements Comparable<Project> {
 
     public LocalDate getProjectDeadline() {
         return this.projectDeadline;
+    }
+
+    public ArrayList<TeamMember> getTeamMembers() {
+        return this.teamMembers;
+    }
+
+    public void addTeamMemberToProject(TeamMember addedMember) {
+        teamMembers.add(addedMember);
     }
 
     /**
@@ -90,7 +119,7 @@ public class Project implements Comparable<Project> {
     public String selectTask(int taskId) {
         return tasks.get(taskId).toString();
     }
-
+    
     /*
         Project “projectName”
         status isDone;
@@ -116,5 +145,23 @@ public class Project implements Comparable<Project> {
 
         return projectNameLine + "\n" + statusLine + "\n" + projectDescriptionLine + "\n"
                 + projectDeadlineLine + "\n" + tasksLines + "\n";
+    }
+
+    public boolean getStatus() {
+        if (isDone) {
+            return isDone;
+        }
+
+        for (Task task : tasks) {
+            if (!(task.getStatus())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public void markAsDone() {
+        this.isDone = true;
     }
 }
