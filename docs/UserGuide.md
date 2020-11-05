@@ -156,8 +156,7 @@ Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
 * The `PROJECT_INDEX` must be a positive integer.
 * The project must exist before a description can be added.
-* You must be in HomeView before adding a description
-to a project. 
+* You must be in HomeView before adding a description to a project.  
 
 Example of usage: 
 
