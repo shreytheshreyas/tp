@@ -1,42 +1,43 @@
 package seedu.duke.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.DukeExceptions;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-/**
 class TaskCommandTest {
-    static ProjectList projects;
+    static ArrayList<Project> projects;
 
     @BeforeAll
     static void createProjectList() {
-        projects = new ProjectList();
-        projects.createProject("project1");
-        projects.createProject("project2");
-        projects.createProject("project3");
+        projects = new ArrayList<>();
+        Project projectOne = new Project("Drink Water");
+        projects.add(projectOne);
+
+        Project projectTwo = new Project("Fire");
+        Task taskOne = new Task("test1");
+        Task taskTwo = new Task("test2");
+        projectTwo.addTask(taskOne);
+        projectTwo.addTask(taskTwo);
+        projects.add(projectTwo);
+
+        Project projectThree = new Project("CS2113 Tutorial");
+        projects.add(projectThree);
     }
 
     @Test
-    void executeCommand_projectList_taskCreated() {
-        TaskCommand createTask = new TaskCommand("task1", 2, LocalDate.parse("2020-08-24"));
-        createTask.executeCommand(projects);
-        Project correctProject = projects.getProjectList().get(2);
-        Task newTask = new Task("task1", LocalDate.parse("2020-08-24"));
-        assertEquals(newTask, correctProject.getTasks().get(0));
+    void executeCommand_existingTasks_taskCreated() throws DukeExceptions {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("n", "Task 3");
+        TaskCommand createTask = new TaskCommand(params, 1);
+        String actualOutput = createTask.executeCommand(projects, new ArrayList<>());
+        String expectedOutput = "Task \"Task 3\" created!";
+        assertEquals(expectedOutput, actualOutput);
     }
-
-    @Test
-    void executeCommand_projectList_correctOutput() {
-        TaskCommand createTask = new TaskCommand("task1", 2, LocalDate.parse("2020-08-24"));
-        String output = createTask.executeCommand(projects);
-        assertEquals("Created: task1 | 24/08/2020", output);
-    }
-}**/
+}

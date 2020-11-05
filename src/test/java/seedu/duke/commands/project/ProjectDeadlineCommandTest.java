@@ -3,19 +3,10 @@ package seedu.duke.commands.project;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeExceptions;
-import seedu.duke.commands.project.ProjectDeadlineCommand;
-import seedu.duke.commands.project.ProjectDescriptionCommand;
-import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.ui.Ui;
-import seedu.duke.project.ProjectList;
-import seedu.duke.task.Task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
