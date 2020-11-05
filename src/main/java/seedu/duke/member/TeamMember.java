@@ -33,6 +33,15 @@ public class TeamMember {
     }
 
     public String saveFormat() {
-        return this.toString();
+        String memberString = "";
+        memberString += this.toString();
+        memberString += "\npS\n";
+        if (assignedProjects.size() > 0) {
+            for (Project project : assignedProjects) {
+                memberString += project.getProjectName();
+            }
+        }
+        memberString += "\npE";
+        return memberString;
     }
 }

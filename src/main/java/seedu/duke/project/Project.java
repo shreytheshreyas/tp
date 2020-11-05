@@ -126,10 +126,7 @@ public class Project implements Comparable<Project> {
         @returns String
     */
     public String saveFormat() {
-        String projectNameLine = "Project " + projectName;
-        String statusLine = "status " + isDone;
-        String projectDescriptionLine = "projectDescription " + projectDescription;
-        String projectDeadlineLine = "projectDeadline " + projectDeadline;
+
         String tasksLines = "startTasks \n";
         if (tasks.size() > 0) {
             for (Task task : tasks) {
@@ -146,6 +143,10 @@ public class Project implements Comparable<Project> {
         }
         membersLines += "pME";
 
+        String projectNameLine = "Project " + projectName;
+        String statusLine = "status " + isDone;
+        String projectDescriptionLine = "projectDescription " + projectDescription;
+        String projectDeadlineLine = "projectDeadline " + projectDeadline;
         return projectNameLine + "\n" + statusLine + "\n" + projectDescriptionLine + "\n"
                 + projectDeadlineLine + "\n" + tasksLines + "\n" + membersLines;
     }

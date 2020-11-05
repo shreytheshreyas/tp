@@ -65,7 +65,8 @@ public class Storage {
                         int taskDoneStartIndex = taskString.indexOf("tS");
                         int taskDoneEndIndex = taskString.indexOf("tE");
                         if (taskDoneStartIndex != -1) {
-                            String isTaskDoneString = taskString.substring(taskDoneStartIndex+2, taskDoneEndIndex).trim();
+                            String isTaskDoneString = taskString.substring(taskDoneStartIndex + 2, taskDoneEndIndex)
+                                                        .trim();
                             boolean isTaskDone = isTaskDoneString.equals("1") ? true : false;
                             if (isTaskDone) {
                                 newTask.markAsDone();
@@ -77,7 +78,12 @@ public class Storage {
                         int deadlineStartIndex = taskString.indexOf("dS");
                         int deadlineEndIndex = taskString.indexOf("dE");
                         if (deadlineStartIndex != -1 && (deadlineEndIndex - deadlineStartIndex) > 4) {
-                            newTask.addDeadline(LocalDate.parse(taskString.substring(deadlineStartIndex+3, deadlineEndIndex)));
+                            newTask.addDeadline(
+                                    LocalDate.parse(
+                                            taskString.substring(deadlineStartIndex + 3, deadlineEndIndex
+                                            )
+                                    )
+                            );
                         }
 
                         taskString = taskString.substring(taskString.indexOf("|") + 1);
@@ -85,7 +91,7 @@ public class Storage {
                         int priorityStartIndex = taskString.indexOf("pS");
                         int priorityEndIndex = taskString.indexOf("pE");
                         if (priorityStartIndex != -1 && (priorityEndIndex - priorityStartIndex) > 4) {
-                            String priority = taskString.substring(priorityStartIndex+3, priorityEndIndex).trim();
+                            String priority = taskString.substring(priorityStartIndex + 3, priorityEndIndex).trim();
                             if (priority.length() >= 1) {
                                 newTask.setPriority(Integer.parseInt(priority));
                             }
@@ -94,7 +100,7 @@ public class Storage {
                         int estimateStartIndex = taskString.indexOf("eMS");
                         int estimateEndIndex = taskString.indexOf("eME");
                         if (estimateStartIndex != -1 && (estimateEndIndex - estimateStartIndex) > 8) {
-                            String estimate = taskString.substring(estimateStartIndex+3, estimateEndIndex);
+                            String estimate = taskString.substring(estimateStartIndex + 3, estimateEndIndex);
                             if (estimate.length() > 1) {
                                 newTask.addEstimate(Integer.parseInt(estimate.trim()));
                             }
@@ -172,6 +178,10 @@ public class Storage {
                 }
                 TeamMember newMember = new TeamMember(currentLine.trim());
                 members.add(newMember);
+                currentLine = s.nextLine();
+                while (!currentLine.equals("tMS")) {
+
+                }
                 currentLine = s.nextLine();
             }
 
