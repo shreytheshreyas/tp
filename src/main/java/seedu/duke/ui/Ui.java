@@ -2,7 +2,6 @@ package seedu.duke.ui;
 
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
