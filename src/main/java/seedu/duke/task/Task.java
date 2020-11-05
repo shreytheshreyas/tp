@@ -68,6 +68,10 @@ public class Task {
         return description;
     }
 
+    public void setTaskDescription(String newDescription) {
+        description = newDescription;
+    }
+
     public String getDateString() {
         return (date != null) ? date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
     }

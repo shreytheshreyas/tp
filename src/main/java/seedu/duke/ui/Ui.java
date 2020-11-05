@@ -181,6 +181,10 @@ public class Ui {
         return "Selected Task: " + taskName;
     }
 
+    public static String printTaskNameUpdatedMessage(String oldTaskName, String newTaskName) {
+        return "Task " + "\"" + oldTaskName + "\" has been updated to \"" + newTaskName + "\"";
+    }
+
     public static String printInHomeViewMessage() {
         return "Already in Home View!";
     }
