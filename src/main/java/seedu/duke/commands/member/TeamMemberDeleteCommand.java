@@ -24,7 +24,7 @@ public class TeamMemberDeleteCommand extends Command {
         try {
             memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new DukeExceptions("invalidTeamMemberID");
         }
     }
 

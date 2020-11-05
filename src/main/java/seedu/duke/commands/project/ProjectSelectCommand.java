@@ -5,12 +5,8 @@ import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.ui.Ui;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -29,7 +25,6 @@ public class ProjectSelectCommand extends Command {
     public void parse() throws DukeExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
-            Parser.setProjectIndex(projectIndex);
         } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidProjectID");
         }
@@ -41,9 +36,9 @@ public class ProjectSelectCommand extends Command {
         }
         try {
             Project selectedProject = projects.get(projectIndex);
-            System.out.println("Switched to Project \"" + selectedProject.getProjectName() + "\"");
-            //For small sam => help me implement this
-            return selectedProject.toString();
+            Parser.setProjectIndex(projectIndex);
+            String projectView = Ui.projectViewMessage(selectedProject);
+            return projectView;
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }

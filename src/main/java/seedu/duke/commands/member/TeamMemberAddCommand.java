@@ -23,7 +23,7 @@ public class TeamMemberAddCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        name = getHashValue(params, "m");
+        name = getHashValue(params, "n");
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
