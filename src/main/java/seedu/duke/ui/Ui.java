@@ -8,6 +8,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.time.Period;
 
 public class Ui {
 
@@ -128,29 +130,78 @@ public class Ui {
         output += "\n ---------------------- ";
         output += "\n| PROJECT LIST         |";
         output += "\n ---------------------- \n";
-        output += "\nIndex      Project Name                       Deadline      Tasks Completed";
-        output += "\n---------------------------------------------------------------------------";
-        int i = 0;
+        output += "\nIndex   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks                                 ";
+        output += "\n------------------------------------------------------------------------------------------------------------------------------------------------------";
         int projectIndex = 1;
         for (Project project : projects) {
-            String paddedProjectIndex = String.format("%-11s", projectIndex + ".");
+            String paddedProjectIndex = String.format("%-8s", projectIndex + ".");
+            String projectStatus;
+            if (project.isProjectDone()) {
+                projectStatus = "Y";
+            } else {
+                projectStatus = "N";
+            }
+            String paddedProjectStatus = String.format("%-9s", projectStatus);
             String projectName = project.getProjectName();
-            String paddedProjectName = String.format("%-35s", (i + 1) + ") " + projectName);
+            if (projectName.length() >= 25) {
+                projectName = projectName.substring(0, 21) + "...";
+            }
+            String paddedProjectName = String.format("%-25s", projectName);
+            String paddedProjectDescription;
+            if (project.getDescription() != "<project description empty>") {
+                String projectDescription = project.getDescription();
+                if (projectDescription.length() >= 35) {
+                    projectDescription = projectDescription.substring(0, 31) + "..."; //testing
+                }
+                paddedProjectDescription = String.format("%-35s", projectDescription);
+            } else {
+                paddedProjectDescription = String.format("%-35s", "-");
+            }
             String paddedProjectDeadline;
             if (project.getProjectDeadline() != null) {
                 String projectDeadline = project.getProjectDeadline().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                paddedProjectDeadline = String.format("%-14s", projectDeadline);
+                paddedProjectDeadline = String.format("%-13s", projectDeadline);
             } else {
-                paddedProjectDeadline = String.format("%-14s", "-");
+                paddedProjectDeadline = String.format("%-13s", "-");
             }
             String taskCompleted = project.getNumberOfFinishedTask() + "/"
                     + project.getNumberOfTask();
-            String paddedTaskCompleted = String.format("%-15s", taskCompleted);
-            output += "\n           " + paddedProjectName + paddedProjectDeadline + paddedTaskCompleted;
-            i++;
-            //upstream repo
-//            output += "\n" + paddedProjectIndex + paddedProjectName + paddedProjectDeadline + paddedTaskCompleted;
-//            projectIndex++;
+            String paddedTaskCompleted = String.format("%-20s", taskCompleted);
+
+            String remarks;
+            if (!project.getTaskList().isEmpty()) {
+                ArrayList<Task> tasks = project.getTaskList();
+                LocalDate dateOfTaskWithNearestDeadline = null;
+                Task taskWithNearestDeadline = null;
+                for (int i = 0; i < tasks.size(); i++) {
+                    LocalDate deadlineOfTask = tasks.get(i).getDeadline();
+                    if (deadlineOfTask == null) {
+                        continue;
+                    } else if (dateOfTaskWithNearestDeadline == null) {
+                        dateOfTaskWithNearestDeadline = deadlineOfTask;
+                        taskWithNearestDeadline = tasks.get(i);
+                    } else if (deadlineOfTask.compareTo(dateOfTaskWithNearestDeadline) < 0){
+                        dateOfTaskWithNearestDeadline = deadlineOfTask;
+                        taskWithNearestDeadline = tasks.get(i);
+                    }
+                }
+                LocalDate currentDate = LocalDate.now();
+                if (dateOfTaskWithNearestDeadline != null) {
+                    Period period = Period.between(currentDate, dateOfTaskWithNearestDeadline);
+                    if (period.getDays() <= 5) {
+                        remarks = "!!!WARNING!!! Task \"" + taskWithNearestDeadline.getDescription() + "\" has " + period.getDays() + " day(s) before deadline!!";
+                    } else {
+                        remarks = "-";
+                    }
+                } else {
+                    remarks = "-";
+                }
+            } else {
+                remarks = "-";
+            }
+            output += "\n" + paddedProjectIndex + paddedProjectStatus+ paddedProjectName + paddedProjectDescription
+                    + paddedProjectDeadline + paddedTaskCompleted + remarks;
+            projectIndex++;
         }
         output += "\n\n ---------------------- ";
         output += "\n| MEMBERS LIST         |";
