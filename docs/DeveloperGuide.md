@@ -49,11 +49,186 @@ Let us hit the ground running with the next section about setting up!
 
 If the setup is correct, you should see the welcome screen and greeting.
 
-
-
 Thank you for taking the time to test out EZ Manager. [Here](https://www.loom.com/share/f64bb5fd4b7a4089b31a96ddc8e1ea79) is a quick video to introduce you to some of the commands you can use on EZ Manager v2.0.
 
 PDF developer guide available [here](https://we.tl/t-UkcnzA4i8P)
+
+## Design
+Developers are welcome to contribute by submitting issues or pull requests on our repository. The design section is a good place to start learning about EZ Manager’s architecture and various components. Most developers will contribute to the app mainly through addition of new user commands. The section “Addition of new commands” will provide a step-by-step walkthrough to ensure new commands follow the overall architecture. Figure 2 below shows the overall class diagram for EZ Manager.  
+
+### Consideration
+Eazy was developed via a breadth first iterative approach with new commands progressively added. An n-tier architecture ensured separation of concern between various layers of the architecture but much of the program’s logic remained in the Command classes. This design architecture ensured minimal changes to the codebase when new commands were added. Often, new commands or feature addition required changes to only a single data class and addition of a new independent command class. 
+
+### Overall Architecture
+EZ Manager consists of 4 main layers:  
+* Ui: Handles the output of the app 
+* Logic: Command parser and executor 
+* Model: Data classes 
+* Storage: Handles the saving and loading of data to the hard disk 
+
+The Ui and Storage layer contains a single class. The model layer contained a member, a task and a project class and the logic layer contained a single parser class and various command classes. Functionality was exposed directly through these command classes, eliminating the need for redundant classes with few methods. In a small app like EZ Manager, this enhanced code maintainability and readability. 
+ 
+Now, we will delve into more detail about each component. 
+
+### UI Component
+API: Ui.java 
+Introduction: 
+The Ui.java is a class made up of various acknowledgement messages to be displayed after the user inputs a command. 
+Abstraction: 
+Every message in the class is stored as a String and it is abstracted to a method. This method is called after the execution of a command.  
+Access: 
+Every method in the Ui class is a static method. Hence, every command class calls the appropriate static methods directly from the Ui class. 
+
+### Logic Component
+As user commands follow a fixed format, a generic parser can extract command types and parameter for all commands. This is handled by the parser class. The parser then passes the extracted values to specific command classes. Below are the workings of the Parser and Commands. 
+ 
+**Parser**
+
+User inputs are passed to the static parse method of the parser class. The parser then calls instances of command classes for command execution. The following are handled by the parser. 
+* Command type is extracted and used to determine which command class is called for command execution.  
+* Command parameters are extracted using a regex and stored in a hashmap. This hashmap is passed to the command class.  
+* A projectIndex pointer keeps track of the view the user is currently in.  
+    * If the user is in a project view, this allows the parser to know which project the task to be manipulated is in.  
+    * If the user is in the home view, this allows the parser to know that projects are to be manipulated instead. 
+    * This pointer is passed to the command class. 
+ 
+**Commands** 
+
+Each command class represents a specific user command. The bulk of the program’s logic resides here. It manipulates data objects (model layer) and tasks the Ui to display output. The following is a more specific description of command classes. 
+* The constructor extracts individual command parameters from the HashMap given to it from the parser. 
+* From main(), executeCommand method is called which passes these parameters to methods in the model layer, which manipulates data objects. 
+* ExecuteCommand also calls methods in the Ui to display output messages to the user. 
+
+### Model Component
+
+The model component is to provide you with a conceptual understanding of how the data is stored in EZ Manager. EZ Manager has three classes which store data, the Project class, the Task class and the Team Member class. This section will explain how each of these classes interact with one another. The diagram below shows the attributes associated with each of the objects. 
+
+Each project can contain many tasks and have multiple team members assigned to the project. To facilitate this, the Project class contains an ArrayList of Task and an ArrayList of TeamMembers. Other attributes of the Project include its name, description, deadline and its status. All these fields are represented in the Home View of EZ Manager. 
+ 
+Furthermore, for each task that you create, you can add a priority (to allow for sorting in later versions of EZ Manager), status, deadline, assign a member to work on the task and even include the estimates and actual time that a task takes to complete. 
+
+### Storage Component
+
+This is section will explain how EZ Manager ensures that the data in the application persists after each session has been terminated (with the bye command). Figure 3 outlines the responsibility of the Storage component for loading and storing the data during the lifecycle of the application. 
+
+More specifically, Figure 4 shows us how the text file would look like when it is populated. In the load method of Storage that is called at the beginning of each application, the first thing that is recalled are the team members that are part of the overall organization that is being managed by EZ Manager.  
+
+Once the team members are in, the load method registers the projects. Each project is stored in a block that starts with “Project ProjectNameHere” so in Figure 4, the project is project “how are you”. Data pertaining to the project, which includes, the project’s status (whether it is done or not), the project description all the way to the tasks and members associated with the project can be extracted from here and loaded into the current instance of the application. That completes the loading process. 
+ 
+Once the loading process is over, the application proceeds to its normal operation where it receives input from you and responds accordingly. The next important part is when you input the exit command “bye” once this is triggered, before the application terminates, we call the save method. 
+ 
+The save method from the Storage component clears the ezmanager.txt file and then populates it with the current data using the saveFormat function (available in the Project, Task and TeamMember) to ensure that the formatting is consistent with EZ Manager’s saving convention. Once this step is done, you can be assured that your data has been saved.  
+
+## Implementation
+
+### Adding a new project
+This section will explain the creation of new projects and how the objects interact with each other. 
+The user can create new projects to be added to the list of projects with the project command. 
+This command is facilitated with the help of the ProjectCommand class. An instance of the ProjectCommand class will have the following properties: 
+* tasks: An array list of tasks 
+* members: An array list of members 
+* projectName: The name of the project as a String object 
+*projectDescription: The description of the project as a String object 
+projectDeadline: The deadline of the project as a Local Date object 
+Step 1: The user types the project command followed by the name of the project e.g. project n/Project One.  
+The main Duke class will call the Parser class. 
+The Parser class will check which state the app is in and will then call the appropriate class constructor. In this case, the Parser will call the ProjectCommand constructor. The ProjectCommand constructor will also check for the validity of the user’s input. 
+The Parser class will then initialize a new instance of the ProjectCommand constructor with the project name “Project One” and return it back to the main Duke class. 
+The Duke class will call the executeCommand function from the returned instance which will execute the command. 
+The executeCommand function will create a new Project instance 
+It will then add that instance to the static projects list.  
+Lastly, it will call the printProjectCreated method from the Ui class and return it to the main Duke class. 
+The Duke class will then receive the acknowledgement message and display it to the user in the terminal. 
+The above is illustrated below in a sequence diagram. The sequence diagram will only encompass the sequence in the executeCommand function. 
+
+### Deleting Tasks
+This command allows project managers to delete tasks from projects. 
+The logic for this command is primarily written in TaskDeleteCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command delete t/3 
+ 
+**Implementation**
+1. Parser initializes TaskDeleteCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of TaskDeleteCommand extracts the task index from the hashmap. 
+3. ExecuteCommand() method of TaskDeleteCommand is called by Duke main class, which passes it the program’s arraylist of projects. 
+    
+    3.1 Existing project is retrieved from the arraylist of projects using projectIndex. 
+    
+    3.2 The method deleteTask of the project is called with taskIndex. 
+    
+    3.3 This simply removes the task from the arraylist of tasks the project contains. 
+    
+    3.4 The Ui class prints an acknowledgement that the task has been deleted. 
+    
+### Adding Deadline to Tasks
+
+This command allows project managers to add deadline to tasks. 
+The logic for this command is primarily written in DeadlineCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command deadline t/3 h/2 m/32 
+
+**Implementation**
+
+1. Parser initializes DeadlineCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of DeadlineCommand extracts the task index and deadline date from the hashmap. 
+3. ExecuteCommand() method of DeadlineCommand is called by Duke main class, which passes it the program’s arraylist of projects. 
+   
+    3.1 Existing task is retrieved with taskIndex after retrieving the project it belongs to from the arraylist of project. 
+    
+    3.2 The method addDeadline of the task is called that sets its date property. 
+    
+    3.3 The Ui class then prints the deadline and the task description. 
+    
+### Assign Actual Duration to Tasks    
+This command allows project managers to record the actual duration that completed tasks take. 
+The logic for this command is primarily written in ActualTimeCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command actual t/3 h/2 m/32 
+
+**Implementation**
+1. Parser initializes ActualTimeCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of ActualTimeCommand extracts the task index, hours and minutes from the hashmap. 
+3. ExecuteCommand() method of ActualTimeCommand is run. 
+  
+    3.1 Existing task is retrieved using projectIndex and taskIndex. 
+
+    3.2 The task is checked to determine if it is completed. 
+
+    3.3 If the task is completed, the task instance will have its actualInMinutes property set based on the hours and minutes retrieved. 
+
+    3.4 Otherwise, an exception is thrown. 
+  
+    3.5 The Ui class then prints the task description and the duration the task took. 
+    
+### Assign Estimated Duration to Tasks    
+This command allows project managers to add an estimate for the duration tasks will take. 
+The logic for this command is primarily written in EstimatedTimeCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command estimate t/3 h/2 m/32 
+
+**Implementation**
+1. Parser initializes EstimatedTimeCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of EstimatedTimeCommand extracts the task index, hours and minutes from the hashmap. 
+3. ExecuteCommand() method of EstimateTimeCommand is run. 
+    
+    3.1 Existing task is retrieved using projectIndex and taskIndex. 
+    
+    3.2 addEstimate() method of task is called, and the task will have its estimateInMinutes property set based on the hours and minutes retrieved. 
+
+    3.3 The Ui class then prints the task description and the estimated duration added to the task. 
+   
 
 **User Stories**
 
