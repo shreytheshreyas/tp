@@ -14,6 +14,7 @@ import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -50,13 +51,14 @@ public class TaskSortCommandTest {
 
     @Test
     public void execute_command_sortTaskList_Priority() throws DukeExceptions {
-        String sortingType = "p/";
+        HashMap<String, String> params = new HashMap<>();
+        params.put("p", "");
         String expectedOutput = "List of Tasks:"
                 + "\n     " + "1" + "." + "Task Two | 23/12/2020 | Actual: 2 hours 10 minutes|priority: 1"
                 + "\n     " + "2" + "." + "Task Three | 14/11/2020 | Actual: 3 hours 30 minutes|priority: 2"
                 + "\n     " + "3" + "." + "Task One | 13/12/2020 | Actual: 1 hours 30 minutes|priority: 3";
 
-        TaskSortCommand tasksSorter = new TaskSortCommand(sortingType,0);
+        TaskSortCommand tasksSorter = new TaskSortCommand(params,0);
         tasksSorter.executeCommand(projects,teamMembers);
         String actualOutput = Ui.printTaskListMessage(projects.get(0));
 
@@ -65,13 +67,14 @@ public class TaskSortCommandTest {
 
     @Test
     public void execute_command_sortTaskList_Deadline() throws DukeExceptions {
-        String sortingType = "d/";
+        HashMap<String, String> params = new HashMap<>();
+        params.put("d", "");
         String expectedOutput = "List of Tasks:"
                 + "\n     " + "1" + "." + "Task Three | 14/11/2020 | Actual: 3 hours 30 minutes|priority: 2"
                 + "\n     " + "2" + "." + "Task One | 13/12/2020 | Actual: 1 hours 30 minutes|priority: 3"
                 + "\n     " + "3" + "." + "Task Two | 23/12/2020 | Actual: 2 hours 10 minutes|priority: 1";
 
-        TaskSortCommand tasksSorter = new TaskSortCommand(sortingType,0);
+        TaskSortCommand tasksSorter = new TaskSortCommand(params,0);
         tasksSorter.executeCommand(projects,teamMembers);
         String actualOutput = Ui.printTaskListMessage(projects.get(0));
 
@@ -80,13 +83,14 @@ public class TaskSortCommandTest {
 
     @Test
     public void execute_command_sortTaskList_ActualTime() throws DukeExceptions {
-        String sortingType = "t/";
+        HashMap<String, String> params = new HashMap<>();
+        params.put("t", "");
         String expectedOutput = "List of Tasks:"
                 + "\n     " + "1" + "." + "Task One | 13/12/2020 | Actual: 1 hours 30 minutes|priority: 3"
                 + "\n     " + "2" + "." + "Task Two | 23/12/2020 | Actual: 2 hours 10 minutes|priority: 1"
                 + "\n     " + "3" + "." + "Task Three | 14/11/2020 | Actual: 3 hours 30 minutes|priority: 2";
 
-        TaskSortCommand tasksSorter = new TaskSortCommand(sortingType,0);
+        TaskSortCommand tasksSorter = new TaskSortCommand(params,0);
         tasksSorter.executeCommand(projects,teamMembers);
         String actualOutput = Ui.printTaskListMessage(projects.get(0));
 
@@ -95,11 +99,10 @@ public class TaskSortCommandTest {
 
     @Test
     public void executeCommand_invalidProjectId_assignMemberToProject() throws DukeExceptions {
-        String sortingType = "q/";
-        TaskSortCommand tasksSorter = new TaskSortCommand(sortingType,0);
-        String expectedOutput = "You have entered the wrong sorting parameter";
+        HashMap<String, String> params = new HashMap<>();
+        String expectedOutput = "OOPS!!! I'm sorry, but I don't know what that means :-(";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
-            tasksSorter.executeCommand(projects,teamMembers);
+            new TaskSortCommand(params,0);
         });
         assertEquals(expectedOutput,actualOutputException.toString());
     }

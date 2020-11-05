@@ -20,6 +20,7 @@ public class TaskDoneCommand extends Command {
     HashMap<String, String> params;
 
     public TaskDoneCommand(HashMap<String, String> params, int projectIndex) throws DukeExceptions {
+        assert projectIndex >= 0 : projectIndex;
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
@@ -50,14 +51,4 @@ public class TaskDoneCommand extends Command {
         return false;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof TaskDoneCommand) {
-            TaskDoneCommand taskCommand = (TaskDoneCommand) obj;
-            return ((this.taskIndex == taskCommand.taskIndex)
-                    && (this.projectIndex == taskCommand.projectIndex));
-        } else {
-            return false;
-        }
-    }
 }
