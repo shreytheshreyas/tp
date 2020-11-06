@@ -169,11 +169,11 @@ public class Ui {
                     + project.getNumberOfTask();
             String paddedTaskCompleted = String.format("%-20s", taskCompleted);
 
-            String remarks;
+            String remarks = "-";
+            LocalDate dateOfTaskWithNearestDeadline = null;
+            Task taskWithNearestDeadline = null;
             if (!project.getTaskList().isEmpty()) {
                 ArrayList<Task> tasks = project.getTaskList();
-                LocalDate dateOfTaskWithNearestDeadline = null;
-                Task taskWithNearestDeadline = null;
                 for (Task task : tasks) {
                     LocalDate deadlineOfTask = task.getDeadline();
                     if (deadlineOfTask == null) {
@@ -187,18 +187,16 @@ public class Ui {
                     }
                 }
                 LocalDate currentDate = LocalDate.now();
-                if (dateOfTaskWithNearestDeadline != null) {
+                // if i have a task inside a project with a nearest deadline and task is still not done
+                if (dateOfTaskWithNearestDeadline != null && !taskWithNearestDeadline.getStatus()) {
+                    //find the difference in the number of days from current days to deadline
                     Period period = Period.between(currentDate, dateOfTaskWithNearestDeadline);
-                    if (period.getDays() <= 5) {
-                        remarks = "!!!WARNING!!! Task \"" + taskWithNearestDeadline.getDescription() + "\" has " + period.getDays() + " day(s) before deadline!!";
+                    if (period.getDays() <= 5 && period.getMonths() == 0 && period.getYears() == 0) {
+                        remarks = "!!!WARNING!!! Task \"" + taskWithNearestDeadline.getDescription() + "\" has " + period.getDays() + " day(s) before deadline and still not done!!";
                     } else {
-                        remarks = "-";
+                        remarks = "Task \"" + taskWithNearestDeadline.getDescription() + "\" has an upcoming deadline at " + taskWithNearestDeadline.getDateString() + " and still not done!!" ;
                     }
-                } else {
-                    remarks = "-";
                 }
-            } else {
-                remarks = "-";
             }
             output += "\n" + paddedProjectIndex + paddedProjectStatus+ paddedProjectName + paddedProjectDescription
                     + paddedProjectDeadline + paddedTaskCompleted + remarks;
@@ -207,37 +205,30 @@ public class Ui {
         output += "\n\n ---------------------- ";
         output += "\n| MEMBERS LIST         |";
         output += "\n ---------------------- \n";
-        output += "\nIndex      Member Name                        Projects Involved              ";
+        output += "\nIndex   Member Name                   Projects Involved                      ";
         output += "\n-----------------------------------------------------------------------------";
-        int j = 0;
         int memberIndex = 1;
         for (TeamMember member : teamMembers) {
-            String paddedMemberIndex = String.format("%-11s", memberIndex + ".");
+            String paddedMemberIndex = String.format("%-8s", memberIndex + ".");
             String memberName = member.getName();
-            String concatenatedName;
-            if (member.getName().length() >= 23) {
-                concatenatedName = member.getName().substring(0, 22);
-            } else {
-                concatenatedName = memberName;
+            if (member.getName().length() >= 30) {
+                memberName = member.getName().substring(0, 26) + "...";
             }
-            String paddedMemberName = String.format("%-26s", (j + 1) + ") " + concatenatedName);
-            //upstream repo
-            //String paddedMemberName = String.format("%-17s", memberName);
-            //String memberRole;
-            output += "\n" + paddedMemberIndex + paddedMemberName + "                  ";
+            String paddedMemberName = String.format("%-30s", memberName);
+            output += "\n" + paddedMemberIndex + paddedMemberName;
             if (member.getAssignedProjects() != null) {
-                for (int k = 0; k < member.getAssignedProjects().size(); k++) {
-                    Project assignedProject = member.getAssignedProjects().get(k);
-                    String paddedAssignedProject = String.format("%-28s", assignedProject.getProjectName());
-                    if (k == 0) {
-                        output += "1. " + paddedAssignedProject;
+                for (int i = 0; i < member.getAssignedProjects().size(); i++) {
+                    String assignedProjectName = member.getAssignedProjects().get(i).getProjectName();
+                    if (i == 0) {
+                        output += "1. " + assignedProjectName;
                     } else {
-                        output += "\n                                            "
-                                + (k + 1) + ". " + paddedAssignedProject;
+                        output += "\n                                      "
+                                + (i + 1) + ". " + assignedProjectName;
                     }
                 }
+            } else {
+                output += "-";
             }
-            j++;
             output += System.lineSeparator();
             memberIndex++;
         }
