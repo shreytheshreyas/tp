@@ -1,5 +1,6 @@
 package seedu.duke.member;
 
+import seedu.duke.DukeExceptions;
 import seedu.duke.project.Project;
 
 import java.util.ArrayList;
@@ -15,7 +16,12 @@ public class TeamMember {
         this.assignedProjects = new ArrayList<>();
     }
 
-    public void assignProject(Project project) {
+    public void assignProject(Project project) throws DukeExceptions {
+        for (Project assignedProject : assignedProjects) {
+            if (assignedProject == project) {
+                throw new DukeExceptions("projectAlreadyAssigned");
+            }
+        }
         assignedProjects.add(project);
     }
 

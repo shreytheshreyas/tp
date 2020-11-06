@@ -42,6 +42,7 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("priorityFormatError","The priority should be a number");
         exceptionMessageList.put("InvalidSortingParameter","You have entered the wrong sorting parameter");
         exceptionMessageList.put("indexNonInteger","Index must be an integer!");
+        exceptionMessageList.put("projectAlreadyAssigned","Project has already been assigned to member!");
     }
 
     public String toString() {
