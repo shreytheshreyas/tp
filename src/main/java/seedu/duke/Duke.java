@@ -41,7 +41,6 @@ public class Duke {
     public static void run() {
         Ui ui = new Ui();
 
-//        ui.printWelcome();
         Scanner in = new Scanner(System.in);
 
         boolean isExit = false;
