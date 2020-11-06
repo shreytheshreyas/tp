@@ -12,7 +12,8 @@ import java.time.Period;
 
 public class Ui {
 
-    private static final String MESSAGE_SINGLE_LINE = "_____________________________________________________________________________________";
+    private static final String MESSAGE_SINGLE_LINE = "_________________________________________"
+            + "____________________________________________";
     private static final String MESSAGE_WELCOME = "Hello from EzManager!\n"
             + "What can I do for you?";
     private static final String MESSAGE_GOODBYE = "See you again!";
@@ -97,7 +98,8 @@ public class Ui {
         return "Project \"" + projectName + "\" is done!";
     }
 
-    public static String printProjectDeadlineAddedMessage(ArrayList<Project> projects, Project project, LocalDate date, ArrayList<TeamMember> members) {
+    public static String printProjectDeadlineAddedMessage(ArrayList<Project> projects, Project project,
+                                                          LocalDate date, ArrayList<TeamMember> members) {
         String output =  "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
                 + " added to Project " + project.getProjectName() + "\n\n";
         output += printHomeView(projects, members);
@@ -134,21 +136,26 @@ public class Ui {
         output += "\n---------------------------------------------------------------------------"
                 + "---------------------------------------------------------------------------";
         int projectIndex = 1;
+        String paddedProjectIndex;
+        String paddedProjectStatus;
+        String paddedProjectName;
+        String paddedProjectDescription;
+        String paddedProjectDeadline;
+        String paddedTaskCompleted;
         for (Project project : projects) {
-            String paddedProjectIndex = String.format("%-8s", projectIndex + ".");
+            paddedProjectIndex = String.format("%-8s", projectIndex + ".");
             String projectStatus;
             if (project.isProjectDone()) {
                 projectStatus = "Y";
             } else {
                 projectStatus = "N";
             }
-            String paddedProjectStatus = String.format("%-9s", projectStatus);
+            paddedProjectStatus = String.format("%-9s", projectStatus);
             String projectName = project.getProjectName();
             if (projectName.length() >= 25) {
                 projectName = projectName.substring(0, 21) + "...";
             }
-            String paddedProjectName = String.format("%-25s", projectName);
-            String paddedProjectDescription;
+            paddedProjectName = String.format("%-25s", projectName);
             if (project.getDescription() != "<project description empty>") {
                 String projectDescription = project.getDescription();
                 if (projectDescription.length() >= 35) {
@@ -158,7 +165,6 @@ public class Ui {
             } else {
                 paddedProjectDescription = String.format("%-35s", "-");
             }
-            String paddedProjectDeadline;
             if (project.getProjectDeadline() != null) {
                 String projectDeadline = project.getProjectDeadline().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
                 paddedProjectDeadline = String.format("%-13s", projectDeadline);
@@ -167,8 +173,7 @@ public class Ui {
             }
             String taskCompleted = project.getNumberOfFinishedTask() + "/"
                     + project.getNumberOfTask();
-            String paddedTaskCompleted = String.format("%-20s", taskCompleted);
-
+            paddedTaskCompleted = String.format("%-20s", taskCompleted);
             String remarks = "-";
             LocalDate dateOfTaskWithNearestDeadline = null;
             Task taskWithNearestDeadline = null;
@@ -192,13 +197,16 @@ public class Ui {
                     //find the difference in the number of days from current days to deadline
                     Period period = Period.between(currentDate, dateOfTaskWithNearestDeadline);
                     if (period.getDays() <= 5 && period.getMonths() == 0 && period.getYears() == 0) {
-                        remarks = "!!!WARNING!!! Task \"" + taskWithNearestDeadline.getDescription() + "\" has " + period.getDays() + " day(s) before deadline and still not done!!";
+                        remarks = "!!!WARNING!!! Task \"" + taskWithNearestDeadline.getDescription()
+                                + "\" has " + period.getDays() + " day(s) before deadline and still not done!!";
                     } else {
-                        remarks = "Task \"" + taskWithNearestDeadline.getDescription() + "\" has an upcoming deadline at " + taskWithNearestDeadline.getDateString() + " and still not done!!" ;
+                        remarks = "Task \"" + taskWithNearestDeadline.getDescription()
+                                + "\" has an upcoming deadline at " + taskWithNearestDeadline.getDateString()
+                                + " and still not done!!";
                     }
                 }
             }
-            output += "\n" + paddedProjectIndex + paddedProjectStatus+ paddedProjectName + paddedProjectDescription
+            output += "\n" + paddedProjectIndex + paddedProjectStatus + paddedProjectName + paddedProjectDescription
                     + paddedProjectDeadline + paddedTaskCompleted + remarks;
             projectIndex++;
         }
