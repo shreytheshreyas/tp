@@ -126,7 +126,7 @@ public class Parser {
             if (isHomeView) {
                 throw new DukeExceptions("mustBeInProjectView");
             }
-            commandType = new TaskEditCommand(params, projectIndex);
+            command = new TaskEditCommand(params, projectIndex);
             break;
         case "done":
             command = (isHomeView)
