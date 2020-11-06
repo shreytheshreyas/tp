@@ -41,7 +41,7 @@ public class Duke {
     public static void run() {
         Ui ui = new Ui();
 
-        ui.printWelcome();
+//        ui.printWelcome();
         Scanner in = new Scanner(System.in);
 
         boolean isExit = false;
@@ -63,6 +63,18 @@ public class Duke {
 
     public static void main(String[] args) throws DukeExceptions {
         new Duke("ezmanager.txt").run();
+        final Thread mainThread = Thread.currentThread();
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                try {
+                    mainThread.join();
+                    Storage.save(projects, teamMembers);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
 }
