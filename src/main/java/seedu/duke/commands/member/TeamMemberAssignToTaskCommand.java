@@ -58,10 +58,8 @@ public class TeamMemberAssignToTaskCommand extends Command {
             throw new DukeExceptions("invalidTeamMemberID");
         }
 
-        selectedTask = projects.get(projectIndex).getTask(taskIndex);
-        TeamMember member = teamMembers.get(memberIndex);
-        selectedTask.setMember(member);
-        return Ui.printMemberAssignedToTaskMessage(member.getName(), selectedTask.getTaskDescription());
+        selectedTask.setMember(teamMember);
+        return Ui.printMemberAssignedToTaskMessage(teamMember.getName(), selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {
