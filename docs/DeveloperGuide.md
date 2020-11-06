@@ -228,7 +228,92 @@ User enters command estimate t/3 h/2 m/32
     3.2 addEstimate() method of task is called, and the task will have its estimateInMinutes property set based on the hours and minutes retrieved. 
 
     3.3 The Ui class then prints the task description and the estimated duration added to the task. 
-   
+ 
+### Assign priority to task 
+This section will explain the assigning of priorities to tasks and how the objects interact with each other. 
+
+The user can assign a priority to any existing task with the `priority` command. 
+
+This command is facilitated with the help of the TaskAssignPriorityCommand class. An instance of the TaskAssignPriorityCommand class has the following properties. 
+- projectIndex: The index of the project as an Integer 
+- taskIndex: The index of the task as an Integer 
+- priority: The priority to be assigned as a String 
+
+Step 1: The user types the priority command e.g. `priority t/1 p/1`
+1. The main Duke class will call the Parser class. 
+2. The Parser class will check which state the app is in and will then call the appropriate class constructor. In this case, the Parser will call the ProjectListCommand constructor. The ProjectListCommand constructor will also check for the validity of the user’s input. The constraints of the input are as follows:
+  - Not a number for either task index or priority 
+  - Not a positive number for either task index or priority
+  - An index of a task that does not exist 
+3. The Parser class will then initialize a new instance of the TaskAssignPriorityCommand constructor and return it back to the main Duke class. 
+4. The Duke class will call the executeCommand function from the returned instance which will execute the command. 
+  - The executeCommand will get the specified task using the taskIndex. 
+  - It will then set the priority property of the task as the specified priority. 
+  - Lastly, it will call the printPriorityAssignedToTaskMessage method from the Ui class and send the acknowledgement message to the main Duke class. 
+5. The Duke class will then display the acknowledgement message to the user in the terminal 
+The above is illustrated below in a sequence diagram. The sequence diagram will only encompass the sequence in the executeCommand function. 
+
+### Marking a task as done 
+This command allows you to mark a task in a selected project. 
+
+The logic for this command is written in the TaskDoneCommand class which inherits its general properties from the abstract Command class. 
+
+The following states how the functionality is used in the application and how it is implemented: 
+
+User enters Command
+User enters command `done t/1`
+
+Implementation
+1. The parser class uses the `TaskDoneCommand` constructor to initialize a new instance of that class type by passing a hash map which consists of the parameters of that command along with the respective project index of the project in which the task is present in. 
+2. The `parse()` method in the `TaskDoneCommand` class extracts the task index of the task that is to be marked done. If the task index is not present in the task list of that project, an exception is thrown. 
+3. The `executeCommand()` of the `TaskDoneCommand` class is called by the `main()` method of the `Duke` class and which passes the project and team members array list to the respective method.
+  - The current project is obtained using the project array list and the project index that was passed during the instantiation of the `TaskDoneCommand` object.
+  - Now, the method fetches the required task by using task index extracted from the  `parse()`.
+  - The task object obtained is used to call the member function `markAsDone()` which sets the Boolean field in a task from false to true which the indicates that the task is completed. 
+  - The `Ui` class then prints an acknowledgement message to let the user know that a task has been marked as done. 
+  
+### Sorting Tasks in the TaskList
+This command allows you to sort the tasks in a task list in a selected project. 
+
+The logic for this command is written in the `TaskSortCommand` class which inherits its general properties from the abstract Command class. 
+
+The following states how the functionality is used in the application and how it is implemented: 
+
+User enters command: `sort p/`, `sort t/` or `sort d/`
+1. The parser class uses the `TaskSortCommand` constructor to initialize a new instance of that class type by passing the input which consists of the parameter of that command. 
+2. The `parse()` method in the `TaskSortCommand` class extracts the sorting type (deadline, priority, actual time). 
+3. The `executeCommand()` of the `TaskDoneCommand` class is called by the `main()` method of the `Duke` class and which passes the project and team members array list to the respective method. 
+  - The current project is obtained using the project array list and the project index that was passed during the instantiation of the TaskSortCommand object. 
+  - Now, based on the sorting type the method will choose a case statement in a switch-case that reflects the type of sorting.
+  - The `Ui` class then prints an acknowledgement message to let the user know that the tasks have been sorted according to the respective sorting type. 
+
+
+## Running Tests 
+There are two ways to run tests for EZ manager. 
+> To check for test coverage, please ensure that you `Run with coverage` when right clicking on the tests to run. 
+
+**Method 1: Using IntelliJ JUnit test runner**
+- To run all tests available, right-click on the `src/test/java` folder and choose `Run  All Tests`
+- To run a some of the tests, you can right-click on a test package, test class, or a test and choose `Run Particular Test Name Here` 
+
+**Method 2: Using Gradle**
+- On Windows, run the command `gradlew clean allTests` in a terminal 
+- On Mac or Linux, run the command `./gradlew clean allTests` in a terminal 
+
+## DevOps — Making a Release 
+Here are the steps to create a new release. 
+1. Update the version number in Duke.java 
+2. Generate a JAR file using Gradle
+3. Tag the repo with the version number. e.g. v0.1 
+4. Create a new release using GitHub and upload the JAR file you created. 
+
+## Appendix A: Product Scope 
+Target user profile: 
+- Project Manager of Software Engineering projects 
+- Needs to manage teams for different projects 
+
+Value proposition:
+Manage projects in a smooth and seamless way to allow the team to get more done 
 
 **User Stories**
 
