@@ -1,3 +1,5 @@
+//@@author thatseant
+
 package seedu.duke.commands.task;
 
 import seedu.duke.DukeExceptions;
@@ -5,14 +7,20 @@ import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
+import seedu.duke.ui.Ui;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
+import static seedu.duke.Util.DATE_KEY;
+import static seedu.duke.Util.EMPTY_PROJECT_LIST;
+import static seedu.duke.Util.INVALID_TASK_ID;
+import static seedu.duke.Util.TASK_INDEX_KEY;
+import static seedu.duke.Util.USER_JAVA_INDEX_DIFF;
+import static seedu.duke.Util.WRONG_DATE_FORMAT;
 
 public class TaskAssignDeadlineCommand extends Command {
     private int projectIndex;
@@ -28,28 +36,27 @@ public class TaskAssignDeadlineCommand extends Command {
 
     public void parse() throws DukeExceptions {
         try {
-            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-            date = LocalDate.parse(getHashValue(params, "d"));
+            taskIndex = Integer.parseInt(getHashValue(params, TASK_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
+            date = LocalDate.parse(getHashValue(params, DATE_KEY));
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new DukeExceptions(INVALID_TASK_ID);
         } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
-            throw new DukeExceptions("WrongDateFormat");
+            throw new DukeExceptions(WRONG_DATE_FORMAT);
         }
     }
 
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
-            throw new DukeExceptions("emptyProjectList");
+            throw new DukeExceptions(EMPTY_PROJECT_LIST);
         }
         try {
             Project project = projects.get(projectIndex);
             Task task = project.getTaskList().get(taskIndex);
             task.addDeadline(date);
-            return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                    + " added to Task " + task.getDescription();
+            return Ui.printTaskDeadlineMessage(date, task.getDescription());
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new DukeExceptions(INVALID_TASK_ID);
         }
     }
 

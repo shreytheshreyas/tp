@@ -4,6 +4,7 @@ import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -181,6 +182,11 @@ public class Ui {
         return "Selected Task: " + taskName;
     }
 
+    public static String printTaskDeadlineMessage(LocalDate date, String taskName) {
+        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Task " + taskName;
+    }
+
     public static String printTaskNameUpdatedMessage(String oldTaskName, String newTaskName) {
         return "Task " + "\"" + oldTaskName + "\" has been updated to \"" + newTaskName + "\"";
     }
@@ -300,6 +306,10 @@ public class Ui {
 
     public static String printMemberAssignedToTaskMessage(String memberName, String taskName) {
         return "Member \"" + memberName + "\" has been assigned to \"" + taskName + "\"";
+    }
+
+    public static String printMemberAssignedToProjectMessage(String memberName, String projectName) {
+        return memberName + " assigned to Project \"" + projectName + "\"";
     }
 
     public static String printPriorityAssignedToTaskMessage(int priority, String taskName) {
