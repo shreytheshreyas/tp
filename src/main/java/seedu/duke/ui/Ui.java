@@ -44,8 +44,12 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
-    public static String printMemberRemovedMessage(String name) {
-        return "Team member \"" + name + "\" has been removed";
+    public static String printMemberRemovedInHomeViewMessage(String name) {
+        return "Team member \"" + name + "\" has been removed from program entirely";
+    }
+
+    public static String printMemberRemovedInProjectViewMessage(String name, String projectName) {
+        return "Team member \"" + name + "\" has been removed from Project \"" + projectName + "\"";
     }
 
     public static String printProjectDeletedMessage(Project project) {
