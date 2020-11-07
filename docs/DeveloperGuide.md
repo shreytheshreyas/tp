@@ -350,7 +350,7 @@ Priority | As a ... | I want to ... | So that I can ...
 `*` | project manager | add the roles of my team members | allocate appropriate tasks to appropriate members
 `*` | project manager | send out reminders to my team members | have them shift gears or change something in real time  
 
-## Appendix C: Instructions for Manual Testing
+## Appendix C: Instructions for Manual Testing (Shreyas)
 
 ### <ins>Project-Specific Tests</ins>
 
