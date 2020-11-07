@@ -92,16 +92,19 @@ public class Parser {
 
         boolean isHomeView = (projectIndex == -1); //In main project list view
 
-        Command command = getCommand(isHomeView, commandType, params, projectIndex);
+        Command command = getCommand(isHomeView, commandType, params, projectIndex, inputWords);
         return command;
     }
 
     public static Command getCommand(boolean isHomeView, String commandType, HashMap<String, String> params,
-                                     int projectIndex) throws DukeExceptions {
+                                     int projectIndex, String[] inputWords) throws DukeExceptions {
         Command command;
 
         switch (commandType) {
         case "list":
+            if (inputWords.length == 2) {
+                throw new DukeExceptions("incorrectListCommand");
+            }
             command = (isHomeView)
                     ? new PrintHomeViewCommand() : new TaskListCommand(projectIndex);
             break;

@@ -47,6 +47,10 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("forwardSlashError","Parameters should not contain slashes!");
         exceptionMessageList.put("duplicateParams","Duplicate Parameters detected!");
         exceptionMessageList.put("missingParameters","Certain Parameters are missing!");
+        exceptionMessageList.put("projectAlreadyAssigned","Project has already been assigned to member!");
+        exceptionMessageList.put("TaskAlreadyAssigned","Task has already been assigned to member!");
+        exceptionMessageList.put("incorrectListCommand","Please only enter \"list\" into the command "
+                + "to display the home view or project view!");
     }
 
     public String toString() {

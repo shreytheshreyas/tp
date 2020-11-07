@@ -57,12 +57,8 @@ public class TeamMemberAssignToTaskCommand extends Command {
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTeamMemberID");
         }
-
-        selectedTask = projects.get(projectIndex).getTask(taskIndex);
-        TeamMember member = teamMembers.get(memberIndex);
-        member.setTask(selectedTask);
-        selectedTask.setMember(member);
-        return Ui.printMemberAssignedToTaskMessage(member.getName(), selectedTask.getTaskDescription());
+        selectedTask.setMember(teamMember);
+        return Ui.printMemberAssignedToTaskMessage(teamMember.getName(), selectedTask.getTaskDescription());
     }
 
     public Boolean isExit() {
