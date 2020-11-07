@@ -35,6 +35,7 @@ public class TeamMember {
     public String saveFormat() {
         String memberString = "";
         memberString += this.toString();
+        /*
         memberString += "\npS\n";
         if (assignedProjects.size() > 0) {
             for (Project project : assignedProjects) {
@@ -42,6 +43,7 @@ public class TeamMember {
             }
         }
         memberString += "\npE";
+        */
         return memberString;
     }
 }

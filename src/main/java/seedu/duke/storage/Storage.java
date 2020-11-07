@@ -145,6 +145,7 @@ public class Storage {
                             TeamMember member = getMember(currentLine, members);
                             if (member != null) {
                                 newProject.addTeamMemberToProject(member);
+                                member.assignProject(newProject);
                             }
                             currentLine = s.nextLine();
                         }
@@ -159,7 +160,7 @@ public class Storage {
             }
             return projects;
         } catch (FileNotFoundException e) {
-            // System.out.println(e.getMessage());
+            //System.out.println("Creating file...");
         }
 
         return temp;
@@ -178,10 +179,6 @@ public class Storage {
                 }
                 TeamMember newMember = new TeamMember(currentLine.trim());
                 members.add(newMember);
-                currentLine = s.nextLine();
-                while (!currentLine.equals("tMS")) {
-
-                }
                 currentLine = s.nextLine();
             }
 

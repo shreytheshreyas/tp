@@ -1,21 +1,19 @@
-Members
-president
-vice president
-nacy palosi
+Members 
+member one
+another one
 
-Project elections
+Project sad
 status false
 projectDescription <project description empty>
-projectDeadline null
-startTasks
-first task | tS 1 tE | pS 0 pE
+projectDeadline 2020-12-20
+startTasks 
+one thing | tS 0 tE | pS 0 pE
 tMS
-president
-vice president
+member one
 tME
-another task | tS 1 tE | pS 0 pE
+another thing | tS 0 tE | pS 0 pE
 endTasks
 pMS
-president
-vice president
+member one
+another one
 pME
