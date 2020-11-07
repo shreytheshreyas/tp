@@ -80,9 +80,6 @@ public class TeamMemberDeleteCommand extends Command {
                 memberToBeRemoved.getAssignedProjects().remove(project);
                 return Ui.printMemberRemovedInProjectViewMessage(memberToBeRemoved.getName(), project.getProjectName());
             }
-
-
-
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTeamMemberID");
         }
