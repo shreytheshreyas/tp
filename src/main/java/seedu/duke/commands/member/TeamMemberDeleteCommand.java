@@ -66,7 +66,8 @@ public class TeamMemberDeleteCommand extends Command {
             // Removing of members in ProjectView
             } else {
                 Project project = projects.get(projectIndex);
-                TeamMember memberToBeRemoved = project.getTeamMembers().remove(memberIndex);
+                TeamMember memberToBeRemoved = project.getTeamMembers().get(memberIndex);
+                project.getTeamMembers().remove(memberIndex);
                 for (Task task : project.getTaskList()) {
                     Iterator<TeamMember> teamMemberInTaskIterator = task.getMembers().iterator();
                     while (teamMemberInTaskIterator.hasNext()) {
