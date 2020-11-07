@@ -364,7 +364,7 @@ class ParserTest {
     @Test
     void parse_hoursCommandProjectView_correctCommand() throws DukeExceptions {
         String inputCommand = "hours m/2";
-        Parser.setProjectIndex(3);
+        Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
         assertTrue(actualCommand instanceof TeamMemberHoursCommand);
     }

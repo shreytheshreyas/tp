@@ -18,17 +18,12 @@ import seedu.duke.commands.project.ProjectDoneCommand;
 import seedu.duke.commands.task.TaskAssignPriorityCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
-import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskDoneCommand;
 import seedu.duke.commands.task.TaskAssignDeadlineCommand;
-import seedu.duke.commands.task.TaskDeleteCommand;
-import seedu.duke.commands.task.TaskAssignPriorityCommand;
 import seedu.duke.commands.task.TaskEditCommand;
 import seedu.duke.commands.task.ActualTimeCommand;
 import seedu.duke.commands.task.EstimatedTimeCommand;
-import seedu.duke.ui.Ui;
-import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskSortCommand;
 import java.util.HashMap;
 
