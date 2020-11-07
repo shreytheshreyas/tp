@@ -78,7 +78,6 @@ public class Ui {
                     + "priority: " + project.getTask(i).getPriority() : "");
         }
 
-        output += "\n\nThe most time consuming so far:\n" + project.maxTimeTask();
         return output;
     }
 
