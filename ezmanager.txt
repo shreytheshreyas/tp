@@ -17,3 +17,12 @@ pMS
 member one
 another one
 pME
+
+Project one thing
+status false
+projectDescription <project description empty>
+projectDeadline null
+startTasks 
+endTasks
+pMS
+pME

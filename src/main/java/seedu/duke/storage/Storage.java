@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Storage {
@@ -34,8 +35,9 @@ public class Storage {
         try {
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             ArrayList<Project> projects = new ArrayList<>();
+            String currentLine;
             while (s.hasNext()) {
-                String currentLine = s.nextLine();
+                currentLine = s.nextLine();
                 if (currentLine.contains("Project")) {
                     String projectName = currentLine.replaceFirst("Project", "").trim();
                     boolean status = Boolean.parseBoolean(s.nextLine().split(" ")[1]);
@@ -99,15 +101,16 @@ public class Storage {
 
                         int estimateStartIndex = taskString.indexOf("eMS");
                         int estimateEndIndex = taskString.indexOf("eME");
-                        if (estimateStartIndex != -1 && (estimateEndIndex - estimateStartIndex) > 8) {
+                        if (estimateStartIndex != -1 && (estimateEndIndex - estimateStartIndex) > 6) {
                             String estimate = taskString.substring(estimateStartIndex + 3, estimateEndIndex);
                             if (estimate.length() > 1) {
                                 newTask.addEstimate(Integer.parseInt(estimate.trim()));
                             }
                         }
+
                         int actualStartIndex = taskString.indexOf("aMS");
                         int actualEndIndex = taskString.indexOf("aME");
-                        if (actualStartIndex != -1 && (actualEndIndex - actualStartIndex) > 8) {
+                        if (actualStartIndex != -1 && (actualEndIndex - actualStartIndex) > 6) {
                             String actual = taskString.substring(actualStartIndex + 3, actualEndIndex);
                             if (actual.length() > 1) {
                                 newTask.addActual(Integer.parseInt(actual.trim()));
@@ -154,10 +157,15 @@ public class Storage {
 
                     projects.add(newProject);
                     if (s.hasNextLine()) {
-                        s.nextLine();
+                        currentLine = s.nextLine();
+                    }
+                } else {
+                    if (s.hasNextLine()) {
+                        currentLine = s.nextLine();
                     }
                 }
             }
+
             return projects;
         } catch (FileNotFoundException e) {
             //System.out.println("Creating file...");
@@ -183,7 +191,7 @@ public class Storage {
             }
 
             return members;
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | NoSuchElementException e) {
             System.out.println("Creating file...");
         }
         return new ArrayList<>();
@@ -213,13 +221,12 @@ public class Storage {
             }
 
             fw.write("\n");
-            
-            int i;
-            for (i = 0; i < projects.size(); i++) {
-                Project project = projects.get(i);
+
+            for (Project project : projects) {
                 fw.write(project.saveFormat() + "\n");
-                fw.close();
             }
+
+            fw.close();
 
         } catch (IOException e) {
             System.out.println(e.getMessage());

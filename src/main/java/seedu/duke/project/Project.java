@@ -148,7 +148,7 @@ public class Project implements Comparable<Project> {
         String projectDescriptionLine = "projectDescription " + projectDescription;
         String projectDeadlineLine = "projectDeadline " + projectDeadline;
         return projectNameLine + "\n" + statusLine + "\n" + projectDescriptionLine + "\n"
-                + projectDeadlineLine + "\n" + tasksLines + "\n" + membersLines;
+                + projectDeadlineLine + "\n" + tasksLines + "\n" + membersLines + "\n";
     }
 
     public boolean getStatus() {
