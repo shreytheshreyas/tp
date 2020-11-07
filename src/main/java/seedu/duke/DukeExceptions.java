@@ -28,6 +28,8 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("Create File","The file could not be created");
         exceptionMessageList.put("Open File","The file could not be opened");
         exceptionMessageList.put("default","OOPS!!! I'm sorry, but I don't know what that means :-(");
+        exceptionMessageList.put("unrecognisedCommand","OOPS!!! I'm sorry, but I don't know what that "
+                + "command means :-(");
         exceptionMessageList.put("mustBeInHomeView","You must be in Home View to do that!");
         exceptionMessageList.put("mustBeInProjectView","You must be in Project View to do that!");
         exceptionMessageList.put("emptyProjectList","Project list is empty!");
@@ -42,6 +44,9 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("priorityFormatError","The priority should be a number");
         exceptionMessageList.put("InvalidSortingParameter","You have entered the wrong sorting parameter");
         exceptionMessageList.put("indexNonInteger","Index must be an integer!");
+        exceptionMessageList.put("forwardSlashError","Parameters should not contain slashes!");
+        exceptionMessageList.put("duplicateParams","Duplicate Parameters detected!");
+        exceptionMessageList.put("missingParameters","Certain Parameters are missing!");
         exceptionMessageList.put("projectAlreadyAssigned","Project has already been assigned to member!");
         exceptionMessageList.put("TaskAlreadyAssigned","Task has already been assigned to member!");
         exceptionMessageList.put("incorrectListCommand","Please only enter \"list\" into the command "
