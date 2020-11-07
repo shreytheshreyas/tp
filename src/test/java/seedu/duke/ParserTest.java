@@ -358,4 +358,14 @@ class ParserTest {
         String expectedOutput = "OOPS!!! I'm sorry, but I don't know what that command means :-(";
         assertEquals(expectedOutput, exception.toString());
     }
+
+    @Test
+    void parse_missingParametersPriority_missingParamsException() {
+        String inputCommand = "priority t/1";
+        Parser.setProjectIndex(3);
+        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+                Parser.parse(inputCommand));
+        String expectedOutput = "Certain Parameters are missing!";
+        assertEquals(expectedOutput, exception.toString());
+    }
 }
