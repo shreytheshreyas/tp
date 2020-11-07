@@ -128,11 +128,11 @@ public class Ui {
 
     public static String printHomeView(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         String output = "EZ Manager Home View\n";
-        output += "\n ---------------------- ";
+        output += "\n ----------------------";
         output += "\n| PROJECT LIST         |";
-        output += "\n ---------------------- \n";
+        output += "\n ----------------------\n";
         output += "\nIndex   Status   Project Name             Project Description                "
-                + "Deadline     Tasks Completed     Remarks                                 ";
+                + "Deadline     Tasks Completed     Remarks";
         output += "\n---------------------------------------------------------------------------"
                 + "---------------------------------------------------------------------------";
         int projectIndex = 1;
@@ -210,10 +210,10 @@ public class Ui {
                     + paddedProjectDeadline + paddedTaskCompleted + remarks;
             projectIndex++;
         }
-        output += "\n\n ---------------------- ";
+        output += "\n\n ----------------------";
         output += "\n| MEMBERS LIST         |";
-        output += "\n ---------------------- \n";
-        output += "\nIndex   Member Name                   Projects Involved                      ";
+        output += "\n ----------------------\n";
+        output += "\nIndex   Member Name                   Projects Involved";
         output += "\n-----------------------------------------------------------------------------";
         int memberIndex = 1;
         for (TeamMember member : teamMembers) {
