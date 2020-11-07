@@ -1,5 +1,4 @@
-ezmanager.txt (No such file or directory)
-ezmanager.txt (No such file or directory)
+Creating file...
 ____________________________________________________________
 Project "p1" created!
 ____________________________________________________________

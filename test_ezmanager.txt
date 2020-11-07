@@ -1,4 +1,4 @@
-Members 
+Members
 president
 vice president
 nacy palosi
@@ -7,7 +7,7 @@ Project elections
 status false
 projectDescription <project description empty>
 projectDeadline null
-startTasks 
+startTasks
 first task | tS 1 tE | pS 0 pE
 tMS
 president

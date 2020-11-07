@@ -159,7 +159,7 @@ public class Storage {
             }
             return projects;
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            // System.out.println(e.getMessage());
         }
 
         return temp;
@@ -187,7 +187,7 @@ public class Storage {
 
             return members;
         } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Creating file...");
         }
         return new ArrayList<>();
     }
