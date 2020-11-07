@@ -47,14 +47,20 @@ public class Parser {
         return projectIndex;
     }
 
-    public static HashMap<String, String> getParams(String paramsString) {
+    public static HashMap<String, String> getParams(String paramsString) throws DukeExceptions {
         HashMap<String, String> inputParams = new HashMap<>();
         Pattern p = Pattern.compile(".\\/.+?(?=\\s.\\/.+)|.\\/.+"); //Regex to extract parameter terms
         Matcher m = p.matcher(paramsString);
         while (m.find()) {
             String[] keyAndValue = m.group().split("/");
+            if (keyAndValue.length != 2) {
+                throw new DukeExceptions("forwardSlashError");
+            }
             String paramType = keyAndValue[0];
             String paramValue = keyAndValue[1];
+            if (inputParams.containsKey(paramType)) {
+                throw new DukeExceptions("duplicateParams");
+            }
             inputParams.put(paramType, paramValue);
         }
         return inputParams;
@@ -62,7 +68,7 @@ public class Parser {
 
     public static String getHashValue(HashMap<String, String> hashmap, String key) throws DukeExceptions {
         if (!hashmap.containsKey(key)) {
-            throw new DukeExceptions("default");
+            throw new DukeExceptions("missingParameters");
         } else {
             return hashmap.get(key);
         }
@@ -127,7 +133,7 @@ public class Parser {
             if (isHomeView) {
                 throw new DukeExceptions("mustBeInProjectView");
             }
-            commandType = new TaskEditCommand(params, projectIndex);
+            command = new TaskEditCommand(params, projectIndex);
             break;
         case "done":
             command = (isHomeView)
@@ -180,7 +186,7 @@ public class Parser {
             command = new TeamMemberHoursCommand(params, projectIndex);
             break;
         default:
-            throw new DukeExceptions("default");
+            throw new DukeExceptions("unrecognisedCommand");
         }
 
         return command;

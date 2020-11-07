@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ParserTest {
     @Test
-    void getParams_correctTaskParams_correctHashmap() {
+    void getParams_correctTaskParams_correctHashmap() throws DukeExceptions {
         String paramString = "n/new Named Task d/2020-08-04 t/109 p/121 h/12 m/56 p/7";
         HashMap<String, String> expectedHashmap = new HashMap<>();
         expectedHashmap.put("n", "new Named Task");
