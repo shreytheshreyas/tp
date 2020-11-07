@@ -192,6 +192,9 @@ public class Parser {
             command = new TaskSortCommand(params, projectIndex);
             break;
         case "hours":
+            if (!isHomeView) {
+                throw new DukeExceptions("mustBeInHomeView");
+            }
             command = new TeamMemberHoursCommand(params, projectIndex);
             break;
         default:
