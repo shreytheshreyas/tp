@@ -372,4 +372,8 @@ public class Ui {
         return "Priority \"" + priority + "\" has been assigned to \"" + taskName + "\"";
     }
 
+    public static String printHoursWorkedMessage(String memberName, double hoursWorked) {
+        return memberName + " worked for " + String.format("%.1f", hoursWorked) + " hours.";
+    }
+
 }
