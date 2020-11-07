@@ -157,9 +157,15 @@ public class Parser {
             command = new HomeCommand(projectIndex);
             break;
         case "member":
+            if (!isHomeView) {
+                throw new DukeExceptions("mustBeInHomeView");
+            }
             command = new TeamMemberAddCommand(params);
             break;
         case "remove":
+            if (!isHomeView) {
+                throw new DukeExceptions("mustBeInHomeView");
+            }
             command = new TeamMemberDeleteCommand(params);
             break;
         case "assign":
