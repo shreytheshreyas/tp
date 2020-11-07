@@ -37,7 +37,9 @@ projects, tasks and team members all in one app.
         6. [Adding a priority to a task](#adding-a-priority-to-a-task-deadline)
         7. [Deleting a task](#deleting-a-task-delete)
         8. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
-        9. [Sort tasks](#sort-tasks-sort)
+        9. [Adding estimated time to a task](#add-estimated-time-estimate)
+        10. [Adding actual time to a task](#add-actual-time-taken-actual)
+        11. [Sort tasks](#sort-tasks-sort)
 5. [Exiting EZ Manager](#exiting-ez-manager)
 6. [FAQ](#faq)
 7. [Command Summary](#command-summary)
@@ -262,12 +264,12 @@ Format: `task n/TASK_NAME`
 
 * You must be in ProjectView before adding a new task.  
 
+> :warning: Task names should not include slashes or an error will be shown.
+
 Example of usage: 
 
 * `task n/Deploy Version 2.0`. Adds the task 'Deploy Version 2.0'
 to the task list.
-
-> :warning: Task names should not include slashes or an error will be shown.
 
 ### Selecting a task: `select`
 Selects a task from the project list.
@@ -411,9 +413,9 @@ Task "New Task" has estimated time of 12 hours and 30 minutes
 ### Add actual time taken: `actual`
 Add actual time taken for task to complete.
 
-Format: `actual t/TASK_INDEX h/HOURS m/MINUTES`
-
 > :exclamation: Task must be marked as done before actual time taken can be added.
+
+Format: `actual t/TASK_INDEX h/HOURS m/MINUTES`
 
 * `TASK_INDEX` must be a positive index.
 * `HOURS` must be a positive index.
