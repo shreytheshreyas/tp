@@ -56,8 +56,8 @@ public class Project implements Comparable<Project> {
     public Task maxTimeTask() {
         Task tempTask = new Task("\tNo tasks have been completed");
         tempTask.addActual(0);
-        for(Task task: tasks) {
-            if(task.getActual() > tempTask.getActual()) {
+        for (Task task: tasks) {
+            if (task.getActual() > tempTask.getActual()) {
                 tempTask = task;
             }
         }
