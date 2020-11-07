@@ -25,6 +25,7 @@ projects, tasks and team members all in one app.
         8. [Adding a member](#adding-a-member-member)
         9. [Assigning a member to a project](#assigning-a-member-to-a-project-assign)
         10. [Removing a member](#removing-a-member-remove)
+        11. [Hours worked by member](#view-hours-worked-by-member-hours)
 4. [Project View](#project-view)
     1. [Accessing Project View](#accessing-project-view)
     2. [Commands](#project-view-commands)
@@ -36,6 +37,7 @@ projects, tasks and team members all in one app.
         6. [Adding a priority to a task](#adding-a-priority-to-a-task-deadline)
         7. [Deleting a task](#deleting-a-task-delete)
         8. [Assigning a member to a task](#assigning-a-member-to-a-task-assign)
+        9. [Sort tasks](#sort-tasks-sort)
 5. [Exiting EZ Manager](#exiting-ez-manager)
 6. [FAQ](#faq)
 7. [Command Summary](#command-summary)
@@ -104,6 +106,8 @@ Example of usage:
 
 * `project n/Web Development`. Adds the project 'Web Development'
 to the project list.
+
+> :warning: Project names should not include slashes or an error will be shown.
 
 ### Selecting a project: `select`
 Select a new project from the project list.
@@ -217,6 +221,27 @@ Example of usage:
 
 * `remove m/1`. Removes the first member from the member list.
 
+### View hours worked by member: `hours`
+View the total hours worked by a worker across all tasks assigned in all projects.
+
+Format: `hours m/MEMBER_INDEX`
+
+* The `MEMBER_INDEX` must be a positive integer.
+* The member must exist before hours worked can be viewed.
+
+Example usage and output:
+
+```
+hours m/1
+-------------------------------
+John worked for 2.5 hours.
+```
+
+### Exiting Ez Manager: `bye`
+You can exit the program with the `bye` command.
+
+Format: `bye`
+
 ## Project View
 The Project View displays the full list of tasks and members in a particular project.
 The manager can add and edit tasks and assign members to tasks.
@@ -241,6 +266,8 @@ Example of usage:
 
 * `task n/Deploy Version 2.0`. Adds the task 'Deploy Version 2.0'
 to the task list.
+
+> :warning: Task names should not include slashes or an error will be shown.
 
 ### Selecting a task: `select`
 Selects a task from the project list.
@@ -334,7 +361,7 @@ Format: `assign t/TASK_INDEX m/MEMBER_INDEX`
 
 * The `TASK_INDEX` must be a positive integer.
 * The `MEMBER_INDEX` must be a positive integer.
-* The task must exist before it can be assined to.
+* The task must exist before it can be assigned a member.
 * The member must exist before they can be assined.
 * You must be in ProjectView before assigning
 a member to a task.
@@ -343,6 +370,65 @@ Example of usage:
 
 * `assign t/1 m/1`. Assigns the first member in the member list
 to the first task in the task list
+
+### Sort tasks: `sort`
+Sort tasks by priority, deadline or actual time taken.
+
+Format: `sort s/SORTING_TYPE`
+
+* Sorting type `t` refers to actual time, `p` refers to priority and `d` refers to deadline.
+* Sorted list can be viewed with `list` command.
+* Highest priority of 1 will be displayed at top.
+* Earliest deadline will be displayed at top.
+
+Example usage and output:
+
+```
+sort s/d
+____________________________________________________________
+Tasklist sorted based on deadline
+```
+
+### Add estimated time: `estimate`
+Add estimated time taken for task to complete.
+
+Format: `estimate t/TASK_INDEX h/HOURS m/MINUTES`
+
+* `TASK_INDEX` must be a positive index.
+* `HOURS` must be a positive index.
+* `MINUTES` must be a positive index.
+
+
+Example usage and output:
+
+```
+estimate t/1 h/12 m/30
+____________________________________________________________
+Task "New Task" has estimated time of 12 hours and 30 minutes
+
+```
+
+### Add actual time taken: `actual`
+Add actual time taken for task to complete.
+
+Format: `actual t/TASK_INDEX h/HOURS m/MINUTES`
+
+> :exclamation: Task must be marked as done before actual time taken can be added.
+
+* `TASK_INDEX` must be a positive index.
+* `HOURS` must be a positive index.
+* `MINUTES` must be a positive index.
+
+
+Example usage and output:
+
+```
+done t/1
+actual t/1 h/12 m/30
+____________________________________________________________
+Task "New Task" took 12 hours and 30 minutes to be completed.
+
+```
 
 ### Exiting Ez Manager: `bye`
 You can exit the program with the `bye` command.
@@ -357,25 +443,35 @@ Format: `bye`
 
 ## Command Summary
 
+Home View Commands
 | Commands | Action | Examples |
 | -------- | ------ | -------- |
 | project | Creates a new project in the project list in Home View | `project n/Web Development Project` |
-| task    | Creates a new task in the task list in Project View| `task n/Deploy Version 2.0` |
 | member  | Creates a new member in the member list | `member n/John Doe` |
-| list    | If in Home View, displays the updated Home View | `list` |  
-| list    | If in Project View, displays the updated Project View | `list` |
-| select  | If in HomeView, selects the specified project and program enters ProjectView | `select p/1` |  
-| select  | If in ProjectView, selects the specified task | `select t/1` |
-| done    | If in HomeView, marks the specified project as done | `done p/1` |  
-| done    | If in ProjectView, marks the specified task as done | `done t/1` |
-| delete  | If in HomeView, deletes the specified project | `delete p/1` |  
-| delete  | If in ProjectView, deletes the specified task | `delete t/1` |
-| description | If in HomeView, assigns a description to the specified project | `description p/1 d/Project for Company X` |  
-| description | If in ProjectView, assigns a description to the specified task | `description t/1 d/The bug reports are 2 pages long` |
-| deadline | If in HomeView, assigns a deadline to the specified project | `deadline p/1 d/2020-10-25` |  
-| deadline | If in ProjectView, assigns a deadline to the specified task | `deadline t/1 d/2020-10-25` |
-| priority | If in ProjectView, assigns a priority to the specified task | `priority t/1 p/1` |
-| home    | Switches from ProjectView to HomeView | `home` |
-| assign  | If in HomeView, assigns member to specified project | `assign p/1 m/1` |  
-| assign  | If in ProjectView, assigns member to specified task | `assign t/1 m/1` |
+| list    | Displays the updated Home View | `list` |  
+| select  | Selects the specified project and program enters ProjectView | `select p/1` |  
+| done    | Marks the specified project as done | `done p/1` |  
+| delete  | Deletes the specified project | `delete p/1` |  
+| description | Assigns a description to the specified project | `description p/1 d/Project for Company X` |  
+| deadline | Assigns a deadline to the specified project | `deadline p/1 d/2020-10-25` |  
+| assign  | Assigns member to specified project | `assign p/1 m/1` |  
 | remove  | Removes specified member from the member list | `remove m/1` |
+| hours  | View hours worked by a specific worker across all projects | `hours m/1` |
+| bye  | Exit EZ Manager | `bye` |
+
+Project View Commands
+| Commands | Action | Examples |
+| -------- | ------ | -------- |
+| task    | Creates a new task in the task list in Project View| `task n/Deploy Version 2.0` |
+| list    | Displays the updated Project View | `list` |
+| select  | Selects the specified task | `select t/1` |
+| done    | Marks the specified task as done | `done t/1` |
+| delete  | Deletes the specified task | `delete t/1` |
+| deadline | Assigns a deadline to the specified task | `deadline t/1 d/2020-10-25` |
+| priority | Assigns a priority to the specified task | `priority t/1 p/1` |
+| home    | Switches from ProjectView to HomeView | `home` |
+| assign  | Assigns member to specified task | `assign t/1 m/1` |
+| estimate  | Add estimated time taken for task to complete | `estimate t/1 h/3 m/20` |
+| actual  | Add actual time taken for task to complete | `actual t/1 h/3 m/20` |
+| sort  | Sort tasks based on sorting type | `sort s/p` |
+| bye  | Exit EZ Manager | `bye` |
