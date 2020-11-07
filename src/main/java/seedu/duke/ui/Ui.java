@@ -2,7 +2,6 @@ package seedu.duke.ui;
 
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.task.Task;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -184,6 +183,10 @@ public class Ui {
         return "Selected Task: " + taskName;
     }
 
+    public static String printTaskNameUpdatedMessage(String oldTaskName, String newTaskName) {
+        return "Task " + "\"" + oldTaskName + "\" has been updated to \"" + newTaskName + "\"";
+    }
+
     public static String printInHomeViewMessage() {
         return "Already in Home View!";
     }
@@ -303,6 +306,10 @@ public class Ui {
 
     public static String printPriorityAssignedToTaskMessage(int priority, String taskName) {
         return "Priority \"" + priority + "\" has been assigned to \"" + taskName + "\"";
+    }
+
+    public static String printHoursWorkedMessage(String memberName, double hoursWorked) {
+        return memberName + " worked for " + String.format("%.1f", hoursWorked) + " hours.";
     }
 
 }

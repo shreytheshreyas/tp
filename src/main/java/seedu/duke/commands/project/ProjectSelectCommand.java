@@ -5,12 +5,8 @@ import seedu.duke.Parser;
 import seedu.duke.commands.Command;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.project.ProjectList;
 import seedu.duke.ui.Ui;
 
-import java.lang.reflect.Array;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
