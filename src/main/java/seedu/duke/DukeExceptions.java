@@ -44,6 +44,8 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("indexNonInteger","Index must be an integer!");
         exceptionMessageList.put("projectAlreadyAssigned","Project has already been assigned to member!");
         exceptionMessageList.put("TaskAlreadyAssigned","Task has already been assigned to member!");
+        exceptionMessageList.put("incorrectListCommand","Please only enter \"list\" into the command "
+                + "to display the home view or project view!");
     }
 
     public String toString() {

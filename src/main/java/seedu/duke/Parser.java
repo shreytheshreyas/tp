@@ -8,6 +8,7 @@ import seedu.duke.commands.member.AssignMemberToProjectCommand;
 import seedu.duke.commands.member.TeamMemberAddCommand;
 import seedu.duke.commands.member.TeamMemberAssignToTaskCommand;
 import seedu.duke.commands.member.TeamMemberDeleteCommand;
+import seedu.duke.commands.member.TeamMemberHoursCommand;
 import seedu.duke.commands.project.ProjectDeadlineCommand;
 import seedu.duke.commands.project.ProjectDescriptionCommand;
 import seedu.duke.commands.project.ProjectDeleteCommand;
@@ -85,16 +86,19 @@ public class Parser {
 
         boolean isHomeView = (projectIndex == -1); //In main project list view
 
-        Command command = getCommand(isHomeView, commandType, params, projectIndex);
+        Command command = getCommand(isHomeView, commandType, params, projectIndex, inputWords);
         return command;
     }
 
     public static Command getCommand(boolean isHomeView, String commandType, HashMap<String, String> params,
-                                     int projectIndex) throws DukeExceptions {
+                                     int projectIndex, String[] inputWords) throws DukeExceptions {
         Command command;
 
         switch (commandType) {
         case "list":
+            if (inputWords.length == 2) {
+                throw new DukeExceptions("incorrectListCommand");
+            }
             command = (isHomeView)
                     ? new PrintHomeViewCommand() : new TaskListCommand(projectIndex);
             break;
@@ -174,6 +178,9 @@ public class Parser {
                 throw new DukeExceptions("mustBeInProjectView");
             }
             command = new TaskSortCommand(params, projectIndex);
+            break;
+        case "hours":
+            command = new TeamMemberHoursCommand(params, projectIndex);
             break;
         default:
             throw new DukeExceptions("default");
