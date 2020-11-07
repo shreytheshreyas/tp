@@ -73,14 +73,30 @@ all projects by using the `list` command in HomeView
 a positive integer. Hence, the TASK_INDEX refers to this
 positive integer. You can retrieve the TASK_INDEXes of 
 all tasks by using the `list` command in Project View
+
 - **MEMBER_INDEX**: Every existing member would be assigned
 a positive integer. Hence, the MEMBER_INDEX refers to this
 positive integer. You can retrieve the MEMBER_INDEXes of 
 Members by using the `list` command in Home View or in Project View
 
+>  :warning: Project Index, Task Index and Member Index must be positive integers.
+
+
+
 ## Home View
 The Home View displays the full list of projects and members that are under a manager's purview. 
 The manager can add and edit projects and members from this view.
+
+
+
+> ### :bulb: Accessing Home View
+>
+> Format: `home`
+>
+> Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
+> enables the Home View commands in this section.
+
+
 
 ```
 Hello! Welcome to EZ Manager!
@@ -110,15 +126,21 @@ Index      Member Name                        Projects Involved
 ____________________________________________________________
 ```
 
-### > :bulb: Accessing Home View
-> Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
-> enables the Home View commands in this section.
+
+
+## Home View Commands
+
+> ### Command Format
 >
-> Format: `home`
-
-
-
-### Home View Commands
+> Commands are specified in the following format:
+>
+> **:bulb: Parameters can be specified in any order!**
+>
+> `COMMAND_TYPE`  `PARAMETER1` `PARAMETER2` ...
+>
+> PARAMETERS are specified in the following format:
+>
+> `PARAMETER_TYPE/PARAMETER_VALUE`
 
 ### Viewing the updated Home View: `list`
 
@@ -147,7 +169,7 @@ Project "new project" created!
 
 Select a new project from the project list and brings user to Project View of specified project.
 
-> :bulb: The project must exist before it can be selected.
+> :exclamation: The project must exist before it can be selected.
 
 Format: `select p/PROJECT_INDEX`
 
@@ -164,11 +186,9 @@ select p/1
 ### Marking a project as done: `done`
 Marks an existing project as done.
 
-> :bulb: The project must exist before it can be marked as done.
+> :exclamation: The project must exist before it can be marked as done.
 
 Format: `done p/PROJECT_INDEX`
-
-> :warning: The `PROJECT_INDEX` must be a positive integer.
 
 Example of usage: 
 
@@ -186,12 +206,10 @@ ____________________________________________________________
 ### Adding a deadline to a project: `deadline`
 Adds a deadline to an existing project.
 
-> :bulb: The project must exist before a deadline can be added.
+> :exclamation: The project must exist before a deadline can be added.
 
 Format: `deadline p/PROJECT_INDEX d/DATE`
 
-> :warning: The `PROJECT_INDEX` must be a positive integer.
->
 > :warning: The `DATE` must be of the form `YYYY-MM-DD`
 
 Example of usage: 
@@ -209,27 +227,42 @@ Deadline 04/03/2022 added to Project Launch Rocket
 ### Adding a description to a project: `description`
 Adds a description to an existing project.
 
+>:exclamation: The project must exist before a description can be added.
+
 Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
-* The `PROJECT_INDEX` must be a positive integer.
-* The project must exist before a description can be added.
+> :warning: Project descriptions should not include slashes or an error will be shown.
 
 Example of usage: 
 
-* `description p/1 d/Project for Company X`. Adds the description 
-`Project for Company X` to the first project.
+>  Adds the description `Project for Company X` to the first project.
+
+```
+description p/1 d/This is my Software Engineering Module.
+____________________________________________________________
+Project description added "This is my Software Engineering Module.".
+```
+
+
 
 ### Deleting a project: `delete`
+
 Delete a project from the project list.
 
 Format: `delete p/PROJECT_INDEX`
 
-* The `PROJECT_INDEX` must be a positive integer.
-* The project must exist in the project list before it can be deleted.
+> :exclamation:  The project must exist in the project list before it can be deleted.
 
 Example of usage: 
 
-* `delete p/1`. Deletes the first project in the project list.
+* Deletes the first project in the project list.
+
+```
+delete p/2
+____________________________________________________________
+Project "Home Improvement" deleted
+____________________________________________________________
+```
 
 ### Adding a member: `member`
 Adds a new member to the member list.
@@ -238,45 +271,62 @@ Format: `member n/MEMBER_NAME`
 
 Example of usage: 
 
-* `member n/John Doe`. Adds the member 'John Doe'
-to the member list.
+> Adds the member 'John Doe' to the member list.
 
-* `select t/1`. Selects the first task from the task list.
+```
+member n/John Doe
+____________________________________________________________
+Team member "John Doe" has been added
+```
+
+
 
 ### Assigning a member to a project: `assign`
 Assigns an existing member to an existing project.
 
-Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
+> :exclamation: The project must exist before it can be assigned a member.
+>
+> :exclamation: The member must exist before they can be assigned a project.
 
-* The `PROJECT_INDEX` must be a positive integer.
-* The `MEMBER_INDEX` must be a positive integer.
-* The project must exist before it can be assined to.
-* The member must exist before they can be assined.
+Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
 
 Example of usage: 
 
-* `assign p/1 m/1`. Assigns the first member in the member list
-to the first project in the project list
+> Assigns the first member in the member list to the first project in the project list
+
+```
+assign p/1 m/1
+____________________________________________________________
+Tom assigned to Project "CS2113T"
+```
+
+
 
 ### Removing a member: `remove`
 Removes an existing member from the member list.
 
-Format: `remove m/MEMBER_INDEX`
+> :exclamation: The member must exist before they can be removed.
 
-* The `MEMBER_INDEX` must be a positive integer.
-* The member must exist before they can be removed.
+Format: `remove m/MEMBER_INDEX`
 
 Example of usage: 
 
-* `remove m/1`. Removes the first member from the member list.
+>  Removes the first member from the member list.
+
+```
+remove m/1
+___________________________________________________________
+Team member "Mike" has been removed
+```
+
+
 
 ### View hours worked by member: `hours`
 View the total hours worked by a worker across all tasks assigned in all projects.
 
-Format: `hours m/MEMBER_INDEX`
+> :exclamation: ​The member must exist before hours worked can be viewed.
 
-* The `MEMBER_INDEX` must be a positive integer.
-* The member must exist before hours worked can be viewed.
+Format: `hours m/MEMBER_INDEX`
 
 Example usage and output:
 
@@ -291,14 +341,52 @@ You can exit the program with the `bye` command.
 
 Format: `bye`
 
+
+
 ## Project View
+
 The Project View displays the full list of tasks and members in a particular project.
 The manager can add and edit tasks and assign members to tasks.
 
-### > :bulb: Accessing Project View
->  This view is accessed by [selecting a project](#selecting-a-project-select) from the Home View.
 
-### Project View Commands
+
+> ### :bulb: Accessing Project View
+>
+> This view is accessed by [selecting a project](#selecting-a-project-select) from the Home View.
+
+
+
+```
+Project "CS2113T"
+
+Description:
+This is my Software Engineering Module.
+
+ ---------------------
+| TASK LIST           |
+ ---------------------
+Index  Status   Description        Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved
+-----------------------------------------------------------------------------------------------|----------------
+1      (Y)      Coding             04/11/2020      -             -                 -           |Sean|Tom|
+2      (Y)      Testing            12/11/2021      -             -                 -             
+3      (N)      Code Review        -               -             -                 -           |Mike|
+
+ 
+
+ ---------------------
+| MEMBERS LIST        |
+ ---------------------
+1. Sean
+2. Tom
+3. Mike
+
+____________________________________________________________
+```
+
+
+
+## Project View Commands
+
 ### Viewing the updated Project View: `list`
 Displays the updated Project View to user.
 
@@ -313,65 +401,99 @@ Format: `task n/TASK_NAME`
 
 Example of usage: 
 
-* `task n/Deploy Version 2.0`. Adds the task 'Deploy Version 2.0'
-to the task list.
+>  Adds the task 'Deploy Version 2.0' to the task list.
+
+```
+task n/Deploy Version 2.0
+____________________________________________________________
+Task "Deploy Version 2.0" created!
+```
+
+
 
 ### Marking a task as done: `done`
 Marks an existing task as done.
 
-Format: `done t/TASK_INDEX`
+> :exclamation: The task must exist before it can be selected.
 
-* The `TASK_INDEX` must be a positive integer.
-* The task must exist before it can be selected.
+Format: `done t/TASK_INDEX`
 
 Example of usage: 
 
-* `done t/1`. Marks the first task in the task list 
-as done.
+> Marks the first task in the task list as done.
+
+```
+done t/1 
+____________________________________________________________
+Task "Coding" is done!
+```
 
 ### Adding a deadline to a task: `deadline`
 Adds a deadline to an existing task.
 
 Format: `deadline t/TASK_INDEX d/DATE`
 
-* The `TASK_INDEX` must be a positive integer.
+> :warning: The `DATE` must be of the form `YYYY-MM-DD`
+
+
 * The task must exist before a deadline can be added.
-* The `DATE` must be of the form `YYYY-MM-DD`
 
 Example of usage: 
 
-* `deadline t/1 d/2020-10-25`. Adds the deadline 25/10/2020
-to the first task in the task list.
+>  Adds the deadline 25/10/2020 to the first task in the task list.
+
+```
+deadline t/1 d/2020-10-25
+____________________________________________________________
+Deadline 25/10/2020 added to Task Coding
+```
+
+
 
 ### Adding a priority to a task: `priority`
 Adds a priority to an existing task.
-1 denotes the highest priority.
+
+> :bulb: 1 denotes the highest priority.
+>
+> :exclamation: The task must exist before a deadline can be added.
 
 Format: `priority t/TASK_INDEX p/PRIORITY`
 
-* The `TASK_INDEX` must be a positive integer.
-* The task must exist before a deadline can be added.
-* The `PRIORITY` must be a positive interger.
+:warning: The `PRIORITY` must be a positive integer.
 
 Example of usage: 
 
-* `priority t/1 p/1`. Adds the highest priority, 1,
-to the first task in the task list.
+> Adds the highest priority, 1, to the first task in the task list.
+
+```
+priority t/1 p/1
+____________________________________________________________
+Priority "1" has been assigned to "Coding"
+```
+
+
 
 ### Deleting a task: `delete`
 Deletes a task from the task list.
 
-Format: `delete t/TASK_INDEX`
+> :exclamation: The task must exist in the task list before it can be deleted.
 
-* The `TASK_INDEX` must be a positive integer.
-* The task must exist in the task list before it can be deleted.
+Format: `delete t/TASK_INDEX`
 
 Example of usage: 
 
-* `delete t/1`. Deletes the first task in the task list.
+> Deletes the first task in the task list.
+
+```
+delete t/1
+____________________________________________________________
+Task "Coding" removed!
+```
 
 ### Assigning a member to a task: `assign`
 Assigns an existing member to an existing task.
+
+> :exclamation: Members must belong to a project before they can be assigned tasks.
 
 Format: `assign t/TASK_INDEX m/MEMBER_INDEX`
 
@@ -379,21 +501,23 @@ Format: `assign t/TASK_INDEX m/MEMBER_INDEX`
 * The `MEMBER_INDEX` must be a positive integer.
 * The task must exist before it can be assigned a member.
 
-> :exclamation: Members must belong to a project before they can be assigned tasks.
-
 Example of usage: 
 
-* `assign t/1 m/1`. Assigns the first member in the member list
-to the first task in the task list
+> Assigns the first member in the member list to the first task in the task list
+
+```
+assign m/1 t/1
+____________________________________________________________
+Member "Tom" has been assigned to "Code Review"
+```
 
 ### Add estimated time: `estimate`
 Add estimated time taken for task to complete.
 
 Format: `estimate t/TASK_INDEX h/HOURS m/MINUTES`
 
-* `TASK_INDEX` must be a positive index.
-* `HOURS` must be a positive index.
-* `MINUTES` must be a positive index.
+> :warning:  `HOURS` and `MINUTES ` must both be positive numbers.
+>
 
 
 Example usage and output:
@@ -412,9 +536,7 @@ Add actual time taken for task to complete.
 
 Format: `actual t/TASK_INDEX h/HOURS m/MINUTES`
 
-* `TASK_INDEX` must be a positive index.
-* `HOURS` must be a positive index.
-* `MINUTES` must be a positive index.
+> :warning:  `HOURS` and `MINUTES   `  must both be positive numbers.
 
 
 Example usage and output:
@@ -431,12 +553,13 @@ Task "New Task" took 12 hours and 30 minutes to be completed.
 
 Sort tasks by priority, deadline or actual time taken.
 
+:bulb: Highest priority of 1 will be displayed at top.
+
+:bulb: Earliest deadline will be displayed at top.
+
 Format: `sort s/SORTING_TYPE`
 
 * Sorting type `t` refers to actual time, `p` refers to priority and `d` refers to deadline.
-* Sorted list can be viewed with `list` command.
-* Highest priority of 1 will be displayed at top.
-* Earliest deadline will be displayed at top.
 
 Example usage and output:
 
