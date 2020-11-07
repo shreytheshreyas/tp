@@ -28,7 +28,8 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("Create File","The file could not be created");
         exceptionMessageList.put("Open File","The file could not be opened");
         exceptionMessageList.put("default","OOPS!!! I'm sorry, but I don't know what that means :-(");
-        exceptionMessageList.put("unrecognisedCommand","OOPS!!! I'm sorry, but I don't know what that command means :-(");
+        exceptionMessageList.put("unrecognisedCommand","OOPS!!! I'm sorry, but I don't know what that "
+                + "command means :-(");
         exceptionMessageList.put("mustBeInHomeView","You must be in Home View to do that!");
         exceptionMessageList.put("mustBeInProjectView","You must be in Project View to do that!");
         exceptionMessageList.put("emptyProjectList","Project list is empty!");

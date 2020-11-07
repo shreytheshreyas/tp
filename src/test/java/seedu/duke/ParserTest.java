@@ -5,13 +5,33 @@ import seedu.duke.commands.Command;
 import seedu.duke.commands.ExitCommand;
 import seedu.duke.commands.HomeCommand;
 import seedu.duke.commands.PrintHomeViewCommand;
-import seedu.duke.commands.member.*;
-import seedu.duke.commands.project.*;
-import seedu.duke.commands.task.*;
+import seedu.duke.commands.member.AssignMemberToProjectCommand;
+import seedu.duke.commands.member.TeamMemberAddCommand;
+import seedu.duke.commands.member.TeamMemberAssignToTaskCommand;
+import seedu.duke.commands.member.TeamMemberDeleteCommand;
+import seedu.duke.commands.member.TeamMemberHoursCommand;
+import seedu.duke.commands.project.ProjectCommand;
+import seedu.duke.commands.project.ProjectDeadlineCommand;
+import seedu.duke.commands.project.ProjectDeleteCommand;
+import seedu.duke.commands.project.ProjectDescriptionCommand;
+import seedu.duke.commands.project.ProjectDoneCommand;
+import seedu.duke.commands.project.ProjectSelectCommand;
+import seedu.duke.commands.task.ActualTimeCommand;
+import seedu.duke.commands.task.EstimatedTimeCommand;
+import seedu.duke.commands.task.TaskAssignDeadlineCommand;
+import seedu.duke.commands.task.TaskAssignPriorityCommand;
+import seedu.duke.commands.task.TaskCommand;
+import seedu.duke.commands.task.TaskDeleteCommand;
+import seedu.duke.commands.task.TaskDoneCommand;
+import seedu.duke.commands.task.TaskEditCommand;
+import seedu.duke.commands.task.TaskListCommand;
+import seedu.duke.commands.task.TaskSortCommand;
 
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
     @Test
