@@ -60,6 +60,7 @@ public class TeamMemberAssignToTaskCommand extends Command {
 
         selectedTask = projects.get(projectIndex).getTask(taskIndex);
         TeamMember member = teamMembers.get(memberIndex);
+        member.setTask(selectedTask);
         selectedTask.setMember(member);
         return Ui.printMemberAssignedToTaskMessage(member.getName(), selectedTask.getTaskDescription());
     }
