@@ -44,20 +44,19 @@ public class TeamMemberDeleteCommand extends Command {
                 TeamMember memberToBeRemoved = teamMembers.get(memberIndex);
                 teamMembers.remove(memberIndex);
                 for (Project project : projects) {
-                    Iterator<TeamMember> teamMemberIterator = project.getTeamMembers().iterator();
-                    while (teamMemberIterator.hasNext()) {
-                        TeamMember member = teamMemberIterator.next();
+                    for (int i = 0; i < project.getTeamMembers().size(); i++) {
+                        TeamMember member = project.getTeamMembers().get(i);
                         if (member == memberToBeRemoved) {
-                            teamMemberIterator.remove();
+                            project.getTeamMembers().remove(i);
+                            i--;
                         }
                     }
-
                     for (Task task : project.getTaskList()) {
-                        Iterator<TeamMember> teamMemberInTaskIterator = task.getMembers().iterator();
-                        while (teamMemberInTaskIterator.hasNext()) {
-                            TeamMember member = teamMemberInTaskIterator.next();
+                        for (int j = 0; j < task.getMembers().size(); j++) {
+                            TeamMember member = task.getMembers().get(j);
                             if (member == memberToBeRemoved) {
-                                teamMemberInTaskIterator.remove();
+                                task.getMembers().remove(j);
+                                j--;
                             }
                         }
                     }
@@ -69,11 +68,11 @@ public class TeamMemberDeleteCommand extends Command {
                 TeamMember memberToBeRemoved = project.getTeamMembers().get(memberIndex);
                 project.getTeamMembers().remove(memberIndex);
                 for (Task task : project.getTaskList()) {
-                    Iterator<TeamMember> teamMemberInTaskIterator = task.getMembers().iterator();
-                    while (teamMemberInTaskIterator.hasNext()) {
-                        TeamMember member = teamMemberInTaskIterator.next();
+                    for (int k = 0; k < task.getMembers().size(); k++) {
+                        TeamMember member = task.getMembers().get(k);
                         if (member == memberToBeRemoved) {
-                            teamMemberInTaskIterator.remove();
+                            task.getMembers().remove(k);
+                            k--;
                         }
                     }
                 }

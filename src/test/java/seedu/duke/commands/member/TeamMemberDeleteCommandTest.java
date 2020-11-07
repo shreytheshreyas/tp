@@ -131,23 +131,26 @@ class TeamMemberDeleteCommandTest {
         params.put("m", "2");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
         command.executeCommand(projects, teamMembers);
-        String expectedOutput = "Hello! Welcome to EZ Manager!\n"
+        String expectedOutput = "EZ Manager Home View\n"
                 + "\n"
-                + " ---------------------- \n"
+                + " ----------------------\n"
                 + "| PROJECT LIST         |\n"
-                + " ---------------------- \n"
+                + " ----------------------\n"
                 + "\n"
-                + "Index      Project Name                       Deadline      Tasks Completed\n"
-                + "---------------------------------------------------------------------------\n"
-                + "1.         Project One                        -             0/1            \n"
+                + "Index   Status   Project Name             Project Description                "
+                + "Deadline     Tasks Completed     Remarks\n"
+                + "-----------------------------------------------------------------------------"
+                + "-------------------------------------------------------------------------\n"
+                + "1.      N        Project One              -                                  "
+                + "-            0/1                 -\n"
                 + "\n"
-                + " ---------------------- \n"
+                + " ----------------------\n"
                 + "| MEMBERS LIST         |\n"
-                + " ---------------------- \n"
+                + " ----------------------\n"
                 + "\n"
-                + "Index      Member Name                        Projects Involved              \n"
-                + "---------------------------------------------------------------------------\n"
-                + "1.         John Doe                           1. Project One                 ";
+                + "Index   Member Name                   Projects Involved\n"
+                + "-----------------------------------------------------------------------------\n"
+                + "1.      John Doe                      1. Project One";
         PrintHomeViewCommand homeViewCommand = new PrintHomeViewCommand();
         String actualOutput = homeViewCommand.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput.trim(), actualOutput.trim());

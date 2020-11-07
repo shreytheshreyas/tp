@@ -196,7 +196,6 @@ public class Ui {
                     }
                 }
                 LocalDate currentDate = LocalDate.now();
-                // if i have a task inside a project with a nearest deadline and task is still not done
                 if (dateOfTaskWithNearestDeadline != null && !taskWithNearestDeadline.getStatus()) {
                     //find the difference in the number of days from current days to deadline
                     Period period = Period.between(currentDate, dateOfTaskWithNearestDeadline);
