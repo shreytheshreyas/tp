@@ -20,17 +20,12 @@ import seedu.duke.commands.project.ProjectDoneCommand;
 import seedu.duke.commands.task.TaskAssignPriorityCommand;
 import seedu.duke.commands.task.TaskDeleteCommand;
 import seedu.duke.commands.task.TaskListCommand;
-import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskDoneCommand;
 import seedu.duke.commands.task.TaskAssignDeadlineCommand;
-import seedu.duke.commands.task.TaskDeleteCommand;
-import seedu.duke.commands.task.TaskAssignPriorityCommand;
 import seedu.duke.commands.task.TaskEditCommand;
 import seedu.duke.commands.task.ActualTimeCommand;
 import seedu.duke.commands.task.EstimatedTimeCommand;
-import seedu.duke.ui.Ui;
-import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.commands.task.TaskSortCommand;
 import java.util.HashMap;
 
@@ -49,14 +44,20 @@ public class Parser {
         return projectIndex;
     }
 
-    public static HashMap<String, String> getParams(String paramsString) {
+    public static HashMap<String, String> getParams(String paramsString) throws DukeExceptions {
         HashMap<String, String> inputParams = new HashMap<>();
         Pattern p = Pattern.compile(".\\/.+?(?=\\s.\\/.+)|.\\/.+"); //Regex to extract parameter terms
         Matcher m = p.matcher(paramsString);
         while (m.find()) {
             String[] keyAndValue = m.group().split("/");
+            if (keyAndValue.length != 2) {
+                throw new DukeExceptions("forwardSlashError");
+            }
             String paramType = keyAndValue[0];
             String paramValue = keyAndValue[1];
+            if (inputParams.containsKey(paramType)) {
+                throw new DukeExceptions("duplicateParams");
+            }
             inputParams.put(paramType, paramValue);
         }
         return inputParams;
@@ -64,7 +65,7 @@ public class Parser {
 
     public static String getHashValue(HashMap<String, String> hashmap, String key) throws DukeExceptions {
         if (!hashmap.containsKey(key)) {
-            throw new DukeExceptions("default");
+            throw new DukeExceptions("missingParameters");
         } else {
             return hashmap.get(key);
         }
@@ -88,16 +89,19 @@ public class Parser {
 
         boolean isHomeView = (projectIndex == -1); //In main project list view
 
-        Command command = getCommand(isHomeView, commandType, params, projectIndex);
+        Command command = getCommand(isHomeView, commandType, params, projectIndex, inputWords);
         return command;
     }
 
     public static Command getCommand(boolean isHomeView, String commandType, HashMap<String, String> params,
-                                     int projectIndex) throws DukeExceptions {
+                                     int projectIndex, String[] inputWords) throws DukeExceptions {
         Command command;
 
         switch (commandType) {
         case "list":
+            if (inputWords.length == 2) {
+                throw new DukeExceptions("incorrectListCommand");
+            }
             command = (isHomeView)
                     ? new PrintHomeViewCommand() : new TaskListCommand(projectIndex);
             break;
@@ -153,9 +157,15 @@ public class Parser {
             command = new HomeCommand(projectIndex);
             break;
         case "member":
+            if (!isHomeView) {
+                throw new DukeExceptions("mustBeInHomeView");
+            }
             command = new TeamMemberAddCommand(params);
             break;
         case "remove":
+            if (!isHomeView) {
+                throw new DukeExceptions("mustBeInHomeView");
+            }
             command = new TeamMemberDeleteCommand(params);
             break;
         case "assign":
@@ -179,10 +189,13 @@ public class Parser {
             command = new TaskSortCommand(params, projectIndex);
             break;
         case "hours":
+            if (!isHomeView) {
+                throw new DukeExceptions("mustBeInHomeView");
+            }
             command = new TeamMemberHoursCommand(params, projectIndex);
             break;
         default:
-            throw new DukeExceptions("default");
+            throw new DukeExceptions("unrecognisedCommand");
         }
 
         return command;
