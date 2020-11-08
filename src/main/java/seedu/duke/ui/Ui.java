@@ -160,10 +160,10 @@ public class Ui {
                 projectName = projectName.substring(0, 21) + "...";
             }
             paddedProjectName = String.format("%-25s", projectName);
-            if (project.getDescription() != "<project description empty>") {
+            if (!project.getDescription().equals("<project description empty>")) {
                 String projectDescription = project.getDescription();
                 if (projectDescription.length() >= 35) {
-                    projectDescription = projectDescription.substring(0, 31) + "..."; //testing
+                    projectDescription = projectDescription.substring(0, 31) + "...";
                 }
                 paddedProjectDescription = String.format("%-35s", projectDescription);
             } else {
@@ -227,7 +227,7 @@ public class Ui {
             }
             String paddedMemberName = String.format("%-30s", memberName);
             output += "\n" + paddedMemberIndex + paddedMemberName;
-            if (member.getAssignedProjects() != null) {
+            if (!member.getAssignedProjects().isEmpty()) {
                 for (int i = 0; i < member.getAssignedProjects().size(); i++) {
                     String assignedProjectName = member.getAssignedProjects().get(i).getProjectName();
                     if (i == 0) {

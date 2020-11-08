@@ -27,14 +27,24 @@ public class TeamMemberAssignToTaskCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
+        try {
+            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
+        try {
+            memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTeamMemberID");
+        }
     }
 
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         Task selectedTask;
         TeamMember teamMember;
+        assert projectIndex >= 0 : "projectIndex should be minus one "
+                + "of the current project it was selected";
         Project project = projects.get(projectIndex);
         try {
             if (project.getTaskList().isEmpty()) {
