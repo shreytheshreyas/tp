@@ -47,7 +47,7 @@ public class AssignMemberToProjectCommandTest {
         params.put("m","2");
         params.put("p","1");
 
-        AssignMemberToProjectCommand assignProject = new AssignMemberToProjectCommand(params,true);
+        AssignMemberToProjectCommand assignProject = new AssignMemberToProjectCommand(params,-1);
         String expectedOutput = "Member 2 assigned to Project \"Project 1\"";
         String actualOutput = assignProject.executeCommand(projects,teamMembers);
         assertEquals(expectedOutput,actualOutput);
@@ -59,7 +59,7 @@ public class AssignMemberToProjectCommandTest {
         params.put("m","7");
         params.put("p","2");
 
-        AssignMemberToProjectCommand command = new AssignMemberToProjectCommand(params,true);
+        AssignMemberToProjectCommand command = new AssignMemberToProjectCommand(params,-1);
         String expectedOutput = "Team Member ID does not exist!";
         DukeExceptions actualOutputException = assertThrows(DukeExceptions.class, () ->
             command.executeCommand(projects, teamMembers));
@@ -72,7 +72,7 @@ public class AssignMemberToProjectCommandTest {
         params.put("m","1");
         params.put("p","5");
 
-        AssignMemberToProjectCommand assignProject = new AssignMemberToProjectCommand(params,true);
+        AssignMemberToProjectCommand assignProject = new AssignMemberToProjectCommand(params,-1);
         String expectedOutput = "Project ID does not exist!";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
             assignProject.executeCommand(projects,teamMembers);
