@@ -10,24 +10,25 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
 
 public class TaskSortCommand extends Command {
     private int projectIndex;
-    //HashMap<String, String> params;
+    HashMap<String, String> params;
     private String sortingType;
 
-    public TaskSortCommand(String sortingType, int projectIndex)
+    public TaskSortCommand(HashMap<String, String> params, int projectIndex)
             throws DukeExceptions {
-        this.sortingType = sortingType;
+        this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
     public void parse() throws DukeExceptions {
         try {
-            sortingType = sortingType.replaceFirst("/","");
+            sortingType = getHashValue(params, "s");
         } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidTaskID");
         }

@@ -49,8 +49,423 @@ Let us hit the ground running with the next section about setting up!
 
 If the setup is correct, you should see the welcome screen and greeting.
 
-
-
 Thank you for taking the time to test out EZ Manager. [Here](https://www.loom.com/share/f64bb5fd4b7a4089b31a96ddc8e1ea79) is a quick video to introduce you to some of the commands you can use on EZ Manager v2.0.
 
 PDF developer guide available [here](https://we.tl/t-UkcnzA4i8P)
+
+## Design
+Developers are welcome to contribute by submitting issues or pull requests on our repository. The design section is a good place to start learning about EZ Manager’s architecture and various components. Most developers will contribute to the app mainly through addition of new user commands. The section “Addition of new commands” will provide a step-by-step walkthrough to ensure new commands follow the overall architecture. Figure 2 below shows the overall class diagram for EZ Manager.  
+
+### Consideration
+Eazy was developed via a breadth first iterative approach with new commands progressively added. An n-tier architecture ensured separation of concern between various layers of the architecture but much of the program’s logic remained in the Command classes. This design architecture ensured minimal changes to the codebase when new commands were added. Often, new commands or feature addition required changes to only a single data class and addition of a new independent command class. 
+
+### Overall Architecture
+EZ Manager consists of 4 main layers:  
+* Ui: Handles the output of the app 
+* Logic: Command parser and executor 
+* Model: Data classes 
+* Storage: Handles the saving and loading of data to the hard disk 
+
+The Ui and Storage layer contains a single class. The model layer contained a member, a task and a project class and the logic layer contained a single parser class and various command classes. Functionality was exposed directly through these command classes, eliminating the need for redundant classes with few methods. In a small app like EZ Manager, this enhanced code maintainability and readability. 
+ 
+Now, we will delve into more detail about each component. 
+
+### UI Component
+API: Ui.java 
+Introduction: 
+The Ui.java is a class made up of various acknowledgement messages to be displayed after the user inputs a command. 
+Abstraction: 
+Every message in the class is stored as a String and it is abstracted to a method. This method is called after the execution of a command.  
+Access: 
+Every method in the Ui class is a static method. Hence, every command class calls the appropriate static methods directly from the Ui class. 
+
+### Logic Component
+As user commands follow a fixed format, a generic parser can extract command types and parameter for all commands. This is handled by the parser class. The parser then passes the extracted values to specific command classes. Below are the workings of the Parser and Commands. 
+ 
+**Parser**
+
+User inputs are passed to the static parse method of the parser class. The parser then calls instances of command classes for command execution. The following are handled by the parser. 
+* Command type is extracted and used to determine which command class is called for command execution.  
+* Command parameters are extracted using a regex and stored in a hashmap. This hashmap is passed to the command class.  
+* A projectIndex pointer keeps track of the view the user is currently in.  
+    * If the user is in a project view, this allows the parser to know which project the task to be manipulated is in.  
+    * If the user is in the home view, this allows the parser to know that projects are to be manipulated instead. 
+    * This pointer is passed to the command class. 
+ 
+**Commands** 
+
+Each command class represents a specific user command. The bulk of the program’s logic resides here. It manipulates data objects (model layer) and tasks the Ui to display output. The following is a more specific description of command classes. 
+* The constructor extracts individual command parameters from the HashMap given to it from the parser. 
+* From main(), executeCommand method is called which passes these parameters to methods in the model layer, which manipulates data objects. 
+* ExecuteCommand also calls methods in the Ui to display output messages to the user. 
+
+### Model Component
+
+The model component is to provide you with a conceptual understanding of how the data is stored in EZ Manager. EZ Manager has three classes which store data, the Project class, the Task class and the Team Member class. This section will explain how each of these classes interact with one another. The diagram below shows the attributes associated with each of the objects. 
+
+Each project can contain many tasks and have multiple team members assigned to the project. To facilitate this, the Project class contains an ArrayList of Task and an ArrayList of TeamMembers. Other attributes of the Project include its name, description, deadline and its status. All these fields are represented in the Home View of EZ Manager. 
+ 
+Furthermore, for each task that you create, you can add a priority (to allow for sorting in later versions of EZ Manager), status, deadline, assign a member to work on the task and even include the estimates and actual time that a task takes to complete. 
+
+### Storage Component
+
+This is section will explain how EZ Manager ensures that the data in the application persists after each session has been terminated (with the bye command). Figure 3 outlines the responsibility of the Storage component for loading and storing the data during the lifecycle of the application. 
+
+More specifically, Figure 4 shows us how the text file would look like when it is populated. In the load method of Storage that is called at the beginning of each application, the first thing that is recalled are the team members that are part of the overall organization that is being managed by EZ Manager.  
+
+Once the team members are in, the load method registers the projects. Each project is stored in a block that starts with “Project ProjectNameHere” so in Figure 4, the project is project “how are you”. Data pertaining to the project, which includes, the project’s status (whether it is done or not), the project description all the way to the tasks and members associated with the project can be extracted from here and loaded into the current instance of the application. That completes the loading process. 
+ 
+Once the loading process is over, the application proceeds to its normal operation where it receives input from you and responds accordingly. The next important part is when you input the exit command “bye” once this is triggered, before the application terminates, we call the save method. 
+ 
+The save method from the Storage component clears the ezmanager.txt file and then populates it with the current data using the saveFormat function (available in the Project, Task and TeamMember) to ensure that the formatting is consistent with EZ Manager’s saving convention. Once this step is done, you can be assured that your data has been saved.  
+
+## Implementation
+
+### Adding a new project
+This section will explain the creation of new projects and how the objects interact with each other. 
+The user can create new projects to be added to the list of projects with the project command. 
+This command is facilitated with the help of the ProjectCommand class. An instance of the ProjectCommand class will have the following properties: 
+* tasks: An array list of tasks 
+* members: An array list of members 
+* projectName: The name of the project as a String object 
+*projectDescription: The description of the project as a String object 
+projectDeadline: The deadline of the project as a Local Date object 
+Step 1: The user types the project command followed by the name of the project e.g. project n/Project One.  
+The main Duke class will call the Parser class. 
+The Parser class will check which state the app is in and will then call the appropriate class constructor. In this case, the Parser will call the ProjectCommand constructor. The ProjectCommand constructor will also check for the validity of the user’s input. 
+The Parser class will then initialize a new instance of the ProjectCommand constructor with the project name “Project One” and return it back to the main Duke class. 
+The Duke class will call the executeCommand function from the returned instance which will execute the command. 
+The executeCommand function will create a new Project instance 
+It will then add that instance to the static projects list.  
+Lastly, it will call the printProjectCreated method from the Ui class and return it to the main Duke class. 
+The Duke class will then receive the acknowledgement message and display it to the user in the terminal. 
+The above is illustrated below in a sequence diagram. The sequence diagram will only encompass the sequence in the executeCommand function. 
+
+### Deleting Tasks
+This command allows project managers to delete tasks from projects. 
+The logic for this command is primarily written in TaskDeleteCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command delete t/3 
+ 
+**Implementation**
+1. Parser initializes TaskDeleteCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of TaskDeleteCommand extracts the task index from the hashmap. 
+3. ExecuteCommand() method of TaskDeleteCommand is called by Duke main class, which passes it the program’s arraylist of projects. 
+    
+    3.1 Existing project is retrieved from the arraylist of projects using projectIndex. 
+    
+    3.2 The method deleteTask of the project is called with taskIndex. 
+    
+    3.3 This simply removes the task from the arraylist of tasks the project contains. 
+    
+    3.4 The Ui class prints an acknowledgement that the task has been deleted. 
+    
+### Adding Deadline to Tasks
+
+This command allows project managers to add deadline to tasks. 
+The logic for this command is primarily written in DeadlineCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command deadline t/3 h/2 m/32 
+
+**Implementation**
+
+1. Parser initializes DeadlineCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of DeadlineCommand extracts the task index and deadline date from the hashmap. 
+3. ExecuteCommand() method of DeadlineCommand is called by Duke main class, which passes it the program’s arraylist of projects. 
+   
+    3.1 Existing task is retrieved with taskIndex after retrieving the project it belongs to from the arraylist of project. 
+    
+    3.2 The method addDeadline of the task is called that sets its date property. 
+    
+    3.3 The Ui class then prints the deadline and the task description. 
+    
+### Assign Actual Duration to Tasks    
+This command allows project managers to record the actual duration that completed tasks take. 
+The logic for this command is primarily written in ActualTimeCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command actual t/3 h/2 m/32 
+
+**Implementation**
+1. Parser initializes ActualTimeCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of ActualTimeCommand extracts the task index, hours and minutes from the hashmap. 
+3. ExecuteCommand() method of ActualTimeCommand is run. 
+  
+    3.1 Existing task is retrieved using projectIndex and taskIndex. 
+
+    3.2 The task is checked to determine if it is completed. 
+
+    3.3 If the task is completed, the task instance will have its actualInMinutes property set based on the hours and minutes retrieved. 
+
+    3.4 Otherwise, an exception is thrown. 
+  
+    3.5 The Ui class then prints the task description and the duration the task took. 
+    
+### Assign Estimated Duration to Tasks    
+This command allows project managers to add an estimate for the duration tasks will take. 
+The logic for this command is primarily written in EstimatedTimeCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+**User enters Command**
+
+User enters command estimate t/3 h/2 m/32 
+
+**Implementation**
+1. Parser initializes EstimatedTimeCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+2. Parse() method of EstimatedTimeCommand extracts the task index, hours and minutes from the hashmap. 
+3. ExecuteCommand() method of EstimateTimeCommand is run. 
+    
+    3.1 Existing task is retrieved using projectIndex and taskIndex. 
+    
+    3.2 addEstimate() method of task is called, and the task will have its estimateInMinutes property set based on the hours and minutes retrieved. 
+
+    3.3 The Ui class then prints the task description and the estimated duration added to the task. 
+ 
+### Assign priority to task 
+This section will explain the assigning of priorities to tasks and how the objects interact with each other. 
+
+The user can assign a priority to any existing task with the `priority` command. 
+
+This command is facilitated with the help of the TaskAssignPriorityCommand class. An instance of the TaskAssignPriorityCommand class has the following properties. 
+- projectIndex: The index of the project as an Integer 
+- taskIndex: The index of the task as an Integer 
+- priority: The priority to be assigned as a String 
+
+Step 1: The user types the priority command e.g. `priority t/1 p/1`
+1. The main Duke class will call the Parser class. 
+2. The Parser class will check which state the app is in and will then call the appropriate class constructor. In this case, the Parser will call the ProjectListCommand constructor. The ProjectListCommand constructor will also check for the validity of the user’s input. The constraints of the input are as follows:
+  - Not a number for either task index or priority 
+  - Not a positive number for either task index or priority
+  - An index of a task that does not exist 
+3. The Parser class will then initialize a new instance of the TaskAssignPriorityCommand constructor and return it back to the main Duke class. 
+4. The Duke class will call the executeCommand function from the returned instance which will execute the command. 
+  - The executeCommand will get the specified task using the taskIndex. 
+  - It will then set the priority property of the task as the specified priority. 
+  - Lastly, it will call the printPriorityAssignedToTaskMessage method from the Ui class and send the acknowledgement message to the main Duke class. 
+5. The Duke class will then display the acknowledgement message to the user in the terminal 
+The above is illustrated below in a sequence diagram. The sequence diagram will only encompass the sequence in the executeCommand function. 
+
+### Marking a task as done 
+This command allows you to mark a task in a selected project. 
+
+The logic for this command is written in the TaskDoneCommand class which inherits its general properties from the abstract Command class. 
+
+The following states how the functionality is used in the application and how it is implemented: 
+
+User enters Command
+User enters command `done t/1`
+
+Implementation
+1. The parser class uses the `TaskDoneCommand` constructor to initialize a new instance of that class type by passing a hash map which consists of the parameters of that command along with the respective project index of the project in which the task is present in. 
+2. The `parse()` method in the `TaskDoneCommand` class extracts the task index of the task that is to be marked done. If the task index is not present in the task list of that project, an exception is thrown. 
+3. The `executeCommand()` of the `TaskDoneCommand` class is called by the `main()` method of the `Duke` class and which passes the project and team members array list to the respective method.
+  - The current project is obtained using the project array list and the project index that was passed during the instantiation of the `TaskDoneCommand` object.
+  - Now, the method fetches the required task by using task index extracted from the  `parse()`.
+  - The task object obtained is used to call the member function `markAsDone()` which sets the Boolean field in a task from false to true which the indicates that the task is completed. 
+  - The `Ui` class then prints an acknowledgement message to let the user know that a task has been marked as done. 
+  
+### Sorting Tasks in the TaskList
+This command allows you to sort the tasks in a task list in a selected project. 
+
+The logic for this command is written in the `TaskSortCommand` class which inherits its general properties from the abstract Command class. 
+
+The following states how the functionality is used in the application and how it is implemented: 
+
+User enters command: `sort p/`, `sort t/` or `sort d/`
+1. The parser class uses the `TaskSortCommand` constructor to initialize a new instance of that class type by passing the input which consists of the parameter of that command. 
+2. The `parse()` method in the `TaskSortCommand` class extracts the sorting type (deadline, priority, actual time). 
+3. The `executeCommand()` of the `TaskDoneCommand` class is called by the `main()` method of the `Duke` class and which passes the project and team members array list to the respective method. 
+  - The current project is obtained using the project array list and the project index that was passed during the instantiation of the TaskSortCommand object. 
+  - Now, based on the sorting type the method will choose a case statement in a switch-case that reflects the type of sorting.
+  - The `Ui` class then prints an acknowledgement message to let the user know that the tasks have been sorted according to the respective sorting type. 
+
+
+## Running Tests 
+There are two ways to run tests for EZ manager. 
+> To check for test coverage, please ensure that you `Run with coverage` when right clicking on the tests to run. 
+
+**Method 1: Using IntelliJ JUnit test runner**
+- To run all tests available, right-click on the `src/test/java` folder and choose `Run  All Tests`
+- To run a some of the tests, you can right-click on a test package, test class, or a test and choose `Run Particular Test Name Here` 
+
+**Method 2: Using Gradle**
+- On Windows, run the command `gradlew clean allTests` in a terminal 
+- On Mac or Linux, run the command `./gradlew clean allTests` in a terminal 
+
+## DevOps — Making a Release 
+Here are the steps to create a new release. 
+1. Update the version number in Duke.java 
+2. Generate a JAR file using Gradle
+3. Tag the repo with the version number. e.g. v0.1 
+4. Create a new release using GitHub and upload the JAR file you created. 
+
+## Appendix A: Product Scope 
+Target user profile: 
+- Project Manager of Software Engineering projects 
+- Needs to manage teams for different projects 
+
+Value proposition:
+Manage projects in a smooth and seamless way to allow the team to get more done 
+
+**User Stories**
+
+Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
+
+Priority | As a ... | I want to ... | So that I can ...
+---------- | -------------------- | ------------------------- | -------------------------
+`* * *` | new user | see usage instructions | refer to the commands when I forget how to use the App
+`* * *` | project manager | add a new project | track the progress of my new project 
+`* * *` | project manager | add tasks under a project | track the project tasks needed to finish the project
+`* * *` | project manager | add a new member | manage members in my team 
+`* * *` | project manager | select a project | go into a particular project to make changes such as adding tasks and deadline specific to the project
+`* * *` | project manager | navigate between home view and project view | switch from one project to the other project
+`* * *` | project manager | delete an existing project | remove projects that are not required anymore
+`* * *` | project manager | delete an existing task | remove tasks that are not required anymore
+`* * *` | project manager | remove an existing member | remove members that have left the team
+`* * *` | project manager | add a deadline to an existing project | keep the project on track and deliver the product on time
+`* * *` | project manager | add a deadline to an existing task | keep the task on track and finish it on time
+`* * *` | project manager | mark completed projects as done | see which projects are done and which still needs to be done
+`* * *` | project manager | mark completed tasks as done | see which tasks are done and which still needs to be done
+`* * *` | project manager | add a project description | have a better understanding of the concept and context of the project
+`* * *` | project manager | add a task description | have a better understand of the task and know what needs to be done
+`* * *` | project manager | assign a member to a project | allocate projects to team members 
+`* * *` | project manager | assign a member to a task | allocate equal workload to every team member
+`* * *` | project manager | assign priority to a task | organise the tasks in order of priority and focus on those that are more urgent
+`* *` | project manager | assign estimated time needed to complete a task | give my team a rough estimate of how long is expected for them to finish the task
+`* *` | project manager | assign actual time used to complete a task | find out the amount of time spent and understand which task is taking more time than expected
+`* *` | project manager | display all the projects and members all in one view | have an overview of all the projects and members
+`* *` | project manager | display all the tasks and members allocated to the project all in one view | have an overview of the unfinished tasks and members assigned to those tasks
+`* *` | project manager | sort my list of projects in terms of deadline | prioritise projects that are urgent and focus on completing the project before the deadline
+`* *` | project manager | sort my list of tasks in terms of deadline | focus on the tasks that have a closer deadline
+`* *` | project manager | sort my list of tasks in terms of priority | focus on the tasks that are most important as some are base level tasks which are required for the project to be up and running
+`* *` | project manager | sort my list of tasks in terms of actual time spent | have an overview of which tasks are taking up more time and required more manpower in the future
+`*` | project manager | add the roles of my team members | allocate appropriate tasks to appropriate members
+`*` | project manager | send out reminders to my team members | have them shift gears or change something in real time  
+
+## Appendix C: Instructions for Manual Testing
+
+### <ins>Project-Specific Tests</ins>
+
+#### C.1 Creating a Project
+1. Creating a Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the
+       application)
+    * Test case: `project n/p1`: A new project named as p1 should be created and added to the project list. A message will be displayed on the screen to ensure the user that the project has been created.
+    * Test case: `project p1`: Since the n/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
+    
+2. Creating a Project when you are in the Project-View
+    * Prerequisites: Required to be in Project-View
+    * Test case: `project n/p1`: Since the state of the program is in project view, the user will not be allowed to create a project and hence the program throws an exception.
+    
+#### C.2 Deleting a Project
+1. Deleting a Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the application)
+    * Test case: `delete p/1`: The project named as p1 will be deleted and from the project list. A message will be displayed on the screen to ensure the user that the project has been deleted.
+    * Test case: `delete p1`: Since the p/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
+
+2. Creating a Project when you are in the Project-View
+    * Prerequisites: Required to be in Project-View
+    * Test case: `project p/1`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+
+#### C.3 Listing multiple Projects
+1. Listing Projects when project list contains projects
+    * Prerequisites: Project list should at least have one project
+    * Test case: `list`: the list command will list all the projects present in the project list.
+    
+2. Creating a Project when you are in the Project-View
+    * Prerequisites: Project list should be empty
+    * Test case: `list`: Since the project list is empty, no projects will be displayed and, an exception will be shown saying that the project list is empty.
+    
+#### C.4 Selecting a Project
+1. Selecting a Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the application) and, the project p1 has already been created.
+    * Test case: `select p/1`: The project named as p1 will be will selected from the
+      project list and, you will enter project view of that respective project.
+    * Test case: `select p1`: Since the p/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
+      
+2. Selecting a Project when you are in the Project-View
+    * Prerequisites: Required to be in Project-View
+    * Test case: `select p/1`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+      
+#### C.5 Providing a Description for a Project
+1. Providing a description for the Project when you are in the Home-View
+    * Prerequisites: Only Required to be in the Home View (Initial state of the application) and, the project p1 has already been created.
+    * Test case: `description d/This is a description`: Since we are not in the view of any project, we would not be able to add a description to any of them and hence the program will throw an exception.
+   
+2. Providing a description for the Project when you are in the Project-View 
+    * Prerequisites: A project p1 has to be created and, the program has to be in its project view
+    * Test case: `description d/This is a description`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+    
+### <ins>Task-Specific Tests</ins>
+
+#### C.6 Creating a Task
+1. Creating a Task when you are in the Project-View
+    * Prerequisites: Only Required to be in Project View
+    * Test case: task `n/t1`: A new task named as t1 should be created and added to the task list of that project. A message will be displayed on the screen to ensure the user that the task has been created.
+
+2. Creating a Task when you are in the Home-View
+    * Prerequisites: Required to be in Home-View
+    * Test case: `project n/p1`: Since the state of the program is in Home view, the user will not be allowed to create a task and hence the program throws an exception.
+    
+#### C.7 Deleting a Task
+1. Deleting a Task when you are in the Project-View
+    * Prerequisites: Only Required to be in Project View 
+    * Test case: `delete t/1`: The first task of in the task list of the project will be deleted and, an acknowledgement message will be displayed on the screen to ensure the user that the required task has been deleted.
+    
+2. Deleting a Task when you are in the Home-View
+    * Prerequisites: Required to be in Home-View
+    * Test case: `delete t/p1`: Since the state of the program is in Home view, the user will not be allowed to delete a task and hence the program throws an exception.
+    
+#### C.8 Selecting a Task
+1. Selecting a Task when you are in the Project-View
+    * Prerequisites: Only Required to be in Project View (Initial state of the application)
+    * Test case: select t/1: The first task of in the task list of the project will be deleted and, an acknowledgement message will be displayed on the screen to ensure the user that the required task has been deleted.
+    
+2. Selecting a Task when you are in the Home-View
+    * Prerequisites: Required to be in Home-View
+    * Test case: delete `t/p1`: Since the state of the program is in Home view, the user will not be allowed to delete a task and hence the program throws an exception.
+    
+#### C.9 Listing all Tasks in a Project
+
+#### C.10 Marking a Task as Completed
+
+#### C.11 Assigning a Deadline to a Task
+
+#### C.12 Assigning a Priority to a Task
+
+#### C.13 Assigning Estimated Completion Time to Task
+
+#### C.14 Assigning Actual Completion Time to Task
+
+####C.15 Sorting Tasks in TaskList
+
+### <ins>Member-Specific Tests</ins>
+
+#### C.16 Adding a Member
+
+#### C.17 Removing a Member
+
+#### C.18 Listing all Members
+
+#### C.19 Assigning a Member to a Project
+
+#### C.20 Assigning a Member to a Task
+
+
+
+
+
+
+
+
+
+
+

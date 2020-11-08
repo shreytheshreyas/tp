@@ -3,19 +3,10 @@ package seedu.duke.commands.project;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeExceptions;
-import seedu.duke.commands.project.ProjectDeadlineCommand;
-import seedu.duke.commands.project.ProjectDescriptionCommand;
-import seedu.duke.commands.task.TaskCommand;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
 import seedu.duke.ui.Ui;
-import seedu.duke.project.ProjectList;
-import seedu.duke.task.Task;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,6 +28,7 @@ public class ProjectDeadlineCommandTest {
         projects.add(projectOne);
         projects.add(projectTwo);
         projects.add(projectThree);
+        teamMembers = new ArrayList<>();
         params = new HashMap<>();
     }
 
@@ -45,14 +37,37 @@ public class ProjectDeadlineCommandTest {
      */
     @Test
     void executeCommand_validProjectId_addDeadlineToProject() throws DukeExceptions {
-        params.put("p", "2");
-        params.put("d", "2020-12-31");
+        params.put("p", "1");
+        params.put("d", "2030-12-31");
         ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
-        String expectedOutput = "Deadline 31/12/2020 added to Project Fire";
+        String expectedOutput = "Deadline 31/12/2030 added to Project Drink Water\n"
+                + "\n"
+                + "EZ Manager Home View\n"
+                + "\n"
+                + " ----------------------\n"
+                + "| PROJECT LIST         |\n"
+                + " ----------------------\n"
+                + "\n"
+                + "Index   Status   Project Name             Project Description                "
+                + "Deadline     Tasks Completed     Remarks\n"
+                + "-----------------------------------------------------------------------------"
+                + "-------------------------------------------------------------------------\n"
+                + "1.      N        Drink Water              -                                  "
+                + "31/12/2030   0/0                 -\n"
+                + "2.      N        Fire                     -                                  "
+                + "-            0/0                 -\n"
+                + "3.      N        CS2113 Tutorial          -                                  "
+                + "-            0/0                 -\n"
+                + "\n"
+                + " ----------------------\n"
+                + "| MEMBERS LIST         |\n"
+                + " ----------------------\n"
+                + "\n"
+                + "Index   Member Name                   Projects Involved\n"
+                + "-----------------------------------------------------------------------------";
         String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
-
 
     @Test
     void executeCommand_invalidProjectId_exceptionThrown() throws DukeExceptions {
@@ -66,17 +81,15 @@ public class ProjectDeadlineCommandTest {
         assertEquals(expectedOutput, actualOutputException.toString());
     }
 
-    //Unsure why test passed in Intellij but fails in PR
-    /*
     @Test
     void executeCommand_invalidDeadlineFormat_addDeadlineToProject() throws DukeExceptions {
-        String stringToInput = "deadline p/2 d/2020-31-31";
+        params.put("p", "2");
+        params.put("d", "2020-31-31");
         String expectedOutput = "Date must be specified in format YYYY-MM-DD";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
-            Parser.parse(stringToInput);
+            ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
         });
         assertEquals(expectedOutput, actualOutputException.toString());
     }
-    */
 
 }

@@ -1,5 +1,6 @@
 package seedu.duke.task;
 
+import seedu.duke.DukeExceptions;
 import seedu.duke.member.TeamMember;
 
 import java.time.LocalDate;
@@ -68,6 +69,10 @@ public class Task {
         return description;
     }
 
+    public void setTaskDescription(String newDescription) {
+        description = newDescription;
+    }
+
     public String getDateString() {
         return (date != null) ? date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy")) : "";
     }
@@ -81,7 +86,12 @@ public class Task {
         return members;
     }
 
-    public void setMember(TeamMember newMember) {
+    public void setMember(TeamMember newMember) throws DukeExceptions {
+        for (TeamMember member : members) {
+            if (newMember == member) {
+                throw new DukeExceptions("TaskAlreadyAssigned");
+            }
+        }
         members.add(newMember);
     }
 

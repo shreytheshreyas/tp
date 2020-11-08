@@ -3,7 +3,6 @@ package seedu.duke.commands.member;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import seedu.duke.DukeExceptions;
-import seedu.duke.commands.task.TaskSelectCommand;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.task.Task;
