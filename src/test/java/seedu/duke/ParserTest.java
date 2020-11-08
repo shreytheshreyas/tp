@@ -291,16 +291,6 @@ class ParserTest {
     }
 
     @Test
-    void parse_removeCommandProjectView_HomeViewException() throws DukeExceptions {
-        String inputCommand = "remove m/3";
-        Parser.setProjectIndex(3);
-        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
-                Parser.parse(inputCommand));
-        String expectedOutput = "You must be in Home View to do that!";
-        assertEquals(expectedOutput, exception.toString());
-    }
-
-    @Test
     void parse_assignCommandHomeView_correctCommand() throws DukeExceptions {
         String inputCommand = "assign p/1 m/3";
         Parser.setProjectIndex(-1);
