@@ -50,8 +50,12 @@ public class Ui {
         return "Team member \"" + name + "\" has been added";
     }
 
-    public static String printMemberRemovedMessage(String name) {
-        return "Team member \"" + name + "\" has been removed";
+    public static String printMemberRemovedInHomeViewMessage(String name) {
+        return "Team member \"" + name + "\" has been removed from program entirely";
+    }
+
+    public static String printMemberRemovedInProjectViewMessage(String name, String projectName) {
+        return "Team member \"" + name + "\" has been removed from Project \"" + projectName + "\"";
     }
 
     public static String printProjectDeletedMessage(Project project) {
@@ -156,10 +160,10 @@ public class Ui {
                 projectName = projectName.substring(0, 21) + "...";
             }
             paddedProjectName = String.format("%-25s", projectName);
-            if (project.getDescription() != "<project description empty>") {
+            if (!project.getDescription().equals("<project description empty>")) {
                 String projectDescription = project.getDescription();
                 if (projectDescription.length() >= 35) {
-                    projectDescription = projectDescription.substring(0, 31) + "..."; //testing
+                    projectDescription = projectDescription.substring(0, 31) + "...";
                 }
                 paddedProjectDescription = String.format("%-35s", projectDescription);
             } else {
@@ -192,7 +196,6 @@ public class Ui {
                     }
                 }
                 LocalDate currentDate = LocalDate.now();
-                // if i have a task inside a project with a nearest deadline and task is still not done
                 if (dateOfTaskWithNearestDeadline != null && !taskWithNearestDeadline.getStatus()) {
                     //find the difference in the number of days from current days to deadline
                     Period period = Period.between(currentDate, dateOfTaskWithNearestDeadline);
@@ -224,7 +227,7 @@ public class Ui {
             }
             String paddedMemberName = String.format("%-30s", memberName);
             output += "\n" + paddedMemberIndex + paddedMemberName;
-            if (member.getAssignedProjects() != null) {
+            if (!member.getAssignedProjects().isEmpty()) {
                 for (int i = 0; i < member.getAssignedProjects().size(); i++) {
                     String assignedProjectName = member.getAssignedProjects().get(i).getProjectName();
                     if (i == 0) {

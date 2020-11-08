@@ -161,10 +161,7 @@ public class Parser {
             command = new TeamMemberAddCommand(params);
             break;
         case "remove":
-            if (!isHomeView) {
-                throw new DukeExceptions("mustBeInHomeView");
-            }
-            command = new TeamMemberDeleteCommand(params);
+            command = new TeamMemberDeleteCommand(params, projectIndex);
             break;
         case "assign":
             command = (isHomeView)
