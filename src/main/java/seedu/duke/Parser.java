@@ -1,3 +1,5 @@
+//@@author thatseant
+
 package seedu.duke;
 
 import seedu.duke.commands.Command;
@@ -165,7 +167,7 @@ public class Parser {
             break;
         case "assign":
             command = (isHomeView)
-                    ? new AssignMemberToProjectCommand(params, isHomeView)
+                    ? new AssignMemberToProjectCommand(params, projectIndex)
                     : new TeamMemberAssignToTaskCommand(params, projectIndex);
             break;
         case "priority":

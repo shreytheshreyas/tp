@@ -20,7 +20,7 @@ public class TaskDoneCommand extends Command {
     HashMap<String, String> params;
 
     public TaskDoneCommand(HashMap<String, String> params, int projectIndex) throws DukeExceptions {
-        assert projectIndex >= 0 : projectIndex;
+        assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
