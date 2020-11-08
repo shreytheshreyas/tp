@@ -19,7 +19,7 @@ public class Duke {
     public static void main(String[] args) throws DukeExceptions {
         Ui ui = new Ui();
 
-        //ui.printWelcome();
+        ui.printWelcome();
         Scanner in = new Scanner(System.in);
 
         boolean isExit = false;
