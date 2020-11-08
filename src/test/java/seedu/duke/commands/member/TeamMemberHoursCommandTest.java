@@ -1,3 +1,5 @@
+//@@author thatseant
+
 package seedu.duke.commands.member;
 
 import org.junit.jupiter.api.BeforeAll;
@@ -53,7 +55,7 @@ class TeamMemberHoursCommandTest {
         HashMap<String, String> params = new HashMap<>();
         params.put("m","3");
 
-        TeamMemberHoursCommand assignProject = new TeamMemberHoursCommand(params,1);
+        TeamMemberHoursCommand assignProject = new TeamMemberHoursCommand(params,-1);
         String expectedOutput = "Member 3 worked for 12.3 hours.";
         String actualOutput = assignProject.executeCommand(projects,teamMembers);
         assertEquals(expectedOutput, actualOutput);
@@ -63,8 +65,7 @@ class TeamMemberHoursCommandTest {
     public void executeCommand_invalidMemberId_assignMemberToProject() throws DukeExceptions {
         HashMap<String,String> params = new HashMap<>();
         params.put("m","7");
-
-        TeamMemberHoursCommand assignProject = new TeamMemberHoursCommand(params,1);
+        TeamMemberHoursCommand assignProject = new TeamMemberHoursCommand(params,-1);
         String expectedOutput = "The member ID entered does not exist";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
             assignProject.executeCommand(projects,teamMembers);
