@@ -50,6 +50,7 @@ public class Project implements Comparable<Project> {
         tasks.remove(taskIndex);
     }
 
+
     public int getNumberOfTask() {
         return tasks.size();
     }
