@@ -213,31 +213,25 @@ public class Storage {
         return null;
     }
 
-    public static void save(ArrayList<Project> projects, ArrayList<TeamMember> members) {
-        try {
-            // empty current saved items;
-            FileWriter clear = new FileWriter(f);
-            clear.write("");
-            clear.close();
+    public static void save(ArrayList<Project> projects, ArrayList<TeamMember> members) throws IOException {
+        // empty current saved items;
+        FileWriter clear = new FileWriter(f);
+        clear.write("");
+        clear.close();
 
-            FileWriter fw = new FileWriter(f, true);
-            fw.write("Members \n");
-            for (TeamMember member : members) {
-                fw.write(member.saveFormat() + "\n");
-            }
-
-            fw.write("\n");
-
-            for (Project project : projects) {
-                fw.write(project.saveFormat() + "\n");
-            }
-
-            fw.close();
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
+        FileWriter fw = new FileWriter(f, true);
+        fw.write("Members \n");
+        for (TeamMember member : members) {
+            fw.write(member.saveFormat() + "\n");
         }
 
+        fw.write("\n");
+
+        for (Project project : projects) {
+            fw.write(project.saveFormat() + "\n");
+        }
+
+        fw.close();
     }
 
 }

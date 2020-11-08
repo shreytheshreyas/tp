@@ -6,6 +6,7 @@ import seedu.duke.project.Project;
 import seedu.duke.storage.Storage;
 import seedu.duke.ui.Ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -51,29 +52,33 @@ public class Duke {
                 ui.printLine();
                 String output = commandInput.executeCommand(projects, teamMembers);
                 ui.printOutput(output);
+                Storage.save(projects, teamMembers);
                 isExit = commandInput.isExit();
-            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | DukeExceptions e) {
+            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException
+                    | DukeExceptions | IOException e) {
                 System.out.println(e);
             }
             ui.printLine();
         }
 
-        Storage.save(projects, teamMembers);
+        try {
+            Storage.save(projects, teamMembers);
+        } catch (IOException e) {
+            System.err.println("Couldn't save before terminating.");
+        }
+
     }
 
     public static void main(String[] args) throws DukeExceptions {
         new Duke("ezmanager.txt").run();
         final Thread mainThread = Thread.currentThread();
-        Runtime.getRuntime().addShutdownHook(new Thread() {
-            public void run() {
-                try {
-                    mainThread.join();
-                    Storage.save(projects, teamMembers);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                Storage.save(projects, teamMembers);
+            } catch (IOException e) {
+                System.err.println("Couldn't save before terminating.");
             }
-        });
+        }));
 
     }
 

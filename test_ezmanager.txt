@@ -1,24 +1,27 @@
 Members 
-member one
-another one
+hi
+ho
+min
 
-Project sad
+Project it works for me :(
 status false
 projectDescription <project description empty>
-projectDeadline 2020-12-20
+projectDeadline null
 startTasks 
-one thing | tS 0 tE | pS 0 pE
+one here | tS 0 tE | pS 0 pE
 tMS
-member one
+hi
+ho
 tME
-another thing | tS 0 tE | pS 0 pE
+another | tS 0 tE | pS 0 pE
 endTasks
 pMS
-member one
-another one
+hi
+ho
+min
 pME
 
-Project one thing
+Project one mor
 status false
 projectDescription <project description empty>
 projectDeadline null
@@ -27,7 +30,7 @@ endTasks
 pMS
 pME
 
-Project anothe ron
+Project another
 status false
 projectDescription <project description empty>
 projectDeadline null
@@ -36,7 +39,7 @@ endTasks
 pMS
 pME
 
-Project hi
+Project hey
 status false
 projectDescription <project description empty>
 projectDeadline null
