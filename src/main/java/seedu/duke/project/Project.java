@@ -149,4 +149,8 @@ public class Project implements Comparable<Project> {
     public void markAsDone() {
         this.isDone = true;
     }
+
+    public boolean isProjectDone() {
+        return isDone;
+    }
 }

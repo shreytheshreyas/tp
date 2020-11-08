@@ -7,19 +7,26 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.time.Period;
 
 public class Ui {
 
-    private static final String MESSAGE_SINGLE_LINE = "____________________________________________________________";
-    private static final String MESSAGE_WELCOME = "Hello from EZ Manager!\n"
+
+    private static final String MESSAGE_SINGLE_LINE = "_________________________________________"
+            + "____________________________________________";
+    private static final String MESSAGE_WELCOME = "Hello from EzManager!\n"
             + "What can I do for you?";
     private static final String MESSAGE_GOODBYE = "See you again!";
-    private static final String MESSAGE_LOGO = " ____        _        \n"
-            + "|  _ \\ _   _| | _____ \n"
-            + "| | | | | | | |/ / _ \\\n"
-            + "| |_| | |_| |   <  __/\n"
-            + "|____/ \\__,_|_|\\_\\___|\n";
-
+    private static final String MESSAGE_LOGO = " _____         ___     ___\n"
+            + "|  ___|       |   \\  /   |\n"
+            + "| |___  _____ |    \\/    | ______    ______  ______    ______  ______   _____  _____\n"
+            + "|  ___||___ / |  |\\  /|  ||  __  |  |  __  ||  __  |  |  __  ||  __  | / ___ \\|  ___|\n"
+            + "| |___   / /_ |  | \\/ |  || |__| |_ | |  | || |__| |_ | |  | || |__| ||   ___/|  |\n"
+            + "|_____| /____||__|    |__||________||_|  |_||________||_|  |_||____  ||______||__|\n"
+            + "                                                                   | |\n"
+            + "                                                               ____| |\n"
+            + "                                                              |______|\n";
 
     public void printWelcome() {
         System.out.println(MESSAGE_SINGLE_LINE);
@@ -94,14 +101,12 @@ public class Ui {
         return "Project \"" + projectName + "\" is done!";
     }
 
-    public static String printProjectDeadlineAddedMessage(Project project, LocalDate date) {
-        return "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
-                + " added to Project " + project.getProjectName();
-    }
-
-    public static String printEmptyAdditionalProjectInformationMessage() {
-        return "<project description empty> | <project deadline empty> | "
-                + "<team members involved empty>";
+    public static String printProjectDeadlineAddedMessage(ArrayList<Project> projects, Project project,
+                                                          LocalDate date, ArrayList<TeamMember> members) {
+        String output =  "Deadline " + date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))
+                + " added to Project " + project.getProjectName() + "\n\n";
+        output += printHomeView(projects, members);
+        return output;
     }
 
     public static String printTaskCreatedMessage(String taskName) {
@@ -125,53 +130,115 @@ public class Ui {
     }
 
     public static String printHomeView(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
-        String output = "Hello! Welcome to EZ Manager!\n";
-        output += "\n ---------------------- ";
+        String output = "EZ Manager Home View\n";
+        output += "\n ----------------------";
         output += "\n| PROJECT LIST         |";
-        output += "\n ---------------------- \n";
-        output += "\nIndex      Project Name                       Deadline      Tasks Completed";
-        output += "\n---------------------------------------------------------------------------";
+        output += "\n ----------------------\n";
+        output += "\nIndex   Status   Project Name             Project Description                "
+                + "Deadline     Tasks Completed     Remarks";
+        output += "\n---------------------------------------------------------------------------"
+                + "---------------------------------------------------------------------------";
         int projectIndex = 1;
+        String paddedProjectIndex;
+        String paddedProjectStatus;
+        String paddedProjectName;
+        String paddedProjectDescription;
+        String paddedProjectDeadline;
+        String paddedTaskCompleted;
         for (Project project : projects) {
-            String paddedProjectIndex = String.format("%-11s", projectIndex + ".");
+            paddedProjectIndex = String.format("%-8s", projectIndex + ".");
+            String projectStatus;
+            if (project.isProjectDone()) {
+                projectStatus = "Y";
+            } else {
+                projectStatus = "N";
+            }
+            paddedProjectStatus = String.format("%-9s", projectStatus);
             String projectName = project.getProjectName();
-            String paddedProjectName = String.format("%-35s", projectName);
-            String paddedProjectDeadline;
+            if (projectName.length() >= 25) {
+                projectName = projectName.substring(0, 21) + "...";
+            }
+            paddedProjectName = String.format("%-25s", projectName);
+            if (project.getDescription() != "<project description empty>") {
+                String projectDescription = project.getDescription();
+                if (projectDescription.length() >= 35) {
+                    projectDescription = projectDescription.substring(0, 31) + "..."; //testing
+                }
+                paddedProjectDescription = String.format("%-35s", projectDescription);
+            } else {
+                paddedProjectDescription = String.format("%-35s", "-");
+            }
             if (project.getProjectDeadline() != null) {
                 String projectDeadline = project.getProjectDeadline().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-                paddedProjectDeadline = String.format("%-14s", projectDeadline);
+                paddedProjectDeadline = String.format("%-13s", projectDeadline);
             } else {
-                paddedProjectDeadline = String.format("%-14s", "-");
+                paddedProjectDeadline = String.format("%-13s", "-");
             }
             String taskCompleted = project.getNumberOfFinishedTask() + "/"
                     + project.getNumberOfTask();
-            String paddedTaskCompleted = String.format("%-15s", taskCompleted);
-            output += "\n" + paddedProjectIndex + paddedProjectName + paddedProjectDeadline + paddedTaskCompleted;
-            projectIndex++;
-        }
-        output += "\n\n ---------------------- ";
-        output += "\n| MEMBERS LIST         |";
-        output += "\n ---------------------- \n";
-        output += "\nIndex      Member Name                        Projects Involved              ";
-        output += "\n---------------------------------------------------------------------------";
-        int memberIndex = 1;
-        for (TeamMember member : teamMembers) {
-            String paddedMemberIndex = String.format("%-11s", memberIndex + ".");
-            String memberName = member.getName();
-            String paddedMemberName = String.format("%-17s", memberName);
-            //String memberRole;
-            output += "\n" + paddedMemberIndex + paddedMemberName + "                  ";
-            if (member.getAssignedProjects() != null) {
-                for (int i = 0; i < member.getAssignedProjects().size(); i++) {
-                    Project assignedProject = member.getAssignedProjects().get(i);
-                    String paddedAssignedProject = String.format("%-28s", assignedProject.getProjectName());
-                    if (i == 0) {
-                        output += "1. " + paddedAssignedProject;
-                    } else {
-                        output += "\n                                              "
-                                + (i + 1) + ". " + paddedAssignedProject;
+            paddedTaskCompleted = String.format("%-20s", taskCompleted);
+            String remarks = "-";
+            LocalDate dateOfTaskWithNearestDeadline = null;
+            Task taskWithNearestDeadline = null;
+            if (!project.getTaskList().isEmpty()) {
+                ArrayList<Task> tasks = project.getTaskList();
+                for (Task task : tasks) {
+                    LocalDate deadlineOfTask = task.getDeadline();
+                    if (deadlineOfTask == null) {
+                        continue;
+                    } else if (dateOfTaskWithNearestDeadline == null) {
+                        dateOfTaskWithNearestDeadline = deadlineOfTask;
+                        taskWithNearestDeadline = task;
+                    } else if (deadlineOfTask.compareTo(dateOfTaskWithNearestDeadline) < 0) {
+                        dateOfTaskWithNearestDeadline = deadlineOfTask;
+                        taskWithNearestDeadline = task;
                     }
                 }
+                LocalDate currentDate = LocalDate.now();
+                // if i have a task inside a project with a nearest deadline and task is still not done
+                if (dateOfTaskWithNearestDeadline != null && !taskWithNearestDeadline.getStatus()) {
+                    //find the difference in the number of days from current days to deadline
+                    Period period = Period.between(currentDate, dateOfTaskWithNearestDeadline);
+                    if (period.getDays() <= 5 && period.getMonths() == 0 && period.getYears() == 0) {
+                        remarks = "!!!WARNING!!! Task \"" + taskWithNearestDeadline.getDescription()
+                                + "\" has " + period.getDays() + " day(s) before deadline and still not done!!";
+                    } else {
+                        remarks = "Task \"" + taskWithNearestDeadline.getDescription()
+                                + "\" has an upcoming deadline at " + taskWithNearestDeadline.getDateString()
+                                + " and still not done!!";
+                    }
+                }
+            }
+            output += "\n" + paddedProjectIndex + paddedProjectStatus + paddedProjectName + paddedProjectDescription
+                    + paddedProjectDeadline + paddedTaskCompleted + remarks;
+            projectIndex++;
+        }
+        output += "\n\n ----------------------";
+        output += "\n| MEMBERS LIST         |";
+        output += "\n ----------------------\n";
+        output += "\nIndex   Member Name                   Projects Involved";
+        output += "\n-----------------------------------------------------------------------------";
+        int memberIndex = 1;
+        for (TeamMember member : teamMembers) {
+            String paddedMemberIndex = String.format("%-8s", memberIndex + ".");
+            String memberName = member.getName();
+            if (member.getName().length() >= 30) {
+                memberName = member.getName().substring(0, 26) + "...";
+            }
+            String paddedMemberName = String.format("%-30s", memberName);
+            output += "\n" + paddedMemberIndex + paddedMemberName;
+            if (member.getAssignedProjects() != null) {
+                for (int i = 0; i < member.getAssignedProjects().size(); i++) {
+                    String assignedProjectName = member.getAssignedProjects().get(i).getProjectName();
+                    if (i == 0) {
+                        output += "1. " + assignedProjectName;
+                    } else {
+                        output += "\n                                      "
+                                + (i + 1) + ". " + assignedProjectName;
+                    }
+                }
+            } else {
+                output += "-";
             }
             output += System.lineSeparator();
             memberIndex++;

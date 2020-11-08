@@ -52,7 +52,7 @@ public class TaskSortCommandTest {
     @Test
     public void execute_command_sortTaskList_Priority() throws DukeExceptions {
         HashMap<String, String> params = new HashMap<>();
-        params.put("p", "");
+        params.put("s", "p");
         String expectedOutput = "List of Tasks:"
                 + "\n     " + "1" + "." + "Task Two | 23/12/2020 | Actual: 2 hours 10 minutes|priority: 1"
                 + "\n     " + "2" + "." + "Task Three | 14/11/2020 | Actual: 3 hours 30 minutes|priority: 2"
@@ -68,7 +68,7 @@ public class TaskSortCommandTest {
     @Test
     public void execute_command_sortTaskList_Deadline() throws DukeExceptions {
         HashMap<String, String> params = new HashMap<>();
-        params.put("d", "");
+        params.put("s", "d");
         String expectedOutput = "List of Tasks:"
                 + "\n     " + "1" + "." + "Task Three | 14/11/2020 | Actual: 3 hours 30 minutes|priority: 2"
                 + "\n     " + "2" + "." + "Task One | 13/12/2020 | Actual: 1 hours 30 minutes|priority: 3"
@@ -84,7 +84,7 @@ public class TaskSortCommandTest {
     @Test
     public void execute_command_sortTaskList_ActualTime() throws DukeExceptions {
         HashMap<String, String> params = new HashMap<>();
-        params.put("t", "");
+        params.put("s", "t");
         String expectedOutput = "List of Tasks:"
                 + "\n     " + "1" + "." + "Task One | 13/12/2020 | Actual: 1 hours 30 minutes|priority: 3"
                 + "\n     " + "2" + "." + "Task Two | 23/12/2020 | Actual: 2 hours 10 minutes|priority: 1"
@@ -98,9 +98,9 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void executeCommand_invalidProjectId_assignMemberToProject() throws DukeExceptions {
+    public void executeCommand_invalidProjectId_exception() throws DukeExceptions {
         HashMap<String, String> params = new HashMap<>();
-        String expectedOutput = "OOPS!!! I'm sorry, but I don't know what that means :-(";
+        String expectedOutput = "Certain Parameters are missing!";
         Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
             new TaskSortCommand(params,0);
         });
