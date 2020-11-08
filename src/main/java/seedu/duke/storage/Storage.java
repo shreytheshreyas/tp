@@ -45,6 +45,13 @@ public class Storage {
                     String deadline = s.nextLine().replaceFirst("projectDeadline", "").trim();
 
                     Project newProject = new Project(projectName);
+                    if (status) {
+                        newProject.markAsDone();
+                    }
+
+                    newProject.addDescription(projectDescription.trim());
+
+
                     if (!deadline.equals("null")) {
                         LocalDate deadlineDate = LocalDate.parse(deadline);
                         newProject.addProjectDeadline(deadlineDate);
