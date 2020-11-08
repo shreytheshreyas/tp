@@ -136,9 +136,11 @@ ____________________________________________________________
 >
 > **:bulb: Parameters can be specified in any order!**
 >
+> **:bulb: Commands and parameter types can be in either lowercase or uppercase** 
+>
 > `COMMAND_TYPE`  `PARAMETER1` `PARAMETER2` ...
 >
-> PARAMETERS are specified in the following format:
+> Parameters are specified in the following format:
 >
 > `PARAMETER_TYPE/PARAMETER_VALUE`
 
