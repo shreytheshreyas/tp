@@ -24,6 +24,11 @@ public class TeamMemberDeleteCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
+    /**
+     * Parse user parameter inputs for execution.
+     *
+     * @throws DukeExceptions Invalid Team Member ID when parameter values entered is not an integer.
+     */
     public void parse() throws DukeExceptions {
         try {
             memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
@@ -32,6 +37,18 @@ public class TeamMemberDeleteCommand extends Command {
         }
     }
 
+    /**
+     * Removes specified member from the program or from a specified project depending on the view
+     * [In Home View] Removes member from the program entirely, including every project and every task
+     * he/she is assigned to.
+     * [In Project View] Removes member from the project, including the task he/she is assigned to.
+     *
+     * @param projects ArrayList of Projects.
+     * @param teamMembers ArrayList of TeamMembers in the program.
+     * @return Print message of member being removed from either the program entirely or the project.
+     * @throws DukeExceptions if TeamMembers list is empty or if TeamMember ID provided is outside
+     * the range of the TeamMembers list
+     */
     @Override
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws DukeExceptions {
@@ -43,23 +60,14 @@ public class TeamMemberDeleteCommand extends Command {
             if (projectIndex == -1) {
                 TeamMember memberToBeRemoved = teamMembers.get(memberIndex);
                 teamMembers.remove(memberIndex);
-                for (Project project : projects) {
-                    for (int i = 0; i < project.getTeamMembers().size(); i++) {
-                        TeamMember member = project.getTeamMembers().get(i);
-                        if (member == memberToBeRemoved) {
-                            project.getTeamMembers().remove(i);
-                            i--;
-                        }
-                    }
-                    removingMemberFromTask(project, memberToBeRemoved);
-                }
+                removeMemberFromProject(projects, memberToBeRemoved);
                 return Ui.printMemberRemovedInHomeViewMessage(memberToBeRemoved.getName());
             // Removing of members in ProjectView
             } else {
                 Project project = projects.get(projectIndex);
                 TeamMember memberToBeRemoved = project.getTeamMembers().get(memberIndex);
                 project.getTeamMembers().remove(memberIndex);
-                removingMemberFromTask(project, memberToBeRemoved);
+                removeMemberFromTask(project, memberToBeRemoved);
                 memberToBeRemoved.getAssignedProjects().remove(project);
                 return Ui.printMemberRemovedInProjectViewMessage(memberToBeRemoved.getName(), project.getProjectName());
             }
@@ -68,7 +76,20 @@ public class TeamMemberDeleteCommand extends Command {
         }
     }
 
-    private void removingMemberFromTask(Project project, TeamMember memberToBeRemoved) {
+    private void removeMemberFromProject(ArrayList<Project> projects, TeamMember memberToBeRemoved) {
+        for (Project project : projects) {
+            for (int i = 0; i < project.getTeamMembers().size(); i++) {
+                TeamMember member = project.getTeamMembers().get(i);
+                if (member == memberToBeRemoved) {
+                    project.getTeamMembers().remove(i);
+                    i--;
+                }
+            }
+            removeMemberFromTask(project, memberToBeRemoved);
+        }
+    }
+
+    private void removeMemberFromTask(Project project, TeamMember memberToBeRemoved) {
         for (Task task : project.getTaskList()) {
             for (int j = 0; j < task.getMembers().size(); j++) {
                 TeamMember member = task.getMembers().get(j);
