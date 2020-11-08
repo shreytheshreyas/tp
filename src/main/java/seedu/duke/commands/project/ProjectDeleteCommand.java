@@ -6,6 +6,7 @@ import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,6 +38,10 @@ public class ProjectDeleteCommand extends Command {
         try {
             Project projectToBeDeleted = projects.get(projectIndex);
             projects.remove(projectIndex);
+            ArrayList<TeamMember> membersInProjectToBeDeleted = projectToBeDeleted.getTeamMembers();
+            for (TeamMember member : membersInProjectToBeDeleted) {
+                member.getAssignedProjects().remove(projectToBeDeleted);
+            }
             return Ui.printProjectDeletedMessage(projectToBeDeleted);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
