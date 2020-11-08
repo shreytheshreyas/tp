@@ -350,15 +350,14 @@ Priority | As a ... | I want to ... | So that I can ...
 `*` | project manager | add the roles of my team members | allocate appropriate tasks to appropriate members
 `*` | project manager | send out reminders to my team members | have them shift gears or change something in real time  
 
-## Appendix C: Instructions for Manual Testing
+## Appendix C: Instructions for Manual Testing (Shreyas)
 
 ### <ins>Project-Specific Tests</ins>
 
 #### C.1 Creating a Project
 1. Creating a Project when you are in the Home-View
-    * Prerequisites: Only Required to be in the Home View (Initial state of the
-       application)
-    * Test case: `project n/p1`: A new project named as p1 should be created and added to the project list. A message will be displayed on the screen to ensure the user that the project has been created.
+    * Prerequisites: Only Required to be in the Home-View 
+    * Test case: `project n/p1`: A new project named as p1 will be created and added to the project list. A message will be displayed on the screen to ensure the user that the project has been created.
     * Test case: `project p1`: Since the n/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
     
 2. Creating a Project when you are in the Project-View
@@ -367,99 +366,203 @@ Priority | As a ... | I want to ... | So that I can ...
     
 #### C.2 Deleting a Project
 1. Deleting a Project when you are in the Home-View
-    * Prerequisites: Only Required to be in the Home View (Initial state of the application)
+    * Prerequisites: Only Required to be in the Home-View
     * Test case: `delete p/1`: The project named as p1 will be deleted and from the project list. A message will be displayed on the screen to ensure the user that the project has been deleted.
     * Test case: `delete p1`: Since the p/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
 
-2. Creating a Project when you are in the Project-View
-    * Prerequisites: Required to be in Project-View
-    * Test case: `project p/1`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+2. Deleting a Project whose project-id is greater that the total number of projects
+    * Prerequisites: Required to be in the Home-View and have three projects created.
+    * Test case: `delete p/4`: Since there are only three projects in the project list, the project-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid project-id.
 
-#### C.3 Listing multiple Projects
-1. Listing Projects when project list contains projects
-    * Prerequisites: Project list should at least have one project
-    * Test case: `list`: the list command will list all the projects present in the project list.
-    
-2. Creating a Project when you are in the Project-View
-    * Prerequisites: Project list should be empty
-    * Test case: `list`: Since the project list is empty, no projects will be displayed and, an exception will be shown saying that the project list is empty.
-    
-#### C.4 Selecting a Project
+3. Creating a Project when you are in the Project-View
+    * Prerequisites: Required to be in Project-View.
+    * Test case: `delete p/1`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+
+#### C.3 Selecting a Project
 1. Selecting a Project when you are in the Home-View
     * Prerequisites: Only Required to be in the Home View (Initial state of the application) and, the project p1 has already been created.
-    * Test case: `select p/1`: The project named as p1 will be will selected from the
+    * Test case: `select p/1`: The project with the index of 1 will be will selected from the
       project list and, you will enter project view of that respective project.
     * Test case: `select p1`: Since the p/ parameter has not been provided, it is considered as an incorrect command in the application and hence the program throws an exception.
-      
-2. Selecting a Project when you are in the Project-View
+
+2. Selecting a Project whose project-id is greater that the total number of projects
+    * Prerequisites: Required to be in the Home View and have three project created.
+    * Test case: `select p/4`: Since there are only three projects in the project list, the project-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid project-id.
+
+3. Selecting a Project when you are in the Project-View
     * Prerequisites: Required to be in Project-View
     * Test case: `select p/1`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
       
-#### C.5 Providing a Description for a Project
-1. Providing a description for the Project when you are in the Home-View
-    * Prerequisites: Only Required to be in the Home View (Initial state of the application) and, the project p1 has already been created.
-    * Test case: `description d/This is a description`: Since we are not in the view of any project, we would not be able to add a description to any of them and hence the program will throw an exception.
+#### C.4 Providing a Description for a Project (need to update this)
+1. Providing a description for the Project when you are in the Project-View
+    * Prerequisites: Required to be in the Project-View.
+    * Test case: `description p/1 d/This is a description`: Since we are in Project-View, we would not be able to add a description to any of them and hence the program will throw an exception.
    
-2. Providing a description for the Project when you are in the Project-View 
-    * Prerequisites: A project p1 has to be created and, the program has to be in its project view
-    * Test case: `description d/This is a description`: Since the state of the program is in project view, the user will not be allowed to delete a project and hence the program will not be able to recognize the p/ parameter and will hence throw an exception.
+2. Providing a description for the Project when you are in the Home-View 
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `description p/1 d/This is a description`: Since the state of the program is in Home-View, the description 'This is a description' will be added to the project having an index of 1. An acknowledgement message is printed on the screen to ensure the user that the project has been provided with a description.
     
 ### <ins>Task-Specific Tests</ins>
 
-#### C.6 Creating a Task
+#### C.5 Creating a Task
 1. Creating a Task when you are in the Project-View
-    * Prerequisites: Only Required to be in Project View
-    * Test case: task `n/t1`: A new task named as t1 should be created and added to the task list of that project. A message will be displayed on the screen to ensure the user that the task has been created.
+    * Prerequisites: Only Required to be in Project-View.
+    * Test case: `task n/t1`: A new task named as t1 should be created and added to the task list of that project. A acknowledgement message will be displayed on the screen to ensure the user that the task has been created.
 
 2. Creating a Task when you are in the Home-View
-    * Prerequisites: Required to be in Home-View
-    * Test case: `project n/p1`: Since the state of the program is in Home view, the user will not be allowed to create a task and hence the program throws an exception.
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `task n/1`: Since the state of the program is in Home-View, the user will not be allowed to create a task and hence the program throws an exception.
     
-#### C.7 Deleting a Task
+#### C.6 Deleting a Task
 1. Deleting a Task when you are in the Project-View
-    * Prerequisites: Only Required to be in Project View 
-    * Test case: `delete t/1`: The first task of in the task list of the project will be deleted and, an acknowledgement message will be displayed on the screen to ensure the user that the required task has been deleted.
+    * Prerequisites: Required to be in Project-View. 
+    * Test case: `delete t/1`: The first task in the task list of the project will be deleted and, an acknowledgement message will be displayed on the screen to ensure the user that the required task has been deleted.
+
+2. Deleting a Task whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in the Project-View and have five tasks created.
+    * Test case: `select t/7`: Since there are only five tasks in the task list, the task-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid task-id.    
+
+3. Deleting a Task when you are in the Home-View
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `delete t/1`: Since the state of the program is in Home view, the user will not be allowed to delete a task and hence the program throws an exception.
     
-2. Deleting a Task when you are in the Home-View
+#### C.7 Marking a Task as Completed
+1. Marking a Task as done in Project-View
+    * Prerequisites: Required to be in Project-View of a created project and have tasks created in that respective project.
+    * Test case: `done t/1`: The first task in the task list of that project will be marked as completed and an acknoweldegement message will be displayed on the screen to ensure the user that the task has been marked as completed.
+
+2. Marking a Task as done whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in the Project-View and have five tasks created.
+    * Test case: `done t/7`: Since there are only five tasks in the task list, the task-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid task-id. 
+
+3. Marking a Task as done in Home-View 
     * Prerequisites: Required to be in Home-View
-    * Test case: `delete t/p1`: Since the state of the program is in Home view, the user will not be allowed to delete a task and hence the program throws an exception.
-    
-#### C.8 Selecting a Task
-1. Selecting a Task when you are in the Project-View
-    * Prerequisites: Only Required to be in Project View (Initial state of the application)
-    * Test case: select t/1: The first task of in the task list of the project will be deleted and, an acknowledgement message will be displayed on the screen to ensure the user that the required task has been deleted.
-    
-2. Selecting a Task when you are in the Home-View
+    * Test case: `done t/1`: Since the state of the program is in Home view, there will only be projects present so the user will not be able to mark a task as completed and the program throws an exception.
+
+#### C.8 Assigning a Deadline to a Task
+1. Assigning a Deadline to a Task in Project-View
+    * Prerequisites: Required to be in Project-View of a created project and have tasks created in that respective project.
+    * Test case: `deadline t/1 d/2020-11-09`: Since the state of the program is in Project-View and the deadline mentioned is in the format YYYY-MM-DD the program assigns the date 2020-11-09 as the deadline to task 1. An acknoweldegment message is also displayed to ensure the user that the required task has been assigned to the respective deadline. 
+    * Test case: `deadline t/1 d/09-10-2020`: Eventhough the state of the program is in Project-View the deadline is of the format DD-MM-YYYY which is the incorrect format while inputting the date. An exception mesaage is also thrown by the program to tell the user to enter the date in the YYYY-MM-DD format.
+    * Test case: `deadline t/1 d/11-25-2020`: Eventhough the state of the program is in Project-View the deadline is of the format MM-DD-YYYY which is the incorrect format while inputting the date. An exception mesaage is also thrown by the program to tell the user to enter the date in the YYYY-MM-DD format.
+
+2. Assigning a Deadline to a Task in Home-View
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `deadline t/1 d/2020-11-09`: Since the state of the program is in Home-View, there will only be projects present, so the user will not be able to mark a task as completed and the program throws an exception.
+
+3. Assigning a Deadline to a Task whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in the Project-View and have five tasks created.
+    * Test case: `deadline t/7 d/2020-12-22`: Since there are only five tasks in the task list, the task-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid task-id.
+
+#### C.9 Assigning a Priority to a Task
+1. Assigning a Priority to a Task in Project-View. 
+    * Prerequisites: Required to be in Project-View of a created project and have tasks created in that respective project.
+    * Test case: `priority t/1 p/1`: Since the state of the program is in Project-View, the priority 1 will be assigned to task 1 and an acknoweldegment message is also displayed on the screen to ensure the user that the priority has been assigned.
+
+2. Assigning a Priority to a Task in Home-View
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `priority t/1 p/1`: Since the state of the program is in Home-View, there will only be projects present, so the user will not be able to assign a prirority to a task and the program throws an exception.
+
+3. Assigning a Priority to a Task whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in the Project-View and have five tasks created.
+    * Test case: `priority t/7 p/3`: Since there are only five tasks in the task list, the task-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid task-id.
+
+#### C.10 Assigning Estimated Completion Time to Task
+1. Assigning an Estimated completion time to a Task in Project-View
+    * Prerequisites: Required to be in Project-View of a created project and have tasks created in that respective project.
+    * Test case: `estimate t/1 h/3 m/10`:  Since the state of the program is in Project-View an estimated completion time of 1 hour and 10 minutes will be assigned to task 1 and an acknoweldegment message is also displayed on the screen to ensure the user that the estimated completion time has been assigned.
+
+2. Assigning an Estimated completion time to a Task in Home-View
     * Prerequisites: Required to be in Home-View
-    * Test case: delete `t/p1`: Since the state of the program is in Home view, the user will not be allowed to delete a task and hence the program throws an exception.
-    
-#### C.9 Listing all Tasks in a Project
+    * Test case: `estimate t/1 h/3 m/10`: Since the state of the program is in Home-View, there will only be projects present, so the user will not be able to assign an estimated completion time to a task and the program throws an exception.
 
-#### C.10 Marking a Task as Completed
+3. Assigning an Estimated completion time to a Task whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in the Project-View and have five tasks created.
+    * Test case: `estimate t/7 h/3 m/20`: Since there are only five tasks in the task list, the task-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid task-id.
 
-#### C.11 Assigning a Deadline to a Task
+#### C.11 Assigning Actual Completion Time to Task
+1. Assigning an Actual completion time to a completed Task in Project-View
+    * Prerequisites: Required to be in Project-View of a created project and have atleast one completed task in that respective project.
+    * Test case: `actual t/1 h/3 m/10`:  Since the state of the program is in Project-View and the task in marked as completed, an actual completion time of 1 hour and 10 mimnutes will be assigned to task 1 and an acknoweldegment message is also displayed on the screen to ensure the user that the actual completion time has been assigned.
 
-#### C.12 Assigning a Priority to a Task
+2. Assigning an Actual completion time to a incompleted Task in Project-View
+    * Prerequisites: Required to be in Project-View of a created project and have tasks created in that respective project.
+    * Test case: `actual t/1 h/3 m/10`:  Since the state of the program is in Project-View and task 1 has not been completed an actual completion time cannot be assigned to the task and the program will display an exception message that informs the user that the task should be marked as completed.
 
-#### C.13 Assigning Estimated Completion Time to Task
+3. Assigning an Actual completion time to a Task in Home-View
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `actual t/1 h/3 m/10`: Since the state of the program is in Home-View, there will only be projects present, so the user will not be able to assign an actual completion time to a task and the program throws an exception.
 
-#### C.14 Assigning Actual Completion Time to Task
+4. Assigning an Actual completion time to a Task whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in the Project-View and have five tasks created.
+    * Test case: `actual t/7 h/3 m/25`: Since there are only five tasks in the task list, the task-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid task-id.
+#### C.12 Sorting Tasks in TaskList
 
-####C.15 Sorting Tasks in TaskList
+1. Sorting Tasks by deadline in Project-View
+    *Prerequisites: Required to be in Project-View of a created project and have tasks in that respective project.
+    *Test case: `sort s/d`: Since the state of the program is in project-view, all the tasks in the list that have a deadline will be sorted in ascending order and the tasks that do not have a deadline are placed towards the end.
+
+2. Sorting Tasks by completion time in Project-View
+    *Prerequisites:  Required to be in Project-View of a created project and have tasks in that respective project.
+    *Test case: `sort s/t`: Since the state of the program is in Project-View, all the tasks in the list that have an actual time will be sorted in ascending order and the tasks that do not have an actual time are placed towards the end of the list.
+
+3. Sorting Tasks by priority in Project-View
+    *Prerequisites:  Required to be in Project-View of a created project and have tasks in that respective project.
+    *Test case: `sort s/p`: Since the state of the program is in Project-View, all the tasks in the list that have a priority will be sorted in ascending order of priority and the tasks that do not have a priority are placed towards the end of the list.
+
+4. Sorting Tasks in Home-View.
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `sort s/t`: Since the state of the program is in Home-View, there will only be projects present, so the user will not be able to sort any sets of tasks and the program throws an exception.
 
 ### <ins>Member-Specific Tests</ins>
 
-#### C.16 Adding a Member
+#### C.13 Adding a Member
 
-#### C.17 Removing a Member
+1. Adding a member in Home-View 
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `member n/John Doe`: Since the state of the program is in home view, the member will be created and added to the member arraylist. The program also displays an acknoweldegment message to ensure the user that a new member has been added.
 
-#### C.18 Listing all Members
+2. Adding a member in Project-View 
+    * Prerequisites: Required to be in Project-View.
+    * Test case: `member n/John Doe`: Since the state of the program is in Project-View, the program will throw an exception message to the user because a member can only be added in the Home-View.
 
-#### C.19 Assigning a Member to a Project
+#### C.14 Removing a Member
 
-#### C.20 Assigning a Member to a Task
+1. Removing a member in Home-View 
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `remove m/1`: Since the state of the program is in Home-View, the member will be removed from the member arraylist. The program also displays an acknoweldegment message to ensure the user that the member has has been removed.
 
+2. Removing a member in Project-View 
+    * Prerequisites: Required to be in Project-View
+    * Test case: `remove m/2`: Since the state of the program is in Project-View, the program will throw an exception message to the user because a member can only be removed in the Home-View.
 
+3. Removing a member from a Task whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in Home-View with five members added to the members list.
+    * Test case: `remove m/6`: Since there are only five members in the members list, the member-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid member-id.
+
+#### C.15 Assigning a Member to a Project
+
+1. Assigning a member to a project in Home-View 
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `assign m/2 p/1`: Since the state of the program is in Home-View, the member will be assigned to the respective project. The program also displays an acknoweldegment message to ensure the user that a new member has been added.
+
+2. Assigning a member to a project in Project-View 
+    * Prerequisites: Required to be in Project-View.
+    * Test case: `assign m/1 p/1`: Since the state of the program is in Project-View, the program will throw an exception message to the user because a members can only be assigned to projects in the Home-View.
+
+#### C.16 Assigning a Member to a Task
+
+1. Assigning a member to a project in Home-View 
+    * Prerequisites: Required to be in Home-View.
+    * Test case: `assign t/1 m/2`: Since the state of the program is in Project-View, the program will throw an exception message to the user because a member can only be assigned to tasks in the Project-View.
+
+2. Assigning a member to a project in Project-View 
+    * Prerequisites: Required to be in Project-View.
+    * Test case: `assign t/2 m/1`: Since the state of the program is in  Project-View, the member will be assigned to the respective project. The program also displays an acknoweldegment message to ensure the user that the new member has been assigned to the respective task.
+
+4. Assigning a member to a Task whose task-id is greater than the total number of tasks
+    * Prerequisites: Required to be in the Project-View and have five tasks created.
+    * Test case: `assign m/1 t/8`: Since there are only five tasks in the task list, the task-id provided to the program is invalid and the program will throw an exception to tell the user to enter a valid task-id.
 
 
 
