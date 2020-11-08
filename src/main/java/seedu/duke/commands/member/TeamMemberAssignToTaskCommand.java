@@ -27,37 +27,42 @@ public class TeamMemberAssignToTaskCommand extends Command {
     }
 
     public void parse() throws DukeExceptions {
-        taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
-        memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
+        try {
+            taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTaskID");
+        }
+        try {
+            memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
+        } catch (NumberFormatException e) {
+            throw new DukeExceptions("invalidTeamMemberID");
+        }
     }
 
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws DukeExceptions {
-        if (projects.size() == 0) {
-            throw new DukeExceptions("emptyProjectList");
-        }
-        if (projects.get(projectIndex).getTaskList().size() == 0) {
-            throw new DukeExceptions("emptyTaskList");
-        }
-        if (teamMembers.size() == 0) {
-            throw new DukeExceptions("emptyTeamMembersList");
-        }
-
         Task selectedTask;
         TeamMember teamMember;
-
+        assert projectIndex >= 0 : "projectIndex should be minus one "
+                + "of the current project it was selected";
+        Project project = projects.get(projectIndex);
         try {
-            selectedTask = projects.get(projectIndex).getTask(taskIndex);
+            if (project.getTaskList().isEmpty()) {
+                throw new DukeExceptions("emptyTaskList");
+            }
+            selectedTask = project.getTask(taskIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTaskID");
         }
 
         try {
-            teamMember = teamMembers.get(memberIndex);
+            if (project.getTeamMembers().isEmpty()) {
+                throw new DukeExceptions("emptyTeamMembersList");
+            }
+            teamMember = project.getTeamMembers().get(memberIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidTeamMemberID");
         }
-
         selectedTask.setMember(teamMember);
         return Ui.printMemberAssignedToTaskMessage(teamMember.getName(), selectedTask.getTaskDescription());
     }

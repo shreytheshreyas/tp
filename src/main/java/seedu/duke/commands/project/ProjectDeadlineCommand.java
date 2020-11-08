@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import static seedu.duke.Parser.getHashValue;
@@ -41,7 +42,20 @@ public class ProjectDeadlineCommand extends Command {
         try {
             Project project = projects.get(projectIndex);
             project.addProjectDeadline(date);
-            return Ui.printProjectDeadlineAddedMessage(project, date);
+            int projectCounter = 0;
+            int i = 0;
+            while (projectCounter < projects.size()) {
+                if (projects.get(i).getProjectDeadline() == null) {
+                    Project projectWithNullDeadline = projects.get(i);
+                    projects.remove(i);
+                    projects.add(projectWithNullDeadline);
+                } else {
+                    i++;
+                }
+                projectCounter++;
+            }
+            Collections.sort(projects);
+            return Ui.printProjectDeadlineAddedMessage(projects, project, date, teamMembers);
         } catch (IndexOutOfBoundsException e) {
             throw new DukeExceptions("invalidProjectID");
         }

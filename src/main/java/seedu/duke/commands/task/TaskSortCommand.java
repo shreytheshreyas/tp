@@ -28,15 +28,7 @@ public class TaskSortCommand extends Command {
 
     public void parse() throws DukeExceptions {
         try {
-            if (params.containsKey("p")) {
-                sortingType = "p";
-            } else if (params.containsKey("d")) {
-                sortingType = "d";
-            } else if (params.containsKey("t")) {
-                sortingType = "t";
-            } else {
-                throw new DukeExceptions("default");
-            }
+            sortingType = getHashValue(params, "s");
         } catch (NumberFormatException e) {
             throw new DukeExceptions("invalidTaskID");
         }

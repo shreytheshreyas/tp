@@ -15,8 +15,6 @@ public class Project implements Comparable<Project> {
     private String projectDescription;
     private LocalDate projectDeadline;
     private ArrayList<TeamMember> teamMembers;
-    //private static final String TICK_MARK = "\u2713";
-    //private static final String CROSS_MARK = "\u2718";
 
     public Project(String projectName) {
         this.projectName = projectName;
@@ -136,5 +134,9 @@ public class Project implements Comparable<Project> {
 
     public void markAsDone() {
         this.isDone = true;
+    }
+
+    public boolean isProjectDone() {
+        return isDone;
     }
 }
