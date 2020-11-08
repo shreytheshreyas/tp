@@ -132,7 +132,6 @@ public class Storage {
                         if (currentLine.equals("endTasks")) {
                             break;
                         }
-                        currentLine = s.nextLine();
                     }
                     // end adding tasks to project
 
@@ -159,11 +158,14 @@ public class Storage {
                     if (s.hasNextLine()) {
                         currentLine = s.nextLine();
                     }
-                } else {
+                }
+                /*
+                else {
                     if (s.hasNextLine()) {
                         currentLine = s.nextLine();
                     }
                 }
+                 */
             }
 
             return projects;
