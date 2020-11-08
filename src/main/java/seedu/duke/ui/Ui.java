@@ -278,9 +278,9 @@ public class Ui {
             String indexSpaces = "      "; // 6
             String statusSpaces = "      "; // 6
             String descriptionSpaces = "                   "; // 19
-            String deadlineSpaces = "               "; // 16
-            String prioritySpaces = "              "; // 11
-            String expectedSpaces = "                 "; // 18
+            String deadlineSpaces = "                "; // 16
+            String prioritySpaces = "              "; // 14
+            String expectedSpaces = "                 "; // 17
             String actualSpaces = "             "; // 13
             String membersSpaces = "                "; // 16
             String tableLabel = "Index  Status   Description        "
@@ -305,22 +305,27 @@ public class Ui {
                     if (deadline.length() > 0) {
                         currentTaskLine += (deadline);
                     } else {
+                        deadline = "-";
                         currentTaskLine += "-";
                     }
 
                     currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
 
-                    int priority = currentTask.getPriority();
-                    if (priority > 0) {
+                    String priority = String.valueOf(currentTask.getPriority());
+                    if (!priority.equals("0")) {
                         currentTaskLine += (priority);
                     } else {
+                        priority = "-";
                         currentTaskLine += "-";
                     }
-                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - 1));
+                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
 
                     Integer estimate = currentTask.getEstimate();
                     if (estimate > 1) {
-                        currentTaskLine += (estimate / 60);
+                        int hours = (estimate / 60);
+                        int minutes = estimate - hours * 60;
+                        float ratio = minutes / 60;
+                        currentTaskLine += hours + ratio;
                         extra = estimate.toString().length() - 1;
                     } else {
                         currentTaskLine += "-";
@@ -331,7 +336,10 @@ public class Ui {
 
                     Integer actual = currentTask.getActual();
                     if (actual > 1) {
-                        currentTaskLine += (actual / 60);
+                        int hours = (actual / 60);
+                        int minutes = actual - hours * 60;
+                        float ratio = minutes / 60;
+                        currentTaskLine += hours + ratio;
                     } else {
                         currentTaskLine += "-";
                     }
