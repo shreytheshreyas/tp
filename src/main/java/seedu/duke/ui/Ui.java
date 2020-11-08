@@ -88,6 +88,7 @@ public class Ui {
                     + ((project.getTask(i).getPriority() != 0) ? "|"
                     + "priority: " + project.getTask(i).getPriority() : "");
         }
+
         return output;
     }
 
