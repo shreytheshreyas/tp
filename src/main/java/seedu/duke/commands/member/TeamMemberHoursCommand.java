@@ -23,7 +23,7 @@ public class TeamMemberHoursCommand extends Command {
 
     public TeamMemberHoursCommand(HashMap<String, String> params, int projectIndex)
             throws DukeExceptions {
-        assert projectIndex == -1 : projectIndex;
+        assert projectIndex == -1 : "projectIndex must be -1";
         this.params = params;
         this.parse();
     }

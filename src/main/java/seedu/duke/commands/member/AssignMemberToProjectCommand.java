@@ -27,7 +27,7 @@ public class AssignMemberToProjectCommand extends Command {
     public AssignMemberToProjectCommand(HashMap<String,String> paramsList, int projectIndex)
             throws DukeExceptions {
         this.paramsList = paramsList;
-        assert projectIndex == -1 : projectIndex;
+        assert projectIndex == -1 : "projectIndex must be -1";
         parse();
     }
 
