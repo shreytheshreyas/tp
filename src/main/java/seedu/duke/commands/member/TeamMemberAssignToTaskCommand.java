@@ -64,6 +64,7 @@ public class TeamMemberAssignToTaskCommand extends Command {
             throw new DukeExceptions("invalidTeamMemberID");
         }
         selectedTask.setMember(teamMember);
+        teamMember.setTask(selectedTask);
         return Ui.printMemberAssignedToTaskMessage(teamMember.getName(), selectedTask.getTaskDescription());
     }
 
