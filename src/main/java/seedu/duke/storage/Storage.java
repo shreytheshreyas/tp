@@ -60,75 +60,79 @@ public class Storage {
 
                         int taskDescriptionEndIndex = currentLine.indexOf("|");
 
-                        Task newTask = new Task(currentLine.substring(0, taskDescriptionEndIndex - 1).trim());
-                        String taskString = currentLine.substring(taskDescriptionEndIndex + 2);
+                        if (taskDescriptionEndIndex != -1) {
+                            Task newTask = new Task(currentLine.substring(0, taskDescriptionEndIndex - 1).trim());
+                            String taskString = currentLine.substring(taskDescriptionEndIndex + 2);
 
-                        // is task done?
-                        int taskDoneStartIndex = taskString.indexOf("tS");
-                        int taskDoneEndIndex = taskString.indexOf("tE");
-                        if (taskDoneStartIndex != -1) {
-                            String isTaskDoneString = taskString.substring(taskDoneStartIndex + 2, taskDoneEndIndex)
-                                                        .trim();
-                            boolean isTaskDone = isTaskDoneString.equals("1") ? true : false;
-                            if (isTaskDone) {
-                                newTask.markAsDone();
+                            // is task done?
+                            int taskDoneStartIndex = taskString.indexOf("tS");
+                            int taskDoneEndIndex = taskString.indexOf("tE");
+                            if (taskDoneStartIndex != -1) {
+                                String isTaskDoneString = taskString.substring(taskDoneStartIndex + 2, taskDoneEndIndex)
+                                        .trim();
+                                boolean isTaskDone = isTaskDoneString.equals("1") ? true : false;
+                                if (isTaskDone) {
+                                    newTask.markAsDone();
+                                }
+
                             }
 
-                        }
-
-                        // extract deadline
-                        int deadlineStartIndex = taskString.indexOf("dS");
-                        int deadlineEndIndex = taskString.indexOf("dE");
-                        if (deadlineStartIndex != -1 && (deadlineEndIndex - deadlineStartIndex) > 4) {
-                            newTask.addDeadline(
-                                    LocalDate.parse(
-                                            taskString.substring(deadlineStartIndex + 3, deadlineEndIndex
-                                            )
-                                    )
-                            );
-                        }
-
-                        taskString = taskString.substring(taskString.indexOf("|") + 1);
-
-                        int priorityStartIndex = taskString.indexOf("pS");
-                        int priorityEndIndex = taskString.indexOf("pE");
-                        if (priorityStartIndex != -1 && (priorityEndIndex - priorityStartIndex) > 4) {
-                            String priority = taskString.substring(priorityStartIndex + 3, priorityEndIndex).trim();
-                            if (priority.length() >= 1) {
-                                newTask.setPriority(Integer.parseInt(priority));
+                            // extract deadline
+                            int deadlineStartIndex = taskString.indexOf("dS");
+                            int deadlineEndIndex = taskString.indexOf("dE");
+                            if (deadlineStartIndex != -1 && (deadlineEndIndex - deadlineStartIndex) > 4) {
+                                newTask.addDeadline(
+                                        LocalDate.parse(
+                                                taskString.substring(deadlineStartIndex + 3, deadlineEndIndex
+                                                )
+                                        )
+                                );
                             }
-                        }
 
-                        int estimateStartIndex = taskString.indexOf("eMS");
-                        int estimateEndIndex = taskString.indexOf("eME");
-                        if (estimateStartIndex != -1 && (estimateEndIndex - estimateStartIndex) > 6) {
-                            String estimate = taskString.substring(estimateStartIndex + 3, estimateEndIndex);
-                            if (estimate.length() > 1) {
-                                newTask.addEstimate(Integer.parseInt(estimate.trim()));
+                            taskString = taskString.substring(taskString.indexOf("|") + 1);
+
+                            int priorityStartIndex = taskString.indexOf("pS");
+                            int priorityEndIndex = taskString.indexOf("pE");
+                            if (priorityStartIndex != -1 && (priorityEndIndex - priorityStartIndex) > 4) {
+                                String priority = taskString.substring(priorityStartIndex + 3, priorityEndIndex).trim();
+                                if (priority.length() >= 1) {
+                                    newTask.setPriority(Integer.parseInt(priority));
+                                }
                             }
-                        }
 
-                        int actualStartIndex = taskString.indexOf("aMS");
-                        int actualEndIndex = taskString.indexOf("aME");
-                        if (actualStartIndex != -1 && (actualEndIndex - actualStartIndex) > 6) {
-                            String actual = taskString.substring(actualStartIndex + 3, actualEndIndex);
-                            if (actual.length() > 1) {
-                                newTask.addActual(Integer.parseInt(actual.trim()));
+                            int estimateStartIndex = taskString.indexOf("eMS");
+                            int estimateEndIndex = taskString.indexOf("eME");
+                            if (estimateStartIndex != -1 && (estimateEndIndex - estimateStartIndex) > 6) {
+                                String estimate = taskString.substring(estimateStartIndex + 3, estimateEndIndex);
+                                if (estimate.length() > 1) {
+                                    newTask.addEstimate(Integer.parseInt(estimate.trim()));
+                                }
                             }
-                        }
 
-                        currentLine = s.nextLine();
-                        if (currentLine.equals("tMS")) {
+                            int actualStartIndex = taskString.indexOf("aMS");
+                            int actualEndIndex = taskString.indexOf("aME");
+                            if (actualStartIndex != -1 && (actualEndIndex - actualStartIndex) > 6) {
+                                String actual = taskString.substring(actualStartIndex + 3, actualEndIndex);
+                                if (actual.length() > 1) {
+                                    newTask.addActual(Integer.parseInt(actual.trim()));
+                                }
+                            }
+
                             currentLine = s.nextLine();
-                            while (!currentLine.equals("tME")) {
-                                String memberName = currentLine;
-                                TeamMember member = getMember(memberName, members);
-                                newTask.setMember(member);
+                            if (currentLine.equals("tMS")) {
+                                currentLine = s.nextLine();
+                                while (!currentLine.equals("tME")) {
+                                    String memberName = currentLine;
+                                    TeamMember member = getMember(memberName, members);
+                                    newTask.setMember(member);
+                                    currentLine = s.nextLine();
+                                }
                                 currentLine = s.nextLine();
                             }
+
+                            newProject.addTask(newTask);
                         }
 
-                        newProject.addTask(newTask);
                         if (currentLine.equals("endTasks")) {
                             break;
                         }
