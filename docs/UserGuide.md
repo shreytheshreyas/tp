@@ -555,6 +555,8 @@ Sort tasks by priority, deadline or actual time taken.
 
 :bulb: Earliest deadline will be displayed at top.
 
+:bulb: Shortest actual time will be displayed at top.
+
 Format: `sort s/SORTING_TYPE`
 
 * Sorting type `t` refers to actual time, `p` refers to priority and `d` refers to deadline.
