@@ -40,9 +40,15 @@ class TeamMemberAssignToTaskCommandTest {
         projectOne.addTask(taskTwo);
         projectOne.addTask(taskThree);
         projects.add(projectOne);
-        teamMembers.add(new TeamMember("Arnold"));
-        teamMembers.add(new TeamMember("Julian"));
-        teamMembers.add(new TeamMember("Victor"));
+        TeamMember memberOne = new TeamMember("Arnold");
+        TeamMember memberTwo = new TeamMember("Julian");
+        TeamMember memberThree = new TeamMember("Victor");
+        teamMembers.add(memberOne);
+        teamMembers.add(memberTwo);
+        teamMembers.add(memberThree);
+        projectOne.addTeamMemberToProject(memberOne);
+        projectOne.addTeamMemberToProject(memberTwo);
+        projectOne.addTeamMemberToProject(memberThree);
     }
 
     /**
@@ -62,11 +68,11 @@ class TeamMemberAssignToTaskCommandTest {
     @Test
     void executeCommand_nonExistentMemberId_memberAssignedMessage() throws DukeExceptions {
         params.put("t", "1");
-        params.put("m", "1");
+        params.put("m", "50");
         TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
-        String expectedOutput = "Team Members list is empty!";
+        String expectedOutput = "Team Member ID does not exist!";
         DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
-                command.executeCommand(projects, new ArrayList<TeamMember>()));
+                command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 
