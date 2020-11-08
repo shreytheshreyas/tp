@@ -1,3 +1,5 @@
+//@@author thatseant
+
 package seedu.duke.commands.task;
 
 import seedu.duke.DukeExceptions;
@@ -10,6 +12,7 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import static seedu.duke.Util.TASK_NAME_KEY;
 import static seedu.duke.Parser.getHashValue;
 
 public class TaskCommand extends Command {
@@ -19,14 +22,14 @@ public class TaskCommand extends Command {
     HashMap<String, String> params;
 
     public TaskCommand(HashMap<String, String> params, int projectIndex) throws DukeExceptions {
-        assert projectIndex >= 0 : projectIndex;
+        assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
     public void parse() throws DukeExceptions {
-        this.description = getHashValue(params, "n");
+        this.description = getHashValue(params, TASK_NAME_KEY);
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
@@ -38,16 +41,5 @@ public class TaskCommand extends Command {
 
     public Boolean isExit() {
         return false;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof TaskCommand) {
-            TaskCommand taskCommand = (TaskCommand) obj;
-            return (this.description.equals(taskCommand.description)
-                    && (this.projectIndex == taskCommand.projectIndex));
-        } else {
-            return false;
-        }
     }
 }

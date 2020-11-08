@@ -153,7 +153,7 @@ Adds a new project to the project list.
 
 Format: `project n/PROJECT_NAME`
 
->  :warning: Project names should not include slashes or an error will be shown.
+>  :warning: Project names should not include slashes as it will be disregarded.
 
 Example usage and output: 
 
@@ -172,8 +172,6 @@ Select a new project from the project list and brings user to Project View of sp
 > :exclamation: The project must exist before it can be selected.
 
 Format: `select p/PROJECT_INDEX`
-
-> :warning: Project names should not include slashes or an error will be shown.
 
 Example of usage: 
 
@@ -397,7 +395,7 @@ Adds a new task to the task list.
 
 Format: `task n/TASK_NAME`
 
-> :warning: Task names should not include slashes or an error will be shown.
+> :warning: Task names should not include slashes or it will be disregarded.
 
 Example of usage: 
 
@@ -556,6 +554,8 @@ Sort tasks by priority, deadline or actual time taken.
 :bulb: Highest priority of 1 will be displayed at top.
 
 :bulb: Earliest deadline will be displayed at top.
+
+:bulb: Shortest actual time will be displayed at top.
 
 Format: `sort s/SORTING_TYPE`
 

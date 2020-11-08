@@ -15,8 +15,6 @@ public class Project implements Comparable<Project> {
     private String projectDescription;
     private LocalDate projectDeadline;
     private ArrayList<TeamMember> teamMembers;
-    //private static final String TICK_MARK = "\u2713";
-    //private static final String CROSS_MARK = "\u2718";
 
     public Project(String projectName) {
         this.projectName = projectName;
@@ -52,17 +50,6 @@ public class Project implements Comparable<Project> {
         tasks.remove(taskIndex);
     }
 
-
-    public Task maxTimeTask() {
-        Task tempTask = new Task("\tNo tasks have been completed");
-        tempTask.addActual(0);
-        for(Task task: tasks) {
-            if(task.getActual() > tempTask.getActual()) {
-                tempTask = task;
-            }
-        }
-        return tempTask;
-    }
 
     public int getNumberOfTask() {
         return tasks.size();
