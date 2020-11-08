@@ -148,9 +148,9 @@ class TeamMemberDeleteCommandTest {
                 + "| MEMBERS LIST         |\n"
                 + " ----------------------\n"
                 + "\n"
-                + "Index   Member Name                   Projects Involved\n"
-                + "-----------------------------------------------------------------------------\n"
-                + "1.      John Doe                      1. Project One";
+                + "Index   Member Name                   Projects Involved        Hours spent across tasks\n"
+                + "---------------------------------------------------------------------------------------\n"
+                + "1.      John Doe                      1. Project One           0.0";
         PrintHomeViewCommand homeViewCommand = new PrintHomeViewCommand();
         String actualOutput = homeViewCommand.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput.trim(), actualOutput.trim());

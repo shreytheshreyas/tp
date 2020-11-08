@@ -63,8 +63,8 @@ public class ProjectDeadlineCommandTest {
                 + "| MEMBERS LIST         |\n"
                 + " ----------------------\n"
                 + "\n"
-                + "Index   Member Name                   Projects Involved\n"
-                + "-----------------------------------------------------------------------------";
+                + "Index   Member Name                   Projects Involved        Hours spent across tasks\n"
+                + "---------------------------------------------------------------------------------------";
         String actualOutput = command.executeCommand(projects, teamMembers);
         assertEquals(expectedOutput, actualOutput);
     }
