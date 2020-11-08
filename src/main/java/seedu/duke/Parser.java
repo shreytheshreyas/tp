@@ -53,7 +53,7 @@ public class Parser {
             if (keyAndValue.length != 2) {
                 throw new DukeExceptions("forwardSlashError");
             }
-            String paramType = keyAndValue[0];
+            String paramType = keyAndValue[0].toLowerCase();
             String paramValue = keyAndValue[1];
             if (inputParams.containsKey(paramType)) {
                 throw new DukeExceptions("duplicateParams");
@@ -80,7 +80,7 @@ public class Parser {
      */
     public static Command parse(String inputCommand) throws DukeExceptions {
         String[] inputWords = inputCommand.split("\\s+", 2); //Splits command into type and parameters
-        String commandType = inputWords[0];
+        String commandType = inputWords[0].toLowerCase();
 
         HashMap<String, String> params = new HashMap<>();
         if (inputWords.length == 2) {

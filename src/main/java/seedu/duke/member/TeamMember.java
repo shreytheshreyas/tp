@@ -8,13 +8,11 @@ import java.util.ArrayList;
 
 public class TeamMember {
     private String name;
-    private int assignedProjectId;
     private ArrayList<Project> assignedProjects;
     private ArrayList<Task> tasks;
 
     public TeamMember(String name) {
         this.name = name;
-        assignedProjectId = -1;
         tasks = new ArrayList<>();
         this.assignedProjects = new ArrayList<>();
     }
