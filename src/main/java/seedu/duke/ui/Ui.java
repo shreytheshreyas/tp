@@ -30,7 +30,7 @@ public class Ui {
 
     public void printWelcome() {
         System.out.println(MESSAGE_SINGLE_LINE);
-        //System.out.println(MESSAGE_LOGO);
+        System.out.println(MESSAGE_LOGO);
         System.out.println(MESSAGE_WELCOME);
         System.out.println(MESSAGE_SINGLE_LINE);
     }
