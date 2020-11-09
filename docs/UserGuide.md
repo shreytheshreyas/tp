@@ -559,16 +559,18 @@ Sort tasks by priority, deadline or actual time taken.
 
 :bulb: Shortest actual time will be displayed at top.
 
+:bulb: Shortest estimated time will be displayed at top.
+
 Format: `sort s/SORTING_TYPE`
 
-* Sorting type `t` refers to actual time, `p` refers to priority and `d` refers to deadline.
+* Sorting type `a` refers to actual time, `e` refers to estimated time,  `p` refers to priority and `d` refers to deadline.
 
 Example usage and output:
 
 ```
 sort s/d
 ____________________________________________________________
-Tasklist sorted based on deadline
+Task List sorted based on deadline
 ```
 
 ### Exiting EZ Manager: `bye`

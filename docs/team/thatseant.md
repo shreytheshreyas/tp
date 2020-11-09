@@ -27,12 +27,16 @@ I restructured the app to make it more user-friendly. Previously, there were tea
 
 * Parser
 * TaskCommand
-* ActualTimeCommand
 * EstimatedTimeCommand
+    * Justification: Adding estimated time to tasks provides a target for managers to help the team stay focused and avoid spending excessive time on any task.
+* ActualTimeCommand
+    * Justification: Adding actual time to tasks helps managers to see which areas they tend to spend the most time on.
 * TaskAssignDeadlineCommand
+    * Justification: A deadline ensures the team stay on track to eventually finishing the project.
 * TaskAssignPriorityCommand
+    * Justification: Adding priorities to tasks allows the team to prioritise and know which tasks to start working on first.
 * TeamMemberHoursCommand
-
+    * Justification: This allows managers to see the committment level of individual members and avoid giving them excessive work.
 
 
 ## **Contributions to User Guide (UG)**
