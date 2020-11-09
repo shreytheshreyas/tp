@@ -750,36 +750,7 @@ at the specific folder the JAR file is stored and you have begun.
 ## 6. Command Summary
 
 Home View Commands
-| Commands | Action | Examples |
-| -------- | ------ | -------- |
-| project | Creates a new project in the project list in Home View | `project n/Web Development Project` |
-| member  | Creates a new member in the member list | `member n/John Doe` |
-| list    | Displays the updated Home View | `list` |
-| select  | Selects the specified project and program enters ProjectView | `select p/1` |
-| done    | Marks the specified project as done | `done p/1` |
-| delete  | Deletes the specified project | `delete p/1` |
-| description | Assigns a description to the specified project | `description p/1 d/Project for Company X` |
-| deadline | Assigns a deadline to the specified project | `deadline p/1 d/2020-10-25` |
-| assign  | Assigns member to specified project | `assign p/1 m/1` |
-| remove  | Removes specified member from the member list | `remove m/1` |
-| hours  | View hours worked by a specific worker across all projects | `hours m/1` |
-| bye  | Exit EZ Manager | `bye` |
+![Command Summary One](https://i.ibb.co/GMgn96K/cs1.png)
 
 Project View Commands
-| Commands | Action | Examples |
-| -------- | ------ | -------- |
-| task    | Creates a new task in the task list in Project View| `task n/Deploy Version 2.0` |
-| edit    | Edits an existing task name in the task list in Project View| `edit t/1 n/Update documentation` |
-| list    | Displays the updated Project View | `list` |
-| select  | Selects the specified task | `select t/1` |
-| done    | Marks the specified task as done | `done t/1` |
-| delete  | Deletes the specified task | `delete t/1` |
-| deadline | Assigns a deadline to the specified task | `deadline t/1 d/2020-10-25` |
-| priority | Assigns a priority to the specified task | `priority t/1 p/1` |
-| home    | Switches from ProjectView to HomeView | `home` |
-| assign  | Assigns member to specified task | `assign t/1 m/1` |
-| remove  | Removes specified member from current project | `remove m/1` |
-| estimate  | Add estimated time taken for task to complete | `estimate t/1 h/3 m/20` |
-| actual  | Add actual time taken for task to complete | `actual t/1 h/3 m/20` |
-| sort  | Sort tasks based on sorting type | `sort s/p` |
-| bye  | Exit EZ Manager | `bye` |
+![Command Summary Two](https://i.ibb.co/P4z4vV4/cs2.png)
