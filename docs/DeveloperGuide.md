@@ -4,10 +4,8 @@
 ![EZ Manager Welcome](https://i.ibb.co/n7zphMR/ezmanagerterminal.png)
 
 ## **Changelog**
-Identifier | Changes | Date
----------- | ------------------- | ----
-A | Incorporated feedback from CS2101 review <ul><li>Include table of content</li><li>Include preface for sections</li><li>Add introductory sections</li><li> Address the reader directly – “You”</li></ul> | 29 October 2020
-B | final developer guide for CS2113T Team project<ul><li>Include table of content</li><li>Included updated command summary</li><li>Converted DG to Markdown</li><li> Included sequence diagrams</li></ul> | 09 November 2020
+![EZ Manager Changelog](https://i.ibb.co/NNcdxnh/changelog.png)
+
 ---
 
 ## **Table of Contents**
@@ -17,7 +15,7 @@ B | final developer guide for CS2113T Team project<ul><li>Include table of conte
 - [Implementation](#implementation)
 - [Testing](#running-tests)
 - Dev Ops
-  - [Making A Release](#devops---making-a-release)
+  - [Making A Release](#devops)
 - Appendices
   - [Appendix A: Product Scope](#Appendix-A-Product-Scope-Samuel-Leow)
   - [Appendix B: Commands Summary](#Appendix-B-Command-Summary-Samuel-Paul-Christopher)
@@ -724,7 +722,7 @@ There are two ways to run tests for EZ manager.
 - On Windows, run the command `gradlew clean allTests` in a terminal 
 - On Mac or Linux, run the command `./gradlew clean allTests` in a terminal 
 
-## **DevOps - Making a Release (Samuel Paul Christopher)** 
+## **DevOps (Samuel Paul Christopher)** 
 Here are the steps to create a new release. 
 1. Update the version number in Duke.java 
 2. Generate a JAR file using Gradle
