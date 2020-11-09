@@ -1,15 +1,16 @@
 # Developer Guide
 
-## Welcome to EZ Manager
+## Welcome to Ez Manager
 ![EZ Manager Welcome](https://i.ibb.co/n7zphMR/ezmanagerterminal.png)
 
-## Changelog
+## **Changelog**
 Identifier | Changes | Date
 ---------- | ------------------- | ----
 A | Incorporated feedback from CS2101 review <ul><li>Include table of content</li><li>Include preface for sections</li><li>Add introductory sections</li><li> Address the reader directly – “You”</li></ul> | 29 October 2020
-B | 
+B | final developer guide for CS2113T Team project<ul><li>Include table of content</li><li>Included updated command summary</li><li>Converted DG to Markdown</li><li> Included sequence diagrams</li></ul> | 09 November 2020
+---
 
-## Table of Contents
+## **Table of Contents**
 - [Introduction — Welcome to EZ Manager](#introduction---welcome-to-ez-manager)
 - [Setting Up](#setting-up)
 - [Design](#design)
@@ -18,25 +19,28 @@ B |
 - Dev Ops
   - [Making A Release](#devops---making-a-release)
 - Appendices
-  - [Appendix A: Product Scope](#Appendix-A-Product-Scope)
-  - [Appendix B: Commands Summary](#Appendix-B-Command-Summary)
-  - [Appendix C: Instructions for Manual Testing](#Appendix-C-Instructions-for-Manual-Testing-shreyas)
- 
-## Introduction - Welcome to EZ Manager!
-The EZ Manager command line application is designed to help you get more done as a Software Engineering Project Manager. Organize your projects, keep track of team members and analyze the tasks pertaining to your projects.
+  - [Appendix A: Product Scope](#Appendix-A-Product-Scope-Samuel-Leow)
+  - [Appendix B: Commands Summary](#Appendix-B-Command-Summary-Samuel-Paul-Christopher)
+  - [Appendix C: Instructions for Manual Testing](#Appendix-C-Instructions-for-Manual-Testing-shreyas-kumar)
 
-This guide is designed to help you understand the inner workings of EZ Manager from the first steps of setting up the project to the high-level application structures and even the sequence of operations when a command is triggered.
+---
+
+## **Introduction - Welcome to Ez Manager!**
+The Ez Manager command line application is designed to help you get more done as a Software Engineering Project Manager. Organize your projects, keep track of team members and analyze the tasks pertaining to your projects.
+
+This guide is designed to help you understand the inner workings of Ez Manager from the first steps of setting up the project to the high-level application structures and even the sequence of operations when a command is triggered.
 
 Let us hit the ground running with the next section about setting up!
 
 ---
 
-## Setting Up 
-**Prerequisites**
+## **Setting Up** 
+
+### **Prerequisites**
 1. Java Development Kit (JDK) version 11 and above. [Here](https://docs.oracle.com/en/java/javase/11/install/overview-jdk-installation.html#GUID-8677A77F-231A-40F7-98B9-1FD0B48C346A) is an installation guide for JDK 11.
 2. The Intellij Intergrated Development Environment (IDE). [Here](https://www.jetbrains.com/help/idea/installation-guide.html) is an installation guidefor Intellij.
 
-**Setting up the project on your computer**
+### **Setting up the project on your computer**
 1. Fork this [repo](https://github.com/AY2021S1-CS2113T-T09-1/tp), and clone the fork to your computer
 2. Open IntelliJ (if you are not in the welcome screen, click `File > Close Project` to close the existing project dialog first)
 3. Set up the correct JDK version for Gradle
@@ -54,37 +58,39 @@ PDF developer guide available [here](https://we.tl/t-UkcnzA4i8P) (NEED TO UPDATE
 
 ---
 
-## Design
-Developers are welcome to contribute by submitting issues or pull requests on our repository. The design section is a good place to start learning about EZ Manager’s architecture and various components. Most developers will contribute to the app mainly through addition of new user commands. The section “Addition of new commands” will provide a step-by-step walkthrough to ensure new commands follow the overall architecture. Figure 2 below shows the overall class diagram for EZ Manager.  
+## **Design**
+Developers are welcome to contribute by submitting issues or pull requests on our repository. The design section is a good place to start learning about Ez Manager’s architecture and various components. Most developers will contribute to the app mainly through addition of new user commands. The section “Addition of new commands” will provide a step-by-step walkthrough to ensure new commands follow the overall architecture. Figure 2 below shows the overall class diagram for EZ Manager.  
 
 <center><img src = "https://i.ibb.co/92p7mtp/Figure2.png"></center>
 
-### Consideration
+### **Consideration**
 Eazy was developed via a breadth first iterative approach with new commands progressively added. An n-tier architecture ensured separation of concern between various layers of the architecture but much of the program’s logic remained in the Command classes. This design architecture ensured minimal changes to the codebase when new commands were added. Often, new commands or feature addition required changes to only a single data class and addition of a new independent command class. 
 
-### Overall Architecture
-EZ Manager consists of 4 main layers:  
+### **Overall Architecture (Sean)**
+Ez Manager consists of 4 main layers:  
 * Ui: Handles the output of the app 
 * Logic: Command parser and executor 
 * Model: Data classes 
 * Storage: Handles the saving and loading of data to the hard disk 
 
-The Ui and Storage layer contains a single class. The model layer contained a member, a task and a project class and the logic layer contained a single parser class and various command classes. Functionality was exposed directly through these command classes, eliminating the need for redundant classes with few methods. In a small app like EZ Manager, this enhanced code maintainability and readability. 
+The Ui and Storage layer contains a single class. The model layer contained a member, a task and a project class and the logic layer contained a single parser class and various command classes. Functionality was exposed directly through these command classes, eliminating the need for redundant classes with few methods. In a small app like Ez Manager, this enhanced code maintainability and readability. 
  
 Now, we will delve into more detail about each component. 
 
-### UI Component
+### **UI Component (Riaz Ahamed)**
 API: Ui.java 
 Introduction: 
 The Ui.java is a class made up of various acknowledgement messages to be displayed after the user inputs a command. 
+
 Abstraction: 
 Every message in the class is stored as a String and it is abstracted to a method. This method is called after the execution of a command.  
+
 Access: 
 Every method in the Ui class is a static method. Hence, every command class calls the appropriate static methods directly from the Ui class. 
 
-### Logic Component
+### **Logic Component (Sean Tan)**
 As user commands follow a fixed format, a generic parser can extract command types and parameters for all commands. This is handled by the parser class. The parser then passes the extracted values to specific command classes. Below are the workings of the Parser and Commands. 
- 
+
 **Parser**
 
 User inputs are passed to the static parse method of the parser class. The parser then calls instances of command classes for command execution. The following are handled by the parser. 
@@ -105,21 +111,21 @@ Each command class represents a specific user command. The bulk of the program�
 * From main(), executeCommand method is called which passes these parameters to methods in the model layer, which manipulates data objects. 
 * ExecuteCommand also calls methods in the Ui to display output messages to the user. 
 
-### Model Component
+### **Model Component (Samuel Leow)**
 
-The model component is to provide you with a conceptual understanding of how the data is stored in EZ Manager. EZ Manager has three classes which store data, the Project class, the Task class and the Team Member class. This section will explain how each of these classes interact with one another. The diagram below shows the attributes associated with each of the objects. 
+The model component is to provide you with a conceptual understanding of how the data is stored in Ez Manager. Ez Manager has three classes which store data, the Project class, the Task class and the Team Member class. This section will explain how each of these classes interact with one another. The diagram below shows the attributes associated with each of the objects. 
 
 <center><img src="https://i.ibb.co/QYVtfRv/model-Componentdiagram.png"></center>
 
 Whenever a project, task or team member is created, an instance of Project, Task and TeamMember is also created. These instances are stored in array lists of projects, tasks and teamMembers respectively when the Parser class processes the user input. 
 
-### Storage Component
+### **Storage Component (Samuel Paul Christopher)**
 
-This is section will explain how EZ Manager ensures that the data in the application persists after each session has been terminated (with the bye command). Figure 3 outlines the responsibility of the Storage component for loading and storing the data during the lifecycle of the application. 
+This is section will explain how Ez Manager ensures that the data in the application persists after each session has been terminated (with the bye command). Figure 3 outlines the responsibility of the Storage component for loading and storing the data during the lifecycle of the application. 
 
 <center><img src="https://i.ibb.co/5c8vH3T/Figure3.png"></center>
 
-More specifically, Figure 4 shows us how the text file would look like when it is populated. In the load method of Storage that is called at the beginning of each application, the first thing that is recalled are the team members that are part of the overall organization that is being managed by EZ Manager.  
+More specifically, Figure 4 shows us how the text file would look like when it is populated. In the load method of Storage that is called at the beginning of each application, the first thing that is recalled are the team members that are part of the overall organization that is being managed by Ez Manager.  
 
 <center><img src="https://i.ibb.co/qnHLWR0/Figure4.png" alt="Figure4" border="0"></center>
 
@@ -131,36 +137,36 @@ The save method from the Storage component clears the ezmanager.txt file and the
 
 ---
 
-## Implementation
+## **Implementation**
 
 ## **Views**
 
-### Home View
-The home view mechanism is facilitated by Ui.homeViewMessage() method. This feature will be executed automatically whenever EZ Manager is booted up, or when “display” command is called. Below is an example of the display of Home View
+### **Home View (Samuel Leow)**
+The home view mechanism is facilitated by Ui.homeViewMessage() method. This feature will be executed automatically whenever EZ Manager is booted up, or when “list” command is called. Below is an example of the display of Home-View
 
 <center><img src="https://i.ibb.co/nrDcXRj/Figure5-1.png"></center>
 
-Given below is the scenario of how the mechanism behaves at each step when the program is booted up and when “display” command is called. 
+Given below is the scenario of how the mechanism behaves at each step when the program is booted up and when “list” command is called. 
 
-Step 1. The user launches EZ Manager for the first time and the Home View display will be shown. The list of projects, the list of members and other details will be loaded from the hard disk. The state of the program will be set to Home View by default. 
+Step 1: The user launches Ez Manager for the first time and the Home-View display will be shown. The list of projects, the list of members and other details will be loaded from the hard disk. The state of the program will be set to Home-View by default. 
 
 <center><img src="https://i.ibb.co/84KCTMB/Figure5-2.png"></center>
 
-Step 2. The user executes project n/ Developer Guide command to add a new project, followed by deadline p/3 d/2020-10-23 (assuming there is a total of 3 projects) to add a new deadline to the new project.  
+Step 2: The user executes project n/ Developer Guide command to add a new project, followed by deadline p/3 d/2020-10-23 (assuming there is a total of 3 projects) to add a new deadline to the new project.  
 
-Step 3. The user now decides to display the Home View to have an overview of all his projects. The display command will call HomeViewCommand(), which will execute the command with executeCommand(), which takes in projects ArrayList and teamMembers ArrayList and storage. 
+Step 3: The user now decides to display the Home View to have an overview of all his projects. The display command will call HomeViewCommand(), which will execute the command with executeCommand(), which takes in projects ArrayList and teamMembers ArrayList and storage. 
 
 **Note:** This step applies for the addition of the other features such as Deadline, Members, Description and Priority. Whenever a new information is added, and when the HomeViewCommand() is called, it will generate the display according to the information that is available in the program. If a particular information is empty, a dash symbol will be used instead. 
 
 The following sequence diagrams shows how the “Home View” command works in both scenarios: 
 
-Scenario 1 (EZ Manager start up): 
+Scenario 1 (Ez Manager start up): 
 <center><img src="https://i.ibb.co/2c1FhFb/Home-View-SD1.png"></center>
 
 Scenario 2 (display command): 
 <center><img src="https://i.ibb.co/0VMf92d/Home-View-SD2.png"></center>
 
-### Project View
+### **Project View (Samuel Paul Christopher)**
 The project view mechanism is facilitated by Ui.projectViewMessage() method, which takes in an argument of type Project. The project view is displayed when a user uses the “select” command to select a particular project to get more details on the project. Figure 5.1 is an example of the output of Project View. Note, if the fields are blank, a dash symbol would be used to indicate that there is no data about that field. 
 
 <center><img src="https://i.ibb.co/gg3y8xw/Figure6-1.png" ></center>
@@ -179,38 +185,38 @@ Step 2: As shown in Figure 6.3, the user switches to Project View by selecting a
 
 Once this step is done, the Project View will be displayed as in Figure 6.1.  
 
-The Figure 6.4 sequence diagram shows how the Project View is displayed through the project select command. The ellipses have been used for brevity to show that other different data about the project and task will be obtained from getters. For example, in the image below only shows that the status of the task is involved but other aspects of the tasks will also be needed like the task description and the team members who are involved in the task. 
+The Figure 6.4 sequence diagram shows how the Project-View is displayed through the project select command. The ellipses have been used for brevity to show that other different data about the project and task will be obtained from getters. For example, in the image below only shows that the status of the task is involved but other aspects of the tasks will also be needed like the task description and the team members who are involved in the task. 
 
 <center><img src="https://i.ibb.co/zhCFK65/Project-View-SD.png"></center>
 
-### Home Command
+### **Home Command (Riaz Ahamed)**
 This section will explain the usages of the home command and how it affects the states of the app. 
 
 The home command is facilitated by the HomeCommand class and it allows the user to switch from one states of the program to the other but not vice versa. The 2 states of the program are as follows: 
 
-* Home View 
-* Project View 
+* Home-View 
+* Project-View 
 
-The home command is executed when the executeCommand method is called in the main Duke class. The command then switches the state of the program from the Project View to the Home View but not the other way around. 
+The home command is executed when the executeCommand method is called in the main Duke class. The command then switches the state of the program from the Project-View to the Home-View but not the other way around. 
 
-Step 1: The user launches the application. The application initializes with the Home View state on startup. 
+Step 1: The user launches the application. The application initializes with the Home-View state on startup. 
 
 <center><img src="https://i.ibb.co/cvB2hNX/Figure7-1.png"></center>
 
 Step 2: The user creates a new project with the project command.  
 
-Step 3: The user selects the project with the select command. At this instance, the app state switches from Home View to Project View. 
+Step 3: The user selects the project with the select command. At this instance, the app state switches from Home-View to Project View. 
 
 <center><img src="https://i.ibb.co/ggFvm9n/Figure7-2.png"></center>
 
-Step 4: The user switches back to the Home View with the home command. 
+Step 4: The user switches back to the Home-View with the home command. 
 
 <center><img src="https://i.ibb.co/9rh7ft1/Figure7-3.png"></center>
 
 ---
 
 ## **Project Features**
-### Adding a new project
+### **Adding a new project (Riaz Ahamed)**
 This section will explain the creation of new projects and how the objects interact with each other. 
 The user can create new projects to be added to the list of projects with the project command. 
 This command is facilitated with the help of the ProjectCommand class. An instance of the ProjectCommand class will have the following properties: 
@@ -218,28 +224,28 @@ This command is facilitated with the help of the ProjectCommand class. An instan
 * members: An array list of members 
 * projectName: The name of the project as a String object 
 *projectDescription: The description of the project as a String object 
-projectDeadline: The deadline of the project as a Local Date object 
-Step 1: The user types the project command followed by the name of the project e.g. project n/Project One.  
-1. The main Duke class will call the Parser class. 
+projectDeadline: The deadline of the project as a Local Date object.
 
-2. The Parser class will check which state the app is in and will 
+Step 1: The user types the project command followed by the name of the project e.g. `project n/Project One`. The main Duke class will call the Parser class. 
+
+Step 2: The Parser class will check which state the app is in and will 
 then call the appropriate class constructor. In this case, the Parser will call the ProjectCommand constructor. The ProjectCommand constructor will also check for the validity of the user’s input. 
 
-3. The Parser class will then initialize a new instance of the ProjectCommand constructor with the project name “Project One” and return it back to the main Duke class. 
+Step 3: The Parser class will then initialize a new instance of the ProjectCommand constructor with the project name “Project One” and return it back to the main Duke class. 
 
-4. The Duke class will call the executeCommand function from the returned instance which will execute the command. 
-    * The executeCommand function will create a new Project instance 
-    * It will then add that instance to the static projects list.  
-    *  Lastly, it will call the printProjectCreated method from the Ui class and return it to the main Duke class. 
+Step 4: The Duke class will call the executeCommand function from the returned instance which will execute the command. 
+* The executeCommand function will create a new Project instance 
+* It will then add that instance to the static projects list.  
+*  Lastly, it will call the printProjectCreated method from the Ui class and return it to the main Duke class. 
 
-5. The Duke class will then receive the acknowledgement message and display it to the user in the terminal. 
+Step 5: The Duke class will then receive the acknowledgement message and display it to the user in the terminal. 
 The above is illustrated below in a sequence diagram. The sequence diagram will only encompass the sequence in the executeCommand function. 
 
 The above is illustrated below in a sequence diagram. The sequence diagram will only encompass the sequence in the executeCommand function. 
 
 <center><img src="https://i.ibb.co/xG48W0g/Figure8.png" ></center>
 
-## Deleting a project
+### **Deleting a project (Samuel Leow)**
 This section will explain the deletion of a specified project and how the objects interact with each other. 
 
 The user can delete a specified project with the delete command. 
@@ -252,13 +258,13 @@ Step 1: The user executes project n/Project One command to create a new project,
 
 <center><img src="https://i.ibb.co/HC7yZhc/Figure9-1.png"></center>
 
-Step 2: The user now decides that adding the project was a mistake and decides to delete that project by executing the delete p/1 command. The delete command will call ProjectDeleteCommand() which will execute the command with executeCommand(). printProjectDeleteMessage() from the UI class will be returned and printed. 
+Step 2: The user now decides that adding the project was a mistake and decides to delete that project by executing the `delete p/1` command. The delete command will call ProjectDeleteCommand() which will execute the command with executeCommand(). printProjectDeleteMessage() from the UI class will be returned and printed. 
 
 The following sequence diagram shows how the project delete command works: 
 
 <center><img src="https://i.ibb.co/3CFDS75/Figure9-2.png"></center>
 
-## Adding a deadline to a project
+### **Adding a deadline to a project (Samuel Leow)**
 This section will explain the addition of a deadline to a specified project and how the objects interact with each other. 
 
 The user can add a deadline to a specified project with the deadline command. 
@@ -269,17 +275,17 @@ This command is facilitated with the help of the ProjectDeadlineCommand class. A
 
 * projectIndex: The index of the project as an Integer 
 
-Step 1: The user executes project n/Project One command to create a new project, and the current state of the app is Home View. 
+Step 1: The user executes `project n/Project One` command to create a new project, and the current state of the app is Home View. 
 
 <center><img src="https://i.ibb.co/br6DKf4/Figure10-1.png"></center>
 
-Step 2: The user types the deadline command followed by the index of the project then the deadline of the project e.g. deadline p/1 d/2020-12-12. The deadline command will call ProjectDeadlineCommand() which will execute the command with executeCommand(). printProjectDeadlineAddedMessage() from the UI class will be returned and printed. 
+Step 2: The user types the deadline command followed by the index of the project then the deadline of the project e.g. `deadline p/1 d/2020-12-12`. The deadline command will call ProjectDeadlineCommand() which will execute the command with executeCommand(). printProjectDeadlineAddedMessage() from the UI class will be returned and printed. 
 
 The following sequence diagram shows how the project deadline command works: 
 
 <center><img src="https://i.ibb.co/N9Cr3h6/Figure10-2.png"></center>
 
-## Adding a project description 
+### **Adding a project description (Samuel Leow)** 
 This section will explain the addition of project description to a specified project and how the objects interact with each other. 
 
 The user can add a project description to a specified project with the description command. 
@@ -290,17 +296,17 @@ This command is facilitated with the help of the ProjectDescriptionCommand class
 
 * projectIndex: The index of the project as an Integer 
 
-Step 1: The user executes project n/Project One command to create a new project, followed by select p/1 to enter Project One, which at this instance, switches the app state from Home View to Project View. 
+Step 1: The user executes `project n/Project One` command to create a new project, followed by select p/1 to enter Project One, which at this instance, switches the app state from Home View to Project View. 
 
 <center><img src="https://i.ibb.co/tsx27Yw/Figure11-1.png"></center>
 
-Step 2: The user types the description command followed by the index of the project then the description of the project e.g. description p/1 d/Submission of User Guide. The description command will call ProjectDescriptionCommand() which will execute the command with executeCommand(). printProjectDescriptionAddedMessage() from the UI class will be returned and printed. 
+Step 2: The user types the description command followed by the index of the project then the description of the project e.g. `description p/1 d/Submission` of User Guide. The description command will call ProjectDescriptionCommand() which will execute the command with executeCommand(). printProjectDescriptionAddedMessage() from the UI class will be returned and printed. 
 
 The following sequence diagram shows how the project description command works: 
 
 <center><img src="https://i.ibb.co/FnK6xqD/Figure11-2.png"></center>
 
-## Marking a project as done
+### **Marking a project as done (Samuel Leow)**
 This section will explain the mark of a specified project as done and how the objects interact with each other. 
 
 The user can mark a specified project as done with the done command. 
@@ -309,17 +315,17 @@ This command is facilitated with the help of the ProjectDoneCommand class. An in
 
 * projectIndex: The index of the project as an Integer 
 
-Step 1: The user executes project n/Project One command to create a new project, and the current state of the app is Home View. 
+Step 1: The user executes `project n/Project One` command to create a new project, and the current state of the app is Home View. 
 
 <center><img src="https://i.ibb.co/pzysmyc/Figure12-1.png"></center>
 
-Step 2: After some time, the user would have completed the project and now decides to mark the project as done by executing done p/1 command. The done command will call ProjectDoneCommand() which will execute the command with executeCommand(). printProjectDoneMessage() from the UI class will be returned and printed. 
+Step 2: After some time, the user would have completed the project and now decides to mark the project as done by executing `done p/1` command. The done command will call ProjectDoneCommand() which will execute the command with executeCommand(). printProjectDoneMessage() from the UI class will be returned and printed. 
 
 The following sequence diagram shows how the project done command works: 
 
 <center><img src="https://i.ibb.co/NSDGbkL/Figure12-2.png"></center>
 
-## Selecting an existing project
+### **Selecting an existing project (Riaz Ahamed)**
 This section will explain the selection of existing projects and how the objects interact with each other. 
 
 The user can select existing projects from the list of projects with the select command. 
@@ -328,25 +334,23 @@ This command is facilitated with the help of the ProjectSelectCommand class. An 
 
 projectIndex: The index of the project as an Integer 
 
-Step 1: The user types the select command followed by the index of the project e.g. select p/1. 
+Step 1: The user types the select command followed by the index of the project e.g. `select p/1`.  The main Duke class will call the Parser class. 
 
-1. The main Duke class will call the Parser class. 
+Step 2: The Parser class will check which state the app is in and will then call the appropriate class constructor. In this case, the Parser will call the ProjectSelectCommand constructor. The ProjectSelectCommand constructor will also check for the validity of the user’s input. The constraints of the input are as follows 
 
-2. The Parser class will check which state the app is in and will then call the appropriate class constructor. In this case, the Parser will call the ProjectSelectCommand constructor. The ProjectSelectCommand constructor will also check for the validity of the user’s input. The constraints of the input are as follows 
+* Not a number 
+* Not a positive number 
+* An index of a project that does not exist 
 
-    * Not a number 
-    * Not a positive number 
-    * An index of a project that does not exist 
+Step 3: The Parser class will then initialize a new instance of the ProjectSelectCommand constructor with the projectIndex as “1” and return it back to the main Duke class. 
 
-3. The Parser class will then initialize a new instance of the ProjectSelectCommand constructor with the projectIndex as “1” and return it back to the main Duke class. 
+Step 4: The Duke class will call the executeCommand function from the returned instance which will execute the command. 
 
-4. The Duke class will call the executeCommand function from the returned instance which will execute the command. 
+* The executeCommand function will get the instance of the Project from the static projects list using the projectIndex.  
 
-    * The executeCommand function will get the instance of the Project from the static projects list using the projectIndex.  
+* It will call the projectSelectedMessage from the Ui class and return it to the main Duke class. 
 
-    * It will call the projectSelectedMessage from the Ui class and return it to the main Duke class. 
-
-5. The Duke class will then receive the acknowledgement message and display it to the user in the terminal. 
+Step 5: The Duke class will then receive the acknowledgement message and display it to the user in the terminal. 
 
 The above is illustrated below in a sequence diagram. The sequence diagram will only encompass the sequence in the executeCommand function. 
 
@@ -355,10 +359,10 @@ The above is illustrated below in a sequence diagram. The sequence diagram will 
 ---
 
 ## **Member-specific Features**
-## Add Member
+### **Add Member (Samuel Paul Christopher)**
 The add a member task allows you to add a member to the organization. These members can be referenced and assigned to projects or tasks at a later stage. 
 
-This can be done using the member command like this: member m/Member Name this will add a member with name “Member Name” to the organization. 
+This can be done using the member command like this: `member m/Member-Name` this will add a member with name “Member Name” to the organization. 
 
 <center><img src="https://i.ibb.co/p063cXy/Figure14-1.png"></center>
 
@@ -368,7 +372,7 @@ After adding a member, you should see a friendly message like the one in Figure 
 
 To view the index of a member, please have a look at the view members command which lists the members that have been added.
 
-## Assigning a member to a project
+### **Assigning a member to a project (Samuel Paul Christopher)**
 The “Assign person to a project” command allows a software manger to specify which member should be associated with which project in the organization. 
 
 This command is facilitated with the help of the AssignMemberToProjectCommand class that is present in the commands package. 
@@ -383,7 +387,7 @@ Step 1. When the user first starts up the application, they by default are prese
 
 Step 2. When present in the home view, the user can add members who belong to their respective organization and by default the added team member as no assigned project to their name. This is done by initializing the assingedProjectId whenever an instance of the TeamMember is created. 
 
-Step 3. After projects are added to the project ArrayList we can assign a TeamMember to each project using command assign m/MemberId p/ProjectId. If a member id or project id specified in the command is invalid the program throws an exception to the user to enter a valid Id. 
+Step 3. After projects are added to the project ArrayList we can assign a TeamMember to each project using command `assign m/MemberId p/ProjectId`. If a member id or project id specified in the command is invalid the program throws an exception to the user to enter a valid Id. 
 
 Step 4. Once a member has been assigned a particular project, the assignedProjectId of the TeamMember object is set to the Id of the project the member is assigned to. 
 
@@ -393,7 +397,7 @@ The following sequence diagram provides a visualization of how this command work
 
 <center><img src="https://i.ibb.co/YXj60Qp/Figure15-2.png"></center>
 
-## Assigning a member to a task
+### **Assigning a member to a task (Samuel Paul Christopher)**
 The “Assign person to task” command allows the user to specify a person and a task and assigns the specified person to the specified task.  
 
 The command is facilitated by TeamMemberAssignToTaskCommand(). It extends Command() which executes the command with executeCommand() which takes in 2 parameters, namely projects ArrayList and teamMembers ArrayList. 
@@ -411,13 +415,13 @@ Step 1: The user launches the application for the first time. The state of the p
 
 <center><img src="https://i.ibb.co/fD8r2tF/Figure16-1.png"></center>
 
-Step 2: The user switches to Project View by selecting an existing Project using select p/index. If no such project exists, the user must create the project using project n/name before selecting. This sets the projectIndex variable to be the index of the project in the Projects List.  
+Step 2: The user switches to Project View by selecting an existing Project using `select p/index`. If no such project exists, the user must create the project using `project n/name` before selecting. This sets the projectIndex variable to be the index of the project in the Projects List.  
 
 Step 3: After the user has selected the project, the state changes from Home View to Project View 
 
 <center><img src="https://i.ibb.co/XZSMc84/Figure16-2.png"></center>
 
-Step 4: The user then requires an existing task and an existing member to assign the member to the task using assign t/taskIndex m/memberIndex. If any one of then does not exist, create tasks with task n/name and create members with member n/name. 
+Step 4: The user then requires an existing task and an existing member to assign the member to the task using `assign t/taskIndex m/memberIndex`. If any one of then does not exist, create tasks with `task n/name` and create members with `member n/name`. 
 
 Step 5: Once the member has been assigned, the task instance of the specified task will have its teamMember field linked to the specified teamMember instance. 
 
@@ -425,14 +429,14 @@ The following sequence diagram shows how the “Assign member to task” command
 
 <center><img src="https://i.ibb.co/vdBdtg2/Figure16-3.png"></center>
 
-## Removing a member
+### **Removing a member (Sean Tan)**
 This command allows project managers to remove members from the main members list. 
 
 The logic for this command is primarily written in TeamMemberDeleteCommand class. It extends from the abstract Command class. 
 
 The steps below show how such a class is initialized and used to execute the command. 
 
-Step 1: The Parser initializes TeamMemberDeleteCommand by passing a hashmap of input parameters together with memberIndex that was provided by the user using remove m/1 into its constructor. 
+Step 1: The Parser initializes TeamMemberDeleteCommand by passing a hashmap of input parameters together with memberIndex that was provided by the user using `remove m/1` into its constructor. 
 
 Step 2: The Parse() method of the TeamMemberDeleteCommand class extracts the index of the member to be deleted from the parameter hashmap. 
 
@@ -444,19 +448,21 @@ Step 3: The ExecuteCommand() method of TeamMemberDeleteCommand class is called b
 
 <center><img src="https://i.ibb.co/Lz9FQZC/Figure17.png"></center>
 
+---
+
 ## **Task-specific Features**
 The user enters the following tasks-specific commands when he is in the Project View. As such projectIndex state variable in Parser will point to the project index. 
 
 <center><img src="https://i.ibb.co/C7KW0RM/Figure18.png"></center>
 
-## Creating a task
+## **Creating a task (Shreyas Kumar)**
 This command allows you to create a task in a selected project. 
 
 The logic for this command is written in the TaskCommand class which inherits its general properties from the abstract Command class. 
 
 The following states how the functionality is used in the application and how it is implemented: 
 
-Step 1: The parser class uses the TaskCommand constructor to initialize a new instance of that class type when the user enter the input task n/this is a task. 
+Step 1: The parser class uses the TaskCommand constructor to initialize a new instance of that class type when the user enter the input `task n/this is a task`. 
 
 Step 2: The parse() method in the TaskCommand class extracts the task name for the newly created task. 
 
@@ -474,7 +480,7 @@ The following sequence diagram provides a visualization of how this command work
 
 <center><img src="https://i.ibb.co/2WshJqq/Figure19.png"></center>
 
-## Editing an existing task name
+### **Editing an existing task name (Riaz Ahamed)**
 
 This command allows project managers to delete tasks from projects. 
 
@@ -482,7 +488,7 @@ The logic for this command is primarily written in TaskEditCommand class. It ext
 
 The steps below show how such a class is initialized and used to execute the command. 
 
-Step 1: The Parser initializes TaskEditCommand by passing a hashmap of input parameters from the edit t/1 n/new task name command that was entered by the user. 
+Step 1: The Parser initializes TaskEditCommand by passing a hashmap of input parameters from the `edit t/1 n/new task name` command that was entered by the user. 
 
 Step 2: The parse() method of TaskEditCommand extracts the task index from the hashmap. 
 
@@ -500,14 +506,14 @@ The following sequence diagram provides a visualization of how this command work
 
 <center><img src="https://i.ibb.co/3Y9mKsq/editTask.png"></center>
 
-## Deleting Tasks
+### **Deleting a task (Sean Tan)**
 This command allows project managers to delete tasks from projects.
 
 The logic for this command is primarily written in TaskDeleteCommand class. It extends from the abstract Command class. 
 
 The steps below show how such a class is initialized and used to execute the command. 
 
-Step 1:The parser class uses the TaskDeleteCommand constructor to initialize a new instance of that class type when the user enters the input delete t/3. 
+Step 1:The parser class uses the TaskDeleteCommand constructor to initialize a new instance of that class type when the user enters the input `delete t/3`. 
 
 Step 2: The parse() method of TaskDeleteCommand extracts the task index from the input provided by the user. 
 
@@ -526,7 +532,7 @@ The following sequence diagram provides a visualization of how this command work
 <center><img src="https://i.ibb.co/W6BQkh5/Figure20.png"></center>
 
 
-## Adding Deadline to Tasks
+### **Adding Deadline to Tasks (Sean Tan)**
 
 This command allows project managers to add deadline to tasks. 
 
@@ -534,7 +540,7 @@ The logic for this command is primarily written in DeadlineCommand class. It ext
 
 The steps below show how such a class is initialized and used to execute the command. 
 
-Step 1: The parser initializes DeadlineCommand by passing a hashmap of input parameters from the command deadline t/1 d/2020-10-12. 
+Step 1: The parser initializes DeadlineCommand by passing a hashmap of input parameters from the command `deadline t/1 d/2020-10-12`. 
 
 Step 2: The parse() method of DeadlineCommand extracts the task index and deadline date from the hashmap. 
 
@@ -550,14 +556,14 @@ The following sequence diagram provides a visualization of how this command work
 
 <center><img src="https://i.ibb.co/wWtfVLY/Figure21.png"></center>
 
-## Assign Actual Duration to Tasks    
+## **Assign Actual Duration to Tasks (Sean Tan)**    
 This command allows project managers to record the actual duration that completed tasks take. 
 
 The logic for this command is primarily written in ActualTimeCommand class. It extends from the abstract Command class. 
 
 The steps below show how such a class is initialized and used to execute the command. 
 
-Step 1: The parser initializes ActualTimeCommand by passing a hashmap of input parameters taken from the command actual t/3 h/2 m/3 which is entered by the user. 
+Step 1: The parser initializes ActualTimeCommand by passing a hashmap of input parameters taken from the command `actual t/3 h/2 m/3` which is entered by the user. 
 
 Step 2: The parse() method of ActualTimeCommand extracts the task index, hours and minutes from the parameter hashmap. 
 
@@ -577,14 +583,14 @@ The following sequence diagram provides a visualization of how this command work
 
 <center><img src="https://i.ibb.co/QF311Zc/Figure22.png"></center>
 
-### Assign Estimated Duration to Tasks    
+### **Assign Estimated Duration to Tasks (Sean Tan)**    
 This command allows project managers to add an estimate for the duration tasks will take. 
 
 The logic for this command is primarily written in EstimatedTimeCommand class. It extends from the abstract Command class. 
 
 The steps below show how such a class is initialized and used to execute the command. 
 
-Step 1: The parser initializes ActualTimeCommand by passing a hashmap of input parameters taken from the command estimate t/1 h/4 m/35 which is entered by the user.
+Step 1: The parser initializes ActualTimeCommand by passing a hashmap of input parameters taken from the command `estimate t/1 h/4 m/35` which is entered by the user.
 
 Step 2: The parse() method of EstimatedTimeCommand extracts the task index, hours and minutes from the hashmap.
 
@@ -600,7 +606,7 @@ The following sequence diagram provides a visualization of how this command work
 
 <center><img src="https://i.ibb.co/rHkZQRd/Figure23.png"></center>
 
-## Assign priority to task 
+### **Assign priority to task (Riaz Ahamed)** 
 This section will explain the assigning of priorities to tasks and how the objects interact with each other. 
 
 The user can assign a priority to any existing task with the `priority` command. 
@@ -630,7 +636,7 @@ The above is illustrated below in a sequence diagram. The sequence diagram will 
 
 <center><img src="https://i.ibb.co/xJ4D6Br/Figure24.png"></center>
 
-## Marking a task as done 
+### **Marking a task as done (Shreyas Kumar)** 
 This command allows you to mark a task in a selected project. 
 
 The logic for this command is written in the TaskDoneCommand class which inherits its general properties from the abstract Command class. 
@@ -651,7 +657,7 @@ The above is illustrated below in a sequence diagram. The sequence diagram will 
 
 <center><img src="https://i.ibb.co/cxLnHJB/Figure25.png"></center>
 
-## Sorting Tasks in the TaskList
+### **Sorting Tasks in the TaskList**
 This command allows you to sort the tasks in a task list in a selected project. 
 
 The logic for this command is written in the `TaskSortCommand` class which inherits its general properties from the abstract Command class. 
@@ -708,7 +714,7 @@ Here are the steps to create a new release.
 3. Tag the repo with the version number. e.g. v0.1 
 4. Create a new release using GitHub and upload the JAR file you created. 
 
-## **Appendix A: Product Scope** 
+## **Appendix A: Product Scope (Samuel Leow)** 
 Target user profile: 
 - Project Manager of Software Engineering projects 
 - Needs to manage teams for different projects 
@@ -751,7 +757,7 @@ Priority | As a ... | I want to ... | So that I can ...
 `*` | project manager | add the roles of my team members | allocate appropriate tasks to appropriate members
 `*` | project manager | send out reminders to my team members | have them shift gears or change something in real time  
 
-## **Appendix B: Command Summary** 
+## **Appendix B: Command Summary (Samuel Paul Christopher)** 
 
 |Command  |Description and Examples  |
 |---------|--------------------------|
@@ -776,7 +782,7 @@ Priority | As a ... | I want to ... | So that I can ...
 |bye|prints a goodbye message. <br> Example: `bye`|
 
 
-## **Appendix C: Instructions for Manual Testing (Shreyas)**
+## **Appendix C: Instructions for Manual Testing (Shreyas Kumar)**
 
 ### <ins>Project-Specific Tests</ins>
 
