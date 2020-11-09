@@ -74,11 +74,14 @@ all projects by using the `list` command in HomeView
 a positive integer. Hence, the TASK_INDEX refers to this
 positive integer. You can retrieve the TASK_INDEXes of 
 all tasks by using the `list` command in Project View
-
 - **MEMBER_INDEX**: Every existing member would be assigned
 a positive integer. Hence, the MEMBER_INDEX refers to this
 positive integer. You can retrieve the MEMBER_INDEXes of 
-Members by using the `list` command in Home View or in Project View
+Members by using the `list` command in Home View or in Project View  
+- **warning**: This refers to any formatting issues to look out for
+when keying in the commands
+- **exclamation**: This refers to any other constraints to look out for
+besides formatting issues
 
 >  :warning: Project Index, Task Index and Member Index must be positive integers.
 
