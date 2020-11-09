@@ -8,13 +8,11 @@ import java.util.ArrayList;
 
 public class TeamMember {
     private String name;
-    private int assignedProjectId;
     private ArrayList<Project> assignedProjects;
     private ArrayList<Task> tasks;
 
     public TeamMember(String name) {
         this.name = name;
-        assignedProjectId = -1;
         tasks = new ArrayList<>();
         this.assignedProjects = new ArrayList<>();
     }
@@ -47,5 +45,20 @@ public class TeamMember {
     @Override
     public String toString() {
         return name;
+    }
+
+    public String saveFormat() {
+        String memberString = "";
+        memberString += this.toString();
+        /*
+        memberString += "\npS\n";
+        if (assignedProjects.size() > 0) {
+            for (Project project : assignedProjects) {
+                memberString += project.getProjectName();
+            }
+        }
+        memberString += "\npE";
+        */
+        return memberString;
     }
 }

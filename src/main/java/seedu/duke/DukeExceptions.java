@@ -51,6 +51,7 @@ public class DukeExceptions extends Exception {
         exceptionMessageList.put("TaskAlreadyAssigned","Task has already been assigned to member!");
         exceptionMessageList.put("incorrectListCommand","Please only enter \"list\" into the command "
                 + "to display the home view or project view!");
+        exceptionMessageList.put("invalidPriority","Invalid priority! Please input a positive integer for priority");
     }
 
     public String toString() {
