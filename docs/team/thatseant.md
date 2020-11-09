@@ -49,7 +49,7 @@ My contributions were the following:
 
 
 
-## **Contributions to Developer Guide (UG)**
+## **Contributions to Developer Guide (DG)**
 
 My contributions were the following:
 - Design section, specifically the introduction, consideration and overall architecture, and logic components. 
