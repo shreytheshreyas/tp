@@ -1,14 +1,9 @@
-package seedu.duke.commands.member;
+package seedu.ezmanager.commands.member;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.project.ProjectListCommand;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

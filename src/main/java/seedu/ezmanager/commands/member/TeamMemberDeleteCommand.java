@@ -1,42 +1,41 @@
-package seedu.duke.commands.member;
+package seedu.ezmanager.commands.member;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
-import static seedu.duke.Parser.getHashValue;
+import static seedu.ezmanager.Parser.getHashValue;
 
 public class TeamMemberDeleteCommand extends Command {
     private int memberIndex;
     HashMap<String, String> params;
     private int projectIndex;
 
-    public TeamMemberDeleteCommand(HashMap<String, String> params, int projectIndex) throws DukeExceptions {
+    public TeamMemberDeleteCommand(HashMap<String, String> params, int projectIndex) throws EZExceptions {
         this.params = params;
         this.parse();
         this.projectIndex = projectIndex;
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         try {
             memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidTeamMemberID");
+            throw new EZExceptions("invalidTeamMemberID");
         }
     }
 
     @Override
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
         if (teamMembers.size() == 0) {
-            throw new DukeExceptions("emptyTeamMembersList");
+            throw new EZExceptions("emptyTeamMembersList");
         }
         try {
             // Removing of Members in HomeView
@@ -64,7 +63,7 @@ public class TeamMemberDeleteCommand extends Command {
                 return Ui.printMemberRemovedInProjectViewMessage(memberToBeRemoved.getName(), project.getProjectName());
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTeamMemberID");
+            throw new EZExceptions("invalidTeamMemberID");
         }
     }
 

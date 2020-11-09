@@ -1,10 +1,10 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +32,7 @@ class TaskCommandTest {
     }
 
     @Test
-    void executeCommand_existingTasks_taskCreated() throws DukeExceptions {
+    void executeCommand_existingTasks_taskCreated() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("n", "Task 3");
         TaskCommand createTask = new TaskCommand(params, 1);

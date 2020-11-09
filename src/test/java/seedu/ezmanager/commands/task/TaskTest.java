@@ -1,10 +1,4 @@
-package seedu.duke.commands.task;
-
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-import seedu.duke.task.Task;
-
-import java.time.LocalDate;
+package seedu.ezmanager.commands.task;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;

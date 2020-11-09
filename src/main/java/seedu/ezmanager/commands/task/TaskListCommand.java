@@ -1,12 +1,12 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
 import java.util.ArrayList;
-import java.util.Arrays;
-import seedu.duke.ui.Ui;
+
+import seedu.ezmanager.ui.Ui;
 
 /**
  * Prints a list of existing tasks.
@@ -19,7 +19,7 @@ public class TaskListCommand extends Command {
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
         Project selectedProject = projects.get(projectIndex);
         String projectView = Ui.projectViewMessage(selectedProject);
         return projectView;

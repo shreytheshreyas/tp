@@ -1,8 +1,8 @@
-package seedu.duke.member;
+package seedu.ezmanager.member;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,10 @@ public class TeamMember {
         this.assignedProjects = new ArrayList<>();
     }
 
-    public void assignProject(Project project) throws DukeExceptions {
+    public void assignProject(Project project) throws EZExceptions {
         for (Project assignedProject : assignedProjects) {
             if (assignedProject == project) {
-                throw new DukeExceptions("projectAlreadyAssigned");
+                throw new EZExceptions("projectAlreadyAssigned");
             }
         }
         assignedProjects.add(project);

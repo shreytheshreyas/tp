@@ -1,13 +1,13 @@
-package seedu.duke;
+package seedu.ezmanager;
 
 import java.util.HashMap;
 
-public class DukeExceptions extends Exception {
+public class EZExceptions extends Exception {
 
     private HashMap<String,String> exceptionMessageList = new HashMap<>();
     private String messageType;
 
-    public DukeExceptions(String messageType) {
+    public EZExceptions(String messageType) {
         initializeMap();
         this.messageType = messageType;
     }

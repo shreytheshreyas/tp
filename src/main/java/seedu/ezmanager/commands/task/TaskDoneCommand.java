@@ -1,17 +1,16 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
-import seedu.duke.Duke;
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.Parser.getHashValue;
+import static seedu.ezmanager.Parser.getHashValue;
 
 public class TaskDoneCommand extends Command {
 
@@ -19,31 +18,31 @@ public class TaskDoneCommand extends Command {
     private int taskIndex;
     HashMap<String, String> params;
 
-    public TaskDoneCommand(HashMap<String, String> params, int projectIndex) throws DukeExceptions {
+    public TaskDoneCommand(HashMap<String, String> params, int projectIndex) throws EZExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new EZExceptions("invalidTaskID");
         }
 
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
         Project project = projects.get(projectIndex);
         try {
             Task selectedTask = project.getTask(taskIndex);
             selectedTask.markAsDone();
             return Ui.printTaskDoneMessage(selectedTask.toString());
         }  catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new EZExceptions("invalidTaskID");
         }
     }
 

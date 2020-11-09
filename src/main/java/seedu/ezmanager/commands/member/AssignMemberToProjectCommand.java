@@ -1,23 +1,25 @@
 //@@author thatseant
 
-package seedu.duke.commands.member;
+package seedu.ezmanager.commands.member;
 
 import java.util.HashMap;
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EZLogger;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.ui.Ui;
 
-import static seedu.duke.Parser.getHashValue;
-import static seedu.duke.Util.INDEX_NON_INTEGER;
-import static seedu.duke.Util.INVALID_PROJECT_ID;
-import static seedu.duke.Util.INVALID_TEAM_MEMBER_ID;
-import static seedu.duke.Util.MEMBER_INDEX_KEY;
-import static seedu.duke.Util.PROJECT_INDEX_KEY;
-import static seedu.duke.Util.USER_JAVA_INDEX_DIFF;
+import static seedu.ezmanager.Parser.getHashValue;
+import static seedu.ezmanager.Util.INDEX_NON_INTEGER;
+import static seedu.ezmanager.Util.INVALID_PROJECT_ID;
+import static seedu.ezmanager.Util.INVALID_TEAM_MEMBER_ID;
+import static seedu.ezmanager.Util.MEMBER_INDEX_KEY;
+import static seedu.ezmanager.Util.PROJECT_INDEX_KEY;
+import static seedu.ezmanager.Util.USER_JAVA_INDEX_DIFF;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 public class AssignMemberToProjectCommand extends Command {
     private int memberIndex;
@@ -25,35 +27,40 @@ public class AssignMemberToProjectCommand extends Command {
     private HashMap<String, String> paramsList;
 
     public AssignMemberToProjectCommand(HashMap<String,String> paramsList, int projectIndex)
-            throws DukeExceptions {
+            throws EZExceptions {
         this.paramsList = paramsList;
         assert projectIndex == -1 : "projectIndex must be -1";
         parse();
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(paramsList, PROJECT_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
             memberIndex = Integer.parseInt(getHashValue(paramsList, MEMBER_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions(INDEX_NON_INTEGER);
+            EZLogger.log(Level.WARNING, "Index is not an integer.");
+            throw new EZExceptions(INDEX_NON_INTEGER);
         }
     }
 
     @Override
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
+        EZLogger.log(Level.INFO, "Executing Command");
         if (memberIndex >= teamMembers.size() || memberIndex < 0) {
-            throw new DukeExceptions(INVALID_TEAM_MEMBER_ID);
+            throw new EZExceptions(INVALID_TEAM_MEMBER_ID);
         }
         if (projectIndex >= projects.size() || projectIndex < 0) {
-            throw new DukeExceptions(INVALID_PROJECT_ID);
+            throw new EZExceptions(INVALID_PROJECT_ID);
         }
 
         TeamMember teamMember = teamMembers.get(memberIndex);
+        EZLogger.log(Level.INFO, "Team Member Retrieved");
         Project projectToAdd = projects.get(projectIndex);
+        EZLogger.log(Level.INFO, "Project Retrieved");
         teamMember.assignProject(projectToAdd);
         projectToAdd.addTeamMemberToProject(teamMember);
+        EZLogger.log(Level.INFO, "Team Member Assigned to Project");
         return Ui.printMemberAssignedToProjectMessage(teamMember.getName(), projectToAdd.getProjectName());
     }
 

@@ -1,14 +1,11 @@
-package seedu.duke.ui;
+package seedu.ezmanager.ui;
 
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.time.Period;
 
 public class Ui {

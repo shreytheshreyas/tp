@@ -1,27 +1,27 @@
-package seedu.duke.commands.project;
+package seedu.ezmanager.commands.project;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.Parser.getHashValue;
+import static seedu.ezmanager.Parser.getHashValue;
 
 public class ProjectCommand extends Command {
 
     private String description;
     HashMap<String, String> params;
 
-    public ProjectCommand(HashMap<String, String> params) throws DukeExceptions {
+    public ProjectCommand(HashMap<String, String> params) throws EZExceptions {
         this.params = params;
         this.parse();
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         this.description = getHashValue(params, "n");
     }
 

@@ -1,10 +1,10 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ class TaskDoneCommandTest {
     }
 
     @Test
-    void executeCommand_validIndex_addActualTime() throws DukeExceptions {
+    void executeCommand_validIndex_addActualTime() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("t", "2");
         TaskDoneCommand newCommand = new TaskDoneCommand(params, 1);
@@ -43,11 +43,11 @@ class TaskDoneCommandTest {
     }
 
     @Test
-    void executeCommand_invalidTaskIndex_invalidIdException() throws DukeExceptions {
+    void executeCommand_invalidTaskIndex_invalidIdException() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("t", "5");
         TaskDoneCommand newCommand = new TaskDoneCommand(params, 1);
-        Throwable actualOutputException = assertThrows(DukeExceptions.class,
+        Throwable actualOutputException = assertThrows(EZExceptions.class,
             () -> newCommand.executeCommand(projects, new ArrayList<>()));
         String expectedOutput = "Task ID does not exist!";
         assertEquals(expectedOutput, actualOutputException.toString());

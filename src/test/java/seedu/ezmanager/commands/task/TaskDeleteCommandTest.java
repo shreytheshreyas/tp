@@ -1,12 +1,11 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +46,7 @@ class TaskDeleteCommandTest {
      * Check if task has been deleted from task list by checking task list length;
      */
     @Test
-    void executeCommand_validTaskId_taskDescription() throws DukeExceptions {
+    void executeCommand_validTaskId_taskDescription() throws EZExceptions {
         params.put("t", "1");
         TaskDeleteCommand command = new TaskDeleteCommand(params,0);
         String expectedOutput0 = "Task \"Task One\" removed!";
@@ -63,11 +62,11 @@ class TaskDeleteCommandTest {
      * Test: Input a non-existent task ID to test exception error message.
      */
     @Test
-    void executeCommand_nonExistentTaskId_taskDescription() throws DukeExceptions {
+    void executeCommand_nonExistentTaskId_taskDescription() throws EZExceptions {
         params.put("t", "4");
         TaskDeleteCommand command = new TaskDeleteCommand(params,0);
         String expectedOutput = "Task ID does not exist!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+        EZExceptions exception = assertThrows(EZExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
@@ -76,11 +75,11 @@ class TaskDeleteCommandTest {
      * Test: Pass a non existent projects list to test exception error message.
      */
     @Test
-    void executeCommand_nonExistentProjectsList_taskDescription() throws DukeExceptions {
+    void executeCommand_nonExistentProjectsList_taskDescription() throws EZExceptions {
         params.put("t", "1");
         TaskDeleteCommand command = new TaskDeleteCommand(params,0);
         String expectedOutput = "Project list is empty!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+        EZExceptions exception = assertThrows(EZExceptions.class, () ->
                 command.executeCommand(new ArrayList<Project>(), teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }

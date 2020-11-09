@@ -1,9 +1,9 @@
-package seedu.duke.commands;
+package seedu.ezmanager.commands;
 
-import seedu.duke.Parser;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.Parser;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 

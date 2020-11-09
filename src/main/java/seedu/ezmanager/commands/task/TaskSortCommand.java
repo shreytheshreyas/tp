@@ -1,18 +1,17 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.commands.Command;
-import seedu.duke.task.Task;
-import java.time.LocalDate;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.task.Task;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 
-import static seedu.duke.Parser.getHashValue;
+import static seedu.ezmanager.Parser.getHashValue;
 
 public class TaskSortCommand extends Command {
     private int projectIndex;
@@ -20,21 +19,21 @@ public class TaskSortCommand extends Command {
     private String sortingType;
 
     public TaskSortCommand(HashMap<String, String> params, int projectIndex)
-            throws DukeExceptions {
+            throws EZExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         try {
             sortingType = getHashValue(params, "s");
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new EZExceptions("invalidTaskID");
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EZExceptions {
         Project project = projects.get(projectIndex);
         switch (sortingType) {
         case "p":
@@ -105,7 +104,7 @@ public class TaskSortCommand extends Command {
             });
             System.out.println("Task List sorted based on estimated time taken");
             break;
-        default: throw new DukeExceptions("InvalidSortingParameter");
+        default: throw new EZExceptions("InvalidSortingParameter");
         }
 
         return "";

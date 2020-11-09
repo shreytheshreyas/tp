@@ -1,11 +1,11 @@
-package seedu.duke.commands.project;
+package seedu.ezmanager.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,7 +32,7 @@ public class ProjectDescriptionCommandTest {
     }
 
     @Test
-    void executeCommand_projectList_projectDescriptionAdded() throws DukeExceptions {
+    void executeCommand_projectList_projectDescriptionAdded() throws EZExceptions {
         params.put("d", "Do CS2113 Tutorial by today");
         params.put("p", "2");
         ProjectDescriptionCommand addDescription = new ProjectDescriptionCommand(params);

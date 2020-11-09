@@ -1,10 +1,10 @@
-package seedu.duke.commands;
+package seedu.ezmanager.commands;
 
 
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
 import java.util.ArrayList;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.ui.Ui;
 
 /**
  * Displays goodbye message when application is terminated by the user.

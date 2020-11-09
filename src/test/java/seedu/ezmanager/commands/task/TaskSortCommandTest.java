@@ -1,16 +1,12 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.member.AssignMemberToProjectCommand;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
+import seedu.ezmanager.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -50,7 +46,7 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void execute_command_sortTaskList_Priority() throws DukeExceptions {
+    public void execute_command_sortTaskList_Priority() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("s", "p");
         String expectedOutput = "List of Tasks:"
@@ -66,7 +62,7 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void execute_command_sortTaskList_Deadline() throws DukeExceptions {
+    public void execute_command_sortTaskList_Deadline() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("s", "d");
         String expectedOutput = "List of Tasks:"
@@ -82,7 +78,7 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void execute_command_sortTaskList_ActualTime() throws DukeExceptions {
+    public void execute_command_sortTaskList_ActualTime() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("s", "a");
         String expectedOutput = "List of Tasks:"
@@ -98,10 +94,10 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void executeCommand_invalidProjectId_exception() throws DukeExceptions {
+    public void executeCommand_invalidProjectId_exception() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         String expectedOutput = "Certain Parameters are missing!";
-        Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
             new TaskSortCommand(params,0);
         });
         assertEquals(expectedOutput,actualOutputException.toString());

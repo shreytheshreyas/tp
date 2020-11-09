@@ -1,17 +1,16 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
+import seedu.ezmanager.ui.Ui;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.Parser.getHashValue;
+import static seedu.ezmanager.Parser.getHashValue;
 
 public class TaskAssignPriorityCommand extends Command {
 
@@ -21,33 +20,33 @@ public class TaskAssignPriorityCommand extends Command {
     HashMap<String, String> params;
 
     public TaskAssignPriorityCommand(HashMap<String, String> params, int projectIndex)
-            throws DukeExceptions {
+            throws EZExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
             priority = Integer.parseInt(getHashValue(params, "p"));
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("indexNonInteger");
+            throw new EZExceptions("indexNonInteger");
         }
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
         if (projects.size() == 0) {
-            throw new DukeExceptions("emptyProjectList");
+            throw new EZExceptions("emptyProjectList");
         }
         try {
             Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
             selectedTask.setPriority(priority);
             return Ui.printPriorityAssignedToTaskMessage(priority, selectedTask.getTaskDescription());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new EZExceptions("invalidTaskID");
         }
     }
 

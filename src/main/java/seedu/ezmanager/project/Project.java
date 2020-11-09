@@ -1,12 +1,10 @@
-package seedu.duke.project;
+package seedu.ezmanager.project;
 
-import seedu.duke.member.TeamMember;
-import seedu.duke.task.Task;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.task.Task;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.time.LocalDate;
-import java.util.Collections;
 
 public class Project implements Comparable<Project> {
     protected String projectName;

@@ -1,10 +1,9 @@
-package seedu.duke.task;
+package seedu.ezmanager.task;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.member.TeamMember;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
@@ -86,10 +85,10 @@ public class Task {
         return members;
     }
 
-    public void setMember(TeamMember newMember) throws DukeExceptions {
+    public void setMember(TeamMember newMember) throws EZExceptions {
         for (TeamMember member : members) {
             if (newMember == member) {
-                throw new DukeExceptions("TaskAlreadyAssigned");
+                throw new EZExceptions("TaskAlreadyAssigned");
             }
         }
         members.add(newMember);

@@ -1,10 +1,10 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,7 +34,7 @@ class ActualTimeCommandTest {
     }
 
     @Test
-    void executeCommand_validIndexAndDone_addActualTime() throws DukeExceptions {
+    void executeCommand_validIndexAndDone_addActualTime() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("t", "2");
         params.put("h", "4");
@@ -47,26 +47,26 @@ class ActualTimeCommandTest {
     }
 
     @Test
-    void executeCommand_invalidTaskIndex_invalidIdException() throws DukeExceptions {
+    void executeCommand_invalidTaskIndex_invalidIdException() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("t", "5");
         params.put("h", "4");
         params.put("m", "3");
         ActualTimeCommand newCommand = new ActualTimeCommand(params, 1);
-        Throwable actualOutputException = assertThrows(DukeExceptions.class,
+        Throwable actualOutputException = assertThrows(EZExceptions.class,
             () -> newCommand.executeCommand(projects, new ArrayList<>()));
         String expectedOutput = "Task ID does not exist!";
         assertEquals(expectedOutput, actualOutputException.toString());
     }
 
     @Test
-    void executeCommand_taskNotDone_notDoneException() throws DukeExceptions {
+    void executeCommand_taskNotDone_notDoneException() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("t", "1");
         params.put("h", "4");
         params.put("m", "3");
         ActualTimeCommand newCommand = new ActualTimeCommand(params, 1);
-        Throwable actualOutputException = assertThrows(DukeExceptions.class,
+        Throwable actualOutputException = assertThrows(EZExceptions.class,
             () -> newCommand.executeCommand(projects, new ArrayList<>()));
         String expectedOutput = "Task must be marked as done before adding actual duration taken to complete!";
         assertEquals(expectedOutput, actualOutputException.toString());

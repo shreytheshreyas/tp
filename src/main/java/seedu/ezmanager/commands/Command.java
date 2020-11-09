@@ -1,8 +1,8 @@
-package seedu.duke.commands;
+package seedu.ezmanager.commands;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,7 @@ public abstract class Command {
 
     public abstract String executeCommand(ArrayList<Project> projects,
                                           ArrayList<TeamMember> teamMembers)
-            throws DukeExceptions;
+            throws EZExceptions;
 
     /**
      * Returns an exit flag that is determined by user's command.

@@ -1,14 +1,11 @@
-package seedu.duke.commands.project;
+package seedu.ezmanager.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.project.ProjectCommand;
-import seedu.duke.commands.project.ProjectSelectCommand;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.ui.Ui;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -35,7 +32,7 @@ public class ProjectSelectCommandTest {
     }
 
     @Test
-    void executeCommand_validProjectIdWithDescription_additionalInformation() throws DukeExceptions {
+    void executeCommand_validProjectIdWithDescription_additionalInformation() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
@@ -62,12 +59,12 @@ public class ProjectSelectCommandTest {
     }
 
     @Test
-    void executeCommand_invalidProjectIdWithDescription_additionalInformation() throws DukeExceptions {
+    void executeCommand_invalidProjectIdWithDescription_additionalInformation() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","-5");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
         String expectedOutput = "Project ID does not exist!";
-        Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
             selectProject.executeCommand(projects, teamMembers);
         });
         assertEquals(expectedOutput, actualOutputException.toString());

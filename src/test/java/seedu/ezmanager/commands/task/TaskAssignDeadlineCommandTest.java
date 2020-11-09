@@ -1,12 +1,11 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -34,7 +33,7 @@ class TaskAssignDeadlineCommandTest {
     }
 
     @Test
-    void executeCommand_correctDateFormat_addDeadline() throws DukeExceptions {
+    void executeCommand_correctDateFormat_addDeadline() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("d", "2020-09-12");
         params.put("t", "2");
@@ -45,11 +44,11 @@ class TaskAssignDeadlineCommandTest {
     }
 
     @Test
-    void executeCommand_wrongDateFormat_DateTimeException() throws DukeExceptions {
+    void executeCommand_wrongDateFormat_DateTimeException() throws EZExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("d", "2020-09-1");
         params.put("t", "2");
-        Throwable actualOutputException = assertThrows(DukeExceptions.class,
+        Throwable actualOutputException = assertThrows(EZExceptions.class,
             () -> new TaskAssignDeadlineCommand(params, 1));
         String expectedOutput = "Date must be specified in format YYYY-MM-DD";
         assertEquals(expectedOutput, actualOutputException.toString());

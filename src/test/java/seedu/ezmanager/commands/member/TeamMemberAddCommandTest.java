@@ -1,12 +1,11 @@
-package seedu.duke.commands.member;
+package seedu.ezmanager.commands.member;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.Parser;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +26,7 @@ class TeamMemberAddCommandTest {
     }
 
     @Test
-    public void executeCommand_validMemberName_memberAddedMessage() throws DukeExceptions {
+    public void executeCommand_validMemberName_memberAddedMessage() throws EZExceptions {
         params.put("n", "John Doe");
         TeamMemberAddCommand command = new TeamMemberAddCommand(params);
         String expectedOutput = Ui.printMemberAddedMessage("John Doe");

@@ -1,14 +1,14 @@
 //@@author thatseant
 
-package seedu.duke.commands.member;
+package seedu.ezmanager.commands.member;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,7 +33,7 @@ class TeamMemberHoursCommandTest {
     }
 
     @Test
-    public void executeCommand_validMemberId_correctHours() throws DukeExceptions {
+    public void executeCommand_validMemberId_correctHours() throws EZExceptions {
         Task task1 = new Task("task1");
         task1.addActual(274);
 
@@ -62,12 +62,12 @@ class TeamMemberHoursCommandTest {
     }
 
     @Test
-    public void executeCommand_invalidMemberId_assignMemberToProject() throws DukeExceptions {
+    public void executeCommand_invalidMemberId_assignMemberToProject() throws EZExceptions {
         HashMap<String,String> params = new HashMap<>();
         params.put("m","7");
         TeamMemberHoursCommand assignProject = new TeamMemberHoursCommand(params,-1);
         String expectedOutput = "The member ID entered does not exist";
-        Throwable actualOutputException = assertThrows(DukeExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
             assignProject.executeCommand(projects,teamMembers);
         });
         assertEquals(expectedOutput,actualOutputException.toString());

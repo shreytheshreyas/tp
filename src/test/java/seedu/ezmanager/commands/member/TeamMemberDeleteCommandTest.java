@@ -1,15 +1,14 @@
-package seedu.duke.commands.member;
+package seedu.ezmanager.commands.member;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.PrintHomeViewCommand;
-import seedu.duke.commands.task.TaskListCommand;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.PrintHomeViewCommand;
+import seedu.ezmanager.commands.task.TaskListCommand;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +23,7 @@ class TeamMemberDeleteCommandTest {
     private HashMap<String, String> params;
 
     @BeforeEach
-    void createTeamMembersList() throws DukeExceptions {
+    void createTeamMembersList() throws EZExceptions {
         projects = new ArrayList<>();
         teamMembers = new ArrayList<>();
         Project project1 = new Project("Project One");
@@ -47,7 +46,7 @@ class TeamMemberDeleteCommandTest {
     }
 
     @Test
-    void executeCommand_validMemberIdInProjectView_memberRemovedMessage() throws DukeExceptions {
+    void executeCommand_validMemberIdInProjectView_memberRemovedMessage() throws EZExceptions {
         int projectIndex = 0;
         params.put("m", "2");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -58,19 +57,19 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_nonExistentMemberIdInProjectView_invalidMemberIdException()
-            throws DukeExceptions {
+            throws EZExceptions {
         int projectIndex = 0;
         params.put("m", "10");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
         String expectedOutput = "Team Member ID does not exist!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+        EZExceptions exception = assertThrows(EZExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
     void executeCommand_validMemberIdInProjectView_projectViewMember1RemovedFromListAndTaskAssignment()
-            throws DukeExceptions {
+            throws EZExceptions {
         int projectIndex = 0;
         params.put("m", "1");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -102,7 +101,7 @@ class TeamMemberDeleteCommandTest {
     }
 
     @Test
-    void executeCommand_validMemberIdInHomeView_memberRemovedMessage() throws DukeExceptions {
+    void executeCommand_validMemberIdInHomeView_memberRemovedMessage() throws EZExceptions {
         int projectIndex = -1;
         params.put("m", "2");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -113,12 +112,12 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_nonExistentMemberIdInHomeView_invalidMemberIdException()
-            throws DukeExceptions {
+            throws EZExceptions {
         int projectIndex = -1;
         params.put("m", "10");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
         String expectedOutput = "Team Member ID does not exist!";
-        DukeExceptions exception = assertThrows(DukeExceptions.class, () ->
+        EZExceptions exception = assertThrows(EZExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
@@ -126,7 +125,7 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_validMemberIdInHomeView_homeViewMember2RemovedFromList()
-            throws DukeExceptions {
+            throws EZExceptions {
         int projectIndex = -1;
         params.put("m", "2");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -158,7 +157,7 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_validMemberIdInHomeView_projectViewMember2RemovedFromList()
-            throws DukeExceptions {
+            throws EZExceptions {
         int homeView = -1;
         int projectIndex = 0;
         params.put("m", "2");

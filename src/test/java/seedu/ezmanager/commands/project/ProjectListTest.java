@@ -1,11 +1,10 @@
-package seedu.duke.commands.project;
+package seedu.ezmanager.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.project.ProjectListCommand;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public class ProjectListTest {
     }
 
     @Test
-    void executeCommand_differentDeadline_listOfSortedProjectsByDeadline() throws DukeExceptions {
+    void executeCommand_differentDeadline_listOfSortedProjectsByDeadline() throws EZExceptions {
         ProjectListCommand command = new ProjectListCommand();
         String expectedOutput = "List of Projects:\n"
                 + "     1.CS2113 Tutorial (2019-01-01) \n"

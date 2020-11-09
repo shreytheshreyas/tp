@@ -1,16 +1,16 @@
-package seedu.duke.commands.task;
+package seedu.ezmanager.commands.task;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.ui.Ui;
 
-import static seedu.duke.Parser.getHashValue;
+import static seedu.ezmanager.Parser.getHashValue;
 
 
 public class TaskDeleteCommand extends Command {
@@ -20,26 +20,26 @@ public class TaskDeleteCommand extends Command {
     HashMap<String, String> params;
 
     public TaskDeleteCommand(HashMap<String, String> params, int projectIndex)
-            throws DukeExceptions {
+            throws EZExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new EZExceptions("invalidTaskID");
         }
     }
 
     @Override
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws DukeExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
         if (projects.size() == 0) {
-            throw new DukeExceptions("emptyProjectList");
+            throw new EZExceptions("emptyProjectList");
         }
         try {
             Project selectedProject = projects.get(projectIndex);
@@ -48,7 +48,7 @@ public class TaskDeleteCommand extends Command {
             selectedProject.deleteTask(taskIndex);
             return Ui.printTaskDeletedMessage(taskToBeDeleted);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeExceptions("invalidTaskID");
+            throw new EZExceptions("invalidTaskID");
         }
     }
 

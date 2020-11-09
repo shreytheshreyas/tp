@@ -1,20 +1,20 @@
-package seedu.duke.commands.member;
+package seedu.ezmanager.commands.member;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.commands.Command;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
-import seedu.duke.ui.Ui;
+import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.commands.Command;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
+import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static seedu.duke.Parser.getHashValue;
-import static seedu.duke.Util.INVALID_MEMBER_ID;
-import static seedu.duke.Util.MEMBER_INDEX_KEY;
-import static seedu.duke.Util.MINUTES_IN_HOUR_DOUBLE;
-import static seedu.duke.Util.USER_JAVA_INDEX_DIFF;
+import static seedu.ezmanager.Parser.getHashValue;
+import static seedu.ezmanager.Util.INVALID_MEMBER_ID;
+import static seedu.ezmanager.Util.MEMBER_INDEX_KEY;
+import static seedu.ezmanager.Util.MINUTES_IN_HOUR_DOUBLE;
+import static seedu.ezmanager.Util.USER_JAVA_INDEX_DIFF;
 
 public class TeamMemberHoursCommand extends Command {
 
@@ -22,21 +22,21 @@ public class TeamMemberHoursCommand extends Command {
     HashMap<String, String> params;
 
     public TeamMemberHoursCommand(HashMap<String, String> params, int projectIndex)
-            throws DukeExceptions {
+            throws EZExceptions {
         assert projectIndex == -1 : "projectIndex must be -1";
         this.params = params;
         this.parse();
     }
 
-    public void parse() throws DukeExceptions {
+    public void parse() throws EZExceptions {
         try {
             memberIndex = Integer.parseInt(getHashValue(params, MEMBER_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions(INVALID_MEMBER_ID);
+            throw new EZExceptions(INVALID_MEMBER_ID);
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws DukeExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws EZExceptions {
         try {
             double hoursWorked = 0;
             assert memberIndex >= 0 : memberIndex;
@@ -47,7 +47,7 @@ public class TeamMemberHoursCommand extends Command {
             }
             return Ui.printHoursWorkedMessage(member.getName(), hoursWorked);
         } catch (IndexOutOfBoundsException e) {
-            throw new DukeExceptions(INVALID_MEMBER_ID);
+            throw new EZExceptions(INVALID_MEMBER_ID);
         }
     }
 
