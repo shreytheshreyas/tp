@@ -330,7 +330,7 @@ public class Ui {
                         currentTaskLine += estimateString;
                     } else {
                         estimateString = "-";
-                        currentTaskLine += estimateString ;
+                        currentTaskLine += estimateString;
                     }
                     currentTaskLine += (estimatedSpaces.substring(0, estimatedSpaces.length()
                             - estimateString.length()));
