@@ -14,6 +14,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Add deadline to a specified Project object.
+ */
 public class ProjectDeadlineCommand extends Command {
     private int projectIndex;
     private LocalDate date;

@@ -21,6 +21,9 @@ import static seedu.ezmanager.Util.USER_JAVA_INDEX_DIFF;
 import java.util.ArrayList;
 import java.util.logging.Level;
 
+/**
+ * Assign TeamMember object to Project object.
+ */
 public class AssignMemberToProjectCommand extends Command {
     private int memberIndex;
     private int projectIndex;

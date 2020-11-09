@@ -16,6 +16,9 @@ import static seedu.ezmanager.Util.MEMBER_INDEX_KEY;
 import static seedu.ezmanager.Util.MINUTES_IN_HOUR_DOUBLE;
 import static seedu.ezmanager.Util.USER_JAVA_INDEX_DIFF;
 
+/**
+ * Calculate total number of hours worked by specified member for all tasks in every project.
+ */
 public class TeamMemberHoursCommand extends Command {
 
     private int memberIndex;

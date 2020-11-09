@@ -12,6 +12,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Selects a specified Project object and moves into the project view of that project.
+ */
 public class ProjectSelectCommand extends Command {
 
     private int projectIndex;

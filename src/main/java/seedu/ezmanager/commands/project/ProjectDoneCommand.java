@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Mark a specified Project object as done.
+ */
 public class ProjectDoneCommand extends Command {
 
     private int projectIndex;

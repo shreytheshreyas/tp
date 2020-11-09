@@ -12,6 +12,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Assign TeamMember object to Task object.
+ */
 public class TeamMemberAssignToTaskCommand extends Command {
 
     private int taskIndex;

@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Add a new TeamMember object to the program.
+ */
 public class TeamMemberAddCommand extends Command {
 
     private String name;

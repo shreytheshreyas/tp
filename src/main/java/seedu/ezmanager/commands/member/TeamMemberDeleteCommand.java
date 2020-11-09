@@ -12,6 +12,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Delete TeamMember object from program or from a specified Project object.
+ */
 public class TeamMemberDeleteCommand extends Command {
     private int memberIndex;
     HashMap<String, String> params;

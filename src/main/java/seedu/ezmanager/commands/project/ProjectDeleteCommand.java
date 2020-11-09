@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Deletes a specified Project object from the program.
+ */
 public class ProjectDeleteCommand extends Command {
 
     private int projectIndex;

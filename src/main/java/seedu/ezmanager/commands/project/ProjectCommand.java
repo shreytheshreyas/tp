@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Add a new Project object to the program.
+ */
 public class ProjectCommand extends Command {
 
     private String description;

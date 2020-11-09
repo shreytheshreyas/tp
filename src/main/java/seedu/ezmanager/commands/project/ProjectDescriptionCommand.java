@@ -11,6 +11,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Adds a project description to a specified Project object.
+ */
 public class ProjectDescriptionCommand extends Command {
 
     private String projectDescription;

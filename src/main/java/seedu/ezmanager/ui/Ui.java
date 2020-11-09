@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.time.Period;
 import static seedu.ezmanager.Util.MINUTES_IN_HOUR_DOUBLE;
 
+/**
+ * Text UI of the application.
+ */
 public class Ui {
 
     private static final String MESSAGE_SINGLE_LINE = "_________________________________________"
@@ -302,7 +305,9 @@ public class Ui {
         if (!project.getTaskList().isEmpty()) {
             ArrayList<Task> tasks = project.getTaskList();
             taskWithNearestDeadline = checkForTaskWithNearestDeadline(tasks);
-            dateOfTaskWithNearestDeadline = taskWithNearestDeadline.getDeadline();
+            if (taskWithNearestDeadline != null) {
+                dateOfTaskWithNearestDeadline = taskWithNearestDeadline.getDeadline();
+            }
             LocalDate currentDate = LocalDate.now();
             if (dateOfTaskWithNearestDeadline != null && !taskWithNearestDeadline.getStatus()) {
                 //find the difference in the number of days from current days to deadline
@@ -342,8 +347,8 @@ public class Ui {
         String output = "\n\n ----------------------";
         output += "\n| MEMBERS LIST         |";
         output += "\n ----------------------\n";
-        output += "\nIndex   Member Name                   Projects Involved";
-        output += "\n-----------------------------------------------------------------------------";
+        output += "\nIndex   Member Name                   Projects Involved        Hours spent across tasks";
+        output += "\n---------------------------------------------------------------------------------------";
         return output;
     }
 
@@ -442,6 +447,11 @@ public class Ui {
         return "Task " + "\"" + oldTaskName + "\" has been updated to \"" + newTaskName + "\"";
     }
 
+    /**
+     * Returns the project view display.
+     * @param project Specified Project object that we are currently in.
+     * @return Project View Display
+     */
     public static String projectViewMessage(Project project) {
         try {
             String projectTitle = "Project \"" + project.getProjectName() + "\"";
