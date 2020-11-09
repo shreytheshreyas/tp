@@ -52,3 +52,5 @@ Given below are my contributions to the project.
     to my teammates in parts of the codes that they did not understand. 
         
     
+* **Testing**:
+   * I wrote the JUnit tests for the features above.
