@@ -1,6 +1,8 @@
 package seedu.ezmanager.commands.member;
 
 import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
+import java.util.logging.Level;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -36,6 +38,7 @@ public class TeamMemberDeleteCommand extends Command {
         try {
             memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
         } catch (NumberFormatException e) {
+            EzLogger.log(Level.WARNING, "Invalid TeamMember ID");
             throw new EzExceptions("invalidTeamMemberID");
         }
     }
