@@ -15,6 +15,10 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+
+/**
+ * Class that saves and loads the data that is used in EZ Manager.
+ */
 public class Storage {
     private static File f;
     private static ArrayList<Project> temp = new ArrayList<>();
@@ -23,13 +27,12 @@ public class Storage {
         f = new File(filePath);
     }
 
-    /*
-        protected String projectName;
-        protected boolean isDone;
-        private ArrayList<Task> tasks;
-        private String projectDescription;
-        private LocalDate projectDeadline;
-        private static ArrayList<TeamMember> members;
+    /**
+     * Loads the projects from the ezmanager.txt file
+     *
+     * @param members ArrayList of TeamMember.
+     * @return projects ArrayList of Projects that have been added to EZ Manager previously.
+     * @throws EzExceptions When cannot access the file will throw "Open File" EzException
      */
     public static ArrayList<Project> loadProjects(ArrayList<TeamMember> members) throws EzExceptions {
         try {
@@ -187,6 +190,11 @@ public class Storage {
         return temp;
     }
 
+    /**
+     * Loads the team members from the ezmanager.txt file
+     *
+     * @return members ArrayList of TeamMember that have been added to EZ Manager previously.
+     */
     public ArrayList<TeamMember> loadTeamMembers() {
         try {
             Scanner s = new Scanner(f);
@@ -220,6 +228,13 @@ public class Storage {
         return null;
     }
 
+    /**
+     * Saves the data to the text file.
+     *
+     * @param projects ArrayList of Project.
+     * @param members ArrayList of TeamMember.
+     * @throws IOException When encountering errors when saving files.
+     */
     public static void save(ArrayList<Project> projects, ArrayList<TeamMember> members) throws IOException {
         // empty current saved items;
         FileWriter clear = new FileWriter(f);
