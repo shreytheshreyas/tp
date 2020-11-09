@@ -1,6 +1,7 @@
 package seedu.ezmanager.storage;
 
 import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 
 /**
@@ -36,9 +38,11 @@ public class Storage {
      */
     public static ArrayList<Project> loadProjects(ArrayList<TeamMember> members) throws EzExceptions {
         try {
+
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             ArrayList<Project> projects = new ArrayList<>();
             String currentLine;
+            EzLogger.log(Level.INFO, "Begin loading projects");
             while (s.hasNext()) {
                 currentLine = s.nextLine();
                 if (currentLine.contains("Project")) {
@@ -182,6 +186,7 @@ public class Storage {
                  */
             }
 
+            EzLogger.log(Level.INFO, "Done loading projects");
             return projects;
         } catch (FileNotFoundException | EzExceptions e) {
             //System.out.println("Creating file...");
@@ -213,6 +218,7 @@ public class Storage {
 
             return members;
         } catch (FileNotFoundException | NoSuchElementException e) {
+            EzLogger.log(Level.INFO, "Creating file for storage...");
             System.out.println("Creating file...");
         }
         return new ArrayList<>();
@@ -237,6 +243,7 @@ public class Storage {
      */
     public static void save(ArrayList<Project> projects, ArrayList<TeamMember> members) throws IOException {
         // empty current saved items;
+        EzLogger.log(Level.INFO, "Begin saving items...");
         FileWriter clear = new FileWriter(f);
         clear.write("");
         clear.close();
@@ -254,6 +261,7 @@ public class Storage {
         }
 
         fw.close();
+        EzLogger.log(Level.INFO, "Done saving items...");
     }
 
 }
