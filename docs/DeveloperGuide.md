@@ -695,7 +695,7 @@ The sequence diagram for the the list feature in the Project-View is given below
 
 The outputs of the list command is the same as that of specified in the Views section.
 
-## **Running Tests** 
+## **Running Tests (Samuel Paul Christopher)** 
 There are two ways to run tests for EZ manager. 
 > To check for test coverage, please ensure that you `Run with coverage` when right clicking on the tests to run. 
 
@@ -707,7 +707,7 @@ There are two ways to run tests for EZ manager.
 - On Windows, run the command `gradlew clean allTests` in a terminal 
 - On Mac or Linux, run the command `./gradlew clean allTests` in a terminal 
 
-## **DevOps - Making a Release** 
+## **DevOps - Making a Release (Samuel Paul Christopher)** 
 Here are the steps to create a new release. 
 1. Update the version number in Duke.java 
 2. Generate a JAR file using Gradle
