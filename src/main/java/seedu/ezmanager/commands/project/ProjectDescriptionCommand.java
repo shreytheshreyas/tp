@@ -1,13 +1,17 @@
 package seedu.ezmanager.commands.project;
 
 import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.ui.Ui;
+import static seedu.ezmanager.Util.INDEX_NON_INTEGER;
+import static seedu.ezmanager.Util.INVALID_PROJECT_ID;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
@@ -35,7 +39,8 @@ public class ProjectDescriptionCommand extends Command {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
         } catch (NumberFormatException e) {
-            throw new EzExceptions("indexNonInteger");
+            EzLogger.log(Level.WARNING, "Input not an integer");
+            throw new EzExceptions(INDEX_NON_INTEGER);
         }
     }
 
@@ -53,10 +58,13 @@ public class ProjectDescriptionCommand extends Command {
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         try {
             Project project = projects.get(projectIndex);
+            EzLogger.log(Level.INFO, "Project Retrieved");
             project.addDescription(projectDescription);
+            EzLogger.log(Level.INFO, "Description added to project");
             return Ui.printProjectDescriptionAddedMessage(project);
         } catch (IndexOutOfBoundsException e) {
-            throw new EzExceptions("invalidProjectID");
+            EzLogger.log(Level.WARNING, "Invalid project ID");
+            throw new EzExceptions(INVALID_PROJECT_ID);
         }
     }
 

@@ -1,6 +1,7 @@
 package seedu.ezmanager.commands.project;
 
 import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -8,6 +9,7 @@ import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
@@ -40,6 +42,7 @@ public class ProjectCommand extends Command {
         assert description != null : "description should not be null";
         Project newProject = new Project(description);
         projects.add(newProject);
+        EzLogger.log(Level.INFO, "New Project added");
         return Ui.printProjectCreatedMessage(newProject.getProjectName());
     }
 
