@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -47,7 +47,7 @@ class TaskAssignPriorityCommandTest {
      * Check for message.
      */
     @Test
-    void executeCommand_validPriorityAndTaskId_priorityAssignedToTask() throws EZExceptions {
+    void executeCommand_validPriorityAndTaskId_priorityAssignedToTask() throws EzExceptions {
         params.put("p", "3");
         params.put("t", "1");
         TaskAssignPriorityCommand command = new TaskAssignPriorityCommand(params, 0);
@@ -60,12 +60,12 @@ class TaskAssignPriorityCommandTest {
      * Test: Assign priority HIGH to non existent task.
      */
     @Test
-    void executeCommand_nonExistentTaskId_invalidTaskId() throws EZExceptions {
+    void executeCommand_nonExistentTaskId_invalidTaskId() throws EzExceptions {
         params.put("p", "1");
         params.put("t", "5");
         TaskAssignPriorityCommand command = new TaskAssignPriorityCommand(params, 0);
         String expectedOutput = "Task ID does not exist!";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }

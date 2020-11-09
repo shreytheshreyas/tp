@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.member;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.ui.Ui;
@@ -26,7 +26,7 @@ class TeamMemberAddCommandTest {
     }
 
     @Test
-    public void executeCommand_validMemberName_memberAddedMessage() throws EZExceptions {
+    public void executeCommand_validMemberName_memberAddedMessage() throws EzExceptions {
         params.put("n", "John Doe");
         TeamMemberAddCommand command = new TeamMemberAddCommand(params);
         String expectedOutput = Ui.printMemberAddedMessage("John Doe");

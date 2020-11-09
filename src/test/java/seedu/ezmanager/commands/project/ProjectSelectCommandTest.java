@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.ui.Ui;
@@ -32,7 +32,7 @@ public class ProjectSelectCommandTest {
     }
 
     @Test
-    void executeCommand_validProjectIdWithDescription_additionalInformation() throws EZExceptions {
+    void executeCommand_validProjectIdWithDescription_additionalInformation() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","2");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
@@ -59,12 +59,12 @@ public class ProjectSelectCommandTest {
     }
 
     @Test
-    void executeCommand_invalidProjectIdWithDescription_additionalInformation() throws EZExceptions {
+    void executeCommand_invalidProjectIdWithDescription_additionalInformation() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("p","-5");
         ProjectSelectCommand selectProject = new ProjectSelectCommand(params);
         String expectedOutput = "Project ID does not exist!";
-        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EzExceptions.class, () -> {
             selectProject.executeCommand(projects, teamMembers);
         });
         assertEquals(expectedOutput, actualOutputException.toString());

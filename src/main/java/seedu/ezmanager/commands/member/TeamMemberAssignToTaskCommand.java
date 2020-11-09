@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.member;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -20,27 +20,27 @@ public class TeamMemberAssignToTaskCommand extends Command {
     HashMap<String, String> params;
 
     public TeamMemberAssignToTaskCommand(HashMap<String, String> params, int projectIndex)
-            throws EZExceptions {
+            throws EzExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
         try {
             memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidTeamMemberID");
+            throw new EzExceptions("invalidTeamMemberID");
         }
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EzExceptions {
         Task selectedTask;
         TeamMember teamMember;
         assert projectIndex >= 0 : "projectIndex should be minus one "
@@ -48,20 +48,20 @@ public class TeamMemberAssignToTaskCommand extends Command {
         Project project = projects.get(projectIndex);
         try {
             if (project.getTaskList().isEmpty()) {
-                throw new EZExceptions("emptyTaskList");
+                throw new EzExceptions("emptyTaskList");
             }
             selectedTask = project.getTask(taskIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
 
         try {
             if (project.getTeamMembers().isEmpty()) {
-                throw new EZExceptions("emptyTeamMembersList");
+                throw new EzExceptions("emptyTeamMembersList");
             }
             teamMember = project.getTeamMembers().get(memberIndex);
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidTeamMemberID");
+            throw new EzExceptions("invalidTeamMemberID");
         }
         selectedTask.setMember(teamMember);
         return Ui.printMemberAssignedToTaskMessage(teamMember.getName(), selectedTask.getTaskDescription());

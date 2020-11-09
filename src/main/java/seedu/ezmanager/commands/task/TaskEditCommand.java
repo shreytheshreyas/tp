@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.task;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -20,24 +20,24 @@ public class TaskEditCommand extends Command {
     HashMap<String, String> params;
 
     public TaskEditCommand(HashMap<String, String> params, int projectIndex)
-            throws EZExceptions {
+            throws EzExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
             taskName = getHashValue(params, "n");
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EZExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {
-            throw new EZExceptions("emptyProjectList");
+            throw new EzExceptions("emptyProjectList");
         }
         try {
             Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
@@ -45,7 +45,7 @@ public class TaskEditCommand extends Command {
             selectedTask.setTaskDescription(taskName);
             return Ui.printTaskNameUpdatedMessage(oldTaskName, taskName);
         } catch (IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
     }
 

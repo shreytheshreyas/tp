@@ -2,8 +2,8 @@
 
 package seedu.ezmanager.commands.task;
 
-import seedu.ezmanager.EZExceptions;
-import seedu.ezmanager.EZLogger;
+import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -23,25 +23,25 @@ public class TaskCommand extends Command {
     private String description;
     HashMap<String, String> params;
 
-    public TaskCommand(HashMap<String, String> params, int projectIndex) throws EZExceptions {
+    public TaskCommand(HashMap<String, String> params, int projectIndex) throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         this.description = getHashValue(params, TASK_NAME_KEY);
     }
 
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
-        EZLogger.log(Level.INFO, "Executing Command");
+        EzLogger.log(Level.INFO, "Executing Command");
         Project project = projects.get(projectIndex);
-        EZLogger.log(Level.INFO, "Project Retrieved");
+        EzLogger.log(Level.INFO, "Project Retrieved");
         Task newTask = new Task(description);
-        EZLogger.log(Level.INFO, "Task Created");
+        EzLogger.log(Level.INFO, "Task Created");
         project.addTask(newTask);
-        EZLogger.log(Level.INFO, "Task Added");
+        EzLogger.log(Level.INFO, "Task Added");
         return Ui.printTaskCreatedMessage(newTask.toString());
     }
 

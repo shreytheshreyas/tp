@@ -2,12 +2,12 @@ package seedu.ezmanager;
 
 import java.util.HashMap;
 
-public class EZExceptions extends Exception {
+public class EzExceptions extends Exception {
 
     private HashMap<String,String> exceptionMessageList = new HashMap<>();
     private String messageType;
 
-    public EZExceptions(String messageType) {
+    public EzExceptions(String messageType) {
         initializeMap();
         this.messageType = messageType;
     }

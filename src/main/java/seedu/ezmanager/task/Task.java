@@ -1,6 +1,6 @@
 package seedu.ezmanager.task;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 
 import java.time.LocalDate;
@@ -85,10 +85,10 @@ public class Task {
         return members;
     }
 
-    public void setMember(TeamMember newMember) throws EZExceptions {
+    public void setMember(TeamMember newMember) throws EzExceptions {
         for (TeamMember member : members) {
             if (newMember == member) {
-                throw new EZExceptions("TaskAlreadyAssigned");
+                throw new EzExceptions("TaskAlreadyAssigned");
             }
         }
         members.add(newMember);

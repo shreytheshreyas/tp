@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 
@@ -13,7 +13,7 @@ public abstract class Command {
 
     public abstract String executeCommand(ArrayList<Project> projects,
                                           ArrayList<TeamMember> teamMembers)
-            throws EZExceptions;
+            throws EzExceptions;
 
     /**
      * Returns an exit flag that is determined by user's command.

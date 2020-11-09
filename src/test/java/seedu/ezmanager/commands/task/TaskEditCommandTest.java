@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -46,7 +46,7 @@ class TaskEditCommandTest {
      * Test: Select the first task from the first project.
      */
     @Test
-    void executeCommand_validTaskId_taskDescription() throws EZExceptions {
+    void executeCommand_validTaskId_taskDescription() throws EzExceptions {
         params.put("t", "1");
         params.put("n", "Task One Upgraded");
         TaskEditCommand command = new TaskEditCommand(params,0);
@@ -59,12 +59,12 @@ class TaskEditCommandTest {
      * Test: Input a non-existent task ID to test exception error message.
      */
     @Test
-    void executeCommand_nonExistentTaskId_taskDescription() throws EZExceptions {
+    void executeCommand_nonExistentTaskId_taskDescription() throws EzExceptions {
         params.put("t", "4");
         params.put("n", "Should Not Print This");
         TaskEditCommand command = new TaskEditCommand(params,0);
         String expectedOutput = "Task ID does not exist!";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
@@ -73,12 +73,12 @@ class TaskEditCommandTest {
      * Test: Pass a non existent projects list to test exception error message.
      */
     @Test
-    void executeCommand_nonExistentProjectsList_taskDescription() throws EZExceptions {
+    void executeCommand_nonExistentProjectsList_taskDescription() throws EzExceptions {
         params.put("t", "1");
         params.put("n", "Should Not Print This");
         TaskEditCommand command = new TaskEditCommand(params,0);
         String expectedOutput = "Project list is empty!";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 command.executeCommand(new ArrayList<Project>(), teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }

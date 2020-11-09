@@ -3,8 +3,8 @@
 package seedu.ezmanager.commands.member;
 
 import java.util.HashMap;
-import seedu.ezmanager.EZExceptions;
-import seedu.ezmanager.EZLogger;
+import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -27,40 +27,40 @@ public class AssignMemberToProjectCommand extends Command {
     private HashMap<String, String> paramsList;
 
     public AssignMemberToProjectCommand(HashMap<String,String> paramsList, int projectIndex)
-            throws EZExceptions {
+            throws EzExceptions {
         this.paramsList = paramsList;
         assert projectIndex == -1 : "projectIndex must be -1";
         parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(paramsList, PROJECT_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
             memberIndex = Integer.parseInt(getHashValue(paramsList, MEMBER_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
         } catch (NumberFormatException e) {
-            EZLogger.log(Level.WARNING, "Index is not an integer.");
-            throw new EZExceptions(INDEX_NON_INTEGER);
+            EzLogger.log(Level.WARNING, "Index is not an integer.");
+            throw new EzExceptions(INDEX_NON_INTEGER);
         }
     }
 
     @Override
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
-        EZLogger.log(Level.INFO, "Executing Command");
+                                 ArrayList<TeamMember> teamMembers) throws EzExceptions {
+        EzLogger.log(Level.INFO, "Executing Command");
         if (memberIndex >= teamMembers.size() || memberIndex < 0) {
-            throw new EZExceptions(INVALID_TEAM_MEMBER_ID);
+            throw new EzExceptions(INVALID_TEAM_MEMBER_ID);
         }
         if (projectIndex >= projects.size() || projectIndex < 0) {
-            throw new EZExceptions(INVALID_PROJECT_ID);
+            throw new EzExceptions(INVALID_PROJECT_ID);
         }
 
         TeamMember teamMember = teamMembers.get(memberIndex);
-        EZLogger.log(Level.INFO, "Team Member Retrieved");
+        EzLogger.log(Level.INFO, "Team Member Retrieved");
         Project projectToAdd = projects.get(projectIndex);
-        EZLogger.log(Level.INFO, "Project Retrieved");
+        EzLogger.log(Level.INFO, "Project Retrieved");
         teamMember.assignProject(projectToAdd);
         projectToAdd.addTeamMemberToProject(teamMember);
-        EZLogger.log(Level.INFO, "Team Member Assigned to Project");
+        EzLogger.log(Level.INFO, "Team Member Assigned to Project");
         return Ui.printMemberAssignedToProjectMessage(teamMember.getName(), projectToAdd.getProjectName());
     }
 

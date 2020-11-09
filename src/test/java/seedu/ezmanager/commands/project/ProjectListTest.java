@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 
@@ -29,7 +29,7 @@ public class ProjectListTest {
     }
 
     @Test
-    void executeCommand_differentDeadline_listOfSortedProjectsByDeadline() throws EZExceptions {
+    void executeCommand_differentDeadline_listOfSortedProjectsByDeadline() throws EzExceptions {
         ProjectListCommand command = new ProjectListCommand();
         String expectedOutput = "List of Projects:\n"
                 + "     1.CS2113 Tutorial (2019-01-01) \n"

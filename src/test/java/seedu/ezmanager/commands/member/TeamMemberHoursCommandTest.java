@@ -4,7 +4,7 @@ package seedu.ezmanager.commands.member;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -33,7 +33,7 @@ class TeamMemberHoursCommandTest {
     }
 
     @Test
-    public void executeCommand_validMemberId_correctHours() throws EZExceptions {
+    public void executeCommand_validMemberId_correctHours() throws EzExceptions {
         Task task1 = new Task("task1");
         task1.addActual(274);
 
@@ -62,12 +62,12 @@ class TeamMemberHoursCommandTest {
     }
 
     @Test
-    public void executeCommand_invalidMemberId_assignMemberToProject() throws EZExceptions {
+    public void executeCommand_invalidMemberId_assignMemberToProject() throws EzExceptions {
         HashMap<String,String> params = new HashMap<>();
         params.put("m","7");
         TeamMemberHoursCommand assignProject = new TeamMemberHoursCommand(params,-1);
         String expectedOutput = "The member ID entered does not exist";
-        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EzExceptions.class, () -> {
             assignProject.executeCommand(projects,teamMembers);
         });
         assertEquals(expectedOutput,actualOutputException.toString());

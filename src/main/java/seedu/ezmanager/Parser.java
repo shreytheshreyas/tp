@@ -45,33 +45,33 @@ public class Parser {
         return projectIndex;
     }
 
-    public static HashMap<String, String> getParams(String paramsString) throws EZExceptions {
-        EZLogger.log(Level.INFO, "Getting parameters from parser");
+    public static HashMap<String, String> getParams(String paramsString) throws EzExceptions {
+        EzLogger.log(Level.INFO, "Getting parameters from parser");
         HashMap<String, String> inputParams = new HashMap<>();
         Pattern p = Pattern.compile("./.+?(?=\\s./.+)|./.+"); //Regex to extract parameter terms
         Matcher m = p.matcher(paramsString);
         while (m.find()) {
-            EZLogger.log(Level.INFO, "Parameter: " + m.group() + " found.");
+            EzLogger.log(Level.INFO, "Parameter: " + m.group() + " found.");
             String[] keyAndValue = m.group().split("/");
             if (keyAndValue.length != 2) {
-                EZLogger.log(Level.WARNING, "Parameter: " + m.group() + "contains multiple slashes!");
-                throw new EZExceptions("forwardSlashError");
+                EzLogger.log(Level.WARNING, "Parameter: " + m.group() + "contains multiple slashes!");
+                throw new EzExceptions("forwardSlashError");
             }
             String paramType = keyAndValue[0].toLowerCase();
             String paramValue = keyAndValue[1];
             if (inputParams.containsKey(paramType)) {
-                EZLogger.log(Level.WARNING, "Parameter: " + m.group() + "is a duplicate.");
-                throw new EZExceptions("duplicateParams");
+                EzLogger.log(Level.WARNING, "Parameter: " + m.group() + "is a duplicate.");
+                throw new EzExceptions("duplicateParams");
             }
             inputParams.put(paramType, paramValue);
         }
         return inputParams;
     }
 
-    public static String getHashValue(HashMap<String, String> hashmap, String key) throws EZExceptions {
+    public static String getHashValue(HashMap<String, String> hashmap, String key) throws EzExceptions {
         if (!hashmap.containsKey(key)) {
-            EZLogger.log(Level.WARNING, "Parameter: " + key + "is missing.");
-            throw new EZExceptions("missingParameters");
+            EzLogger.log(Level.WARNING, "Parameter: " + key + "is missing.");
+            throw new EzExceptions("missingParameters");
         } else {
             return hashmap.get(key);
         }
@@ -84,12 +84,12 @@ public class Parser {
      * @param inputCommand Full user input command string
      * @return Command object corresponding to the input command of the user
      */
-    public static Command parse(String inputCommand) throws EZExceptions {
-        EZLogger.log(Level.INFO, "Parsing Command");
+    public static Command parse(String inputCommand) throws EzExceptions {
+        EzLogger.log(Level.INFO, "Parsing Command");
         String[] inputWords = inputCommand.split("\\s+", 2); //Splits command into type and parameters
         String commandType = inputWords[0].toLowerCase();
 
-        EZLogger.log(Level.INFO, "Command Type:" + commandType);
+        EzLogger.log(Level.INFO, "Command Type:" + commandType);
 
         HashMap<String, String> params = new HashMap<>();
         if (inputWords.length == 2) {
@@ -98,51 +98,51 @@ public class Parser {
 
         boolean isHomeView = (projectIndex == -1); //In main project list view
 
-        EZLogger.log(Level.INFO, "Project Index currently :" + projectIndex);
+        EzLogger.log(Level.INFO, "Project Index currently :" + projectIndex);
 
         Command command = getCommand(isHomeView, commandType, params, projectIndex, inputWords);
         return command;
     }
 
     public static Command getCommand(boolean isHomeView, String commandType, HashMap<String, String> params,
-                                     int projectIndex, String[] inputWords) throws EZExceptions {
+                                     int projectIndex, String[] inputWords) throws EzExceptions {
         Command command;
 
         switch (commandType) {
         case "list":
             if (inputWords.length == 2) {
-                throw new EZExceptions("incorrectListCommand");
+                throw new EzExceptions("incorrectListCommand");
             }
             command = (isHomeView)
                     ? new PrintHomeViewCommand() : new TaskListCommand(projectIndex);
             break;
         case "select":
             if (!isHomeView) {
-                throw new EZExceptions("mustBeInHomeView");
+                throw new EzExceptions("mustBeInHomeView");
             }
             command = new ProjectSelectCommand(params);
             break;
         case "description":
             if (!isHomeView) {
-                throw new EZExceptions("mustBeInHomeView");
+                throw new EzExceptions("mustBeInHomeView");
             }
             command = new ProjectDescriptionCommand(params);
             break;
         case "project":
             if (!isHomeView) {
-                throw new EZExceptions("mustBeInHomeView");
+                throw new EzExceptions("mustBeInHomeView");
             }
             command = new ProjectCommand(params);
             break;
         case "task":
             if (isHomeView) {
-                throw new EZExceptions("mustBeInProjectView");
+                throw new EzExceptions("mustBeInProjectView");
             }
             command = new TaskCommand(params, projectIndex);
             break;
         case "edit":
             if (isHomeView) {
-                throw new EZExceptions("mustBeInProjectView");
+                throw new EzExceptions("mustBeInProjectView");
             }
             command = new TaskEditCommand(params, projectIndex);
             break;
@@ -169,7 +169,7 @@ public class Parser {
             break;
         case "member":
             if (!isHomeView) {
-                throw new EZExceptions("mustBeInHomeView");
+                throw new EzExceptions("mustBeInHomeView");
             }
             command = new TeamMemberAddCommand(params);
             break;
@@ -183,7 +183,7 @@ public class Parser {
             break;
         case "priority":
             if (isHomeView) {
-                throw new EZExceptions("mustBeInProjectView");
+                throw new EzExceptions("mustBeInProjectView");
             }
             command = new TaskAssignPriorityCommand(params, projectIndex);
             break;
@@ -192,19 +192,19 @@ public class Parser {
             break;
         case "sort":
             if (isHomeView) {
-                throw new EZExceptions("mustBeInProjectView");
+                throw new EzExceptions("mustBeInProjectView");
             }
             command = new TaskSortCommand(params, projectIndex);
             break;
         case "hours":
             if (!isHomeView) {
-                throw new EZExceptions("mustBeInHomeView");
+                throw new EzExceptions("mustBeInHomeView");
             }
             command = new TeamMemberHoursCommand(params, projectIndex);
             break;
         default:
-            EZLogger.log(Level.WARNING, "Unrecognised Command :" + commandType);
-            throw new EZExceptions("unrecognisedCommand");
+            EzLogger.log(Level.WARNING, "Unrecognised Command :" + commandType);
+            throw new EzExceptions("unrecognisedCommand");
         }
 
         return command;

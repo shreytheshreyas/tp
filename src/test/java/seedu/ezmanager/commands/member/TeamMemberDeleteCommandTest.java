@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.member;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.PrintHomeViewCommand;
 import seedu.ezmanager.commands.task.TaskListCommand;
 import seedu.ezmanager.member.TeamMember;
@@ -23,7 +23,7 @@ class TeamMemberDeleteCommandTest {
     private HashMap<String, String> params;
 
     @BeforeEach
-    void createTeamMembersList() throws EZExceptions {
+    void createTeamMembersList() throws EzExceptions {
         projects = new ArrayList<>();
         teamMembers = new ArrayList<>();
         Project project1 = new Project("Project One");
@@ -46,7 +46,7 @@ class TeamMemberDeleteCommandTest {
     }
 
     @Test
-    void executeCommand_validMemberIdInProjectView_memberRemovedMessage() throws EZExceptions {
+    void executeCommand_validMemberIdInProjectView_memberRemovedMessage() throws EzExceptions {
         int projectIndex = 0;
         params.put("m", "2");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -57,19 +57,19 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_nonExistentMemberIdInProjectView_invalidMemberIdException()
-            throws EZExceptions {
+            throws EzExceptions {
         int projectIndex = 0;
         params.put("m", "10");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
         String expectedOutput = "Team Member ID does not exist!";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
     void executeCommand_validMemberIdInProjectView_projectViewMember1RemovedFromListAndTaskAssignment()
-            throws EZExceptions {
+            throws EzExceptions {
         int projectIndex = 0;
         params.put("m", "1");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -101,7 +101,7 @@ class TeamMemberDeleteCommandTest {
     }
 
     @Test
-    void executeCommand_validMemberIdInHomeView_memberRemovedMessage() throws EZExceptions {
+    void executeCommand_validMemberIdInHomeView_memberRemovedMessage() throws EzExceptions {
         int projectIndex = -1;
         params.put("m", "2");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -112,12 +112,12 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_nonExistentMemberIdInHomeView_invalidMemberIdException()
-            throws EZExceptions {
+            throws EzExceptions {
         int projectIndex = -1;
         params.put("m", "10");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
         String expectedOutput = "Team Member ID does not exist!";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
@@ -125,7 +125,7 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_validMemberIdInHomeView_homeViewMember2RemovedFromList()
-            throws EZExceptions {
+            throws EzExceptions {
         int projectIndex = -1;
         params.put("m", "2");
         TeamMemberDeleteCommand command = new TeamMemberDeleteCommand(params, projectIndex);
@@ -157,7 +157,7 @@ class TeamMemberDeleteCommandTest {
 
     @Test
     void executeCommand_validMemberIdInHomeView_projectViewMember2RemovedFromList()
-            throws EZExceptions {
+            throws EzExceptions {
         int homeView = -1;
         int projectIndex = 0;
         params.put("m", "2");

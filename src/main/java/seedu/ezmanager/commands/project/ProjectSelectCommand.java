@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.project;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.Parser;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
@@ -17,22 +17,22 @@ public class ProjectSelectCommand extends Command {
     private int projectIndex;
     HashMap<String, String> params;
 
-    public ProjectSelectCommand(HashMap<String, String> params) throws EZExceptions {
+    public ProjectSelectCommand(HashMap<String, String> params) throws EzExceptions {
         this.params = params;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidProjectID");
+            throw new EzExceptions("invalidProjectID");
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EZExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {
-            throw new EZExceptions("emptyProjectList");
+            throw new EzExceptions("emptyProjectList");
         }
         try {
             Project selectedProject = projects.get(projectIndex);
@@ -40,7 +40,7 @@ public class ProjectSelectCommand extends Command {
             String projectView = Ui.projectViewMessage(selectedProject);
             return projectView;
         } catch (IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidProjectID");
+            throw new EzExceptions("invalidProjectID");
         }
     }
 

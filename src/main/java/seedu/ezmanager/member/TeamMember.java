@@ -1,6 +1,6 @@
 package seedu.ezmanager.member;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
 
@@ -17,10 +17,10 @@ public class TeamMember {
         this.assignedProjects = new ArrayList<>();
     }
 
-    public void assignProject(Project project) throws EZExceptions {
+    public void assignProject(Project project) throws EzExceptions {
         for (Project assignedProject : assignedProjects) {
             if (assignedProject == project) {
-                throw new EZExceptions("projectAlreadyAssigned");
+                throw new EzExceptions("projectAlreadyAssigned");
             }
         }
         assignedProjects.add(project);

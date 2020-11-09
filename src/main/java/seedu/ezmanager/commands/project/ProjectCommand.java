@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.project;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -16,12 +16,12 @@ public class ProjectCommand extends Command {
     private String description;
     HashMap<String, String> params;
 
-    public ProjectCommand(HashMap<String, String> params) throws EZExceptions {
+    public ProjectCommand(HashMap<String, String> params) throws EzExceptions {
         this.params = params;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         this.description = getHashValue(params, "n");
     }
 

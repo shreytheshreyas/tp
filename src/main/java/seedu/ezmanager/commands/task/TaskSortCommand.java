@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.task;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.commands.Command;
@@ -19,21 +19,21 @@ public class TaskSortCommand extends Command {
     private String sortingType;
 
     public TaskSortCommand(HashMap<String, String> params, int projectIndex)
-            throws EZExceptions {
+            throws EzExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             sortingType = getHashValue(params, "s");
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EZExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         Project project = projects.get(projectIndex);
         switch (sortingType) {
         case "p":
@@ -104,7 +104,7 @@ public class TaskSortCommand extends Command {
             });
             System.out.println("Task List sorted based on estimated time taken");
             break;
-        default: throw new EZExceptions("InvalidSortingParameter");
+        default: throw new EzExceptions("InvalidSortingParameter");
         }
 
         return "";

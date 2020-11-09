@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
     @Test
-    void getParams_correctTaskParams_correctHashmap() throws EZExceptions {
+    void getParams_correctTaskParams_correctHashmap() throws EzExceptions {
         String paramString = "n/new Named Task d/2020-08-04 t/109 p/121 h/12 m/56";
         HashMap<String, String> expectedHashmap = new HashMap<>();
         expectedHashmap.put("n", "new Named Task");
@@ -51,7 +51,7 @@ class ParserTest {
     @Test
     void getParams_slashInParameters_slashException() {
         String paramString = "n//// d//";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.getParams(paramString));
         String expectedOutput = "Parameters should not contain slashes!";
         assertEquals(expectedOutput, exception.toString());
@@ -60,7 +60,7 @@ class ParserTest {
     @Test
     void getParams_excessSlashInParameters_slashException() {
         String paramString = "t/1/2";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.getParams(paramString));
         String expectedOutput = "Parameters should not contain slashes!";
         assertEquals(expectedOutput, exception.toString());
@@ -69,7 +69,7 @@ class ParserTest {
     @Test
     void getParams_duplicateParams_duplicateParamsException() {
         String paramString = "n/3 n/5";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.getParams(paramString));
         String expectedOutput = "Duplicate Parameters detected!";
         assertEquals(expectedOutput, exception.toString());
@@ -79,14 +79,14 @@ class ParserTest {
     void getHashValue_missingParam_missingParamsException() {
         HashMap<String, String> params = new HashMap<>();
         params.put("t", "3");
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.getHashValue(params, "d")); //Missing description
         String expectedOutput = "Certain Parameters are missing!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_listCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_listCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "list";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -94,7 +94,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_listCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_listCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "list";
         Parser.setProjectIndex(1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -102,7 +102,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_selectCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_selectCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "select p/1";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -113,14 +113,14 @@ class ParserTest {
     void parse_selectCommandProjectView_HomeViewException() {
         String inputCommand = "select p/1";
         Parser.setProjectIndex(3);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Home View to do that!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_descriptionCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_descriptionCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "description p/1 d/This is a test.";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -131,14 +131,14 @@ class ParserTest {
     void parse_descriptionCommandProjectView_HomeViewException() {
         String inputCommand = "description p/1 d/Test";
         Parser.setProjectIndex(3);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Home View to do that!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_projectCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_projectCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "project n/New Project";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -149,7 +149,7 @@ class ParserTest {
     void parse_projectCommandProjectView_HomeViewException() {
         String inputCommand = "project n/New Project";
         Parser.setProjectIndex(3);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Home View to do that!";
         assertEquals(expectedOutput, exception.toString());
@@ -159,14 +159,14 @@ class ParserTest {
     void parse_taskCommandHomeView_ProjectViewException() {
         String inputCommand = "task n/New Task";
         Parser.setProjectIndex(-1);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Project View to do that!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_TaskCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_TaskCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "task n/New Task";
         Parser.setProjectIndex(2);
         Command actualCommand = Parser.parse(inputCommand);
@@ -177,14 +177,14 @@ class ParserTest {
     void parse_EditCommandHomeView_ProjectViewException() {
         String inputCommand = "edit t/3 n/New Project";
         Parser.setProjectIndex(-1);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Project View to do that!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_EditCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_EditCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "edit t/3 n/New Project";
         Parser.setProjectIndex(2);
         Command actualCommand = Parser.parse(inputCommand);
@@ -192,7 +192,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_DoneCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_DoneCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "done p/3";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -200,7 +200,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_DoneCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_DoneCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "done t/3";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -208,7 +208,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_DeadlineCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_DeadlineCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "deadline p/2 d/2020-08-04";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -216,7 +216,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_DeadlineCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_DeadlineCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "deadline t/3 d/2020-08-04";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -224,7 +224,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_DeleteCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_DeleteCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "delete p/3";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -232,7 +232,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_DeleteCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_DeleteCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "delete t/3";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -240,7 +240,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_ActualCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_ActualCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "actual t/3 h/7 m/32";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -248,7 +248,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_EstimateCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_EstimateCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "estimate t/3 h/5 m/32";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -256,7 +256,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_HomeCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_HomeCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "home";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -265,7 +265,7 @@ class ParserTest {
 
 
     @Test
-    void parse_MemberCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_MemberCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "member n/New Member";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -276,14 +276,14 @@ class ParserTest {
     void parse_memberCommandProjectView_HomeViewException() {
         String inputCommand = "member n/New Member";
         Parser.setProjectIndex(3);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Home View to do that!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_removeCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_removeCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "remove m/3";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -291,7 +291,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_assignCommandHomeView_correctCommand() throws EZExceptions {
+    void parse_assignCommandHomeView_correctCommand() throws EzExceptions {
         String inputCommand = "assign p/1 m/3";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -299,7 +299,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_assignCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_assignCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "assign t/3 m/3";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -308,7 +308,7 @@ class ParserTest {
 
 
     @Test
-    void parse_priorityCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_priorityCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "priority t/3 p/2";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -319,14 +319,14 @@ class ParserTest {
     void parse_priorityCommandHomeView_ProjectViewException() {
         String inputCommand = "priority t/3 p/2";
         Parser.setProjectIndex(-1);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Project View to do that!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_byeCommand_correctCommand() throws EZExceptions {
+    void parse_byeCommand_correctCommand() throws EzExceptions {
         String inputCommand = "bye";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -337,14 +337,14 @@ class ParserTest {
     void parse_sortCommandHomeView_ProjectViewException() {
         String inputCommand = "sort s/p";
         Parser.setProjectIndex(-1);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "You must be in Project View to do that!";
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void parse_sortCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_sortCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "sort s/p";
         Parser.setProjectIndex(3);
         Command actualCommand = Parser.parse(inputCommand);
@@ -352,7 +352,7 @@ class ParserTest {
     }
 
     @Test
-    void parse_hoursCommandProjectView_correctCommand() throws EZExceptions {
+    void parse_hoursCommandProjectView_correctCommand() throws EzExceptions {
         String inputCommand = "hours m/2";
         Parser.setProjectIndex(-1);
         Command actualCommand = Parser.parse(inputCommand);
@@ -363,7 +363,7 @@ class ParserTest {
     void parse_unrecognisedCommand_unrecognisedException() {
         String inputCommand = "blah p/3";
         Parser.setProjectIndex(-1);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "OOPS!!! I'm sorry, but I don't know what that command means :-(";
         assertEquals(expectedOutput, exception.toString());
@@ -373,7 +373,7 @@ class ParserTest {
     void parse_missingParametersPriority_missingParamsException() {
         String inputCommand = "priority t/1";
         Parser.setProjectIndex(3);
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 Parser.parse(inputCommand));
         String expectedOutput = "Certain Parameters are missing!";
         assertEquals(expectedOutput, exception.toString());

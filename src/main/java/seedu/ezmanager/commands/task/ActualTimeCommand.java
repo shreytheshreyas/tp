@@ -2,9 +2,9 @@
 
 package seedu.ezmanager.commands.task;
 
-import seedu.ezmanager.EZLogger;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.Util;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -29,42 +29,42 @@ public class ActualTimeCommand extends Command {
     HashMap<String, String> params;
 
     public ActualTimeCommand(HashMap<String, String> params, int projectIndex)
-            throws EZExceptions {
+            throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, TASK_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
             int hours = Integer.parseInt(getHashValue(params, HOUR_INDEX_KEY));
             int minutes = Integer.parseInt(getHashValue(params, Util.MINUTE_INDEX_KEY));
             durationInMinutes = hours * MINUTES_IN_HOUR_INT + minutes;
         } catch (NumberFormatException e) {
-            throw new EZExceptions(Util.INVALID_TASK_ID);
+            throw new EzExceptions(Util.INVALID_TASK_ID);
         }
     }
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws EZExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws EzExceptions {
         try {
-            EZLogger.log(Level.INFO, "Executing Command");
+            EzLogger.log(Level.INFO, "Executing Command");
             Project project = projects.get(projectIndex);
             Task task = project.getTask(taskIndex);
-            EZLogger.log(Level.INFO, "Task Retrieved");
+            EzLogger.log(Level.INFO, "Task Retrieved");
             if (!task.isDone()) {
-                EZLogger.log(Level.WARNING, "Task Not Done!");
-                throw new EZExceptions(Util.TASK_NOT_DONE);
+                EzLogger.log(Level.WARNING, "Task Not Done!");
+                throw new EzExceptions(Util.TASK_NOT_DONE);
             }
             task.addActual(durationInMinutes);
-            EZLogger.log(Level.INFO, "Actual Time Taken added to task.");
+            EzLogger.log(Level.INFO, "Actual Time Taken added to task.");
             int hours = task.getActual() / MINUTES_IN_HOUR_INT;
             int minutes = task.getActual() % MINUTES_IN_HOUR_INT;
             return Ui.printActualDurationAddedMessage(task.getDescription(), hours, minutes);
         } catch (IndexOutOfBoundsException e) {
-            EZLogger.log(Level.WARNING, "Task Not Found.");
-            throw new EZExceptions(Util.INVALID_TASK_ID);
+            EzLogger.log(Level.WARNING, "Task Not Found.");
+            throw new EzExceptions(Util.INVALID_TASK_ID);
         }
     }
 

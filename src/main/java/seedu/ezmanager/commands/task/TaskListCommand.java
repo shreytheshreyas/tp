@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.task;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -19,7 +19,7 @@ public class TaskListCommand extends Command {
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EzExceptions {
         Project selectedProject = projects.get(projectIndex);
         String projectView = Ui.projectViewMessage(selectedProject);
         return projectView;

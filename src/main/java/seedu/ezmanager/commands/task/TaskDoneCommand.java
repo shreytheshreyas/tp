@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.task;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -18,31 +18,31 @@ public class TaskDoneCommand extends Command {
     private int taskIndex;
     HashMap<String, String> params;
 
-    public TaskDoneCommand(HashMap<String, String> params, int projectIndex) throws EZExceptions {
+    public TaskDoneCommand(HashMap<String, String> params, int projectIndex) throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
 
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EzExceptions {
         Project project = projects.get(projectIndex);
         try {
             Task selectedTask = project.getTask(taskIndex);
             selectedTask.markAsDone();
             return Ui.printTaskDoneMessage(selectedTask.toString());
         }  catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
     }
 

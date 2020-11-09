@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -46,7 +46,7 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void execute_command_sortTaskList_Priority() throws EZExceptions {
+    public void execute_command_sortTaskList_Priority() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("s", "p");
         String expectedOutput = "List of Tasks:"
@@ -62,7 +62,7 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void execute_command_sortTaskList_Deadline() throws EZExceptions {
+    public void execute_command_sortTaskList_Deadline() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("s", "d");
         String expectedOutput = "List of Tasks:"
@@ -78,7 +78,7 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void execute_command_sortTaskList_ActualTime() throws EZExceptions {
+    public void execute_command_sortTaskList_ActualTime() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("s", "a");
         String expectedOutput = "List of Tasks:"
@@ -94,10 +94,10 @@ public class TaskSortCommandTest {
     }
 
     @Test
-    public void executeCommand_invalidProjectId_exception() throws EZExceptions {
+    public void executeCommand_invalidProjectId_exception() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         String expectedOutput = "Certain Parameters are missing!";
-        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EzExceptions.class, () -> {
             new TaskSortCommand(params,0);
         });
         assertEquals(expectedOutput,actualOutputException.toString());

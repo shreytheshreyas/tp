@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.task;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -20,33 +20,33 @@ public class TaskAssignPriorityCommand extends Command {
     HashMap<String, String> params;
 
     public TaskAssignPriorityCommand(HashMap<String, String> params, int projectIndex)
-            throws EZExceptions {
+            throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
             priority = Integer.parseInt(getHashValue(params, "p"));
         } catch (NumberFormatException e) {
-            throw new EZExceptions("indexNonInteger");
+            throw new EzExceptions("indexNonInteger");
         }
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {
-            throw new EZExceptions("emptyProjectList");
+            throw new EzExceptions("emptyProjectList");
         }
         try {
             Task selectedTask = projects.get(projectIndex).getTask(taskIndex);
             selectedTask.setPriority(priority);
             return Ui.printPriorityAssignedToTaskMessage(priority, selectedTask.getTaskDescription());
         } catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidTaskID");
+            throw new EzExceptions("invalidTaskID");
         }
     }
 

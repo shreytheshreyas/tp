@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.member;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -53,10 +53,10 @@ class TeamMemberAssignToTaskCommandTest {
 
     /**
      * Assign member 1 (Arnold) to task 1 (Task One).
-     * @throws EZExceptions exception message
+     * @throws EzExceptions exception message
      */
     @Test
-    void executeCommand_validTaskIdMemberId_memberAssignedMessage() throws EZExceptions {
+    void executeCommand_validTaskIdMemberId_memberAssignedMessage() throws EzExceptions {
         params.put("t", "1");
         params.put("m", "1");
         TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
@@ -66,23 +66,23 @@ class TeamMemberAssignToTaskCommandTest {
     }
 
     @Test
-    void executeCommand_nonExistentMemberId_memberAssignedMessage() throws EZExceptions {
+    void executeCommand_nonExistentMemberId_memberAssignedMessage() throws EzExceptions {
         params.put("t", "1");
         params.put("m", "50");
         TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
         String expectedOutput = "Team Member ID does not exist!";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }
 
     @Test
-    void executeCommand_nonExistentTaskId_memberAssignedMessage() throws EZExceptions {
+    void executeCommand_nonExistentTaskId_memberAssignedMessage() throws EzExceptions {
         params.put("t", "5");
         params.put("m", "1");
         TeamMemberAssignToTaskCommand command = new TeamMemberAssignToTaskCommand(params,0);
         String expectedOutput = "Task ID does not exist!";
-        EZExceptions exception = assertThrows(EZExceptions.class, () ->
+        EzExceptions exception = assertThrows(EzExceptions.class, () ->
                 command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, exception.toString());
     }

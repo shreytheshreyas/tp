@@ -8,7 +8,7 @@ import seedu.ezmanager.ui.Ui;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class EZManager {
+public class EzManager {
 
     /**
      * Main entry-point for the java.duke.EZManager application.
@@ -20,7 +20,7 @@ public class EZManager {
         Ui ui = new Ui();
         ui.printWelcome();
 
-        EZLogger.setup();
+        EzLogger.setup();
 
         Scanner in = new Scanner(System.in);
 
@@ -32,7 +32,7 @@ public class EZManager {
                 String output = commandInput.executeCommand(projects, teamMembers);
                 ui.printOutput(output);
                 isExit = commandInput.isExit();
-            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | EZExceptions e) {
+            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | EzExceptions e) {
                 System.out.println(e);
             }
             ui.printLine();

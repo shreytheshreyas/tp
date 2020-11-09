@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
 
@@ -32,7 +32,7 @@ class TaskCommandTest {
     }
 
     @Test
-    void executeCommand_existingTasks_taskCreated() throws EZExceptions {
+    void executeCommand_existingTasks_taskCreated() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("n", "Task 3");
         TaskCommand createTask = new TaskCommand(params, 1);

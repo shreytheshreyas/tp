@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.project;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -14,9 +14,9 @@ import seedu.ezmanager.ui.Ui;
  */
 public class ProjectListCommand extends Command {
 
-    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EZExceptions {
+    public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {
-            throw new EZExceptions("emptyProjectList");
+            throw new EzExceptions("emptyProjectList");
         } else {
             try {
                 int projectCounter = 0;
@@ -34,7 +34,7 @@ public class ProjectListCommand extends Command {
                 Collections.sort(projects);
                 return Ui.printProjectListMessage(projects);
             } catch (IndexOutOfBoundsException e) {
-                throw new EZExceptions("invalidProjectID");
+                throw new EzExceptions("invalidProjectID");
             }
         }
     }

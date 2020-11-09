@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.task;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
 
@@ -33,7 +33,7 @@ class TaskAssignDeadlineCommandTest {
     }
 
     @Test
-    void executeCommand_correctDateFormat_addDeadline() throws EZExceptions {
+    void executeCommand_correctDateFormat_addDeadline() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("d", "2020-09-12");
         params.put("t", "2");
@@ -44,11 +44,11 @@ class TaskAssignDeadlineCommandTest {
     }
 
     @Test
-    void executeCommand_wrongDateFormat_DateTimeException() throws EZExceptions {
+    void executeCommand_wrongDateFormat_DateTimeException() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("d", "2020-09-1");
         params.put("t", "2");
-        Throwable actualOutputException = assertThrows(EZExceptions.class,
+        Throwable actualOutputException = assertThrows(EzExceptions.class,
             () -> new TaskAssignDeadlineCommand(params, 1));
         String expectedOutput = "Date must be specified in format YYYY-MM-DD";
         assertEquals(expectedOutput, actualOutputException.toString());

@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.project;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -16,28 +16,28 @@ public class ProjectDoneCommand extends Command {
     private int projectIndex;
     HashMap<String, String> params;
 
-    public ProjectDoneCommand(HashMap<String, String> params, int projectIndex) throws EZExceptions {
+    public ProjectDoneCommand(HashMap<String, String> params, int projectIndex) throws EzExceptions {
         this.params = params;
         this.parse();
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidProjectID");
+            throw new EzExceptions("invalidProjectID");
         }
 
     }
 
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> members) throws EZExceptions {
+                                 ArrayList<TeamMember> members) throws EzExceptions {
         try {
             Project project = projects.get(projectIndex);
             project.markAsDone();
             return Ui.printProjectDoneMessage(project.getProjectName());
         }  catch (NumberFormatException | IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidProjectID");
+            throw new EzExceptions("invalidProjectID");
         }
     }
 

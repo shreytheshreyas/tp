@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.member;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.ui.Ui;
@@ -42,7 +42,7 @@ public class AssignMemberToProjectCommandTest {
     }
 
     @Test
-    public void executeCommand_validMemberId_validProjectId_assignMemberToProject() throws EZExceptions {
+    public void executeCommand_validMemberId_validProjectId_assignMemberToProject() throws EzExceptions {
         HashMap<String, String> params = new HashMap<>();
         params.put("m","2");
         params.put("p","1");
@@ -54,27 +54,27 @@ public class AssignMemberToProjectCommandTest {
     }
 
     @Test
-    public void executeCommand_invalidMemberId_assignMemberToProject() throws EZExceptions {
+    public void executeCommand_invalidMemberId_assignMemberToProject() throws EzExceptions {
         HashMap<String,String> params = new HashMap<>();
         params.put("m","7");
         params.put("p","2");
 
         AssignMemberToProjectCommand command = new AssignMemberToProjectCommand(params,-1);
         String expectedOutput = "Team Member ID does not exist!";
-        EZExceptions actualOutputException = assertThrows(EZExceptions.class, () ->
+        EzExceptions actualOutputException = assertThrows(EzExceptions.class, () ->
             command.executeCommand(projects, teamMembers));
         assertEquals(expectedOutput, actualOutputException.toString());
     }
 
     @Test
-    public void executeCommand_invalidProjectId_assignMemberToProject() throws EZExceptions {
+    public void executeCommand_invalidProjectId_assignMemberToProject() throws EzExceptions {
         HashMap<String,String> params = new HashMap<>();
         params.put("m","1");
         params.put("p","5");
 
         AssignMemberToProjectCommand assignProject = new AssignMemberToProjectCommand(params,-1);
         String expectedOutput = "Project ID does not exist!";
-        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EzExceptions.class, () -> {
             assignProject.executeCommand(projects,teamMembers);
         });
         assertEquals(expectedOutput,actualOutputException.toString());

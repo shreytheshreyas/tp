@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.ui.Ui;
@@ -36,7 +36,7 @@ public class ProjectDeadlineCommandTest {
      * Test: Add deadline to the second project with valid project ID and deadline format.
      */
     @Test
-    void executeCommand_validProjectId_addDeadlineToProject() throws EZExceptions {
+    void executeCommand_validProjectId_addDeadlineToProject() throws EzExceptions {
         params.put("p", "1");
         params.put("d", "2030-12-31");
         ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
@@ -70,23 +70,23 @@ public class ProjectDeadlineCommandTest {
     }
 
     @Test
-    void executeCommand_invalidProjectId_exceptionThrown() throws EZExceptions {
+    void executeCommand_invalidProjectId_exceptionThrown() throws EzExceptions {
         params.put("p", "-5");
         params.put("d", "2020-12-31");
         ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
         String expectedOutput = "Project ID does not exist!";
-        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EzExceptions.class, () -> {
             command.executeCommand(projects, teamMembers);
         });
         assertEquals(expectedOutput, actualOutputException.toString());
     }
 
     @Test
-    void executeCommand_invalidDeadlineFormat_addDeadlineToProject() throws EZExceptions {
+    void executeCommand_invalidDeadlineFormat_addDeadlineToProject() throws EzExceptions {
         params.put("p", "2");
         params.put("d", "2020-31-31");
         String expectedOutput = "Date must be specified in format YYYY-MM-DD";
-        Throwable actualOutputException = assertThrows(EZExceptions.class, () -> {
+        Throwable actualOutputException = assertThrows(EzExceptions.class, () -> {
             ProjectDeadlineCommand command = new ProjectDeadlineCommand(params);
         });
         assertEquals(expectedOutput, actualOutputException.toString());

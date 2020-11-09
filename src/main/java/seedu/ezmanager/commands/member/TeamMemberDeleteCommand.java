@@ -1,6 +1,6 @@
 package seedu.ezmanager.commands.member;
 
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
@@ -17,25 +17,25 @@ public class TeamMemberDeleteCommand extends Command {
     HashMap<String, String> params;
     private int projectIndex;
 
-    public TeamMemberDeleteCommand(HashMap<String, String> params, int projectIndex) throws EZExceptions {
+    public TeamMemberDeleteCommand(HashMap<String, String> params, int projectIndex) throws EzExceptions {
         this.params = params;
         this.parse();
         this.projectIndex = projectIndex;
     }
 
-    public void parse() throws EZExceptions {
+    public void parse() throws EzExceptions {
         try {
             memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
         } catch (NumberFormatException e) {
-            throw new EZExceptions("invalidTeamMemberID");
+            throw new EzExceptions("invalidTeamMemberID");
         }
     }
 
     @Override
     public String executeCommand(ArrayList<Project> projects,
-                                 ArrayList<TeamMember> teamMembers) throws EZExceptions {
+                                 ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (teamMembers.size() == 0) {
-            throw new EZExceptions("emptyTeamMembersList");
+            throw new EzExceptions("emptyTeamMembersList");
         }
         try {
             // Removing of Members in HomeView
@@ -63,7 +63,7 @@ public class TeamMemberDeleteCommand extends Command {
                 return Ui.printMemberRemovedInProjectViewMessage(memberToBeRemoved.getName(), project.getProjectName());
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new EZExceptions("invalidTeamMemberID");
+            throw new EzExceptions("invalidTeamMemberID");
         }
     }
 

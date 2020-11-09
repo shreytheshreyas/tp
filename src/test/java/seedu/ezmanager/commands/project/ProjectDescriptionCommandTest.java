@@ -2,7 +2,7 @@ package seedu.ezmanager.commands.project;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import seedu.ezmanager.EZExceptions;
+import seedu.ezmanager.EzExceptions;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.ui.Ui;
@@ -32,7 +32,7 @@ public class ProjectDescriptionCommandTest {
     }
 
     @Test
-    void executeCommand_projectList_projectDescriptionAdded() throws EZExceptions {
+    void executeCommand_projectList_projectDescriptionAdded() throws EzExceptions {
         params.put("d", "Do CS2113 Tutorial by today");
         params.put("p", "2");
         ProjectDescriptionCommand addDescription = new ProjectDescriptionCommand(params);
