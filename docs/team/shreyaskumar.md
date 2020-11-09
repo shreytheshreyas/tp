@@ -43,8 +43,9 @@ Given below are my contributions to the project.
         - Explained about Mark task as done feature
         - Explained about sorting tasks feature 
         - Wrote Manual Test Cases feature
+        - Contributed in the conversion of PDF version to the markdown version
         
-* **Contributions to reviewing/mentoring**:
+* **Contributions to reviewing**:
     * Our project had about 97 closed pull requests as of 9/11/2020. I reviewed, commented and approved about 21 of those PRs.
     I did my best to provide help my teammates by asking them if they could enhance certain features they themselves have already 
     implemented. 
