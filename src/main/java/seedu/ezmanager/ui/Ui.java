@@ -394,7 +394,7 @@ public class Ui {
                 - estimateString.length()));
         return currentTaskLine;
     }
-    
+
     private static String priorityForTask(String prioritySpaces, String currentTaskLine, Task currentTask) {
         String priority = String.valueOf(currentTask.getPriority());
         if (!priority.equals("0")) {
