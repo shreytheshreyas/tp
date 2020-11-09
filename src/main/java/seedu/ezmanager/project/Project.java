@@ -2,6 +2,7 @@ package seedu.ezmanager.project;
 
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.task.Task;
+import seedu.duke.storage.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -115,6 +116,36 @@ public class Project implements Comparable<Project> {
 
     public String selectTask(int taskId) {
         return tasks.get(taskId).toString();
+    }
+
+    /*
+        Returns a string that will be saved in the text file.
+        @returns String
+    */
+    public String saveFormat() {
+
+        String tasksLines = "startTasks \n";
+        if (tasks.size() > 0) {
+            for (Task task : tasks) {
+                tasksLines += (task.saveFormat() + "\n");
+            }
+        }
+        tasksLines += "endTasks";
+
+        String membersLines = "pMS\n";
+        if (teamMembers.size() > 0) {
+            for (TeamMember member : teamMembers) {
+                membersLines += member.getName() + "\n";
+            }
+        }
+        membersLines += "pME";
+
+        String projectNameLine = "Project " + projectName;
+        String statusLine = "status " + isDone;
+        String projectDescriptionLine = "projectDescription " + projectDescription;
+        String projectDeadlineLine = "projectDeadline " + projectDeadline;
+        return projectNameLine + "\n" + statusLine + "\n" + projectDescriptionLine + "\n"
+                + projectDeadlineLine + "\n" + tasksLines + "\n" + membersLines + "\n";
     }
 
     public boolean getStatus() {

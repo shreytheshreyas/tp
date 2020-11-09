@@ -123,6 +123,36 @@ public class Task {
         return taskStatus;
     }
 
+    public String saveFormat() {
+        String taskLine = description;
+
+        taskLine += " | tS " + (isDone ? "1" : "0") + " tE";
+
+        if (date != null) {
+            taskLine += " | dS " + date.toString() + "dE";
+        }
+
+        taskLine += " | " + "pS " + priority + " pE";
+
+        if (estimateInMinutes != 0) {
+            taskLine += " | " + "eMS " + estimateInMinutes + " eME";
+        }
+
+        if (actualInMinutes != 0) {
+            taskLine += " | " + "aMS " + actualInMinutes + " aME";
+        }
+
+        if (members.size() > 0) {
+            taskLine += "\ntMS\n"; // tMS stands for task member start
+            for (TeamMember member : members) {
+                taskLine += member.getName() + "\n";
+            }
+            taskLine += "tME";
+        }
+
+        return taskLine;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Task) {

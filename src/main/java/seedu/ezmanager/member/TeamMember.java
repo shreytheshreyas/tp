@@ -46,4 +46,19 @@ public class TeamMember {
     public String toString() {
         return name;
     }
+
+    public String saveFormat() {
+        String memberString = "";
+        memberString += this.toString();
+        /*
+        memberString += "\npS\n";
+        if (assignedProjects.size() > 0) {
+            for (Project project : assignedProjects) {
+                memberString += project.getProjectName();
+            }
+        }
+        memberString += "\npE";
+        */
+        return memberString;
+    }
 }

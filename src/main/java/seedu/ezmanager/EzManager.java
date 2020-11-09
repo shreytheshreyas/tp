@@ -3,8 +3,10 @@ package seedu.ezmanager;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
+import seedu.ezmanager.storage.Storage;
 import seedu.ezmanager.ui.Ui;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -15,8 +17,29 @@ public class EzManager {
      */
     private static ArrayList<TeamMember> teamMembers = new ArrayList<>();
     private static ArrayList<Project> projects =  new ArrayList<>();
+    private Storage storage;
+    private Ui ui;
 
-    public static void main(String[] args) {
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            ArrayList<TeamMember> loadedMembers = storage.loadTeamMembers();
+            for (TeamMember member : loadedMembers) {
+                teamMembers.add(member);
+            }
+
+            ArrayList<Project> loadedProjects = storage.loadProjects(teamMembers);
+            for (Project project : loadedProjects) {
+                projects.add(project);
+            }
+
+        } catch (DukeExceptions e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void run() {
         Ui ui = new Ui();
         ui.printWelcome();
 
@@ -31,12 +54,33 @@ public class EzManager {
                 ui.printLine();
                 String output = commandInput.executeCommand(projects, teamMembers);
                 ui.printOutput(output);
+                Storage.save(projects, teamMembers);
                 isExit = commandInput.isExit();
-            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException | EzExceptions e) {
+            } catch (StringIndexOutOfBoundsException | ArrayIndexOutOfBoundsException
+                    | EzExceptions | IOException e) {
                 System.out.println(e);
             }
             ui.printLine();
         }
+
+        try {
+            Storage.save(projects, teamMembers);
+        } catch (IOException e) {
+            System.err.println("Couldn't save before terminating.");
+        }
+
+    }
+
+    public static void main(String[] args) throws DukeExceptions {
+        new Duke("ezmanager.txt").run();
+        final Thread mainThread = Thread.currentThread();
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                Storage.save(projects, teamMembers);
+            } catch (IOException e) {
+                System.err.println("Couldn't save before terminating.");
+            }
+        }));
 
     }
 
