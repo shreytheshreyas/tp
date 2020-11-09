@@ -59,7 +59,11 @@ My contributions were the following:
 - Assign actual duration for tasks
 - Assign estimated duration for tasks.
 
-## **Additional enhancements to codebase**
+## **Major Additional enhancements to codebase**
+#16 - Added project pointer to keep track of currently selected project
+#49 - Reduced task coupling by eliminating the need for a separate class to contain tasks.
+#167 - Reduced user confusion by having list command display home and project view instead of separate lists for managers and tasks.
+#208 - Added Javadocs to Task Classes
 
 
 ## **Contributions to Team-Based Tasks**
