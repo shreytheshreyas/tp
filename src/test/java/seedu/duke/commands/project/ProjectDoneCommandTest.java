@@ -6,6 +6,7 @@ import seedu.duke.DukeExceptions;
 import seedu.duke.member.TeamMember;
 import seedu.duke.project.Project;
 import seedu.duke.ui.Ui;
+import seedu.duke.commands.project.ProjectDoneCommand;
 
 import java.util.ArrayList;
 import java.util.HashMap;
