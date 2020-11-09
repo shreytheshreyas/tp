@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.Period;
+import static seedu.ezmanager.Util.MINUTES_IN_HOUR_DOUBLE;
 
 public class Ui {
 
@@ -215,8 +216,8 @@ public class Ui {
         output += "\n\n ----------------------";
         output += "\n| MEMBERS LIST         |";
         output += "\n ----------------------\n";
-        output += "\nIndex   Member Name                   Projects Involved";
-        output += "\n-----------------------------------------------------------------------------";
+        output += "\nIndex   Member Name                   Projects Involved        Hours spent across tasks";
+        output += "\n---------------------------------------------------------------------------------------";
         int memberIndex = 1;
         for (TeamMember member : teamMembers) {
             String paddedMemberIndex = String.format("%-8s", memberIndex + ".");
@@ -226,18 +227,28 @@ public class Ui {
             }
             String paddedMemberName = String.format("%-30s", memberName);
             output += "\n" + paddedMemberIndex + paddedMemberName;
+            double hoursWorked = 0;
+            for (int i = 0; i < member.getTasks().size(); i++) {
+                Task task = member.getTasks().get(i);
+                hoursWorked += task.getActual() / MINUTES_IN_HOUR_DOUBLE;
+            }
             if (!member.getAssignedProjects().isEmpty()) {
                 for (int i = 0; i < member.getAssignedProjects().size(); i++) {
                     String assignedProjectName = member.getAssignedProjects().get(i).getProjectName();
+                    if (assignedProjectName.length() >= 25) {
+                        assignedProjectName = assignedProjectName.substring(0, 18) + "...";
+                    }
+                    paddedProjectName = String.format("%-22s", assignedProjectName);
+
                     if (i == 0) {
-                        output += "1. " + assignedProjectName;
+                        output += "1. " + paddedProjectName + hoursWorked;
                     } else {
                         output += "\n                                      "
-                                + (i + 1) + ". " + assignedProjectName;
+                                + (i + 1) + ". " + paddedProjectName;
                     }
                 }
             } else {
-                output += "-";
+                output += String.format("%-25s", "-") + hoursWorked;
             }
             output += System.lineSeparator();
             memberIndex++;
