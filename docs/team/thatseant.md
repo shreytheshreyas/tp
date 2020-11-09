@@ -46,6 +46,7 @@ My contributions were the following:
 - Restructured UG so commands were grouped by Home View and Project View
 - Added expected output to all UG commands.
 - Added warnings and tips so users knew what to take note of when using the app.
+- Added documentation for the above classes.
 
 
 
@@ -58,6 +59,14 @@ My contributions were the following:
 - Assign actual duration for tasks
 - Assign estimated duration for tasks.
 
+## **Major Additional enhancements to codebase**
+#16 - Added project pointer to keep track of currently selected project
+
+#49 - Reduced task coupling by eliminating the need for a separate class to contain tasks.
+
+#167 - Reduced user confusion by having list command display home and project view instead of separate lists for managers and tasks.
+
+#208 - Added Javadocs to Task Classes
 
 
 ## **Contributions to Team-Based Tasks**
@@ -70,4 +79,4 @@ My contributions were the following:
 
 Of the 71 closed pull requests as of 7th November, I reviewed 34. In many of these pull requests, I looked through the code line-by-line and noted down issues or areas where the new code did not fit in well with the rest of the codebase.
 
-https://docs.google.com/document/d/1bKq28FjPE9JTeszGBGBwi5R1I_JmIS6Zhv00lq6c6ik/edit
+https://github.com/AY2021S1-CS2113T-T09-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Athatseant

@@ -43,6 +43,10 @@ public class EzManager {
         Ui ui = new Ui();
         ui.printWelcome();
 
+        if (projects.size() > 0) {
+            System.out.println(ui.printHomeView(projects, teamMembers));
+        }
+
         EzLogger.setup();
 
         Scanner in = new Scanner(System.in);
