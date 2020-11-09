@@ -78,7 +78,7 @@ public class Parser {
      * @param hashmap hashmap of parameter key-value pairs
      * @param key key to retrieve value from hashmap
      * @return value
-     * @throws EzExceptions EzException
+     * @throws EzExceptions missingParameters Exceptions
      */
     public static String getHashValue(HashMap<String, String> hashmap, String key) throws EzExceptions {
         if (!hashmap.containsKey(key)) {

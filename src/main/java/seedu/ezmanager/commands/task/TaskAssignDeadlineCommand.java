@@ -65,7 +65,7 @@ public class TaskAssignDeadlineCommand extends Command {
      * Executes command to add deadline to tasks.
      * @param projects list of all projects in program
      * @param teamMembers list of all members in program
-     * @return duration added UI message.
+     * @return deadline added UI message.
      * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects,

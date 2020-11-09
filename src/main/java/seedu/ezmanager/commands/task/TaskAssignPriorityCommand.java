@@ -56,7 +56,7 @@ public class TaskAssignPriorityCommand extends Command {
      * Executes command to add priority to tasks.
      * @param projects list of all projects in program
      * @param teamMembers list of all members in program
-     * @return duration added UI message.
+     * @return priority added UI message.
      * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects,

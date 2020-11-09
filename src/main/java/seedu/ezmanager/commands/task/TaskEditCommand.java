@@ -13,7 +13,7 @@ import java.util.HashMap;
 import static seedu.ezmanager.Parser.getHashValue;
 
 /**
- * Command that update the name of a specific task.
+ * Command that updates the name of a specific task.
  */
 public class TaskEditCommand extends Command {
 
