@@ -66,7 +66,7 @@ Developers are welcome to contribute by submitting issues or pull requests on ou
 ### **Consideration (Sean Tan)**
 Eazy was developed via a breadth first iterative approach with new commands progressively added. An n-tier architecture ensured separation of concern between various layers of the architecture but much of the program’s logic remained in the Command classes. This design architecture ensured minimal changes to the codebase when new commands were added. Often, new commands or feature addition required changes to only a single data class and addition of a new independent command class. 
 
-### **Overall Architecture (Sean)**
+### **Overall Architecture (Sean Tan)**
 Ez Manager consists of 4 main layers:  
 * Ui: Handles the output of the app 
 * Logic: Command parser and executor 
@@ -428,6 +428,23 @@ Step 5: Once the member has been assigned, the task instance of the specified ta
 The following sequence diagram shows how the “Assign member to task” command works:
 
 <center><img src="https://i.ibb.co/vdBdtg2/Figure16-3.png"></center>
+
+### **Hours Worked By Worker Command (Sean Tan)**
+This command allows project managers to view the total hours worked by a worker 
+The logic for this command is primarily written in TeamMemberHoursCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+Step 1: Parser initializes TeamMemberHoursCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+Step 2: Parse() method of TeamMemberDeleteCommand extracts the index of the member to be retrieved from the hashmap. 
+Step 3: ExecuteCommand() method of TeamMemberDeleteCommand is called by Duke main class, which passes it the program’s arraylist of members. 
+* The method getTasks() of the specific member is called which retrieves all the tasks the member was assigned. 
+* The method getActual() of each of these tasks is called which retrieves the actual time taken to complete these tasks. 
+* The total hours of these tasks are then summed up. 
+* The Ui class then prints the total number of hours worked by these workers. 
+
+The following sequence diagram shows how the “Hours Worked by worker” command works:
+
+<center><img src="https://i.ibb.co/7Qms8Hc/hours.png"></center>
 
 ### **Removing a member (Sean Tan)**
 This command allows project managers to remove members from the main members list. 
