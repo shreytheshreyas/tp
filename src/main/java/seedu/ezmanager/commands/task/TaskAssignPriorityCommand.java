@@ -32,7 +32,7 @@ public class TaskAssignPriorityCommand extends Command {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
             priority = Integer.parseInt(getHashValue(params, "p"));
             if (priority < 0) {
-                throw new DukeExceptions("invalidPriority");
+                throw new EzExceptions("invalidPriority");
             }
         } catch (NumberFormatException e) {
             throw new EzExceptions("indexNonInteger");
