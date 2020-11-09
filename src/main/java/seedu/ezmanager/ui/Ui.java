@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.Period;
+import static seedu.ezmanager.Util.MINUTES_IN_HOUR_DOUBLE;
 
 public class Ui {
 
@@ -287,20 +288,37 @@ public class Ui {
 
     private static String printMemberAssignedProjectsInHomeView(TeamMember member) {
         String output = "";
+        double hoursWorked = 0;
+        String paddedProjectName;
+        hoursWorked = hoursWorkedByMembers(member);
         if (!member.getAssignedProjects().isEmpty()) {
             for (int i = 0; i < member.getAssignedProjects().size(); i++) {
                 String assignedProjectName = member.getAssignedProjects().get(i).getProjectName();
+                if (assignedProjectName.length() >= 25) {
+                    assignedProjectName = assignedProjectName.substring(0, 18) + "...";
+                }
+                paddedProjectName = String.format("%-22s", assignedProjectName);
+
                 if (i == 0) {
-                    output += "1. " + assignedProjectName;
+                    output += "1. " + paddedProjectName + hoursWorked;
                 } else {
                     output += "\n                                      "
-                            + (i + 1) + ". " + assignedProjectName;
+                            + (i + 1) + ". " + paddedProjectName;
                 }
             }
         } else {
-            output += "-";
+            output += String.format("%-25s", "-") + hoursWorked;
         }
         return output;
+    }
+
+    private static double hoursWorkedByMembers(TeamMember member) {
+        double hoursWorked = 0;
+        for (int i = 0; i < member.getTasks().size(); i++) {
+            Task task = member.getTasks().get(i);
+            hoursWorked += task.getActual() / MINUTES_IN_HOUR_DOUBLE;
+        }
+        return hoursWorked;
     }
 
     /**
@@ -327,14 +345,6 @@ public class Ui {
 
     public static String printTaskNameUpdatedMessage(String oldTaskName, String newTaskName) {
         return "Task " + "\"" + oldTaskName + "\" has been updated to \"" + newTaskName + "\"";
-    }
-
-    public static String printInHomeViewMessage() {
-        return "Already in Home View!";
-    }
-
-    public static String printSwitchedToHomeViewMessage() {
-        return "Switched to Home View";
     }
 
     public static String projectViewMessage(Project project) {
