@@ -351,15 +351,23 @@ public class Ui {
                     currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
                             - actualString.length()));
 
-                    String memberName = null;
                     ArrayList<TeamMember> members = currentTask.getMembers();
                     currentTaskLine += "|";
-                    memberName = "|";
-                    for (TeamMember member : members) {
-                        currentTaskLine += member.getName() + "|";
-                        memberName = member.getName();
+                    int j;
+                    for (j = 0; j < members.size(); j++) {
+                        boolean isOnlyOneMember = members.size() <= 1 ? true : false;
+                        boolean isLastMember = j == (members.size() - 1) ? true : false;
+                        TeamMember member = members.get(j);
+                        if (member != null) {
+                            if (!isOnlyOneMember && !isLastMember) {
+                                currentTaskLine += " " + member.getName() + ",";
+                            } else if (isOnlyOneMember | isLastMember) {
+                                currentTaskLine += " " + member.getName();
+                            }
+                        }
+
                     }
-                    //currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
+
                     taskLines += (currentTaskLine + "\n");
                 }
             } else {
