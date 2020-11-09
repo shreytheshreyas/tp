@@ -1,6 +1,27 @@
 Members 
 
-Project asd
+Project p1
+status false
+projectDescription <project description empty>
+projectDeadline null
+startTasks 
+task1 | tS 0 tE | dS 2020-12-03dE | pS 0 pE
+tsk2 | tS 0 tE | pS 1 pE
+task3 | tS 0 tE | pS 0 pE
+endTasks
+pMS
+pME
+
+Project p2
+status false
+projectDescription <project description empty>
+projectDeadline null
+startTasks 
+endTasks
+pMS
+pME
+
+Project p3
 status false
 projectDescription <project description empty>
 projectDeadline null
