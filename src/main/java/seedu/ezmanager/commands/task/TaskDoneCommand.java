@@ -24,8 +24,8 @@ public class TaskDoneCommand extends Command {
     /**
      * Constructor for TaskDoneCommand. Calls parse() method.
      * @param params Hashmap of parameters the command requires.
-     * @param projectIndex
-     * @throws EzExceptions
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
      */
     public TaskDoneCommand(HashMap<String, String> params, int projectIndex) throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
@@ -36,7 +36,7 @@ public class TaskDoneCommand extends Command {
 
     /**
      * Retrieves task index from hashmap passed to it from constructor.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public void parse() throws EzExceptions {
         try {
@@ -49,10 +49,10 @@ public class TaskDoneCommand extends Command {
 
     /**
      * Executes command to mark task as done within project.
-     * @param projects
-     * @param teamMembers
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
      * @return task done UI message.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {

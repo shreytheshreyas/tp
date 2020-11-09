@@ -29,8 +29,8 @@ public class TaskCommand extends Command {
     /**
      * Constructor for TaskCommand. Calls parse() method.
      * @param params Hashmap of parameters the command requires.
-     * @param projectIndex
-     * @throws EzExceptions
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
      */
     public TaskCommand(HashMap<String, String> params, int projectIndex) throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
@@ -41,7 +41,7 @@ public class TaskCommand extends Command {
 
     /**
      * Retrieves task name from hashmap passed to it from constructor.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public void parse() throws EzExceptions {
         this.name = getHashValue(params, TASK_NAME_KEY);
@@ -49,10 +49,10 @@ public class TaskCommand extends Command {
 
     /**
      * Executes command to add task to project.
-     * @param projects
-     * @param teamMembers
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
      * @return task added UI message.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         EzLogger.log(Level.INFO, "Executing Command");

@@ -48,7 +48,7 @@ public class Parser {
      * Retrieves command parameters and returns hashmap of parameter type and value.
      * @param paramsString String of all parameters from user input
      * @return Hashmap of parameter type and value.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public static HashMap<String, String> getParams(String paramsString) throws EzExceptions {
         EzLogger.log(Level.INFO, "Getting parameters from parser");
@@ -75,10 +75,10 @@ public class Parser {
 
     /**
      * Retrieves key from hashmap if available.
-     * @param hashmap
-     * @param key
+     * @param hashmap hashmap of parameter key-value pairs
+     * @param key key to retrieve value from hashmap
      * @return value
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public static String getHashValue(HashMap<String, String> hashmap, String key) throws EzExceptions {
         if (!hashmap.containsKey(key)) {
@@ -118,13 +118,13 @@ public class Parser {
 
     /**
      * Retrieves Command Object by passing in command type and parameters.
-     * @param isHomeView
+     * @param isHomeView Boolean
      * @param commandType String of command type
      * @param params Hashmap of command parameters.
-     * @param projectIndex Integer pointer pointing to current project index.
+     * @param projectIndex integer pointer to currently selected project.
      * @param inputWords Array to check if command contains parameters.
      * @return Command
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public static Command getCommand(boolean isHomeView, String commandType, HashMap<String, String> params,
                                      int projectIndex, String[] inputWords) throws EzExceptions {

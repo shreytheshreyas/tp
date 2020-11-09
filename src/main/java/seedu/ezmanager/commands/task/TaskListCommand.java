@@ -16,8 +16,8 @@ public class TaskListCommand extends Command {
 
     /**
      * Constructor for TaskListCommand. Calls parse() method.
-     * @param projectIndex
-     * @throws EzExceptions
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
      */
     public TaskListCommand(int projectIndex) {
         this.projectIndex = projectIndex;
@@ -25,10 +25,10 @@ public class TaskListCommand extends Command {
 
     /**
      * Executes command that displays project view.
-     * @param projects
-     * @param teamMembers
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
      * @return projectView
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {

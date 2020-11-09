@@ -25,8 +25,8 @@ public class TaskEditCommand extends Command {
     /**
      * Constructor for TaskEditCommand. Calls parse() method.
      * @param params Hashmap of parameters the command requires.
-     * @param projectIndex
-     * @throws EzExceptions
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
      */
     public TaskEditCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
@@ -37,7 +37,7 @@ public class TaskEditCommand extends Command {
 
     /**
      * Retrieves task index and task name from hashmap passed to it from constructor.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public void parse() throws EzExceptions {
         try {
@@ -50,10 +50,10 @@ public class TaskEditCommand extends Command {
 
     /**
      * Executes command to update name of task.
-     * @param projects
-     * @param teamMembers
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
      * @return task name updated UI message.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {

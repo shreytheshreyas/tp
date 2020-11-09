@@ -24,8 +24,8 @@ public class TaskDeleteCommand extends Command {
     /**
      * Constructor for TaskDeleteCommand. Calls parse() method.
      * @param params Hashmap of parameters the command requires.
-     * @param projectIndex
-     * @throws EzExceptions
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
      */
     public TaskDeleteCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
@@ -37,7 +37,7 @@ public class TaskDeleteCommand extends Command {
 
     /**
      * Retrieves task index from hashmap passed to it from constructor.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public void parse() throws EzExceptions {
         try {
@@ -49,10 +49,10 @@ public class TaskDeleteCommand extends Command {
 
     /**
      * Executes command to delete task within project.
-     * @param projects
-     * @param teamMembers
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
      * @return task deleted UI message.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     @Override
     public String executeCommand(ArrayList<Project> projects,

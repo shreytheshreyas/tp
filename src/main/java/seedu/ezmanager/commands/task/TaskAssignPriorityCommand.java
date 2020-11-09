@@ -25,8 +25,8 @@ public class TaskAssignPriorityCommand extends Command {
     /**
      * Constructor for TaskAssignPriorityCommand. Calls parse() method.
      * @param params Hashmap of parameters the command requires.
-     * @param projectIndex
-     * @throws EzExceptions
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
      */
     public TaskAssignPriorityCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
@@ -38,7 +38,7 @@ public class TaskAssignPriorityCommand extends Command {
 
     /**
      * Retrieves task index, priority from parameter hashmap passed to it from constructor.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public void parse() throws EzExceptions {
         try {
@@ -54,10 +54,10 @@ public class TaskAssignPriorityCommand extends Command {
 
     /**
      * Executes command to add priority to tasks.
-     * @param projects
-     * @param teamMembers
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
      * @return duration added UI message.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {

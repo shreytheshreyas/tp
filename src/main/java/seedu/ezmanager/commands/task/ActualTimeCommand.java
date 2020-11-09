@@ -34,8 +34,8 @@ public class ActualTimeCommand extends Command {
     /**
      * Constructor for ActualTimeCommand. Calls parse() method.
      * @param params Hashmap of parameters the command requires.
-     * @param projectIndex
-     * @throws EzExceptions
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
      */
     public ActualTimeCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
@@ -47,7 +47,7 @@ public class ActualTimeCommand extends Command {
 
     /**
      * Retrieves task index, actual time in hours and minutes from hashmap passed to it from constructor.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public void parse() throws EzExceptions {
         try {
@@ -62,10 +62,10 @@ public class ActualTimeCommand extends Command {
 
     /**
      * Executes command to add actual time taken to tasks.
-     * @param projects
-     * @param members
+     * @param projects list of all projects in program
+     * @param members list of all members in program
      * @return duration added UI message.
-     * @throws EzExceptions
+     * @throws EzExceptions EzException
      */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws EzExceptions {
         try {
