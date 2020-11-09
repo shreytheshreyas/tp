@@ -48,7 +48,7 @@ public class TeamMemberDeleteCommand extends Command {
      * @param teamMembers ArrayList of TeamMembers in the program.
      * @return Print message of member being removed from either the program entirely or the project.
      * @throws EzExceptions if TeamMembers list is empty or if TeamMember ID provided is outside
-     * the range of the TeamMembers list
+     *     the range of the TeamMembers list
      */
     @Override
     public String executeCommand(ArrayList<Project> projects,

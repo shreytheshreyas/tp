@@ -44,7 +44,7 @@ public class ProjectDeleteCommand extends Command {
      * @param teamMembers ArrayList of TeamMembers in the program.
      * @return Prints project deleted message.
      * @throws EzExceptions Invalid Project ID if when parameter values provided is outside
-     * the range of the Project list.
+     *     the range of the Project list.
      */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {

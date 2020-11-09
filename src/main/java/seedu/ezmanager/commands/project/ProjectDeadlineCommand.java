@@ -28,7 +28,7 @@ public class ProjectDeadlineCommand extends Command {
      * Parse user parameter inputs for execution.
      *
      * @throws EzExceptions Invalid index when parameter values entered is not an integer.
-     * Invalid DateTime format when parameter values entered is not in YYYY-MM-DD format.
+     *     Invalid DateTime format when parameter values entered is not in YYYY-MM-DD format.
      */
     public void parse() throws EzExceptions {
         try {
@@ -50,8 +50,8 @@ public class ProjectDeadlineCommand extends Command {
      * @param projects ArrayList of Projects.
      * @param teamMembers ArrayList of TeamMembers in the program.
      * @return Prints project deadline added message together with new home view display.
-     * @throws EzExceptions Invalid Project ID when parameter values provided is outside
-     * the range of the Project list.
+     * @throws EzExceptions Invalid Project ID when parameter values provided
+     *     is outside the range of the Project list.
      */
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {

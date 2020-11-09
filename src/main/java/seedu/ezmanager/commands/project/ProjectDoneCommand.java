@@ -42,7 +42,7 @@ public class ProjectDoneCommand extends Command {
      * @param members ArrayList of TeamMembers in the program.
      * @return Prints project marked as done message.
      * @throws EzExceptions Invalid Project ID if when parameter values provided is outside
-     * the range of the Project list.
+     *     the range of the Project list.
      */
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> members) throws EzExceptions {

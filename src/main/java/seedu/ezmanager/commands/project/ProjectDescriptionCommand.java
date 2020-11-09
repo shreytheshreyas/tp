@@ -45,7 +45,7 @@ public class ProjectDescriptionCommand extends Command {
      * @param teamMembers ArrayList of TeamMembers in the program.
      * @return Print project description added message.
      * @throws EzExceptions Invalid Project ID if when parameter values provided is outside
-     * the range of the Project list.
+     *     the range of the Project list.
      */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         try {

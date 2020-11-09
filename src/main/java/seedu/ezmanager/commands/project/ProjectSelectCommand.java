@@ -44,8 +44,8 @@ public class ProjectSelectCommand extends Command {
      * @param teamMembers ArrayList of TeamMembers in the program.
      * @return Prints project view.
      * @throws EzExceptions Empty project list if the ArrayList of Project is empty
-     * or Invalid Project ID if when parameter values provided is outside
-     * the range of the Project list.
+     *     or Invalid Project ID if when parameter values provided is outside
+     *     the range of the Project list.
      */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {
