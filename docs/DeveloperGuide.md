@@ -144,7 +144,7 @@ The save method from the Storage component clears the ezmanager.txt file and the
 ### **Home View (Samuel Leow)**
 The home view mechanism is facilitated by Ui.homeViewMessage() method. This feature will be executed automatically whenever EZ Manager is booted up, or when “list” command is called. Below is an example of the display of Home-View
 
-<center><img src="https://i.ibb.co/nrDcXRj/Figure5-1.png"></center>
+<center><img src="https://i.ibb.co/L6GvCdg/Figure5-1.png"></center>
 
 Given below is the scenario of how the mechanism behaves at each step when the program is booted up and when “list” command is called. 
 
@@ -455,7 +455,7 @@ The user enters the following tasks-specific commands when he is in the Project 
 
 <center><img src="https://i.ibb.co/C7KW0RM/Figure18.png"></center>
 
-## **Creating a task (Shreyas Kumar)**
+### **Creating a task (Shreyas Kumar)**
 This command allows you to create a task in a selected project. 
 
 The logic for this command is written in the TaskCommand class which inherits its general properties from the abstract Command class. 
@@ -556,7 +556,7 @@ The following sequence diagram provides a visualization of how this command work
 
 <center><img src="https://i.ibb.co/wWtfVLY/Figure21.png"></center>
 
-## **Assign Actual Duration to Tasks (Sean Tan)**    
+### **Assign Actual Duration to Tasks (Sean Tan)**    
 This command allows project managers to record the actual duration that completed tasks take. 
 
 The logic for this command is primarily written in ActualTimeCommand class. It extends from the abstract Command class. 
@@ -657,7 +657,7 @@ The above is illustrated below in a sequence diagram. The sequence diagram will 
 
 <center><img src="https://i.ibb.co/cxLnHJB/Figure25.png"></center>
 
-### **Sorting Tasks in the TaskList**
+### **Sorting Tasks in the TaskList (Shreyas Kumar)**
 This command allows you to sort the tasks in a task list in a selected project. 
 
 The logic for this command is written in the `TaskSortCommand` class which inherits its general properties from the abstract Command class. 
