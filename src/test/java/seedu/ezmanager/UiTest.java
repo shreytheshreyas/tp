@@ -14,9 +14,6 @@ import java.util.HashMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class UiTest {
-    static ArrayList<Project> projects;
-    static ArrayList<TeamMember> teamMembers;
-    static HashMap<String, String> params;
     static Ui ui = new Ui();
 
     /**
@@ -47,7 +44,7 @@ class UiTest {
     }
 
     /**
-     * Check output when a new task has been added
+     * Check output when a new task has been added.
      */
     @Test
     void newTaskAdded() throws EzExceptions {
@@ -63,9 +60,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (N)      First Task         -               -             -                 -            | -\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | "
+                + "Members Involved\n"
+                + "------------------------------------------------------------------------------------------------|-"
+                + "-----------------\n"
+                + "1      (N)      First Task         -               -             -                 -            "
+                + "| -\n"
                 + "\n"
                 + " \n"
                 + "\n"
@@ -77,10 +77,10 @@ class UiTest {
     }
 
     /**
-     * Check alignment when all fields are filled
+     * Check alignment when all fields are filled.
      */
     @Test
-    void checkAlignmentWhenPopulated() throws EzExceptions{
+    void checkAlignmentWhenPopulated() throws EzExceptions {
         Project projectOne = new Project("Project One");
         Task newTask = new Task("First Task");
         projectOne.addTask(newTask);
@@ -94,9 +94,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (N)      First Task         20/10/2020      -             -                 -            | -\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   "
+                + "| Members Involved\n"
+                + "------------------------------------------------------------------------------------------------"
+                + "|------------------\n"
+                + "1      (N)      First Task         20/10/2020      -             -                 -            "
+                + "| -\n"
                 + "\n"
                 + " \n"
                 + "\n"
@@ -116,9 +119,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (N)      First Task         20/10/2020      3             -                 -            | -\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   "
+                + "| Members Involved\n"
+                + "------------------------------------------------------------------------------------------------"
+                + "|------------------\n"
+                + "1      (N)      First Task         20/10/2020      3             -                 -            "
+                + "| -\n"
                 + "\n"
                 + " \n"
                 + "\n"
@@ -138,9 +144,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (N)      First Task         20/10/2020      3             1.3               -            | -\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   "
+                + "| Members Involved\n"
+                + "------------------------------------------------------------------------------------------------"
+                + "|------------------\n"
+                + "1      (N)      First Task         20/10/2020      3             1.3               -            "
+                + "| -\n"
                 + "\n"
                 + " \n"
                 + "\n"
@@ -163,9 +172,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (N)      First Task         20/10/2020      3             1.3               -            | Sam\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   "
+                + "| Members Involved\n"
+                + "------------------------------------------------------------------------------------------------"
+                + "|------------------\n"
+                + "1      (N)      First Task         20/10/2020      3             1.3               -            "
+                + "| Sam\n"
                 + "\n"
                 + " \n"
                 + "\n"
@@ -188,9 +200,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (N)      First Task         20/10/2020      3             1.3               -            | Sam, Chris\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   "
+                + "| Members Involved\n"
+                + "------------------------------------------------------------------------------------------------"
+                + "|------------------\n"
+                + "1      (N)      First Task         20/10/2020      3             1.3               -            "
+                + "| Sam, Chris\n"
                 + "\n"
                 + " \n"
                 + "\n"
@@ -211,9 +226,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (Y)      First Task         20/10/2020      3             1.3               -            | Sam, Chris\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   "
+                + "| Members Involved\n"
+                + "------------------------------------------------------------------------------------------------"
+                + "|------------------\n"
+                + "1      (Y)      First Task         20/10/2020      3             1.3               -            "
+                + "| Sam, Chris\n"
                 + "\n"
                 + " \n"
                 + "\n"
@@ -234,9 +252,12 @@ class UiTest {
                 + " ---------------------\n"
                 + "| TASK LIST           |\n"
                 + " ---------------------\n"
-                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
-                + "------------------------------------------------------------------------------------------------|------------------\n"
-                + "1      (Y)      First Task         20/10/2020      3             1.3               2.7          | Sam, Chris\n"
+                + "Index  Status   Description        Deadline        Priority      Estimated Hrs     Actual Hrs   "
+                + "| Members Involved\n"
+                + "------------------------------------------------------------------------------------------------"
+                + "|------------------\n"
+                + "1      (Y)      First Task         20/10/2020      3             1.3               2.7          "
+                + "| Sam, Chris\n"
                 + "\n"
                 + " \n"
                 + "\n"
