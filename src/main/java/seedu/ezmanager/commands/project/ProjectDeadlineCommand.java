@@ -46,9 +46,9 @@ public class ProjectDeadlineCommand extends Command {
 
     /**
      * Add deadline to a specified project.
-     * Sorts the ArrayList of Projects by deadline.
-     * Projects without deadline will be shifted to the back of the list.
-     * Prints project deadline added message as well as new home view display.
+     * 1. Sorts the ArrayList of Projects by deadline.
+     * 2. Projects without deadline will be shifted to the back of the list.
+     * 3. Prints project deadline added message as well as new home view display.
      *
      * @param projects ArrayList of Projects.
      * @param teamMembers ArrayList of TeamMembers in the program.

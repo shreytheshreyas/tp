@@ -40,8 +40,8 @@ public class ProjectSelectCommand extends Command {
 
     /**
      * Selects a specified Project object and move into its project view.
-     * Set projectIndex in Parser class with the new project index.
-     * Prints project view.
+     * 1. Set projectIndex in Parser class with the new project index.
+     * 2. Prints project view.
      *
      * @param projects ArrayList of Projects.
      * @param teamMembers ArrayList of TeamMembers in the program.

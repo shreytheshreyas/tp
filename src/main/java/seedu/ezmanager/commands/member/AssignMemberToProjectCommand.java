@@ -53,9 +53,9 @@ public class AssignMemberToProjectCommand extends Command {
 
     /**
      * Assign specified member to specified project.
-     * Add TeamMember object to ArrayList of TeamMember in specified Project.
-     * Add Project object to ArrayList of Project in specified TeamMember.
-     * Prints member assigned to project message.
+     * 1. Add TeamMember object to ArrayList of TeamMember in specified Project.
+     * 2. Add Project object to ArrayList of Project in specified TeamMember.
+     * 3. Prints member assigned to project message.
      *
      * @param projects ArrayList of Projects.
      * @param teamMembers ArrayList of TeamMembers in the program.

@@ -40,8 +40,8 @@ public class ProjectDeleteCommand extends Command {
 
     /**
      * Deletes a Project from the ArrayList of Projects.
-     * Removes the Project object from the ArrayList of Projects of each assigned TeamMember.
-     * Print project deleted message.
+     * 1. Removes the Project object from the ArrayList of Projects of each assigned TeamMember.
+     * 2. Print project deleted message.
      *
      * @param projects ArrayList of Projects.
      * @param teamMembers ArrayList of TeamMembers in the program.

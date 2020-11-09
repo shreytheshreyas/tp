@@ -45,8 +45,9 @@ public class TeamMemberAssignToTaskCommand extends Command {
 
     /**
      * Assign specified member to specified task.
-     * Adds Task to ArrayList of Task in specified TeamMember.
-     * Adds TeamMember to ArrayList of TeamMember in specified Task.
+     * 1. Adds Task to ArrayList of Task in specified TeamMember.
+     * 2. Adds TeamMember to ArrayList of TeamMember in specified Task.
+     * 3. Prints member assigned to task message.
      *
      * @param projects ArrayList of Projects.
      * @param teamMembers ArrayList of TeamMembers in the program.
