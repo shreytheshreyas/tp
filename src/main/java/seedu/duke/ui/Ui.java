@@ -361,18 +361,21 @@ public class Ui {
                     ArrayList<TeamMember> members = currentTask.getMembers();
                     currentTaskLine += "|";
                     int j;
-                    for (j = 0; j < members.size(); j++) {
-                        boolean isOnlyOneMember = members.size() <= 1 ? true : false;
-                        boolean isLastMember = j == (members.size() - 1) ? true : false;
-                        TeamMember member = members.get(j);
-                        if (member != null) {
-                            if (!isOnlyOneMember && !isLastMember) {
-                                currentTaskLine += " " + member.getName() + ",";
-                            } else if (isOnlyOneMember | isLastMember) {
-                                currentTaskLine += " " + member.getName();
+                    if (members.size() == 0) {
+                        currentTaskLine += " -";
+                    } else {
+                        for (j = 0; j < members.size(); j++) {
+                            boolean isOnlyOneMember = members.size() <= 1 ? true : false;
+                            boolean isLastMember = j == (members.size() - 1) ? true : false;
+                            TeamMember member = members.get(j);
+                            if (member != null) {
+                                if (!isOnlyOneMember && !isLastMember) {
+                                    currentTaskLine += " " + member.getName() + ",";
+                                } else if (isOnlyOneMember | isLastMember) {
+                                    currentTaskLine += " " + member.getName();
+                                }
                             }
                         }
-
                     }
 
                     taskLines += (currentTaskLine + "\n");
