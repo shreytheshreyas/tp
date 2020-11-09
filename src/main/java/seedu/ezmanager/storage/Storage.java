@@ -195,7 +195,7 @@ public class Storage {
      *
      * @return members ArrayList of TeamMember that have been added to EZ Manager previously.
      */
-    public ArrayList<TeamMember> loadTeamMembers() {
+    public static ArrayList<TeamMember> loadTeamMembers() {
         try {
             Scanner s = new Scanner(f);
             String currentLine = s.nextLine();
