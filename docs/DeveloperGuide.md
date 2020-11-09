@@ -58,12 +58,12 @@ PDF developer guide available [here](https://we.tl/t-UkcnzA4i8P) (NEED TO UPDATE
 
 ---
 
-## **Design**
+## **Design (Sean Tan)**
 Developers are welcome to contribute by submitting issues or pull requests on our repository. The design section is a good place to start learning about Ez Manager’s architecture and various components. Most developers will contribute to the app mainly through addition of new user commands. The section “Addition of new commands” will provide a step-by-step walkthrough to ensure new commands follow the overall architecture. Figure 2 below shows the overall class diagram for EZ Manager.  
 
 <center><img src = "https://i.ibb.co/92p7mtp/Figure2.png"></center>
 
-### **Consideration**
+### **Consideration (Sean Tan)**
 Eazy was developed via a breadth first iterative approach with new commands progressively added. An n-tier architecture ensured separation of concern between various layers of the architecture but much of the program’s logic remained in the Command classes. This design architecture ensured minimal changes to the codebase when new commands were added. Often, new commands or feature addition required changes to only a single data class and addition of a new independent command class. 
 
 ### **Overall Architecture (Sean)**
