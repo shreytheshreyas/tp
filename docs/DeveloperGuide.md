@@ -493,6 +493,10 @@ Step 3: The executeCommand() method of TaskEditCommand is called by Duke main cl
 
 * The Ui class prints an acknowledgement that the task name has been updated. 
 
+The following sequence diagram provides a visualization of how this command works. 
+
+<center><img src="https://i.ibb.co/3Y9mKsq/editTask.png"></center>
+
 ## Deleting Tasks
 This command allows project managers to delete tasks from projects.
 
@@ -745,6 +749,30 @@ Priority | As a ... | I want to ... | So that I can ...
 `*` | project manager | send out reminders to my team members | have them shift gears or change something in real time  
 
 ## **Appendix B: Command Summary** 
+
+|Command  |Description and Examples  |
+|---------|--------------------------|
+|project| Creates a new project in the project list.  <br> Example: `project n/Web Development Project `|
+|task |Creates a new task in the task list.  <br> Example: `task n/Deploy Version 2.0`|
+|member|Creates a new member in the member list. <br> Example: `task n/Deploy Version 2.0`|
+|list|If in Home-View, displays the project list and members list. <br> If in Project-View displays task list and members of that project <br> `list`|
+|select |Selects a specified project in Home-View and program enters ProjectView  <br> Example: `select p/1 `|
+|delete|If in HomeView, it deletes the specified project. <br> If in ProjectView, it deletes the specified task  <br> Example: `delete p/1`,`delete t/1`|
+|remove|If in Home-View, it removes a member from the member and they are removed from their assigned projects as well <br> remove m/1|
+|done|If in HomeView, marks the specified project as done <br> If in ProjectView, marks the specified task as done  <br> Example: `done p/1`,`done t/1`|
+|description |If in HomeView, it assigns a description to the specified project <br> Example: `description p/1 d/Project for Company X` |
+|deadline|If in HomeView, it assigns a deadline to the specified project <br> If in ProjectView, it assigns a deadline to the specified task <br> Example: `deadline p/1 d/2020-10-25`,`deadline t/1 d/2020-10-25`|
+|priority |If in ProjectView, it assigns a priority to the specified task <br> Example: `priority t/1 p/1`|
+|edit|If in Project-View it changes the name of a current task to a name specified by the user. <br> Example: `edit t/1 n/new name`|
+|priority|If in ProjectView, it assigns a priority to the specified task <br> Example: `priority t/1 p/1 `|
+|estimate|If in ProjectView, it assigns an estimated completion time to the specified task <br> Example: `estimate t/1 h/3 m/20`|
+|actual|If in ProjectView, it assigns the actual completion time to the specified task <br> Example: `actual t/2 h/1 m/20`|
+|assign |If in HomeView, it assigns a member to a specified project. <br> If in ProjectView, assigns member to specified task <br> Example: `assign p/1 m/1 `, `assign t/2 m/3`|
+|sort|If in Project view it assigns tasks either by actual time, deadline or priority <br> Example: `sort s/p, sort s/a, sort s/d`|
+|home|Switches from ProjectView to HomeView and vice versa <br> Example: `home`|
+|bye|prints a goodbye message. <br> Example: `bye`|
+
+
 ## **Appendix C: Instructions for Manual Testing (Shreyas)**
 
 ### <ins>Project-Specific Tests</ins>
