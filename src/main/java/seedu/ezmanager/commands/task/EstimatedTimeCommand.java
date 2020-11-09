@@ -22,6 +22,9 @@ import static seedu.ezmanager.Util.MINUTE_INDEX_KEY;
 import static seedu.ezmanager.Util.TASK_INDEX_KEY;
 import static seedu.ezmanager.Util.USER_JAVA_INDEX_DIFF;
 
+/**
+ * Command that adds the estimated time taken for a specific task.
+ */
 public class EstimatedTimeCommand extends Command {
 
     private int taskIndex;
@@ -29,6 +32,12 @@ public class EstimatedTimeCommand extends Command {
     private int projectIndex;
     HashMap<String, String> params;
 
+    /**
+     * Constructor for EstimatedTimeCommand. Calls parse() method.
+     * @param params Hashmap of parameters the command requires.
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
+     */
     public EstimatedTimeCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
@@ -37,6 +46,10 @@ public class EstimatedTimeCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Retrieves task index, estimated time in hours and minutes from parameter hashmap passed to it from constructor.
+     * @throws EzExceptions EzException
+     */
     public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, TASK_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
@@ -48,6 +61,13 @@ public class EstimatedTimeCommand extends Command {
         }
     }
 
+    /**
+     * Executes command to add estimated time taken to tasks.
+     * @param projects list of all projects in program
+     * @param members list of all members in program
+     * @return duration added UI message.
+     * @throws EzExceptions EzException
+     */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws EzExceptions {
         try {
             EzLogger.log(Level.INFO, "Executing Command");
@@ -65,6 +85,10 @@ public class EstimatedTimeCommand extends Command {
         }
     }
 
+    /**
+     * Checks if command will exit program.
+     * @return isExit status.
+     */
     public Boolean isExit() {
         return false;
     }
