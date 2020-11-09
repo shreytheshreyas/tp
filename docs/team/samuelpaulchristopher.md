@@ -55,9 +55,12 @@ Given below are my contributions to the project.
         * Generic Sections (Table of Contents, Introduction)
        
         
-* **Contributions to reviewing/mentoring**:
+* **Contributions to reviewing**:
     * Our project had about 95 closed pull requests as of 9/11/2020. I reviewed 28 of those Pull Requests.
     Throughout the review, I tried my best to understand the code and provide feedback as neccessary while
     conciously considering the phrasing of my sentences to ensure clarity, brevity and politeness.
+    
+* **Testing**:
+   * I wrote the JUnit tests for the features above.
         
     
