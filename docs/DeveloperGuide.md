@@ -90,6 +90,9 @@ As user commands follow a fixed format, a generic parser can extract command typ
 User inputs are passed to the static parse method of the parser class. The parser then calls instances of command classes for command execution. The following are handled by the parser. 
 * Command type is extracted and used to determine which command class is called for command execution.  
 * Command parameters are extracted using a regex and stored in a hashmap. This hashmap is passed to the command class.  
+    * Extracting parameters using a regex allows for parameters to be specified in any sequence.
+    * The regex splits the parameters into groups of parameter TYPE/VALUE.
+    * To recognise the boundaries of each group, and to prevent capturing of the next group, it includes a positive look-ahead of the next group.
 * A projectIndex pointer keeps track of the view the user is currently in.  
     * If the user is in a project view, this allows the parser to know which project the task to be manipulated is in.  
     * If the user is in the home view, this allows the parser to know that projects are to be manipulated instead. 
