@@ -218,7 +218,7 @@ public class Storage {
 
             return members;
         } catch (FileNotFoundException | NoSuchElementException e) {
-            EzLogger.log(Level.INFO, "Creating file for storage...");
+            EzLogger.log(Level.WARNING, "Creating file for storage...");
             System.out.println("Creating file...");
         }
         return new ArrayList<>();
