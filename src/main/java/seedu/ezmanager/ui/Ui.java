@@ -1,5 +1,6 @@
 package seedu.ezmanager.ui;
 
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -7,6 +8,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.time.Period;
+import java.util.logging.Level;
+
 import static seedu.ezmanager.Util.MINUTES_IN_HOUR_DOUBLE;
 
 /**
@@ -234,13 +237,20 @@ public class Ui {
         for (Project project : projects) {
             paddedProjectIndex = String.format("%-8s", projectIndex + ".");
             paddedProjectStatus = printProjectStatusInHomeView(project);
+            EzLogger.log(Level.INFO, "Project status printed");
             paddedProjectName = printProjectNameInHomeView(project);
+            EzLogger.log(Level.INFO, "Project name printed");
             paddedProjectDescription = printProjectDescriptionInHomeView(project);
+            EzLogger.log(Level.INFO, "Project description printed");
             paddedProjectDeadline = printProjectDeadlineInHomeView(project);
+            EzLogger.log(Level.INFO, "Project deadline printed");
             paddedTaskCompleted = printTaskCompletedInProjectInHomeView(project);
+            EzLogger.log(Level.INFO, "Task completed in project printed");
             remarks = printRemarksInHomeView(project);
+            EzLogger.log(Level.INFO, "Remarks printed");
             output += "\n" + paddedProjectIndex + paddedProjectStatus + paddedProjectName + paddedProjectDescription
                     + paddedProjectDeadline + paddedTaskCompleted + remarks;
+            EzLogger.log(Level.INFO, "One cycle of project completed");
             projectIndex++;
         }
         return output;
@@ -420,9 +430,14 @@ public class Ui {
      */
     public static String printHomeView(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         String output = printProjectListHeadingInHomeView();
+        EzLogger.log(Level.INFO, "Project list heading printed");
         output += printProjectListInHomeView(projects);
+        EzLogger.log(Level.INFO, "Full project list printed");
         output += printMemberListHeadingInHomeView();
+        EzLogger.log(Level.INFO, "Member list heading printed");
         output += printMemberListInHomeView(teamMembers);
+        EzLogger.log(Level.INFO, "Full member list printed");
+        EzLogger.log(Level.INFO, "Home View printed");
         return output;
     }
 
