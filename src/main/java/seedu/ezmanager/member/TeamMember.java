@@ -17,6 +17,12 @@ public class TeamMember {
         this.assignedProjects = new ArrayList<>();
     }
 
+    /**
+     * Assign project to specified member.
+     * Adds project into ArrayList of Projects.
+     * @param project Project object assigned to current member.
+     * @throws EzExceptions if project already exists in the ArrayList of TeamMembers.
+     */
     public void assignProject(Project project) throws EzExceptions {
         for (Project assignedProject : assignedProjects) {
             if (assignedProject == project) {

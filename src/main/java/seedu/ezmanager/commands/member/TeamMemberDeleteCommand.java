@@ -8,7 +8,9 @@ import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
 import seedu.ezmanager.ui.Ui;
-
+import static seedu.ezmanager.Util.INDEX_NON_INTEGER;
+import static seedu.ezmanager.Util.INVALID_TEAM_MEMBER_ID;
+import static seedu.ezmanager.Util.EMPTY_TEAM_MEMBERS_LIST;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,7 +30,6 @@ public class TeamMemberDeleteCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
-
     /**
      * Parse user parameter inputs for execution.
      *
@@ -38,8 +39,8 @@ public class TeamMemberDeleteCommand extends Command {
         try {
             memberIndex = Integer.parseInt(getHashValue(params, "m")) - 1;
         } catch (NumberFormatException e) {
-            EzLogger.log(Level.WARNING, "Invalid TeamMember ID");
-            throw new EzExceptions("invalidTeamMemberID");
+            EzLogger.log(Level.WARNING, "Input not an integer");
+            throw new EzExceptions(INDEX_NON_INTEGER);
         }
     }
 
@@ -60,7 +61,8 @@ public class TeamMemberDeleteCommand extends Command {
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (teamMembers.size() == 0) {
-            throw new EzExceptions("emptyTeamMembersList");
+            EzLogger.log(Level.WARNING, "Empty TeamMember List");
+            throw new EzExceptions(EMPTY_TEAM_MEMBERS_LIST);
         }
         try {
             TeamMember memberToBeRemoved;
@@ -75,7 +77,8 @@ public class TeamMemberDeleteCommand extends Command {
                 return Ui.printMemberRemovedInProjectViewMessage(memberToBeRemoved.getName(), project.getProjectName());
             }
         } catch (IndexOutOfBoundsException e) {
-            throw new EzExceptions("invalidTeamMemberID");
+            EzLogger.log(Level.WARNING, "Invalid TeamMember ID");
+            throw new EzExceptions(INVALID_TEAM_MEMBER_ID);
         }
     }
 
@@ -83,7 +86,9 @@ public class TeamMemberDeleteCommand extends Command {
                                         ArrayList<TeamMember> teamMembers) {
         assert projectIndex == -1 : "projectIndex should equal to -1 since it is in home view";
         TeamMember memberToBeRemoved = teamMembers.get(memberIndex);
+        EzLogger.log(Level.INFO, "To be removed TeamMember Retrieved");
         teamMembers.remove(memberIndex);
+        EzLogger.log(Level.INFO, "TeamMember removed");
         removeMemberFromEachProject(projects, memberToBeRemoved);
         return memberToBeRemoved;
     }
@@ -100,15 +105,18 @@ public class TeamMemberDeleteCommand extends Command {
             }
             removeMemberFromTask(project, memberToBeRemoved);
         }
+        EzLogger.log(Level.INFO, "TeamMember removed from each assigned project");
     }
 
     private TeamMember removeMemberFromCurrentProjectView(Project project) {
         assert projectIndex >= 0 : "projectIndex should be minus one "
                 + "of the current project it was selected";
         TeamMember memberToBeRemoved = project.getTeamMembers().get(memberIndex);
+        EzLogger.log(Level.INFO, "To be removed TeamMember Retrieved");
         project.getTeamMembers().remove(memberIndex);
         removeMemberFromTask(project, memberToBeRemoved);
         memberToBeRemoved.getAssignedProjects().remove(project);
+        EzLogger.log(Level.INFO, "TeamMember removed from current project");
         return memberToBeRemoved;
     }
 
@@ -122,6 +130,7 @@ public class TeamMemberDeleteCommand extends Command {
                 }
             }
         }
+        EzLogger.log(Level.INFO, "TeamMember removed from each assigned task");
     }
 
     @Override

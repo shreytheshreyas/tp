@@ -7,6 +7,9 @@ import seedu.ezmanager.ui.Ui;
 
 import java.util.ArrayList;
 
+/**
+ * Switch back to home view
+ */
 public class HomeCommand extends Command {
 
     private int projectIndex;
@@ -15,6 +18,13 @@ public class HomeCommand extends Command {
         this.projectIndex = projectIndex;
     }
 
+    /**
+     * Switch back to home view.
+     * Print home view display.
+     * @param projects ArrayList of Projects.
+     * @param teamMembers ArrayList of TeamMembers in the program.
+     * @return Prints home view display.
+     */
     @Override
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) {
         if (projectIndex == -1) {

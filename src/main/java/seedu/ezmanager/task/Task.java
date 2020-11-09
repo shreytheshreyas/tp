@@ -85,6 +85,11 @@ public class Task {
         return members;
     }
 
+    /**
+     * Add TeamMember to task iif member is not present in ArrayList.
+     * @param newMember New TeamMember to be added into task.
+     * @throws EzExceptions if member already exist in the ArrayList of TeamMembers.
+     */
     public void setMember(TeamMember newMember) throws EzExceptions {
         for (TeamMember member : members) {
             if (newMember == member) {
