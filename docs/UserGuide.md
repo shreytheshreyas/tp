@@ -1,12 +1,12 @@
 # User Guide
-## 1. Introduction
+## Introduction
 Welcome to EZ Manager! 
 
 EZ Manager is a CLI (Command Line Interface) software tool for Software Engineering Project Managers like yourself to manage your projects, tasks and team members in an all in one app.
 
 With Ez Manager's command line interface, you can easily make changes and updates with a few simple keystrokes! Our app also conveniently presents the most important information at a glance with just two main views: Home View and Project View.
 
-### 1.1 How to use this guide
+### How to use this guide
 This guide provides a documentation of the commands in EZ Manager. 
 
 These commands are categorised into the two main views they can be called from: Home View and Project View. 
@@ -23,7 +23,7 @@ besides formatting issues.
 
 **:bulb:**: This refers to any helpful tips that might prove helpful to you.
 
-### 1.2 Structure
+### Structure
 Under each command, a description of what the command does is provided. 
 
 Then the format of the command is specified in a `code snippet`.
@@ -37,43 +37,41 @@ example output
 ```
 
 ## Table of Contents
-1. [Quick Start](#quick-start)
+1. [Quick Start](#1-quick-start)
 2. [Terminologies](#terminologies)
 3. [Home View](#home-view)
-    1. [Accessing Home View](#accessing-home-view)
-    2. [Commands](#home-view-commands)
-        1. [List: Viewing the updated Home View](#viewing-the-updated-home-view-list)
-        2. [Project: Adding a project](#adding-a-project-project)
-        3. [Select: Selecting a project](#selecting-a-project-select)
-        4. [Done: Marking a project as done](#marking-a-project-as-done-done)
-        5. [Deadline: Adding a deadline to a project](#adding-a-deadline-to-a-project-deadline)
-        6. [Description: Adding a description to a project](#adding-a-description-to-a-project-description)
-        7. [Delete: Deleting a project](#deleting-a-project-delete)
-        8. [Member: Adding a member](#adding-a-member-member)
-        9. [Assign: Assigning a member to a project](#assigning-a-member-to-a-project-assign)
-        10. [Remove: Removing a member](#removing-a-member-remove)
-        11. [Hours: Hours worked by member](#view-hours-worked-by-member-hours)
-        12. [Bye: Exit Program](#exiting-ez-Manager-bye)
+    1. [Commands](#31-home-view-commands)
+        1. [List: Viewing the updated Home View](#311-viewing-the-updated-home-view-list)
+        2. [Project: Adding a project](#312-adding-a-project-project)
+        3. [Select: Selecting a project](#313-selecting-a-project-select)
+        4. [Done: Marking a project as done](#314-marking-a-project-as-done-done)
+        5. [Deadline: Adding a deadline to a project](#315-adding-a-deadline-to-a-project-deadline)
+        6. [Description: Adding a description to a project](#316-adding-a-description-to-a-project-description)
+        7. [Delete: Deleting a project](#317-deleting-a-project-delete)
+        8. [Member: Adding a member](#318-adding-a-member-member)
+        9. [Assign: Assigning a member to a project](#319-assigning-a-member-to-a-project-assign)
+        10. [Remove: Removing a member](#3110-removing-a-member-remove)
+        11. [Hours: Hours worked by member](#3111-view-hours-worked-by-member-hours)
+        12. [Bye: Exit Program](#3112-exiting-ez-Manager-bye)
 4. [Project View](#project-view)
-    1. [Accessing Project View](#accessing-project-view)
-    2. [Commands](#project-view-commands)
-        1. [List: Viewing the updated Project View](#viewing-the-updated-project-view-list)
-        2. [Task: Adding a task](#adding-a-task-task)
-        3. [Edit: Editing a task name](#editing-a-task-name-edit)
-        4. [Done: Marking a task as done](#marking-a-task-as-done-done)
-        5. [Deadline: Adding a deadline to a task](#adding-a-deadline-to-a-task-deadline)
-        6. [Priority: Adding a priority to a task](#adding-a-priority-to-a-task-deadline)
-        7. [Delete: Deleting a task](#deleting-a-task-delete)
-        8. [Assign: Assigning a member to a task](#assigning-a-member-to-a-task-assign)
-        9. [Estimate: Adding estimated time to a task](#add-estimated-time-estimate)
-        10. [Actual: Adding actual time to a task](#add-actual-time-taken-actual)
-        11. [Sort: Sort tasks](#sort-tasks-sort)
-        11. [Bye: Exit Program](#exiting-ez-manager-bye)
-5. [Exiting EZ Manager](#exiting-ez-manager)
-6. [FAQ](#faq)
-7. [Command Summary](#command-summary)
+    1. [Commands](#project-view-commands)
+        1. [List: Viewing the updated Project View](#41-viewing-the-updated-project-view-list)
+        2. [Task: Adding a task](#42-adding-a-task-task)
+        3. [Edit: Editing a task name](#43-editing-a-task-name-edit)
+        4. [Done: Marking a task as done](#44-marking-a-task-as-done-done)
+        5. [Deadline: Adding a deadline to a task](#45-adding-a-deadline-to-a-task-deadline)
+        6. [Priority: Adding a priority to a task](#46-adding-a-priority-to-a-task-deadline)
+        7. [Delete: Deleting a task](#47-deleting-a-task-delete)
+        8. [Assign: Assigning a member to a task](#48-assigning-a-member-to-a-task-assign)
+        9. [Estimate: Adding estimated time to a task](#49-add-estimated-time-estimate)
+        10. [Actual: Adding actual time to a task](#410-add-actual-time-taken-actual)
+        11. [Sort: Sort tasks](#411-sort-tasks-sort)
+        12. [Bye: Exit Program](#412-exiting-ez-manager-bye)
+        13. [Exiting EZ Manager](#413-exiting-ez-manager)
+5. [FAQ](#faq)
+6. [Command Summary](#command-summary)
 
-## Quick Start
+## 1. Quick Start
 1. Ensure that you have Java 11 or above installed.
 2. Download the latest version of `EZ Manager` from [here](https://github.com/AY2021S1-CS2113T-T09-1/tp/releases).
 3. Copy the JAR  file into an empty new folder.
@@ -81,7 +79,7 @@ example output
 5. Then type java -jar ezManager.jar to run EZ Manager.
 
 
-## Terminologies
+## 2. Terminologies
 - **Home View**: Refers to the state of the program in Home View.
 In this view, you can execute project and member commands but
 you cannot execute task commands.
@@ -112,7 +110,7 @@ Members by using the `list` command in Home View or in Project View
 
 
 
-## Home View
+## 3. Home View
 The Home View displays the full list of projects and members that are under your purview. 
 
 At a glance, see the most important details about your project including its status, deadline and number of tasks completed. 
@@ -165,7 +163,7 @@ ____________________________________________________________
 
 
 
-## Home View Commands
+## 3.1. Home View Commands
 
 > ### Command Format
 >
@@ -185,7 +183,7 @@ ____________________________________________________________
 
 
 
-### Viewing the updated Home View: `list`
+### 3.1.1. Viewing the updated Home View: `list`
 
 After any changes, immediately see the updated view with the `list` command.
 
@@ -193,7 +191,7 @@ Format: `list`
 
 
 
-### Adding a project: `project`
+### 3.1.2. Adding a project: `project`
 Adds a new project to the project list.
 
 Format: `project n/PROJECT_NAME`
@@ -212,7 +210,7 @@ Project "Web Development" created!
 
 
 
-### Selecting a project: `select`
+### 3.1.3. Selecting a project: `select`
 
 Select a new project from the project list and brings user to Project View of specified project.
 
@@ -230,7 +228,7 @@ select p/1
 
 
 
-### Marking a project as done: `done`
+### 3.1.4. Marking a project as done: `done`
 Marks an existing project as done.
 
 > :exclamation: The project must exist before it can be marked as done.
@@ -250,7 +248,7 @@ ____________________________________________________________
 
 
 
-### Adding a deadline to a project: `deadline`
+### 3.1.5. Adding a deadline to a project: `deadline`
 Adds a deadline to an existing project then sorts the projects in the list according to deadline.
 
 > :exclamation: The project must exist before a deadline can be added.
@@ -334,7 +332,7 @@ ____________________________________________________________
 
 
 
-### Adding a description to a project: `description`
+### 3.1.6. Adding a description to a project: `description`
 Adds a description to an existing project.
 
 >:exclamation: The project must exist before a description can be added.
@@ -355,7 +353,7 @@ Project description added "This is my Software Engineering Module.".
 
 
 
-### Deleting a project: `delete`
+### 3.1.7. Deleting a project: `delete`
 
 Delete a project from the project list.
 
@@ -374,7 +372,7 @@ Project "Home Improvement" deleted
 ____________________________________________________________
 ```
 
-### Adding a member: `member`
+### 3.1.8. Adding a member: `member`
 Adds a new member to the member list.
 
 Format: `member n/MEMBER_NAME`
@@ -391,7 +389,7 @@ Team member "John Doe" has been added
 
 
 
-### Assigning a member to a project: `assign`
+### 3.1.9. Assigning a member to a project: `assign`
 Assigns an existing member to an existing project.
 
 > :exclamation: The project must exist before it can be assigned a member.
@@ -412,7 +410,7 @@ Tom assigned to Project "CS2113T"
 
 
 
-### Removing a member: `remove`
+### 3.1.10. Removing a member: `remove`
 Removes an existing member from the member list as well as every project and task the member is assigned to.
 
 > :exclamation: The member must exist before they can be removed.
@@ -431,7 +429,7 @@ Team member "Mike" has been removed from program entirely
 
 
 
-### View hours worked by member: `hours`
+### 3.1.11. View hours worked by member: `hours`
 View the total hours worked by a worker across all tasks assigned in all projects.
 
 Now, you know which of your workers are overworked and be a better manager by shifting work to members who are more free!
@@ -448,14 +446,14 @@ hours m/1
 John worked for 2.5 hours.
 ```
 
-### Exiting EZ Manager: `bye`
+### 3.1.12. Exiting EZ Manager: `bye`
 You can exit the program with the `bye` command.
 
 Format: `bye`
 
 
 
-## Project View
+## 4. Project View
 
 The Project View displays the full list of tasks and members in a particular project.
 The manager can add and edit tasks and assign members to tasks.
@@ -497,14 +495,14 @@ ____________________________________________________________
 
 
 
-## Project View Commands
+## 4.1. Project View Commands
 
-### Viewing the updated Project View: `list`
+### 4.1.1. Viewing the updated Project View: `list`
 Displays the updated Project View to user.
 
 Format: `list`
 
-### Adding a task: `task`
+### 4.1.2. Adding a task: `task`
 Adds a new task to the task list.
 
 Format: `task n/TASK_NAME`
@@ -521,7 +519,7 @@ ____________________________________________________________
 Task "Deploy Version 2.0" created!
 ```
 
-### Editing a task name: `edit`
+### 4.1.3. Editing a task name: `edit`
 Updates an existing task name with the new name.
 
 Format: `edit t/TASK_INDEX n/NEW_TASK_NAME`
@@ -544,7 +542,7 @@ Task "Read documentation" has been updated to "Update documentation"
 ```
 
 
-### Marking a task as done: `done`
+### 4.1.4. Marking a task as done: `done`
 Marks an existing task as done.
 
 > :exclamation: The task must exist before it can be selected.
@@ -561,7 +559,7 @@ ____________________________________________________________
 Task "Coding" is done!
 ```
 
-### Adding a deadline to a task: `deadline`
+### 4.1.5. Adding a deadline to a task: `deadline`
 Adds a deadline to an existing task.
 
 Format: `deadline t/TASK_INDEX d/DATE`
@@ -583,7 +581,7 @@ Deadline 25/10/2020 added to Task Coding
 
 
 
-### Adding a priority to a task: `priority`
+### 4.1.6. Adding a priority to a task: `priority`
 Adds a priority to an existing task.
 
 > :bulb: 1 denotes the highest priority.
@@ -606,7 +604,7 @@ Priority "1" has been assigned to "Coding"
 
 
 
-### Deleting a task: `delete`
+### 4.1.7. Deleting a task: `delete`
 Deletes a task from the task list.
 
 > :exclamation: The task must exist in the task list before it can be deleted.
@@ -623,7 +621,7 @@ ____________________________________________________________
 Task "Coding" removed!
 ```
 
-### Assigning a member to a task: `assign`
+### 4.1.8. Assigning a member to a task: `assign`
 Assigns an existing member to an existing task.
 
 > :exclamation: Members must belong to a project before they can be assigned tasks.
@@ -646,7 +644,7 @@ Member "Tom" has been assigned to "Code Review"
 
 
 
-### Removing a member: `remove`
+### 4.1.9. Removing a member: `remove`
 Removes an existing member from the current project as well as the tasks assigned.
 
 > :exclamation: The member must exist before they can be removed.
@@ -665,7 +663,7 @@ Team member "Mike" has been removed from Project "CS2113T"
 
 
 
-### Add estimated time: `estimate`
+### 4.1.10. Add estimated time: `estimate`
 Add estimated time taken for task to complete.
 
 Format: `estimate t/TASK_INDEX h/HOURS m/MINUTES`
@@ -683,7 +681,7 @@ Task "New Task" has estimated time of 12 hours and 30 minutes
 
 ```
 
-### Add actual time taken: `actual`
+### 4.1.11. Add actual time taken: `actual`
 Add actual time taken for task to complete.
 
 > :exclamation: Task must be marked as done before actual time taken can be added.
@@ -703,7 +701,7 @@ Task "New Task" took 12 hours and 30 minutes to be completed.
 
 ```
 
-### Sort tasks: `sort`
+### 4.1.12. Sort tasks: `sort`
 
 Sort tasks by priority, deadline or actual time taken.
 
@@ -727,13 +725,13 @@ ____________________________________________________________
 Task List sorted based on deadline
 ```
 
-### Exiting EZ Manager: `bye`
+### 4.1.13. Exiting EZ Manager: `bye`
 
 You can exit the program with the `bye` command.
 
 Format: `bye`
 
-## FAQ
+## 5. FAQ
 
 **Q**: Does the program saves the data entered when I terminate the program abruptly? 
 
@@ -749,7 +747,7 @@ even if the program is terminated abruptly.
 **A**: Once you have the JAR file downloaded, you can run `java -jar ezmanager.jar` in the terminal 
 at the specific folder the JAR file is stored and you have begun.
 
-## Command Summary
+## 6. Command Summary
 
 Home View Commands
 | Commands | Action | Examples |
