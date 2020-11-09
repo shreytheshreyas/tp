@@ -12,6 +12,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Command that updates the name of a specific task.
+ */
 public class TaskEditCommand extends Command {
 
     private int taskIndex;
@@ -19,6 +22,12 @@ public class TaskEditCommand extends Command {
     private int projectIndex;
     HashMap<String, String> params;
 
+    /**
+     * Constructor for TaskEditCommand. Calls parse() method.
+     * @param params Hashmap of parameters the command requires.
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
+     */
     public TaskEditCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
         this.params = params;
@@ -26,6 +35,10 @@ public class TaskEditCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Retrieves task index and task name from hashmap passed to it from constructor.
+     * @throws EzExceptions EzException
+     */
     public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
@@ -35,6 +48,13 @@ public class TaskEditCommand extends Command {
         }
     }
 
+    /**
+     * Executes command to update name of task.
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
+     * @return task name updated UI message.
+     * @throws EzExceptions EzException
+     */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {
             throw new EzExceptions("emptyProjectList");
@@ -49,6 +69,10 @@ public class TaskEditCommand extends Command {
         }
     }
 
+    /**
+     * Checks if command will exit program.
+     * @return isExit status.
+     */
     public Boolean isExit() {
         return false;
     }
