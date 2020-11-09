@@ -1,13 +1,40 @@
 # User Guide
-This user guide will explain how to use the software tool,
-EZ Manager. You can navigate to the different sections of
-this guide using the Table of Content. Each content is linked
-to its respective sections. 
+## 1. Introduction
+Welcome to EZ Manager! 
 
-## Introduction
-EZ Manager is a CLI (Command Line Interface) software tool 
-for Software Engineering Project Managers to manage their 
-projects, tasks and team members all in one app.
+EZ Manager is a CLI (Command Line Interface) software tool for Software Engineering Project Managers like yourself to manage your projects, tasks and team members in an all in one app.
+
+With Ez Manager's command line interface, you can easily make changes and updates with a few simple keystrokes! Our app also conveniently presents the most important information at a glance with just two main views: Home View and Project View.
+
+### 1.1 How to use this guide
+This guide provides a documentation of the commands in EZ Manager. 
+
+These commands are categorised into the two main views they can be called from: Home View and Project View. 
+
+Click on any of the links on the Table of Contents to go directly to the specific commands you want to call. 
+
+At the end of the document, the command summary section provides a helpful summary of all of EZ Manager's commands.
+
+**:warning:**: This refers to any formatting issues to look out for
+when keying in the commands.
+
+**:exclamation:**: This refers to any other constraints to look out for
+besides formatting issues.
+
+**:bulb:**: This refers to any helpful tips that might prove helpful to you.
+
+### 1.2 Structure
+Under each command, a description of what the command does is provided. 
+
+Then the format of the command is specified in a `code snippet`.
+
+You can see an example usage of the command followed by the expected output. 
+
+```
+command PARAMETER_TYPE/VALUE
+________________________________
+example output
+```
 
 ## Table of Contents
 1. [Quick Start](#quick-start)
@@ -48,10 +75,11 @@ projects, tasks and team members all in one app.
 
 ## Quick Start
 1. Ensure that you have Java 11 or above installed.
-1. Download the latest version of `EZ Manager` from [here](https://github.com/AY2021S1-CS2113T-T09-1/tp/releases).
-1. Copy the JAR  file into an empty new folder. Take note of the file path
-1. Open Command Prompt (on Windows) or Terminal (on Mac) and type
-java -jar {file path}/ezManager.jar
+2. Download the latest version of `EZ Manager` from [here](https://github.com/AY2021S1-CS2113T-T09-1/tp/releases).
+3. Copy the JAR  file into an empty new folder.
+4. Open Command Prompt (on Windows) or Terminal (on Mac) and cd into the new folder.
+5. Then type java -jar ezManager.jar to run EZ Manager.
+
 
 ## Terminologies
 - **Home View**: Refers to the state of the program in Home View.
@@ -78,18 +106,19 @@ all tasks by using the `list` command in Project View
 a positive integer. Hence, the MEMBER_INDEX refers to this
 positive integer. You can retrieve the MEMBER_INDEXes of 
 Members by using the `list` command in Home View or in Project View  
-- **warning**: This refers to any formatting issues to look out for
-when keying in the commands
-- **exclamation**: This refers to any other constraints to look out for
-besides formatting issues
+
 
 >  :warning: Project Index, Task Index and Member Index must be positive integers.
 
 
 
 ## Home View
-The Home View displays the full list of projects and members that are under a manager's purview. 
-The manager can add and edit projects and members from this view.
+The Home View displays the full list of projects and members that are under your purview. 
+
+At a glance, see the most important details about your project including its status, deadline and number of tasks completed. 
+
+The Home View also conveniently provides warnings for uncompleted tasks with imminent deadlines.
+
 
 Remarks shown for each project depends on the deadline of its tasks.
 1. Task not done and has an upcoming deadline due in 5 days or less - `!!!Warning!!!` and countdown to deadline shown.
@@ -158,7 +187,7 @@ ____________________________________________________________
 
 ### Viewing the updated Home View: `list`
 
-Displays the updated Home View to user.
+After any changes, immediately see the updated view with the `list` command.
 
 Format: `list`
 
@@ -405,6 +434,8 @@ Team member "Mike" has been removed from program entirely
 ### View hours worked by member: `hours`
 View the total hours worked by a worker across all tasks assigned in all projects.
 
+Now, you know which of your workers are overworked and be a better manager by shifting work to members who are more free!
+
 > :exclamation: ​The member must exist before hours worked can be viewed.
 
 Format: `hours m/MEMBER_INDEX`
@@ -491,7 +522,7 @@ Task "Deploy Version 2.0" created!
 ```
 
 ### Editing a task name: `edit`
-Updates an existing task name with the new name
+Updates an existing task name with the new name.
 
 Format: `edit t/TASK_INDEX n/NEW_TASK_NAME`
 
