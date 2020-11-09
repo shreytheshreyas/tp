@@ -298,11 +298,11 @@ public class Ui {
                     Task currentTask = project.getTaskList().get(i);
                     String status = currentTask.isDone() ? "(Y)" : "(N)";
                     String description = currentTask.getTaskDescription();
-                    int CUTOFF_INDEX_FOR_DESCRIPTION = 15;
+                    int cutoffIndexForDescription = 15;
 
                     // truncate description if it is too long
-                    if (description.length() > CUTOFF_INDEX_FOR_DESCRIPTION) {
-                        description = description.substring(0, CUTOFF_INDEX_FOR_DESCRIPTION) + "...";
+                    if (description.length() > cutoffIndexForDescription) {
+                        description = description.substring(0, cutoffIndexForDescription) + "...";
                     }
 
                     String deadline = currentTask.getDateString();
