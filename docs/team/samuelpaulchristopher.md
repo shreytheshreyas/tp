@@ -33,28 +33,30 @@ Given below are my contributions to the project.
     * Justification: This feature allows our project managers to get a glance of the projects all in one command. 
     Features like this one are essential to allow the project manager to determine of the project is on track.
     
-2. Data persistance
-* **Enhancement to existing feature**
-    * Extracted printing elements to Ui class. (Pull Request #50)
-    * Show correct assigned members in each project. (Pull Request #90)
-    * List of projects in home view sorted by their deadlines as default view. (Pull Request #76)
-    * Assign command does not allow assignment of repeated projects and tasks (Pull Request #179)
+2. Data persistence
+    * Allows the data on the system to be saved and loaded in after each session. This makes it convinent for 
+    the user and brings the EZ Manager application to life as the user can store the data in a safe and reliable manner.
+    
+    
     
 * **Documentation**:
     * User Guide:
-        * Added documentation for the features `remove`, `project`, `description`, `deadline` and `list`.
+        * Added documentation for the features `member`, `delete`, `done`, `list [for Project View]`, `Storage` 
     * Developer Guide:
-        * Design section: Model Component
-        * Home view
-        * Add deadlines to projects
-        * Add description to projects
-        * Delete a specified project
-        * Mark project as done
-        * Remove members
-        * Appendix A Product Scope: User Stories
+        * Storage 
+        * Add member
+        * View member
+        * Assign member to Project
+        * Assign member to Task
+        * Project view
+        * Running Tests
+        * Dev Ops 
+        * Appendix B: Command Summary
+        * Generic Sections (Table of Contents, Introduction)
+       
         
 * **Contributions to reviewing/mentoring**:
-    * Our project had about 70 closed pull requests as of 8/11/2020. I reviewed, commented and approved about 20 of those PRs.
+    * Our project had about 95 closed pull requests as of 9/11/2020. I reviewed, commented and approved 28 of those PRs.
     In those reviews, I provided extensive problem recognitions to those codes that were not suitable and provided explanations
     to my teammates in parts of the codes that they did not understand. 
         
