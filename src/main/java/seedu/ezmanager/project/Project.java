@@ -2,7 +2,7 @@ package seedu.ezmanager.project;
 
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.task.Task;
-import seedu.duke.storage.Storage;
+import seedu.ezmanager.storage.Storage;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

@@ -20,7 +20,7 @@ public class EzManager {
     private Storage storage;
     private Ui ui;
 
-    public Duke(String filePath) {
+    public EzManager(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -34,7 +34,7 @@ public class EzManager {
                 projects.add(project);
             }
 
-        } catch (DukeExceptions e) {
+        } catch (EzExceptions e) {
             System.out.println(e.getMessage());
         }
     }
@@ -71,8 +71,8 @@ public class EzManager {
 
     }
 
-    public static void main(String[] args) throws DukeExceptions {
-        new Duke("ezmanager.txt").run();
+    public static void main(String[] args) throws EzExceptions {
+        new EzManager("ezmanager.txt").run();
         final Thread mainThread = Thread.currentThread();
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try {

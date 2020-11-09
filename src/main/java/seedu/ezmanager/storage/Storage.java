@@ -1,9 +1,9 @@
-package seedu.duke.storage;
+package seedu.ezmanager.storage;
 
-import seedu.duke.DukeExceptions;
-import seedu.duke.member.TeamMember;
-import seedu.duke.project.Project;
-import seedu.duke.task.Task;
+import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.member.TeamMember;
+import seedu.ezmanager.project.Project;
+import seedu.ezmanager.task.Task;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -31,7 +31,7 @@ public class Storage {
         private LocalDate projectDeadline;
         private static ArrayList<TeamMember> members;
      */
-    public static ArrayList<Project> loadProjects(ArrayList<TeamMember> members) throws DukeExceptions {
+    public static ArrayList<Project> loadProjects(ArrayList<TeamMember> members) throws EzExceptions {
         try {
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             ArrayList<Project> projects = new ArrayList<>();
@@ -180,7 +180,7 @@ public class Storage {
             }
 
             return projects;
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | EzExceptions e) {
             //System.out.println("Creating file...");
         }
 
