@@ -1,16 +1,20 @@
 package seedu.ezmanager.commands.project;
 
 import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.commands.Command;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.ui.Ui;
-
+import static seedu.ezmanager.Util.INDEX_NON_INTEGER;
+import static seedu.ezmanager.Util.WRONG_DATE_FORMAT;
+import static seedu.ezmanager.Util.INVALID_PROJECT_ID;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.logging.Level;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
@@ -38,9 +42,11 @@ public class ProjectDeadlineCommand extends Command {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
             date = LocalDate.parse(getHashValue(params, "d"));
         } catch (NumberFormatException e) {
-            throw new EzExceptions("indexNonInteger");
+            EzLogger.log(Level.WARNING, INDEX_NON_INTEGER);
+            throw new EzExceptions(INDEX_NON_INTEGER);
         } catch (StringIndexOutOfBoundsException | DateTimeParseException e) {
-            throw new EzExceptions("WrongDateFormat");
+            EzLogger.log(Level.WARNING, "Wrong date format");
+            throw new EzExceptions(WRONG_DATE_FORMAT);
         }
     }
 
@@ -61,11 +67,15 @@ public class ProjectDeadlineCommand extends Command {
         try {
             Project project = projects.get(projectIndex);
             project.addProjectDeadline(date);
+            EzLogger.log(Level.INFO, "Deadline added to Project");
             projects = shiftProjectWithNoDeadlineToBackOfList(projects);
+            EzLogger.log(Level.INFO, "Project with no deadline shifted to the back");
             Collections.sort(projects);
+            EzLogger.log(Level.INFO, "Project sorted by deadline");
             return Ui.printProjectDeadlineAddedMessage(projects, project, date, teamMembers);
         } catch (IndexOutOfBoundsException e) {
-            throw new EzExceptions("invalidProjectID");
+            EzLogger.log(Level.WARNING, "Invalid project ID");
+            throw new EzExceptions(INVALID_PROJECT_ID);
         }
     }
 

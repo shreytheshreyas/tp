@@ -1,6 +1,7 @@
 package seedu.ezmanager.storage;
 
 import seedu.ezmanager.EzExceptions;
+import seedu.ezmanager.EzLogger;
 import seedu.ezmanager.member.TeamMember;
 import seedu.ezmanager.project.Project;
 import seedu.ezmanager.task.Task;
@@ -14,7 +15,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
+import java.util.logging.Level;
 
+
+/**
+ * Class that saves and loads the data that is used in EZ Manager.
+ */
 public class Storage {
     private static File f;
     private static ArrayList<Project> temp = new ArrayList<>();
@@ -23,19 +29,20 @@ public class Storage {
         f = new File(filePath);
     }
 
-    /*
-        protected String projectName;
-        protected boolean isDone;
-        private ArrayList<Task> tasks;
-        private String projectDescription;
-        private LocalDate projectDeadline;
-        private static ArrayList<TeamMember> members;
+    /**
+     * Loads the projects from the ezmanager.txt file
+     *
+     * @param members ArrayList of TeamMember.
+     * @return projects ArrayList of Projects that have been added to EZ Manager previously.
+     * @throws EzExceptions When cannot access the file will throw "Open File" EzException
      */
     public static ArrayList<Project> loadProjects(ArrayList<TeamMember> members) throws EzExceptions {
         try {
+
             Scanner s = new Scanner(f); // create a Scanner using the File as the source
             ArrayList<Project> projects = new ArrayList<>();
             String currentLine;
+            EzLogger.log(Level.INFO, "Begin loading projects");
             while (s.hasNext()) {
                 currentLine = s.nextLine();
                 if (currentLine.contains("Project")) {
@@ -179,6 +186,7 @@ public class Storage {
                  */
             }
 
+            EzLogger.log(Level.INFO, "Done loading projects");
             return projects;
         } catch (FileNotFoundException | EzExceptions e) {
             //System.out.println("Creating file...");
@@ -187,7 +195,12 @@ public class Storage {
         return temp;
     }
 
-    public ArrayList<TeamMember> loadTeamMembers() {
+    /**
+     * Loads the team members from the ezmanager.txt file
+     *
+     * @return members ArrayList of TeamMember that have been added to EZ Manager previously.
+     */
+    public static ArrayList<TeamMember> loadTeamMembers() {
         try {
             Scanner s = new Scanner(f);
             String currentLine = s.nextLine();
@@ -205,6 +218,7 @@ public class Storage {
 
             return members;
         } catch (FileNotFoundException | NoSuchElementException e) {
+            EzLogger.log(Level.WARNING, "Creating file for storage...");
             System.out.println("Creating file...");
         }
         return new ArrayList<>();
@@ -220,8 +234,16 @@ public class Storage {
         return null;
     }
 
+    /**
+     * Saves the data to the text file.
+     *
+     * @param projects ArrayList of Project.
+     * @param members ArrayList of TeamMember.
+     * @throws IOException When encountering errors when saving files.
+     */
     public static void save(ArrayList<Project> projects, ArrayList<TeamMember> members) throws IOException {
         // empty current saved items;
+        EzLogger.log(Level.INFO, "Begin saving items...");
         FileWriter clear = new FileWriter(f);
         clear.write("");
         clear.close();
@@ -239,6 +261,7 @@ public class Storage {
         }
 
         fw.close();
+        EzLogger.log(Level.INFO, "Done saving items...");
     }
 
 }

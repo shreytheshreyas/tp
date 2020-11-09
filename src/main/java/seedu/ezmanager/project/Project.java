@@ -34,7 +34,6 @@ public class Project implements Comparable<Project> {
             return 0;
         }
         return getProjectDeadline().compareTo(project.getProjectDeadline());
-
     }
 
     public Task getTask(int taskIndex) {
@@ -54,6 +53,10 @@ public class Project implements Comparable<Project> {
         return tasks.size();
     }
 
+    /**
+     * Counts the total number of tasks in the current project.
+     * @return Number of tasks marked as done.
+     */
     public int getNumberOfFinishedTask() {
         int finishedTaskCounter = 0;
         for (Task task : tasks) {
@@ -114,9 +117,6 @@ public class Project implements Comparable<Project> {
         return tasks;
     }
 
-    public String selectTask(int taskId) {
-        return tasks.get(taskId).toString();
-    }
 
     /*
         Returns a string that will be saved in the text file.
@@ -146,20 +146,6 @@ public class Project implements Comparable<Project> {
         String projectDeadlineLine = "projectDeadline " + projectDeadline;
         return projectNameLine + "\n" + statusLine + "\n" + projectDescriptionLine + "\n"
                 + projectDeadlineLine + "\n" + tasksLines + "\n" + membersLines + "\n";
-    }
-
-    public boolean getStatus() {
-        if (isDone) {
-            return isDone;
-        }
-
-        for (Task task : tasks) {
-            if (!(task.getStatus())) {
-                return false;
-            }
-        }
-
-        return true;
     }
 
     public void markAsDone() {

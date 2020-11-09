@@ -4,10 +4,8 @@
 ![EZ Manager Welcome](https://i.ibb.co/n7zphMR/ezmanagerterminal.png)
 
 ## **Changelog**
-Identifier | Changes | Date
----------- | ------------------- | ----
-A | Incorporated feedback from CS2101 review <ul><li>Include table of content</li><li>Include preface for sections</li><li>Add introductory sections</li><li> Address the reader directly – “You”</li></ul> | 29 October 2020
-B | final developer guide for CS2113T Team project<ul><li>Include table of content</li><li>Included updated command summary</li><li>Converted DG to Markdown</li><li> Included sequence diagrams</li></ul> | 09 November 2020
+![EZ Manager Changelog](https://i.ibb.co/NNcdxnh/changelog.png)
+
 ---
 
 ## **Table of Contents**
@@ -17,7 +15,7 @@ B | final developer guide for CS2113T Team project<ul><li>Include table of conte
 - [Implementation](#implementation)
 - [Testing](#running-tests)
 - Dev Ops
-  - [Making A Release](#devops---making-a-release)
+  - [Making A Release](#devops)
 - Appendices
   - [Appendix A: Product Scope](#Appendix-A-Product-Scope-Samuel-Leow)
   - [Appendix B: Commands Summary](#Appendix-B-Command-Summary-Samuel-Paul-Christopher)
@@ -66,7 +64,7 @@ Developers are welcome to contribute by submitting issues or pull requests on ou
 ### **Consideration (Sean Tan)**
 Eazy was developed via a breadth first iterative approach with new commands progressively added. An n-tier architecture ensured separation of concern between various layers of the architecture but much of the program’s logic remained in the Command classes. This design architecture ensured minimal changes to the codebase when new commands were added. Often, new commands or feature addition required changes to only a single data class and addition of a new independent command class. 
 
-### **Overall Architecture (Sean)**
+### **Overall Architecture (Sean Tan)**
 Ez Manager consists of 4 main layers:  
 * Ui: Handles the output of the app 
 * Logic: Command parser and executor 
@@ -161,7 +159,7 @@ Step 3: The user now decides to display the Home View to have an overview of all
 The following sequence diagrams shows how the “Home View” command works in both scenarios: 
 
 Scenario 1 (Ez Manager start up): 
-<center><img src="https://i.ibb.co/2c1FhFb/Home-View-SD1.png"></center>
+<center><img src="https://i.ibb.co/pJPjSxX/Figure5-3.png"></center>
 
 Scenario 2 (display command): 
 <center><img src="https://i.ibb.co/0VMf92d/Home-View-SD2.png"></center>
@@ -429,8 +427,25 @@ The following sequence diagram shows how the “Assign member to task” command
 
 <center><img src="https://i.ibb.co/vdBdtg2/Figure16-3.png"></center>
 
-### **Removing a member (Sean Tan)**
-This command allows project managers to remove members from the main members list. 
+### **Hours Worked By Worker Command (Sean Tan)**
+This command allows project managers to view the total hours worked by a worker 
+The logic for this command is primarily written in TeamMemberHoursCommand class. It extends from the abstract Command class. 
+The steps below show how such a class is initialized and used to execute the command. 
+
+Step 1: Parser initializes TeamMemberHoursCommand by passing a hashmap of input parameters together with projectIndex into its constructor. 
+Step 2: Parse() method of TeamMemberDeleteCommand extracts the index of the member to be retrieved from the hashmap. 
+Step 3: ExecuteCommand() method of TeamMemberDeleteCommand is called by Duke main class, which passes it the program’s arraylist of members. 
+* The method getTasks() of the specific member is called which retrieves all the tasks the member was assigned. 
+* The method getActual() of each of these tasks is called which retrieves the actual time taken to complete these tasks. 
+* The total hours of these tasks are then summed up. 
+* The Ui class then prints the total number of hours worked by these workers. 
+
+The following sequence diagram shows how the “Hours Worked by worker” command works:
+
+<center><img src="https://i.ibb.co/7Qms8Hc/hours.png"></center>
+
+### **Removing a member from Home View(Sean Tan)**
+This command allows project managers to remove members from the main members list in the home view. 
 
 The logic for this command is primarily written in TeamMemberDeleteCommand class. It extends from the abstract Command class. 
 
@@ -440,13 +455,34 @@ Step 1: The Parser initializes TeamMemberDeleteCommand by passing a hashmap of i
 
 Step 2: The Parse() method of the TeamMemberDeleteCommand class extracts the index of the member to be deleted from the parameter hashmap. 
 
-Step 3: The ExecuteCommand() method of TeamMemberDeleteCommand class is called by Duke main class, which passes it the program’s arraylist of members. 
+Step 3: The ExecuteCommand() method of TeamMemberDeleteCommand class is called by EzManager main class, which passes it the program’s arraylist of members and arraylist of projects.
 
-* The method remove(memberIndex) of the teamMembers arraylist is called, removing the member. 
+Step 4: TeamMember is removed from the arraylist of TeamMember in the entire program.
+
+Step 5: Loop through each project in the arraylist of Project and remove member from the arraylist of TeamMember if it is present.
+
+Step 6: While still in the Project, loop through each task in the arrayList of Task in the and remove member from the arraylist of TeamMember from each task if it is present.
 
 * The Ui class prints an acknowledgement that the member has been removed. 
 
-<center><img src="https://i.ibb.co/Lz9FQZC/Figure17.png"></center>
+### **Removing a member from Project View(Samuel Leow)**
+This command allows project managers to remove members from the project in the project view. 
+
+The logic for this command is primarily written in TeamMemberDeleteCommand class. It extends from the abstract Command class. 
+
+The steps below show how such a class is initialized and used to execute the command. 
+
+Step 1: The Parser initializes TeamMemberDeleteCommand by passing a hashmap of input parameters together with memberIndex that was provided by the user using `remove m/1` into its constructor. 
+
+Step 2: The Parse() method of the TeamMemberDeleteCommand class extracts the index of the member to be deleted from the parameter hashmap. 
+
+Step 3: The ExecuteCommand() method of TeamMemberDeleteCommand class is called by EzManager main class, which passes it the program’s arraylist of members and arraylist of projects.
+
+Step 4: TeamMember is removed from the arraylist of TeamMember in the current project.
+
+Step 5: Loop through each task in the arraylist of Task and remove member from the arraylist of TeamMember from each task if it is present.
+
+* The Ui class prints an acknowledgement that the member has been removed. 
 
 ---
 
@@ -707,7 +743,7 @@ There are two ways to run tests for EZ manager.
 - On Windows, run the command `gradlew clean allTests` in a terminal 
 - On Mac or Linux, run the command `./gradlew clean allTests` in a terminal 
 
-## **DevOps - Making a Release (Samuel Paul Christopher)** 
+## **DevOps (Samuel Paul Christopher)** 
 Here are the steps to create a new release. 
 1. Update the version number in Duke.java 
 2. Generate a JAR file using Gradle

@@ -19,4 +19,5 @@ public class Util {
     public static final String TASK_NOT_DONE = "taskNotDone";
     public static final String WRONG_DATE_FORMAT = "WrongDateFormat";
     public static final String EMPTY_PROJECT_LIST = "emptyProjectList";
+    public static final String EMPTY_TEAM_MEMBERS_LIST = "emptyTeamMembersList";
 }
