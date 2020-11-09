@@ -84,7 +84,7 @@ public class TaskSortCommandTest {
     @Test
     public void execute_command_sortTaskList_ActualTime() throws DukeExceptions {
         HashMap<String, String> params = new HashMap<>();
-        params.put("s", "t");
+        params.put("s", "a");
         String expectedOutput = "List of Tasks:"
                 + "\n     " + "1" + "." + "Task One | 13/12/2020 | Actual: 1 hours 30 minutes|priority: 3"
                 + "\n     " + "2" + "." + "Task Two | 23/12/2020 | Actual: 2 hours 10 minutes|priority: 1"

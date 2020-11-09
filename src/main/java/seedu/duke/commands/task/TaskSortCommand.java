@@ -52,7 +52,7 @@ public class TaskSortCommand extends Command {
                     return o1.getPriority() - o2.getPriority(); //sort based on priority
                 }
             });
-            System.out.println("TaskList sorted based on priority");
+            System.out.println("Task List sorted based on priority");
 
             break;
         case "d":
@@ -71,9 +71,9 @@ public class TaskSortCommand extends Command {
 
                     }
                 });
-            System.out.println("TaskList sorted based on deadline");
+            System.out.println("Task List sorted based on deadline");
             break;
-        case "t":
+        case "a":
             Collections.sort(project.getTaskList(), new Comparator<Task>() {
                 @Override
                 public int compare(Task o1, Task o2) {
@@ -87,7 +87,23 @@ public class TaskSortCommand extends Command {
                     return o1.getActual() - o2.getActual(); //sort based on actual time
                 }
             });
-            System.out.println("TaskList sorted based on completion time");
+            System.out.println("Task List sorted based on actual time taken");
+            break;
+        case "e":
+            Collections.sort(project.getTaskList(), new Comparator<Task>() {
+                @Override
+                public int compare(Task o1, Task o2) {
+                    if (o1.getEstimate() == 0) {
+                        return 1;
+                    }
+
+                    if (o2.getEstimate() == 0) {
+                        return -1;
+                    }
+                    return o1.getEstimate() - o2.getEstimate(); //sort based on actual time
+                }
+            });
+            System.out.println("Task List sorted based on estimated time taken");
             break;
         default: throw new DukeExceptions("InvalidSortingParameter");
         }

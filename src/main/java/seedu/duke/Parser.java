@@ -46,7 +46,7 @@ public class Parser {
 
     public static HashMap<String, String> getParams(String paramsString) throws DukeExceptions {
         HashMap<String, String> inputParams = new HashMap<>();
-        Pattern p = Pattern.compile(".\\/.+?(?=\\s.\\/.+)|.\\/.+"); //Regex to extract parameter terms
+        Pattern p = Pattern.compile("./.+?(?=\\s./.+)|./.+"); //Regex to extract parameter terms
         Matcher m = p.matcher(paramsString);
         while (m.find()) {
             String[] keyAndValue = m.group().split("/");
