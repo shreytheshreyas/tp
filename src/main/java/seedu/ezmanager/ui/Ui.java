@@ -336,84 +336,19 @@ public class Ui {
                 String status = currentTask.isDone() ? "(Y)" : "(N)";
                 String description = currentTask.getTaskDescription();
                 int cutoffIndexForDescription = 15;
-
-                // truncate description if it is too long
-                if (description.length() > cutoffIndexForDescription) {
-                    description = description.substring(0, cutoffIndexForDescription) + "...";
-                }
-
-                String deadline = currentTask.getDateString();
-
+                description = truncateDescription(description, cutoffIndexForDescription);
                 currentTaskLine = index + indexSpaces + status + statusSpaces + description
                         + (descriptionSpaces.substring(0, descriptionSpaces.length() - description.length()));
-                if (deadline.length() > 0) {
-                    currentTaskLine += (deadline);
-                } else {
-                    deadline = "-";
-                    currentTaskLine += "-";
-                }
 
-                currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
+                currentTaskLine = deadlineForTask(deadlineSpaces, currentTaskLine, currentTask);
 
-                String priority = String.valueOf(currentTask.getPriority());
-                if (!priority.equals("0")) {
-                    currentTaskLine += (priority);
-                } else {
-                    priority = "-";
-                    currentTaskLine += "-";
-                }
-                currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
+                currentTaskLine = priorityForTask(prioritySpaces, currentTaskLine, currentTask);
 
-                Integer estimate = currentTask.getEstimate();
-                String estimateString = "";
-                if (estimate > 1) {
-                    int hours = (estimate / 60);
-                    int minutes = estimate - hours * 60;
-                    double ratio = minutes / 60.0;
-                    estimateString = String.format("%.1f", hours + ratio);
-                    currentTaskLine += estimateString;
-                } else {
-                    estimateString = "-";
-                    currentTaskLine += estimateString;
-                }
-                currentTaskLine += (estimatedSpaces.substring(0, estimatedSpaces.length()
-                        - estimateString.length()));
+                currentTaskLine = estimatedTimeForTask(estimatedSpaces, currentTaskLine, currentTask);
 
-                Integer actual = currentTask.getActual();
-                String actualString = "";
-                if (actual > 1) {
-                    int hours = (actual / 60);
-                    int minutes = actual - hours * 60;
-                    double ratio = minutes / 60.0;
-                    actualString = String.format("%.1f", hours + ratio);
-                    currentTaskLine += actualString;
-                } else {
-                    actualString = "-";
-                    currentTaskLine += actualString;
-                }
+                currentTaskLine = actualTimeForTask(actualSpaces, currentTaskLine, currentTask);
 
-                currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
-                        - actualString.length()));
-
-                ArrayList<TeamMember> members = currentTask.getMembers();
-                currentTaskLine += "|";
-                int j;
-                if (members.size() == 0) {
-                    currentTaskLine += " -";
-                } else {
-                    for (j = 0; j < members.size(); j++) {
-                        boolean isOnlyOneMember = members.size() <= 1 ? true : false;
-                        boolean isLastMember = j == (members.size() - 1) ? true : false;
-                        TeamMember member = members.get(j);
-                        if (member != null) {
-                            if (!isOnlyOneMember && !isLastMember) {
-                                currentTaskLine += " " + member.getName() + ",";
-                            } else if (isOnlyOneMember | isLastMember) {
-                                currentTaskLine += " " + member.getName();
-                            }
-                        }
-                    }
-                }
+                currentTaskLine = membersInvolvedInTasks(currentTaskLine, currentTask);
 
                 taskLines += (currentTaskLine + "\n");
             }
@@ -421,6 +356,101 @@ public class Ui {
             taskLines += "No tasks have been added to this project.";
         }
         return taskLines;
+    }
+
+    private static String actualTimeForTask(String actualSpaces, String currentTaskLine, Task currentTask) {
+        Integer actual = currentTask.getActual();
+        String actualString = "";
+        if (actual > 1) {
+            int hours = (actual / 60);
+            int minutes = actual - hours * 60;
+            double ratio = minutes / 60.0;
+            actualString = String.format("%.1f", hours + ratio);
+            currentTaskLine += actualString;
+        } else {
+            actualString = "-";
+            currentTaskLine += actualString;
+        }
+
+        currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
+                - actualString.length()));
+        return currentTaskLine;
+    }
+
+    private static String estimatedTimeForTask(String estimatedSpaces, String currentTaskLine, Task currentTask) {
+        Integer estimate = currentTask.getEstimate();
+        String estimateString = "";
+        if (estimate > 1) {
+            int hours = (estimate / 60);
+            int minutes = estimate - hours * 60;
+            double ratio = minutes / 60.0;
+            estimateString = String.format("%.1f", hours + ratio);
+            currentTaskLine += estimateString;
+        } else {
+            estimateString = "-";
+            currentTaskLine += estimateString;
+        }
+        currentTaskLine += (estimatedSpaces.substring(0, estimatedSpaces.length()
+                - estimateString.length()));
+        return currentTaskLine;
+    }
+    
+    private static String priorityForTask(String prioritySpaces, String currentTaskLine, Task currentTask) {
+        String priority = String.valueOf(currentTask.getPriority());
+        if (!priority.equals("0")) {
+            currentTaskLine += (priority);
+        } else {
+            priority = "-";
+            currentTaskLine += "-";
+        }
+        currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
+        return currentTaskLine;
+    }
+
+    private static String deadlineForTask(String deadlineSpaces, String currentTaskLine, Task currentTask) {
+        String deadline = currentTask.getDateString();
+
+        if (deadline.length() > 0) {
+            currentTaskLine += (deadline);
+        } else {
+            deadline = "-";
+            currentTaskLine += "-";
+        }
+
+        currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
+        return currentTaskLine;
+    }
+
+
+    private static String membersInvolvedInTasks(String currentTaskLine, Task currentTask) {
+        ArrayList<TeamMember> members = currentTask.getMembers();
+        currentTaskLine += "|";
+        int j;
+        if (members.size() == 0) {
+            currentTaskLine += " -";
+        } else {
+            for (j = 0; j < members.size(); j++) {
+                boolean isOnlyOneMember = members.size() <= 1 ? true : false;
+                boolean isLastMember = j == (members.size() - 1) ? true : false;
+                TeamMember member = members.get(j);
+                if (member != null) {
+                    if (!isOnlyOneMember && !isLastMember) {
+                        currentTaskLine += " " + member.getName() + ",";
+                    } else if (isOnlyOneMember | isLastMember) {
+                        currentTaskLine += " " + member.getName();
+                    }
+                }
+            }
+        }
+        return currentTaskLine;
+    }
+
+    private static String truncateDescription(String description, int cutoffIndexForDescription) {
+        // truncate description if it is too long
+        if (description.length() > cutoffIndexForDescription) {
+            description = description.substring(0, cutoffIndexForDescription) + "...";
+        }
+        return description;
     }
 
     public static String printMemberAssignedToTaskMessage(String memberName, String taskName) {
