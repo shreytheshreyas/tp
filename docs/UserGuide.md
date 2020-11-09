@@ -35,7 +35,7 @@ command PARAMETER_TYPE/VALUE
 ________________________________
 example output
 ```
-
+---
 ## Table of Contents
 1. [Quick Start](#1-quick-start)
 2. [Terminologies](#terminologies)
