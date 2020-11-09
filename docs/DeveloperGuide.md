@@ -159,7 +159,7 @@ Step 3: The user now decides to display the Home View to have an overview of all
 The following sequence diagrams shows how the “Home View” command works in both scenarios: 
 
 Scenario 1 (Ez Manager start up): 
-<center><img src="https://i.ibb.co/2c1FhFb/Home-View-SD1.png"></center>
+<center><img src="https://i.ibb.co/pJPjSxX/Figure5-3.png"></center>
 
 Scenario 2 (display command): 
 <center><img src="https://i.ibb.co/0VMf92d/Home-View-SD2.png"></center>
