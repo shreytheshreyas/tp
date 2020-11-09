@@ -13,11 +13,19 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Sorts the tasks within a project by priority, actual time, estimated time or deadline.
+ */
 public class TaskSortCommand extends Command {
     private int projectIndex;
     HashMap<String, String> params;
     private String sortingType;
 
+    /**
+     * Constructor for TaskSortCommand. Calls parse() method.
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
+     */
     public TaskSortCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
         this.params = params;
@@ -25,6 +33,10 @@ public class TaskSortCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Retrieves sorting type from hashmap passed to it from constructor.
+     * @throws EzExceptions EzException
+     */
     public void parse() throws EzExceptions {
         try {
             sortingType = getHashValue(params, "s");
@@ -33,6 +45,13 @@ public class TaskSortCommand extends Command {
         }
     }
 
+    /**
+     * Executes command to sort tasks.
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
+     * @return task sorted UI message.
+     * @throws EzExceptions EzException
+     */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws EzExceptions {
         Project project = projects.get(projectIndex);
         switch (sortingType) {
@@ -110,6 +129,10 @@ public class TaskSortCommand extends Command {
         return "";
     }
 
+    /**
+     * Checks if command will exit program.
+     * @return isExit status.
+     */
     public Boolean isExit() {
         return false;
     }

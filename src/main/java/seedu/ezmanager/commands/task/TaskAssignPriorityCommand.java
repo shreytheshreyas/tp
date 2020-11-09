@@ -12,6 +12,9 @@ import java.util.HashMap;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Command that adds priority for a specific task.
+ */
 public class TaskAssignPriorityCommand extends Command {
 
     private int taskIndex;
@@ -19,6 +22,12 @@ public class TaskAssignPriorityCommand extends Command {
     private int priority;
     HashMap<String, String> params;
 
+    /**
+     * Constructor for TaskAssignPriorityCommand. Calls parse() method.
+     * @param params Hashmap of parameters the command requires.
+     * @param projectIndex Integer pointer to currently selected project
+     * @throws EzExceptions EzException
+     */
     public TaskAssignPriorityCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
@@ -27,6 +36,10 @@ public class TaskAssignPriorityCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Retrieves task index, priority from parameter hashmap passed to it from constructor.
+     * @throws EzExceptions EzException
+     */
     public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
@@ -39,6 +52,13 @@ public class TaskAssignPriorityCommand extends Command {
         }
     }
 
+    /**
+     * Executes command to add priority to tasks.
+     * @param projects list of all projects in program
+     * @param teamMembers list of all members in program
+     * @return priority added UI message.
+     * @throws EzExceptions EzException
+     */
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {
         if (projects.size() == 0) {
@@ -53,6 +73,10 @@ public class TaskAssignPriorityCommand extends Command {
         }
     }
 
+    /**
+     * Checks if command will exit program.
+     * @return exit status.
+     */
     public Boolean isExit() {
         return false;
     }

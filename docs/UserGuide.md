@@ -32,6 +32,7 @@ projects, tasks and team members all in one app.
     2. [Commands](#project-view-commands)
         1. [List: Viewing the updated Project View](#viewing-the-updated-project-view-list)
         2. [Task: Adding a task](#adding-a-task-task)
+        3. [Edit: Editing a task name](#editing-a-task-name-edit)
         4. [Done: Marking a task as done](#marking-a-task-as-done-done)
         5. [Deadline: Adding a deadline to a task](#adding-a-deadline-to-a-task-deadline)
         6. [Priority: Adding a priority to a task](#adding-a-priority-to-a-task-deadline)
@@ -73,11 +74,14 @@ all projects by using the `list` command in HomeView
 a positive integer. Hence, the TASK_INDEX refers to this
 positive integer. You can retrieve the TASK_INDEXes of 
 all tasks by using the `list` command in Project View
-
 - **MEMBER_INDEX**: Every existing member would be assigned
 a positive integer. Hence, the MEMBER_INDEX refers to this
 positive integer. You can retrieve the MEMBER_INDEXes of 
-Members by using the `list` command in Home View or in Project View
+Members by using the `list` command in Home View or in Project View  
+- **warning**: This refers to any formatting issues to look out for
+when keying in the commands
+- **exclamation**: This refers to any other constraints to look out for
+besides formatting issues
 
 >  :warning: Project Index, Task Index and Member Index must be positive integers.
 
@@ -409,6 +413,27 @@ ____________________________________________________________
 Task "Deploy Version 2.0" created!
 ```
 
+### Editing a task name: `edit`
+Updates an existing task name with the new name
+
+Format: `edit t/TASK_INDEX n/NEW_TASK_NAME`
+
+> :warning: Task names should not include slashes or it will be disregarded.  
+> :warning: The `TASK_INDEX` must be a positive integer.
+
+Example of usage: 
+
+>  Edits the existing task, `Read documentation` to `Update documentation`.
+
+```
+task n/Read documentation
+____________________________________________________________
+Task "Read documentation" created!
+____________________________________________________________
+edit t/1 n/Update documentation
+____________________________________________________________
+Task "Read documentation" has been updated to "Update documentation"
+```
 
 
 ### Marking a task as done: `done`
@@ -607,6 +632,7 @@ Project View Commands
 | Commands | Action | Examples |
 | -------- | ------ | -------- |
 | task    | Creates a new task in the task list in Project View| `task n/Deploy Version 2.0` |
+| edit    | Edits an existing task name in the task list in Project View| `edit t/1 n/Update documentation` |
 | list    | Displays the updated Project View | `list` |
 | select  | Selects the specified task | `select t/1` |
 | done    | Marks the specified task as done | `done t/1` |
