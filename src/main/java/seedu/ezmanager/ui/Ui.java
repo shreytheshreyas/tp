@@ -286,15 +286,15 @@ public class Ui {
             String indexSpaces = "      "; // 6
             String statusSpaces = "      "; // 6
             String descriptionSpaces = "                   "; // 19
-            String deadlineSpaces = "               "; // 16
-            String prioritySpaces = "              "; // 11
-            String expectedSpaces = "                 "; // 18
+            String deadlineSpaces = "                "; // 16
+            String prioritySpaces = "              "; // 14
+            String estimatedSpaces = "                  "; // 18
             String actualSpaces = "             "; // 13
             String membersSpaces = "                "; // 16
             String tableLabel = "Index  Status   Description        "
-                                + "Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved\n"
+                                + "Deadline        Priority      Estimated Hrs     Actual Hrs   | Members Involved\n"
                                 + "------------------------------------------------"
-                                + "-----------------------------------------------|------------------";
+                                + "------------------------------------------------|------------------";
             Integer extra = 0;
             Integer i = 0;
             int index;
@@ -306,6 +306,13 @@ public class Ui {
                     Task currentTask = project.getTaskList().get(i);
                     String status = currentTask.isDone() ? "(Y)" : "(N)";
                     String description = currentTask.getTaskDescription();
+                    int cutoffIndexForDescription = 15;
+
+                    // truncate description if it is too long
+                    if (description.length() > cutoffIndexForDescription) {
+                        description = description.substring(0, cutoffIndexForDescription) + "...";
+                    }
+
                     String deadline = currentTask.getDateString();
 
                     currentTaskLine = index + indexSpaces + status + statusSpaces + description
@@ -313,50 +320,72 @@ public class Ui {
                     if (deadline.length() > 0) {
                         currentTaskLine += (deadline);
                     } else {
+                        deadline = "-";
                         currentTaskLine += "-";
                     }
 
                     currentTaskLine += (deadlineSpaces.substring(0, deadlineSpaces.length() - deadline.length()));
 
-                    int priority = currentTask.getPriority();
-                    if (priority > 0) {
+                    String priority = String.valueOf(currentTask.getPriority());
+                    if (!priority.equals("0")) {
                         currentTaskLine += (priority);
                     } else {
+                        priority = "-";
                         currentTaskLine += "-";
                     }
-                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - 1));
+                    currentTaskLine += (prioritySpaces.substring(0, prioritySpaces.length() - priority.length()));
 
                     Integer estimate = currentTask.getEstimate();
+                    String estimateString = "";
                     if (estimate > 1) {
-                        currentTaskLine += (estimate / 60);
-                        extra = estimate.toString().length() - 1;
+                        int hours = (estimate / 60);
+                        int minutes = estimate - hours * 60;
+                        double ratio = minutes / 60.0;
+                        estimateString = String.format("%.1f", hours + ratio);
+                        currentTaskLine += estimateString;
                     } else {
-                        currentTaskLine += "-";
-                        extra = 0;
+                        estimateString = "-";
+                        currentTaskLine += estimateString;
                     }
-                    currentTaskLine += (expectedSpaces.substring(0, expectedSpaces.length()
-                            - estimate.toString().length() + extra));
+                    currentTaskLine += (estimatedSpaces.substring(0, estimatedSpaces.length()
+                            - estimateString.length()));
 
                     Integer actual = currentTask.getActual();
+                    String actualString = "";
                     if (actual > 1) {
-                        currentTaskLine += (actual / 60);
+                        int hours = (actual / 60);
+                        int minutes = actual - hours * 60;
+                        double ratio = minutes / 60.0;
+                        actualString = String.format("%.1f", hours + ratio);
+                        currentTaskLine += actualString;
                     } else {
-                        currentTaskLine += "-";
+                        actualString = "-";
+                        currentTaskLine += actualString;
                     }
 
-                    extra = actual.toString().length() - 1;
                     currentTaskLine += (actualSpaces.substring(0, actualSpaces.length()
-                            - actual.toString().length() + extra));
+                            - actualString.length()));
 
-                    String memberName = null;
                     ArrayList<TeamMember> members = currentTask.getMembers();
                     currentTaskLine += "|";
-                    memberName = "|";
-                    for (TeamMember member : members) {
-                        currentTaskLine += member.getName() + "|";
-                        memberName = member.getName();
+                    int j;
+                    if (members.size() == 0) {
+                        currentTaskLine += " -";
+                    } else {
+                        for (j = 0; j < members.size(); j++) {
+                            boolean isOnlyOneMember = members.size() <= 1 ? true : false;
+                            boolean isLastMember = j == (members.size() - 1) ? true : false;
+                            TeamMember member = members.get(j);
+                            if (member != null) {
+                                if (!isOnlyOneMember && !isLastMember) {
+                                    currentTaskLine += " " + member.getName() + ",";
+                                } else if (isOnlyOneMember | isLastMember) {
+                                    currentTaskLine += " " + member.getName();
+                                }
+                            }
+                        }
                     }
-                    //currentTaskLine += (membersSpaces.substring(0, membersSpaces.length() - memberName.length()));
+
                     taskLines += (currentTaskLine + "\n");
                 }
             } else {
