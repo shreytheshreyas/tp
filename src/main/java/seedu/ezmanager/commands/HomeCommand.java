@@ -8,7 +8,7 @@ import seedu.ezmanager.ui.Ui;
 import java.util.ArrayList;
 
 /**
- * Switch back to home view
+ * Switch back to home view.
  */
 public class HomeCommand extends Command {
 

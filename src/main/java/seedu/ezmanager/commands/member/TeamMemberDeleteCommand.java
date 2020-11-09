@@ -86,7 +86,6 @@ public class TeamMemberDeleteCommand extends Command {
                                         ArrayList<TeamMember> teamMembers) {
         assert projectIndex == -1 : "projectIndex should equal to -1 since it is in home view";
         TeamMember memberToBeRemoved = teamMembers.get(memberIndex);
-        EzLogger.log(Level.INFO, "To be removed TeamMember Retrieved");
         teamMembers.remove(memberIndex);
         EzLogger.log(Level.INFO, "TeamMember removed");
         removeMemberFromEachProject(projects, memberToBeRemoved);
