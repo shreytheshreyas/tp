@@ -24,18 +24,31 @@ import static seedu.ezmanager.Util.TASK_INDEX_KEY;
 import static seedu.ezmanager.Util.USER_JAVA_INDEX_DIFF;
 import static seedu.ezmanager.Util.WRONG_DATE_FORMAT;
 
+/**
+ * Command that adds deadline for a specific task.
+ */
 public class TaskAssignDeadlineCommand extends Command {
     private int projectIndex;
     private int taskIndex;
     private LocalDate date;
     HashMap<String, String> params;
 
+    /**
+     * Constructor for TaskAssignDeadlineCommand. Calls parse() method.
+     * @param params Hashmap of parameters the command requires.
+     * @param projectIndex
+     * @throws EzExceptions
+     */
     public TaskAssignDeadlineCommand(HashMap<String, String> params, int projectIndex) throws EzExceptions {
         this.params = params;
         this.projectIndex = projectIndex;
         this.parse();
     }
 
+    /**
+     * Retrieves task index, deadline from parameter hashmap passed to it from constructor.
+     * @throws EzExceptions
+     */
     public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, TASK_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
@@ -48,6 +61,13 @@ public class TaskAssignDeadlineCommand extends Command {
         }
     }
 
+    /**
+     * Executes command to add deadline to tasks.
+     * @param projects
+     * @param teamMembers
+     * @return duration added UI message.
+     * @throws EzExceptions
+     */
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {
         EzLogger.log(Level.INFO, "Executing Command");
@@ -67,6 +87,10 @@ public class TaskAssignDeadlineCommand extends Command {
         }
     }
 
+    /**
+     * Checks if command will exit program.
+     * @return exit status.
+     */
     public Boolean isExit() {
         return false;
     }

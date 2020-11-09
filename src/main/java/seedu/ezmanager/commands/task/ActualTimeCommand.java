@@ -21,6 +21,9 @@ import static seedu.ezmanager.Util.TASK_INDEX_KEY;
 import static seedu.ezmanager.Util.USER_JAVA_INDEX_DIFF;
 import static seedu.ezmanager.Parser.getHashValue;
 
+/**
+ * Command that adds the actual time taken for a specific task after it is marked as done.
+ */
 public class ActualTimeCommand extends Command {
 
     private int taskIndex;
@@ -28,6 +31,12 @@ public class ActualTimeCommand extends Command {
     private int projectIndex;
     HashMap<String, String> params;
 
+    /**
+     * Constructor for ActualTimeCommand. Calls parse() method.
+     * @param params Hashmap of parameters the command requires.
+     * @param projectIndex
+     * @throws EzExceptions
+     */
     public ActualTimeCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
@@ -36,6 +45,10 @@ public class ActualTimeCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Retrieves task index, actual time in hours and minutes from hashmap passed to it from constructor.
+     * @throws EzExceptions
+     */
     public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, TASK_INDEX_KEY)) - USER_JAVA_INDEX_DIFF;
@@ -47,6 +60,13 @@ public class ActualTimeCommand extends Command {
         }
     }
 
+    /**
+     * Executes command to add actual time taken to tasks.
+     * @param projects
+     * @param members
+     * @return duration added UI message.
+     * @throws EzExceptions
+     */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> members) throws EzExceptions {
         try {
             EzLogger.log(Level.INFO, "Executing Command");
@@ -68,6 +88,10 @@ public class ActualTimeCommand extends Command {
         }
     }
 
+    /**
+     * Checks if command will exit program.
+     * @return isExit status.
+     */
     public Boolean isExit() {
         return false;
     }

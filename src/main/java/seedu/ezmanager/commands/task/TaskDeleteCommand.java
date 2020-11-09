@@ -12,13 +12,21 @@ import seedu.ezmanager.ui.Ui;
 
 import static seedu.ezmanager.Parser.getHashValue;
 
-
+/**
+ * Command that deletes a task within project.
+ */
 public class TaskDeleteCommand extends Command {
 
     private int taskIndex;
     private int projectIndex;
     HashMap<String, String> params;
 
+    /**
+     * Constructor for TaskDeleteCommand. Calls parse() method.
+     * @param params Hashmap of parameters the command requires.
+     * @param projectIndex
+     * @throws EzExceptions
+     */
     public TaskDeleteCommand(HashMap<String, String> params, int projectIndex)
             throws EzExceptions {
         assert projectIndex >= 0 : "projectIndex must be positive integer!";
@@ -27,6 +35,10 @@ public class TaskDeleteCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Retrieves task index from hashmap passed to it from constructor.
+     * @throws EzExceptions
+     */
     public void parse() throws EzExceptions {
         try {
             taskIndex = Integer.parseInt(getHashValue(params, "t")) - 1;
@@ -35,6 +47,13 @@ public class TaskDeleteCommand extends Command {
         }
     }
 
+    /**
+     * Executes command to delete task within project.
+     * @param projects
+     * @param teamMembers
+     * @return task deleted UI message.
+     * @throws EzExceptions
+     */
     @Override
     public String executeCommand(ArrayList<Project> projects,
                                  ArrayList<TeamMember> teamMembers) throws EzExceptions {
@@ -52,6 +71,10 @@ public class TaskDeleteCommand extends Command {
         }
     }
 
+    /**
+     * Checks if command will exit program.
+     * @return isExit status.
+     */
     @Override
     public Boolean isExit() {
         return false;
