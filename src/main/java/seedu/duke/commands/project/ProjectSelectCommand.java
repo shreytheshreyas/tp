@@ -22,14 +22,31 @@ public class ProjectSelectCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Parse user parameter inputs for execution.
+     *
+     * @throws DukeExceptions Invalid index when parameter values entered is not an integer.
+     */
     public void parse() throws DukeExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidProjectID");
+            throw new DukeExceptions("indexNonInteger");
         }
     }
 
+    /**
+     * Selects a specified Project object and move into its project view.
+     * Set projectIndex in Parser class with the new project index.
+     * Prints project view.
+     *
+     * @param projects ArrayList of Projects.
+     * @param teamMembers ArrayList of TeamMembers in the program.
+     * @return Prints project view.
+     * @throws DukeExceptions Empty project list if the ArrayList of Project is empty
+     * or Invalid Project ID if when parameter values provided is outside
+     * the range of the Project list.
+     */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");

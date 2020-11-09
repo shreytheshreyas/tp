@@ -19,6 +19,7 @@ public class ProjectListCommand extends Command {
             throw new DukeExceptions("emptyProjectList");
         } else {
             try {
+                /*
                 int projectCounter = 0;
                 int i = 0;
                 while (projectCounter < projects.size()) {
@@ -32,6 +33,7 @@ public class ProjectListCommand extends Command {
                     projectCounter++;
                 }
                 Collections.sort(projects);
+                */
                 return Ui.printProjectListMessage(projects);
             } catch (IndexOutOfBoundsException e) {
                 throw new DukeExceptions("invalidProjectID");

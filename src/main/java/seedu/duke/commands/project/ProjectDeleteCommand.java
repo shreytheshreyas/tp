@@ -23,14 +23,29 @@ public class ProjectDeleteCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Parse user parameter inputs for execution.
+     *
+     * @throws DukeExceptions Invalid index when parameter values entered is not an integer.
+     */
     public void parse() throws DukeExceptions {
         try {
             projectIndex = Integer.parseInt(getHashValue(params, "p")) - 1;
         } catch (NumberFormatException e) {
-            throw new DukeExceptions("invalidProjectID");
+            throw new DukeExceptions("indexNonInteger");
         }
     }
 
+    /**
+     * Deletes a Project from the ArrayList of Projects.
+     * Removes the Project object from the ArrayList of Projects of each assigned TeamMember.
+     * Print project deleted message.
+     *
+     * @param projects ArrayList of Projects.
+     * @param teamMembers ArrayList of TeamMembers in the program.
+     * @return Prints project deleted message.
+     * @throws DukeExceptions
+     */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         if (projects.size() == 0) {
             throw new DukeExceptions("emptyProjectList");

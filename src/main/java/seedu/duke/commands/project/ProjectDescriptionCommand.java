@@ -24,6 +24,11 @@ public class ProjectDescriptionCommand extends Command {
         this.parse();
     }
 
+    /**
+     * Parse user parameter inputs for execution.
+     *
+     * @throws DukeExceptions Invalid index when parameter values entered is not an integer.
+     */
     public void parse() throws DukeExceptions {
         projectDescription = getHashValue(params, "d");
         try {
@@ -33,6 +38,16 @@ public class ProjectDescriptionCommand extends Command {
         }
     }
 
+    /**
+     * Add project description to specified Project object.
+     * Print project description added message.
+     *
+     * @param projects ArrayList of Projects.
+     * @param teamMembers ArrayList of TeamMembers in the program.
+     * @return Print project description added message.
+     * @throws DukeExceptions Invalid Project ID if when parameter values provided is outside
+     * the range of the Project list.
+     */
     public String executeCommand(ArrayList<Project> projects, ArrayList<TeamMember> teamMembers) throws DukeExceptions {
         try {
             Project project = projects.get(projectIndex);
