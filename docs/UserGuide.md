@@ -86,7 +86,9 @@ Members by using the `list` command in Home View or in Project View
 ## Home View
 The Home View displays the full list of projects and members that are under a manager's purview. 
 The manager can add and edit projects and members from this view.
-
+Remarks shown for each project are depends on the deadline of its tasks.
+1. Task not done and has an upcoming deadline due in 5 days or less - `!!!Warning!!!` and days countdown shown.
+2. Task not done and has deadline due in 6 days or more - Name of task and date of deadline shown. 
 
 
 > ### :bulb: Accessing Home View
@@ -96,32 +98,33 @@ The manager can add and edit projects and members from this view.
 > Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
 > enables the Home View commands in this section.
 
-
+Example of usage and output:
 
 ```
-Hello! Welcome to EZ Manager!
+EZ Manager Home View
 
  ---------------------- 
 | PROJECT LIST         |
  ---------------------- 
 
-Index      Project Name                       Deadline      Tasks Completed
----------------------------------------------------------------------------
-1.         CS2113T                            04/11/2020    2/3            
-2.         Home Improvement                   04/09/2021    3/4            
-3.         Launch Rocket                      04/03/2022    0/1            
+Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
+2.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
+3.      N        Launch Rocket            Tracking of rockets                04/03/2022    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
+
 
  ---------------------- 
 | MEMBERS LIST         |
  ---------------------- 
 
-Index      Member Name                        Projects Involved              
----------------------------------------------------------------------------
-1.         Sean                               1. CS2113T                     
+Index      Member Name                        Projects Involved        Hours spent across tasks
+-----------------------------------------------------------------------------------------------
+1.         Sean                               1. CS2113T               5.0      
 
-2.         Tom                                1. Home Improvement            
+2.         Tom                                1. Home Improvement      2.5      
 
-3.         Mike                               1. Launch Rocket               
+3.         Mike                               1. Launch Rocket         3.0      
 
 ____________________________________________________________
 ```
@@ -204,7 +207,7 @@ ____________________________________________________________
 
 
 ### Adding a deadline to a project: `deadline`
-Adds a deadline to an existing project.
+Adds a deadline to an existing project then sorts the projects according to deadline.
 
 > :exclamation: The project must exist before a deadline can be added.
 
@@ -214,12 +217,75 @@ Format: `deadline p/PROJECT_INDEX d/DATE`
 
 Example of usage: 
 
->  Adds the deadline 25/10/2020 to the third project.
+>  Adds the deadline 04/03/2022 to the third project.
 
 ```
 deadline p/3 d/2022-03-04
 ____________________________________________________________
 Deadline 04/03/2022 added to Project Launch Rocket
+
+EZ Manager Home View
+
+ ---------------------- 
+| PROJECT LIST         |
+ ---------------------- 
+
+Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
+2.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
+3.      N        Launch Rocket            Tracking of rockets                04/03/2022    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
+
+
+ ---------------------- 
+| MEMBERS LIST         |
+ ---------------------- 
+
+Index      Member Name                        Projects Involved        Hours spent across tasks
+-----------------------------------------------------------------------------------------------
+1.         Sean                               1. CS2113T               5.0      
+
+2.         Tom                                1. Home Improvement      2.5      
+
+3.         Mike                               1. Launch Rocket         3.0      
+
+____________________________________________________________
+```
+
+> Adds the deadline 12/12/2020 to the third project.
+
+```
+deadline p/3 d/2022-03-04
+____________________________________________________________
+Deadline 04/03/2022 added to Project Launch Rocket
+
+EZ Manager Home View
+
+ ---------------------- 
+| PROJECT LIST         |
+ ---------------------- 
+
+Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
+2.      N        Launch Rocket            Tracking of rockets                12/12/2020    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
+3.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
+
+
+
+ ---------------------- 
+| MEMBERS LIST         |
+ ---------------------- 
+
+Index      Member Name                        Projects Involved        Hours spent across tasks
+-----------------------------------------------------------------------------------------------
+1.         Sean                               1. CS2113T               5.0      
+
+2.         Tom                                1. Home Improvement      2.5      
+
+3.         Mike                               1. Launch Rocket         3.0      
+
+____________________________________________________________
 ```
 
 
