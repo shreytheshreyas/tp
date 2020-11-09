@@ -86,8 +86,9 @@ Members by using the `list` command in Home View or in Project View
 ## Home View
 The Home View displays the full list of projects and members that are under a manager's purview. 
 The manager can add and edit projects and members from this view.
-Remarks shown for each project are depends on the deadline of its tasks.
-1. Task not done and has an upcoming deadline due in 5 days or less - `!!!Warning!!!` and days countdown shown.
+
+Remarks shown for each project depends on the deadline of its tasks.
+1. Task not done and has an upcoming deadline due in 5 days or less - `!!!Warning!!!` and countdown to deadline shown.
 2. Task not done and has deadline due in 6 days or more - Name of task and date of deadline shown. 
 
 
@@ -137,15 +138,19 @@ ____________________________________________________________
 >
 > Commands are specified in the following format:
 >
+>> `COMMAND_TYPE`  `PARAMETER1` `PARAMETER2` ...
+>
 > **:bulb: Parameters can be specified in any order!**
 >
 > **:bulb: Commands and parameter types can be in either lowercase or uppercase** 
 >
-> `COMMAND_TYPE`  `PARAMETER1` `PARAMETER2` ...
->
 > Parameters are specified in the following format:
 >
 > `PARAMETER_TYPE/PARAMETER_VALUE`
+>
+> **:bulb: Parameter values will take in whatever that has been entered including unnecessary spacing** 
+
+
 
 ### Viewing the updated Home View: `list`
 
@@ -153,22 +158,26 @@ Displays the updated Home View to user.
 
 Format: `list`
 
+
+
 ### Adding a project: `project`
 Adds a new project to the project list.
 
 Format: `project n/PROJECT_NAME`
 
->  :warning: Project names should not include slashes as it will be disregarded.
+>  :warning: Project names should not include slashes or an error will be shown.
 
 Example usage and output: 
 
 >  Adds the project 'Web Development' to the project list.
 
 ```
-project n/new project
+project n/Web Development
 ____________________________________________________________
-Project "new project" created!
+Project "Web Development" created!
 ```
+
+
 
 ### Selecting a project: `select`
 
@@ -185,6 +194,8 @@ Example of usage:
 ```
 select p/1
 ```
+
+
 
 ### Marking a project as done: `done`
 Marks an existing project as done.
@@ -207,7 +218,7 @@ ____________________________________________________________
 
 
 ### Adding a deadline to a project: `deadline`
-Adds a deadline to an existing project then sorts the projects according to deadline.
+Adds a deadline to an existing project then sorts the projects in the list according to deadline.
 
 > :exclamation: The project must exist before a deadline can be added.
 
@@ -252,7 +263,7 @@ Index      Member Name                        Projects Involved        Hours spe
 ____________________________________________________________
 ```
 
-> Adds the deadline 12/12/2020 to the third project.
+> Adds an earlier deadline 12/12/2020 to the third project to show sorting of projects.
 
 ```
 deadline p/3 d/2022-03-04
@@ -301,7 +312,7 @@ Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
 Example of usage: 
 
->  Adds the description `Project for Company X` to the first project.
+>  Adds the description `This is my Software Engineering Module` to the first project.
 
 ```
 description p/1 d/This is my Software Engineering Module.
@@ -369,7 +380,7 @@ Tom assigned to Project "CS2113T"
 
 
 ### Removing a member: `remove`
-Removes an existing member from the member list.
+Removes an existing member from the member list as well as every project and task the member is assigned to.
 
 > :exclamation: The member must exist before they can be removed.
 
@@ -382,7 +393,7 @@ Example of usage:
 ```
 remove m/1
 ___________________________________________________________
-Team member "Mike" has been removed
+Team member "Mike" has been removed from program entirely
 ```
 
 
@@ -577,6 +588,27 @@ ____________________________________________________________
 Member "Tom" has been assigned to "Code Review"
 ```
 
+
+
+### Removing a member: `remove`
+Removes an existing member from the current project as well as the tasks assigned.
+
+> :exclamation: The member must exist before they can be removed.
+
+Format: `remove m/MEMBER_INDEX`
+
+Example of usage: 
+
+>  Removes the first member from the member list.
+
+```
+remove m/1
+___________________________________________________________
+Team member "Mike" has been removed from Project "CS2113T"
+```
+
+
+
 ### Add estimated time: `estimate`
 Add estimated time taken for task to complete.
 
@@ -647,9 +679,19 @@ Format: `bye`
 
 ## FAQ
 
+**Q**: Does the program saves the data entered when I terminate the program abruptly? 
+
+**A**: Yes, the program saves the data entered after every command which allows the data to be stored 
+even if the program is terminated abruptly.
+
 **Q**: How do I transfer my data to another computer? 
 
-**A**: {your answer here}
+**A**: Simply transfer the ezmanager.txt file to another computer and run our program once to load the data.
+
+**Q**: How long does it take to get up and running? 
+
+**A**: Once you have the JAR file downloaded, you can run `java -jar ezmanager.jar` in the terminal 
+at the specific folder the JAR file is stored and you have begun.
 
 ## Command Summary
 
@@ -681,6 +723,7 @@ Project View Commands
 | priority | Assigns a priority to the specified task | `priority t/1 p/1` |
 | home    | Switches from ProjectView to HomeView | `home` |
 | assign  | Assigns member to specified task | `assign t/1 m/1` |
+| remove  | Removes specified member from current project | `remove m/1` |
 | estimate  | Add estimated time taken for task to complete | `estimate t/1 h/3 m/20` |
 | actual  | Add actual time taken for task to complete | `actual t/1 h/3 m/20` |
 | sort  | Sort tasks based on sorting type | `sort s/p` |
