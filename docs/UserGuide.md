@@ -15,13 +15,13 @@ Click on any of the links on the Table of Contents to go directly to the specifi
 
 At the end of the document, the command summary section provides a helpful summary of all of EZ Manager's commands.
 
-**:warning:**: This refers to any formatting issues to look out for
+:warning: : This refers to any formatting issues to look out for
 when keying in the commands.
 
-**:exclamation:**: This refers to any other constraints to look out for
+:exclamation: : This refers to any other constraints to look out for
 besides formatting issues.
 
-**:bulb:**: This refers to any helpful tips that might prove helpful to you.
+:bulb: : This refers to any helpful tips that might prove helpful to you.
 
 ### Structure
 Under each command, a description of what the command does is provided. 
