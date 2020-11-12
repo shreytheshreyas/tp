@@ -207,8 +207,12 @@ project n/Web Development
 ____________________________________________________________
 Project "Web Development" created!
 ```
-
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Adding a Project without providing the n/ parameter
+```
+project New Project
+Certain Parameters are missing!
+```
 
 ### 3.1.3. Selecting a project: `select`
 
@@ -225,9 +229,27 @@ Example of usage:
 ```
 select p/1
 ```
+**Examples of Exception Handling for this command** (Shreyas)
+> Adding a Project without providing the p/ parameter
+```
+select 1
+Certain Parameters are missing!
+```
 
+> Providing Project name instead of Project index
+```
+select p/"Web Development"
+Index must be an integer!
+```
 
-
+> Selecting a invalid Project-ID
+```
+_____________________________________________________________________________________
+select p/8
+_____________________________________________________________________________________
+Project ID does not exist!
+_____________________________________________________________________________________
+```
 ### 3.1.4. Marking a project as done: `done`
 Marks an existing project as done.
 
@@ -244,10 +266,26 @@ done t/1
 ____________________________________________________________
 Task "New Task" is done!
 ____________________________________________________________
+``` 
+**Examples of Exception Handling for this command** (Shreyas)
+> Marking a project as done without the p/ parameter
 ```
-
-
-
+done 1
+Certain Parameters are missing!
+```
+> Providing Project name instead of Project index
+```
+done p/"p3"
+Index must be an integer!
+```
+> Marking an invalid Project-ID as done
+```
+_____________________________________________________________________________________
+done p/8
+_____________________________________________________________________________________
+Project ID does not exist!
+_____________________________________________________________________________________
+```
 ### 3.1.5. Adding a deadline to a project: `deadline`
 Adds a deadline to an existing project then sorts the projects in the list according to deadline.
 
@@ -330,7 +368,17 @@ Index      Member Name                        Projects Involved        Hours spe
 ____________________________________________________________
 ```
 
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Providing a deadline to a project in in the DD-MM-YYYY format
+```
+deadline p/1 d/22-11-2020
+Date must be specified in format YYYY-MM-DD
+```
+> Providing a deadline to a project in in the MM-DD-YYYY format
+```
+deadline p/1 d/11-27-2020
+Date must be specified in format YYYY-MM-DD
+```
 
 ### 3.1.6. Adding a description to a project: `description`
 Adds a description to an existing project.
@@ -351,7 +399,12 @@ ____________________________________________________________
 Project description added "This is my Software Engineering Module.".
 ```
 
-
+**Examples of Exception Handling for this command** (Shreyas)
+>  Providing a description to the project without providing the d/ parameter
+```
+description p/1 this is a new project
+Certain Parameters are missing!
+```
 
 ### 3.1.7. Deleting a project: `delete`
 
@@ -371,6 +424,25 @@ ____________________________________________________________
 Project "Home Improvement" deleted
 ____________________________________________________________
 ```
+**Examples of Exception Handling for this command** (Shreyas)
+> Marking a project as done without the p/ parameter
+```
+delete 1
+Certain Parameters are missing!
+```
+> Providing Project name instead of Project index
+```
+done p/"p3"
+Index must be an integer!
+```
+> deleting an invalid project-ID as done
+```
+_____________________________________________________________________________________
+deleting p/8
+_____________________________________________________________________________________
+Project ID does not exist!
+_____________________________________________________________________________________
+```
 
 ### 3.1.8. Adding a member: `member`
 Adds a new member to the member list.
@@ -386,10 +458,14 @@ member n/John Doe
 ____________________________________________________________
 Team member "John Doe" has been added
 ```
+**Examples of Exception Handling for this command** (Shreyas)
+> Adding a member without the n/ parameter
+```
+member steve
+Certain Parameters are missing!
+```
 
-
-
-### 3.1.9. Assigning a member to a project: `assign`
+### 3.1.9. Assigning a member to a project: `assign` (Shreyas)
 Assigns an existing member to an existing project.
 
 > :exclamation: The project must exist before it can be assigned a member.
@@ -407,9 +483,24 @@ assign p/1 m/1
 ____________________________________________________________
 Tom assigned to Project "CS2113T"
 ```
-
-
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Assigning a member to a project that does not exist
+```
+_____________________________________________________________________________________
+assign m/1 p/9
+_____________________________________________________________________________________
+Project ID does not exist!
+_____________________________________________________________________________________
+```
+> Assigning a member that does not exist to a project 
+```
+_____________________________________________________________________________________
+assign m/4 p/1
+_____________________________________________________________________________________
+Team Member ID does not exist!
+_____________________________________________________________________________________
+```
+    
 ### 3.1.10. Removing a member: `remove`
 Removes an existing member from the member list as well as every project and task the member is assigned to.
 
@@ -427,7 +518,21 @@ ___________________________________________________________
 Team member "Mike" has been removed from program entirely
 ```
 
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Removing a team member without the m/ parameter
+```
+remove 2
+Certain Parameters are missing!
+```
+> Removing a team member that does not exist
+```
+_____________________________________________________________________________________
+remove m/3
+_____________________________________________________________________________________
+Team Member ID does not exist!
+_____________________________________________________________________________________
+```
+    
 
 ### 3.1.11. View hours worked by member: `hours`
 View the total hours worked by a worker across all tasks assigned in all projects.
@@ -445,6 +550,17 @@ hours m/1
 -------------------------------
 John worked for 2.5 hours.
 ```
+
+**Examples of Exception Handling for this command** (Shreyas)
+> Providing an Invalid member index 
+```
+_____________________________________________________________________________________
+hours m/3
+_____________________________________________________________________________________
+The member ID entered does not exist
+_____________________________________________________________________________________
+```    
+
 
 ### 3.1.12. Exiting EZ Manager: `bye`
 You can exit the program with the `bye` command.
@@ -519,6 +635,14 @@ ____________________________________________________________
 Task "Deploy Version 2.0" created!
 ```
 
+**Examples of Exception Handling for this command** (Shreyas)
+> Providing a task name without n/ parameter
+```
+task task4
+Certain Parameters are missing!
+```   
+
+
 ### 4.1.3. Editing a task name: `edit`
 Updates an existing task name with the new name.
 
@@ -540,7 +664,16 @@ edit t/1 n/Update documentation
 ____________________________________________________________
 Task "Read documentation" has been updated to "Update documentation"
 ```
+**Examples of Exception Handling for this command** (Shreyas)
+>Editing the name of an invalid task 
+```
+_____________________________________________________________________________________
+edit t/4 n/task4
+_____________________________________________________________________________________
+Task ID does not exist!
+_____________________________________________________________________________________
 
+```   
 
 ### 4.1.4. Marking a task as done: `done`
 Marks an existing task as done.
@@ -558,7 +691,25 @@ done t/1
 ____________________________________________________________
 Task "Coding" is done!
 ```
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Marking a task as done without the t/ parameter
+```
+done 1
+Certain Parameters are missing!
+```
+> Providing task name instead of Project index
+```
+done t/"task1"
+Index must be an integer!
+```
+> Marking an invalid task-ID as done
+```
+_____________________________________________________________________________________
+done p/8
+_____________________________________________________________________________________
+Project ID does not exist!
+_____________________________________________________________________________________
+```
 ### 4.1.5. Adding a deadline to a task: `deadline`
 Adds a deadline to an existing task.
 
@@ -579,7 +730,17 @@ ____________________________________________________________
 Deadline 25/10/2020 added to Task Coding
 ```
 
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Providing a deadline to a task in in the DD-MM-YYYY format
+```
+deadline t/1 d/22-11-2020
+Date must be specified in format YYYY-MM-DD
+```
+> Providing a deadline to a project in in the MM-DD-YYYY format
+```
+deadline t/1 d/11-27-2020
+Date must be specified in format YYYY-MM-DD
+```
 
 ### 4.1.6. Adding a priority to a task: `priority`
 Adds a priority to an existing task.
@@ -602,7 +763,15 @@ ____________________________________________________________
 Priority "1" has been assigned to "Coding"
 ```
 
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Setting priority to an invalid task-ID
+```
+_____________________________________________________________________________________
+priority t/4 p/1
+_____________________________________________________________________________________
+Task ID does not exist!
+_____________________________________________________________________________________
+```
 
 ### 4.1.7. Deleting a task: `delete`
 Deletes a task from the task list.
@@ -619,6 +788,16 @@ Example of usage:
 delete t/1
 ____________________________________________________________
 Task "Coding" removed!
+```
+
+**Examples of Exception Handling for this command** (Shreyas)
+> Delete a task with an invalid task-ID
+```
+_____________________________________________________________________________________
+delete t/4 
+_____________________________________________________________________________________
+Task ID does not exist!
+_____________________________________________________________________________________
 ```
 
 ### 4.1.8. Assigning a member to a task: `assign`
@@ -642,7 +821,23 @@ ____________________________________________________________
 Member "Tom" has been assigned to "Code Review"
 ```
 
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Assigning a member to a task that does not exist
+```
+_____________________________________________________________________________________
+assign m/1 t/11
+_____________________________________________________________________________________
+Task ID does not exist!
+_____________________________________________________________________________________
+```
+> Assigning a member to a task who is not assigned to the respective project 
+```
+_____________________________________________________________________________________
+assign m/4 t/1
+_____________________________________________________________________________________
+Team Member ID does not exist!
+_____________________________________________________________________________________
+```
 
 ### 4.1.9. Removing a member: `remove`
 Removes an existing member from the current project as well as the tasks assigned.
@@ -659,6 +854,21 @@ Example of usage:
 remove m/1
 ___________________________________________________________
 Team member "Mike" has been removed from Project "CS2113T"
+```
+
+**Examples of Exception Handling for this command** (Shreyas)
+> Removing a team member without the m/ parameter
+```
+remove 2
+Certain Parameters are missing!
+```
+> Removing a team member that was not assigned to the respective project
+```
+_____________________________________________________________________________________
+remove m/3
+_____________________________________________________________________________________
+Team Member ID does not exist!
+_____________________________________________________________________________________
 ```
 
 
@@ -681,6 +891,17 @@ Task "New Task" has estimated time of 12 hours and 30 minutes
 
 ```
 
+**Examples of Exception Handling for this command** (Shreyas)
+> Assigning a time period to a task that does not exist
+```
+_____________________________________________________________________________________
+estimate t/11 h/6 m/30
+_____________________________________________________________________________________
+Task ID does not exist!
+_____________________________________________________________________________________
+```
+
+
 ### 4.1.11. Add actual time taken: `actual`
 Add actual time taken for task to complete.
 
@@ -700,8 +921,17 @@ ____________________________________________________________
 Task "New Task" took 12 hours and 30 minutes to be completed.
 
 ```
+**Examples of Exception Handling for this command** (Shreyas)
+> Assigning a time period to a task that does not exist
+```
+_____________________________________________________________________________________
+actual t/11 h/5 m/20    
+_____________________________________________________________________________________
+Task ID does not exist!
+_____________________________________________________________________________________
+```
 
-### 4.1.12. Sort tasks: `sort`
+### 4.1.12. Sort tasks: `sort` (Shreyas)
 
 Sort tasks by priority, deadline or actual time taken.
 
@@ -724,7 +954,14 @@ sort s/d
 ____________________________________________________________
 Task List sorted based on deadline
 ```
-
+**Examples of Exception Handling for this command** (Shreyas)
+> Using the sort functionality with the s/ parameter
+```
+_____________________________________________________________________________________
+sort p
+Certain Parameters are missing!
+_____________________________________________________________________________________
+```
 ### 4.1.13. Exiting EZ Manager: `bye`
 
 You can exit the program with the `bye` command.
