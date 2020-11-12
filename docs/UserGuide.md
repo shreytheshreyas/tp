@@ -59,11 +59,11 @@ example output
         2. [Task: Adding a task](#412-adding-a-task-task) Serendepedous Shreyas
         3. [Edit: Editing a task name](#413-editing-a-task-name-edit) Shockingly Handsome Shreyas
         4. [Done: Marking a task as done](#414-marking-a-task-as-done-done) Shrelock Shreyas
-        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline) Samyang Sean
-        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-deadline) Sexy Sean
-        7. [Delete: Deleting a task](#417-deleting-a-task-delete) Single Sean
-        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign) Spontaneous Sean
-        9. [Remove: Removing a member from the project](#419-removing-a-member-remove) Singer Sean
+        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline-sean) Samyang Sean
+        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-priority-sean) Sexy Sean
+        7. [Delete: Deleting a task](#417-deleting-a-task-delete-sean) Single Sean
+        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign-sean) Spontaneous Sean
+        9. [Remove: Removing a member from the project](#419-removing-a-member-remove-sean) Singer Sean
         10. [Estimate: Adding estimated time to a task](#4110-add-estimated-time-estimate) Sarenate Sam
         11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual) Sarangayou Sam
         12. [Sort: Sort tasks](#4112-sort-tasks-sort) Shag Sam
