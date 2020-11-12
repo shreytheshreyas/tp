@@ -715,9 +715,10 @@ ________________________________________________________________________________
 ```
 ### 4.1.5. Adding a deadline to a task: `deadline` (Sean)
 In a typical software engineering project, implementation of various tasks are dependent on the
-completion of other tasks. Easily add deadlines to your tasks with the deadline command so your team
-can finish tasks on time and start work on further tasks. Simply specify the task followed by the deadline 
-according to the format below.
+completion of other tasks. Easily add deadlines to your tasks with the deadline command. Now your team
+can finish tasks on time and start work on further tasks. 
+
+Simply specify the task followed by the deadline according to the format below.
 
 Format: `deadline t/TASK_INDEX d/DATE`
 
@@ -751,10 +752,10 @@ Date must be specified in format YYYY-MM-DD
 ```
 
 ### 4.1.6. Adding a priority to a task: `priority` (Sean)
-Over time, as you discover new bugs and think of new features to add, your project starts to fill up with
-tasks after tasks. Ensure your team stays focused and work on the most important tasks first by adding 
-priorities to your tasks. With the priority command, all you have to do is specify the task index followed by
-the priority according to the format below.
+Over time, you discover new bugs add new features and your project starts to fill up with
+tasks after tasks. Add priorities to tasks and ensure your team stays focused and work on the most important tasks first. 
+
+All you have to do is specify the task index followed by the priority according to the format below.
 
 > :bulb: 1 denotes the highest priority.
 >
@@ -798,7 +799,7 @@ ________________________________________________________________________________
 ### 4.1.7. Deleting a task: `delete` (Sean)
 As your project evolves, you might soon find certain tasks unnecessary or outdated. 
 
-Easily delete a task from the task list with the delete command.
+Easily delete a task from the task list with the delete command!
 
 > :exclamation: The task must exist in the task list before it can be deleted.
 
@@ -827,7 +828,8 @@ ________________________________________________________________________________
 ### 4.1.8. Assigning a member to a task: `assign` (Sean)
 Easily delegate work to your team members with the assign commmand! 
 
-Now each member knows exactly what they have to do and be overwhelmed with the full list of tasks in a project. 
+Now each member knows exactly what they have to do and not be overwhelmed with the full list of tasks in a project. 
+
 Besides, EZManager allows you to assign multiple members to tasks so they can discuss and collaborate with team members 
 that are assigned the same task as them! 
 
@@ -850,7 +852,7 @@ ____________________________________________________________
 Member "Tom" has been assigned to "Code Review"
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Assigning a member to a task that does not exist
 ```
 _____________________________________________________________________________________
@@ -869,8 +871,9 @@ ________________________________________________________________________________
 ```
 
 ### 4.1.9. Removing a member: `remove` (Sean)
-If you decide to remove a member from a project, it's incredibly simple! Easily remove a member from a
-project with the remove command. The member will continue to be part of your members list in
+If you decide to remove a member from a project, it's incredibly simple! 
+
+Easily remove a member from a project with the remove command. The member will continue to be part of your members list in
 the Home View so you can assign him/her to another project instead.
 
 > :exclamation: The member must exist before they can be removed.
