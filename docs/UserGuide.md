@@ -52,7 +52,7 @@ example output
         9. [Assign: Assigning a member to a project](#319-assigning-a-member-to-a-project-assign) Ravenous Riaz
         10. [Remove: Removing a member](#3110-removing-a-member-remove) R Riaz
         11. [Hours: Hours worked by member](#3111-view-hours-worked-by-member-hours) Super Shreyas
-        12. [Bye: Exit Program](#3112-exiting-ez-Manager-bye) S Shreyas
+        12. [Bye: Exit Program](#3112-exiting-ez-Manager-bye) ShreyTheShreyas
 4. [Project View](#project-view)
     1. [Commands](#project-view-commands)
         1. [List: Viewing the updated Project View](#411-viewing-the-updated-project-view-list) Seductive Shreyas
@@ -538,7 +538,8 @@ ________________________________________________________________________________
     
 
 ### 3.1.11. View hours worked by member: `hours`
-View the total hours worked by a worker across all tasks assigned in all projects.
+As a project manager you might want to keep track of the number of hours each member in a project has contributed.
+This command achieves just and allows you to view the total number of hours worked by a worker across all tasks assigned in all projects.
 
 Now, you know which of your workers are overworked and be a better manager by shifting work to members who are more free!
 
@@ -566,7 +567,8 @@ ________________________________________________________________________________
 
 
 ### 3.1.12. Exiting EZ Manager: `bye`
-You can exit the program with the `bye` command.
+When you are done with your work for the day you can exit the program with the `bye` command and this returns
+you back to the commmand line.
 
 Format: `bye`
 
@@ -617,12 +619,13 @@ ____________________________________________________________
 ## 4.1. Project View Commands
 
 ### 4.1.1. Viewing the updated Project View: `list`
-Displays the updated Project View to user.
+When you select a project you might want to view an overview of all the tasks along with their respective priorities and deadlines. You may also be interested in viewing a list of all members associated to the project and which tasks they are working on.
+This command allows you to view the Project View of a project and is progressively updated everytime you add in a new task and assign in a member to the project.
 
 Format: `list`
 
 ### 4.1.2. Adding a task: `task`
-Adds a new task to the task list.
+Each project have their own activities and assignments associated with them. To record these activities this command allows you to create a new task and the program adds it to the task list.
 
 Format: `task n/TASK_NAME`
 
@@ -647,7 +650,8 @@ Certain Parameters are missing!
 
 
 ### 4.1.3. Editing a task name: `edit`
-Updates an existing task name with the new name.
+As you and your team porgess to working on the project you might want to make updates to an existing task name with the new name. This
+commmand helps you achieve that.
 
 Format: `edit t/TASK_INDEX n/NEW_TASK_NAME`
 
@@ -679,7 +683,7 @@ ________________________________________________________________________________
 ```   
 
 ### 4.1.4. Marking a task as done: `done`
-Marks an existing task as done.
+During your course of a project you can mark certain tasks as done and this command is used for that purpose. This command allows you to differentiate a task that is completed from a task that is still pending. This ultimately makes your management of a particular project more organised.
 
 > :exclamation: The task must exist before it can be selected.
 
