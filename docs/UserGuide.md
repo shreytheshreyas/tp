@@ -112,18 +112,17 @@ Members by using the `list` command in Home View or in Project View
 
 ## 3. Home View
 As a project manager, you need to have a quick overview of all the projects that are under your charge.
-Apart from just projects, you would want to be able to see who is working on what so that you can allocate 
-work evenly across members.
+Apart from just projects, you would want to be able to see what your members are working on, so that you can allocate 
+work evenly across your members.
 The Home View does just that. You get a concise display of the full list of projects and members that are under your purview. 
 
-At a glance, you see the most important details about your project including its status, deadline and number of tasks completed. 
+At a glance, you see the most important details about your project including its status, deadline and number of tasks completed.
 
-The Home View also conveniently provides warnings for uncompleted tasks with imminent deadlines.
-
+The Home View also conveniently provides you with warnings for uncompleted tasks with imminent deadlines.
 
 Remarks shown for each project depends on the deadline of its tasks.
-1. Task not done and has an upcoming deadline due in 5 days or less - `!!!Warning!!!` and countdown to deadline shown.
-2. Task not done and has deadline due in 6 days or more - Name of task and date of deadline shown. 
+Task that you have not completed and has an upcoming deadline due in 5 days or less will have `!!!Warning!!!` shown in the remarks as well as a countdown to deadline.
+Task that you have not completed but has a deadline due in 6 days or more will just have the name of task and date of deadline displayed in the remarks. 
 
 
 > ### :bulb: Accessing Home View
@@ -188,14 +187,16 @@ ____________________________________________________________
 
 ### 3.1.1. Viewing the updated Home View: `list`
 
-After any changes, immediately see the updated view with the `list` command.
+After making any changes, you would want to immediately see the updated Home View. 
+You can achieve this with the `list` command.
 
 Format: `list`
 
 
 
 ### 3.1.2. Adding a project: `project`
-Adds a new project to the project list.
+Now you have a new project allocated to you and want to be able to add it to your list of projects.
+Simply enter `project`, together with the project name and there you have it, a new project listed on the project list.
 
 Format: `project n/PROJECT_NAME`
 
@@ -219,7 +220,9 @@ Certain Parameters are missing!
 
 ### 3.1.3. Selecting a project: `select`
 
-Select a new project from the project list and brings user to Project View of specified project.
+You want to start working on a certain project such as adding a new task and assigning members to your task.
+This can be accomplished with this command by selecting the project you want to work on from the project list, 
+bringing you to the Project View of the project you have specified.
 
 > :exclamation: The project must exist before it can be selected.
 
@@ -254,7 +257,8 @@ Project ID does not exist!
 _____________________________________________________________________________________
 ```
 ### 3.1.4. Marking a project as done: `done`
-Marks an existing project as done.
+Now that you have finally finished building your project, you would want to mark the project as done 
+so that you can free your mind from that project and focus on the other unfinished ones.
 
 > :exclamation: The project must exist before it can be marked as done.
 
@@ -290,7 +294,8 @@ Project ID does not exist!
 _____________________________________________________________________________________
 ```
 ### 3.1.5. Adding a deadline to a project: `deadline`
-Adds a deadline to an existing project then sorts the projects in the list according to deadline.
+With multiple projects that you have to work on, you want to be able to keep track of these projects and deliver them to your clients on time.
+You can simply add a deadline to an existing project. We will sort the projects in the list for you according to their deadlines in order for you to know which projects are the most urgent.
 
 > :exclamation: The project must exist before a deadline can be added.
 
