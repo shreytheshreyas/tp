@@ -41,34 +41,34 @@ example output
 2. [Terminologies](#terminologies)
 3. [Home View](#home-view)
     1. [Commands](#31-home-view-commands)
-        1. [List: Viewing the updated Home View](#311-viewing-the-updated-home-view-list)
-        2. [Project: Adding a project](#312-adding-a-project-project)
-        3. [Select: Selecting a project](#313-selecting-a-project-select)
-        4. [Done: Marking a project as done](#314-marking-a-project-as-done-done)
-        5. [Deadline: Adding a deadline to a project](#315-adding-a-deadline-to-a-project-deadline)
-        6. [Description: Adding a description to a project](#316-adding-a-description-to-a-project-description)
-        7. [Delete: Deleting a project](#317-deleting-a-project-delete)
-        8. [Member: Adding a member](#318-adding-a-member-member)
-        9. [Assign: Assigning a member to a project](#319-assigning-a-member-to-a-project-assign)
-        10. [Remove: Removing a member](#3110-removing-a-member-remove)
-        11. [Hours: Hours worked by member](#3111-view-hours-worked-by-member-hours)
-        12. [Bye: Exit Program](#3112-exiting-ez-Manager-bye)
+        1. [List: Viewing the updated Home View](#311-viewing-the-updated-home-view-list) Bg Sam
+        2. [Project: Adding a project](#312-adding-a-project-project) Bg Sam
+        3. [Select: Selecting a project](#313-selecting-a-project-select) Baby Sam
+        4. [Done: Marking a project as done](#314-marking-a-project-as-done-done)B sam
+        5. [Deadline: Adding a deadline to a project](#315-adding-a-deadline-to-a-project-deadline) bae Sam
+        6. [Description: Adding a description to a project](#316-adding-a-description-to-a-project-description) Radical Riaz
+        7. [Delete: Deleting a project](#317-deleting-a-project-delete) Righteous Riaz 
+        8. [Member: Adding a member](#318-adding-a-member-member) Ready Riaz?
+        9. [Assign: Assigning a member to a project](#319-assigning-a-member-to-a-project-assign) Ravenous Riaz
+        10. [Remove: Removing a member](#3110-removing-a-member-remove) R Riaz
+        11. [Hours: Hours worked by member](#3111-view-hours-worked-by-member-hours) Super Shreyas
+        12. [Bye: Exit Program](#3112-exiting-ez-Manager-bye) S Shreyas
 4. [Project View](#project-view)
     1. [Commands](#project-view-commands)
-        1. [List: Viewing the updated Project View](#411-viewing-the-updated-project-view-list)
-        2. [Task: Adding a task](#412-adding-a-task-task)
-        3. [Edit: Editing a task name](#413-editing-a-task-name-edit)
-        4. [Done: Marking a task as done](#414-marking-a-task-as-done-done)
-        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline)
-        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-deadline)
-        7. [Delete: Deleting a task](#417-deleting-a-task-delete)
-        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign)
-        9. [Remove: Removing a member from the project](#419-removing-a-member-remove)
-        10. [Estimate: Adding estimated time to a task](#4110-add-estimated-time-estimate)
-        11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual)
-        12. [Sort: Sort tasks](#4112-sort-tasks-sort)
-        13. [Bye: Exit Program](#4113-exiting-ez-manager-bye)
-5. [FAQ](#faq)
+        1. [List: Viewing the updated Project View](#411-viewing-the-updated-project-view-list) Seductive Shreyas
+        2. [Task: Adding a task](#412-adding-a-task-task) Serendepedous Shreyas
+        3. [Edit: Editing a task name](#413-editing-a-task-name-edit) Shockingly Handsome Shreyas
+        4. [Done: Marking a task as done](#414-marking-a-task-as-done-done) Shrelock Shreyas
+        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline) Samyang Sean
+        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-deadline) Sexy Sean
+        7. [Delete: Deleting a task](#417-deleting-a-task-delete) Single Sean
+        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign) Spontaneous Sean
+        9. [Remove: Removing a member from the project](#419-removing-a-member-remove) Singer Sean
+        10. [Estimate: Adding estimated time to a task](#4110-add-estimated-time-estimate) Sarenate Sam
+        11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual) Sarangayou Sam
+        12. [Sort: Sort tasks](#4112-sort-tasks-sort) Shag Sam
+        13. [Bye: Exit Program](#4113-exiting-ez-manager-bye) Swagger McSam
+5. [FAQ](#faq) Sammy the Man
 6. [Command Summary](#command-summary)
 
 ## 1. Quick Start
@@ -111,9 +111,12 @@ Members by using the `list` command in Home View or in Project View
 
 
 ## 3. Home View
-The Home View displays the full list of projects and members that are under your purview. 
+As a project manager, you need to have a quick overview of all the projects that are under your charge.
+Apart from just projects, you would want to be able to see who is working on what so that you can allocate 
+work evenly across members.
+The Home View does just that. You get a concise display of the full list of projects and members that are under your purview. 
 
-At a glance, see the most important details about your project including its status, deadline and number of tasks completed. 
+At a glance, you see the most important details about your project including its status, deadline and number of tasks completed. 
 
 The Home View also conveniently provides warnings for uncompleted tasks with imminent deadlines.
 
