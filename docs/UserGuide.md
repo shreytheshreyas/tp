@@ -141,10 +141,8 @@ You can return to the Home View with the command shown below.
 > Format: `home`
 >
 > Displays the Home View. If the user is in the Project View, this command changes the view to Home View and 
-> commands specific to the Home View is enabled.
+> commands specific to the Home View is enabled.  
 
----
-<div style="page-break-after: always;"></div>
 
 Example of usage and output:
 
