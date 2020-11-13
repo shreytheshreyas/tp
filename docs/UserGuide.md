@@ -1030,16 +1030,17 @@ estimate t/1 h/12 m/30
 ____________________________________________________________
 Task "New Task" has estimated time of 12 hours and 30 minutes
 
-```
+```  
+  
+---
+<div style="page-break-after: always;"></div>  
 
 **Examples of Exception Handling for this command** (Shreyas)
 > Assigning a time period to a task that does not exist
 ```
-_____________________________________________________________________________________
 estimate t/11 h/6 m/30
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 
 
@@ -1073,11 +1074,9 @@ Task "New Task" took 12 hours and 30 minutes to be completed.
 **Examples of Exception Handling for this command** (Shreyas)
 > Assigning a time period to a task that does not exist
 ```
-_____________________________________________________________________________________
 actual t/11 h/5 m/20    
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 
 ### 4.1.12. Sort tasks: `sort` (Shreyas)
@@ -1113,7 +1112,8 @@ ________________________________________________________________________________
 sort p
 Certain Parameters are missing!
 _____________________________________________________________________________________
-```
+```  
+
 ### 4.1.13. Exiting EZ Manager: `bye`
 
 After a hard day's work, you can end your session with EZ Manager using the bye command. Fret not, when you are ready to
