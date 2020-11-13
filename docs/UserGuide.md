@@ -22,7 +22,7 @@ when keying in the commands.
 besides formatting issues.
 
 :bulb: : This refers to any helpful tips that might prove helpful to you.
-
+---
 ### Structure
 Under each command, a description of what the command does is provided. 
 
