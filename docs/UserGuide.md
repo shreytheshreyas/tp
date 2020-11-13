@@ -440,8 +440,8 @@ ____________________________________________________________
 Project description added "This is my Software Engineering Module.".
 ```
 
-**Examples of Exception Handling for the `description` command** (Shreyas)
-Shown below are some examples of misuse of the `delete` command that you could potentially make as a user.
+**Examples of Exception Handling for the `description` command** (Shreyas)  
+Shown below are some examples of misuse of the `description` command that you could potentially make as a user.
 
 > If you did not include the `d` parameter, you will be responded with an error message as shown below.
 ```
@@ -474,7 +474,7 @@ ____________________________________________________________
 Project "Home Improvement" deleted
 ____________________________________________________________
 ```
-**Examples of Exception Handling for the `delete` command** (Shreyas)
+**Examples of Exception Handling for the `delete` command** (Shreyas)  
 Shown below are some examples of misuse of the `delete` command that you could potentially make as a user.
 
 > In the example shown below, there are only 7 projects in the list of projects.
@@ -510,7 +510,7 @@ member n/John Doe
 ____________________________________________________________
 Team member "John Doe" has been added
 ```
-**Examples of Exception Handling for the `member` command** (Shreyas)
+**Examples of Exception Handling for the `member` command** (Shreyas)  
 Shown below are some examples of misuse of the `member` command that you could potentially make as a user.
 
 > If you did not include the `n` parameter, you will be responded with an error message as shown below.
@@ -554,7 +554,7 @@ ____________________________________________________________
 Tom assigned to Project "CS2113T"
 ```
 
-**Examples of Exception Handling for the `assign` command** (Shreyas)
+**Examples of Exception Handling for the `assign` command** (Shreyas)  
 Shown below are some examples of misuse of the `assign` command that you could potentially make as a user.
 
 > In the example shown below, there are only 8 projects in the list of projects.
@@ -597,7 +597,7 @@ ___________________________________________________________
 Team member "Mike" has been removed from program entirely
 ```
 
-**Examples of Exception Handling for `remove` command** (Shreyas)
+**Examples of Exception Handling for `remove` command** (Shreyas)  
 Shown below are some examples of misuse of the `remove` command that you could potentially make as a user.
 
 > If you did not include the `m` parameter, you will be responded with an error message as shown below.
