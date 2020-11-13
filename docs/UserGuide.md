@@ -60,7 +60,7 @@ example output
         3. [Edit: Editing a task name](#413-editing-a-task-name-edit)
         4. [Done: Marking a task as done](#414-marking-a-task-as-done-done)
         5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline)
-        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-deadline)
+        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-priority)
         7. [Delete: Deleting a task](#417-deleting-a-task-delete)
         8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign)
         9. [Remove: Removing a member from the project](#419-removing-a-member-remove)
