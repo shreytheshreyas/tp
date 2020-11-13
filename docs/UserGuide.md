@@ -207,17 +207,15 @@ project n/Web Development
 ____________________________________________________________
 Project "Web Development" created!
 ```  
----
-<div style="page-break-after: always;"></div>  
 
 **Examples of Exception Handling for this command**
 > Adding a Project without providing the n/ parameter
 ```
 project New Project
 Certain Parameters are missing!
-```
-
-
+```  
+---
+<div style="page-break-after: always;"></div>    
 
 ### 3.1.3. Selecting a project: `select` (Samuel Leow Wei Han)
 There are many requirements to fulfil in order to develop a new software product. 
