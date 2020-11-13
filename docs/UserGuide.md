@@ -956,20 +956,18 @@ Member "Tom" has been assigned to "Code Review"
 **Examples of Exception Handling for this command**
 > Assigning a member to a task that does not exist
 ```
-_____________________________________________________________________________________
 assign m/1 t/11
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 > Assigning a member to a task who is not assigned to the respective project 
 ```
-_____________________________________________________________________________________
 assign m/4 t/1
 _____________________________________________________________________________________
 Team Member ID does not exist!
-_____________________________________________________________________________________
-```
+```  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 4.1.9. Removing a member: `remove` (Sean)
 If you decide to remove a member from a project, it's incredibly simple! 
