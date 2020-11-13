@@ -1023,7 +1023,7 @@ What do you do when you start a week? A meticulous project manager like yourself
 is determining where you and your team should spend their energy. With this sorting feature, you can determine which
 tasks you need to focus on at a glance. Simply sort tasks by priority, deadline or actual time taken.
 
-Here are a few things you can take note of:
+Here are a few things you can take note of:  
 :bulb: Highest priority of 1 will be displayed at top.
 
 :bulb: Earliest deadline will be displayed at top.
