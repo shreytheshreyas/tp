@@ -393,17 +393,22 @@ Date must be specified in format YYYY-MM-DD
 ```
 
 ### 3.1.6. Adding a description to a project: `description`
-Adds a description to an existing project.
+As a project manager, you would like to see the descriptions of different projects.
+The `description` command allows you to add descriptions to a project as shown below.
 
 >:exclamation: The project must exist before a description can be added.
 
+You can use the following format to add descriptions to a specific project.
 Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
 > :warning: Project descriptions should not include slashes or an error will be shown.
 
 Example of usage: 
 
->  Adds the description `This is my Software Engineering Module` to the first project.
+>  In the example shown below, the user adds the description `This is my Software Engineering Module` to the first project.
+>  The user inputs the `p` parameter followed by the index of the project that the user wants to add a description to.
+>  The user then inputs the `d` parameter followed by the project description that he would like to add to the first project.
+>  Once the description has been added successfully, you can see an acknowledgement message being sent to the user.
 
 ```
 description p/1 d/This is my Software Engineering Module.
@@ -411,24 +416,39 @@ ____________________________________________________________
 Project description added "This is my Software Engineering Module.".
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
->  Providing a description to the project without providing the d/ parameter
+>  :bulb: You can also input the `d` parameter first followed by the `p` parameter as shown below.
+
+```
+description d/This is my Software Engineering Module p/1.
+____________________________________________________________
+Project description added "This is my Software Engineering Module.".
+```
+
+**Examples of Exception Handling for the `description` command** (Shreyas)
+Shown below are some examples of misuse of the `delete` command that you could potentially make as a user.
+
+> If you did not include the `d` parameter, you will be responded with an error message as shown below.
 ```
 description p/1 this is a new project
 Certain Parameters are missing!
 ```
 
 ### 3.1.7. Deleting a project: `delete`
+As a project manager, you would like to delete projects for various reasons. Some reasons
+include; creating a project by mistake, project is no longer in progress or the project has been discontinued.
+Hence, the `delete` command allows you to delete a specific project, one at a time, as shown below.
 
-Delete a project from the project list.
-
+You can use the following format to delete a specific project.
 Format: `delete p/PROJECT_INDEX`
 
 > :exclamation:  The project must exist in the project list before it can be deleted.
+> :warning:  The `PROJECT_INDEX` must be a positive integer.
 
 Example of usage: 
 
-* Deletes the first project in the project list.
+>  In the example shown below, the user deletes the second project in the list. 
+>  The user uses the `p` parameter followed by the index of the project from the list of projects.
+>  Once the project has been deleted successfully, you can see an acknowledgement message being sent to the user.
 
 ```
 delete p/2
@@ -436,18 +456,11 @@ ____________________________________________________________
 Project "Home Improvement" deleted
 ____________________________________________________________
 ```
-**Examples of Exception Handling for this command** (Shreyas)
-> Marking a project as done without the p/ parameter
-```
-delete 1
-Certain Parameters are missing!
-```
-> Providing Project name instead of Project index
-```
-done p/"p3"
-Index must be an integer!
-```
-> deleting an invalid project-ID as done
+**Examples of Exception Handling for the `delete` command** (Shreyas)
+Shown below are some examples of misuse of the `delete` command that you could potentially make as a user.
+
+> In the example shown below, there are only 7 projects in the list of projects.
+> If you try to delete a project that does not exist, for example, deleting the eighth project, you will be responded with an error message as shown below.
 ```
 _____________________________________________________________________________________
 deleting p/8
@@ -457,46 +470,70 @@ ________________________________________________________________________________
 ```
 
 ### 3.1.8. Adding a member: `member`
-Adds a new member to the member list.
+As a project manager, you would like to add members to join your team. You can then assign members 
+to projects or tasks in the future using the `assign` command. 
+The `member` command allows you to add members to your team as shown below.
 
+You can use the following format to add a member to your team.
 Format: `member n/MEMBER_NAME`
 
 Example of usage: 
 
-> Adds the member 'John Doe' to the member list.
+>  In the example shown below, the user adds the member `John Doe`. 
+>  The user uses the `n` parameter followed by the name of the member.
+>  Once the member has been added successfully, you can see an acknowledgement message being sent to the user.
 
 ```
 member n/John Doe
 ____________________________________________________________
 Team member "John Doe" has been added
 ```
-**Examples of Exception Handling for this command** (Shreyas)
-> Adding a member without the n/ parameter
+**Examples of Exception Handling for the `member` command** (Shreyas)
+Shown below are some examples of misuse of the `member` command that you could potentially make as a user.
+
+> If you did not include the `n` parameter, you will be responded with an error message as shown below.
 ```
 member steve
 Certain Parameters are missing!
 ```
 
 ### 3.1.9. Assigning a member to a project: `assign` (Shreyas)
-Assigns an existing member to an existing project.
+As a project manager, you would like to assign members to specific projects.
+You can then keep track of which members are assigned to which projects using the `list` command in the Home View.
+By using the `assign` command, you can assign members to a project as shown below.
 
 > :exclamation: The project must exist before it can be assigned a member.
->
 > :exclamation: The member must exist before they can be assigned a project.
 
+You can use the following format to assign a member to a specific project of your choice.
 Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
 
 Example of usage: 
 
-> Assigns the first member in the member list to the first project in the project list
+>  In the example shown below, the user assigns the first member from the list of members to the first project from the list of projects.
+>  The user inputs the `m` parameter followed by the index of the member that the user wants to assign to a project.
+>  The user then inputs the `p` parameter followed by the index of the project that the user wants to assign to a member.
+>  Once the member has been added successfully, you can see an acknowledgement message being sent to the user.
+
+```
+assign m/1 p/1
+____________________________________________________________
+Tom assigned to Project "CS2113T"
+```
+
+>  :bulb: You can also input the `p` parameter first followed by the `m` parameter as shown below.
 
 ```
 assign p/1 m/1
 ____________________________________________________________
 Tom assigned to Project "CS2113T"
 ```
-**Examples of Exception Handling for this command** (Shreyas)
-> Assigning a member to a project that does not exist
+
+**Examples of Exception Handling for the `assign` command** (Shreyas)
+Shown below are some examples of misuse of the `assign` command that you could potentially make as a user.
+
+> In the example shown below, there are only 8 projects in the list of projects.
+> If you try to assign a member to a project that does not exist, for example, assigning a member to the ninth project, you will be responded with an error message as shown below.
 ```
 _____________________________________________________________________________________
 assign m/1 p/9
@@ -504,7 +541,8 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```
-> Assigning a member that does not exist to a project 
+> In the example shown below, there are only 3 members in the list of members.
+> If you try to assign a project to a member that does not exist, for example, assigning a project to the fourth member, you will be responded with an error message as shown below.
 ```
 _____________________________________________________________________________________
 assign m/4 p/1
@@ -514,15 +552,20 @@ ________________________________________________________________________________
 ```
     
 ### 3.1.10. Removing a member: `remove`
-Removes an existing member from the member list as well as every project and task the member is assigned to.
+As a project manager, you would like to remove specific members from your team for various reasons.
+Some reasons include; the member has been accidentally added to your team or the member is no longer working with you.
+The `remove` command allows you to remove members from your team as shown below.
 
 > :exclamation: The member must exist before they can be removed.
 
+You can use the following format to remove a member from a specific project of your choice.
 Format: `remove m/MEMBER_INDEX`
 
 Example of usage: 
 
->  Removes the first member from the member list.
+>  In the example shown below, the user removes the first member from the list of members.
+>  The user uses the `m` parameter followed by the index of the member from the list of members.
+>  Once the member has been removed successfully, you can see an acknowledgement message being sent to the user.
 
 ```
 remove m/1
@@ -530,13 +573,16 @@ ___________________________________________________________
 Team member "Mike" has been removed from program entirely
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
-> Removing a team member without the m/ parameter
+**Examples of Exception Handling for `remove` command** (Shreyas)
+Shown below are some examples of misuse of the `remove` command that you could potentially make as a user.
+
+> If you did not include the `m` parameter, you will be responded with an error message as shown below.
 ```
 remove 2
 Certain Parameters are missing!
 ```
-> Removing a team member that does not exist
+> In the example shown below, there are only 2 members in the list of members. 
+> If you specified a member that does not exist, for example, specifying a third member, you will be responded with an error message as shown below.
 ```
 _____________________________________________________________________________________
 remove m/3
