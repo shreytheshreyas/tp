@@ -966,8 +966,7 @@ assign m/4 t/1
 _____________________________________________________________________________________
 Team Member ID does not exist!
 ```  
----
-<div style="page-break-after: always;"></div>  
+
 
 ### 4.1.9. Removing a member: `remove` (Sean)
 If you decide to remove a member from a project, it's incredibly simple! 
