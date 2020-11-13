@@ -1083,7 +1083,11 @@ even if the program is terminated abruptly.
 **Q**: How long does it take to get up and running? 
 
 **A**: Once you have the JAR file downloaded, you can run `java -jar ezmanager.jar` in the terminal 
-at the specific folder the JAR file is stored and you have begun.
+at the specific folder the JAR file is stored and you have begun.    
+
+---
+<div style="page-break-after: always;"></div>    
+
 
 ## 6. Command Summary
 
