@@ -602,35 +602,8 @@ The manager can add and edit tasks and assign members to tasks.
 >
 > This view is accessed by [selecting a project](#selecting-a-project-select) from the Home View.
 
+![ProjectView4](https://i.ibb.co/Fq5gFjC/ss4.png)
 
-
-```
-Project "CS2113T"
-
-Description:
-This is my Software Engineering Module.
-
- ---------------------
-| TASK LIST           |
- ---------------------
-Index  Status   Description        Deadline        Priority      Expected Hrs     Actual Hrs   | Members Involved
------------------------------------------------------------------------------------------------|----------------
-1      (Y)      Coding             04/11/2020      -             -                 -           |Sean|Tom|
-2      (Y)      Testing            12/11/2021      -             -                 -             
-3      (N)      Code Review        -               -             -                 -           |Mike|
-
- 
-
- ---------------------
-| MEMBERS LIST        |
- ---------------------
-1. Sean
-2. Tom
-3. Mike
-
-____________________________________________________________
-```
-  
 ---
 <div style="page-break-after: always;"></div>  
 
