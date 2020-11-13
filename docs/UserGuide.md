@@ -68,7 +68,11 @@ example output
         11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual)
         12. [Sort: Sort tasks](#4112-sort-tasks-sort)
         13. [Bye: Exit Program](#4113-exiting-ez-manager-bye)
-5. [FAQ](#faq) Sammy the Man
+
+
+
+
+5. [FAQ](#faq)
 6. [Command Summary](#command-summary)
 
 ## 1. Quick Start
@@ -88,9 +92,9 @@ In this view, you can execute task and member commands but
 you cannot execute project commands.
 - **Project list**: Refers to the list of projects currently
 existing in the system
-- **Task list**: Refers to the list of tasks currently
+- **Task list**: Refers to the list of tasks currentl
 existing in the system
-- **Member list**: Refers to the list of members currently
+- **Member list**: Refers to the list of membersrrently
 existing in the system
 - **PROJECT_INDEX**: Every existing project would be assigned
 a positive integer. Hence, the PROJECT_INDEX refers to this
@@ -538,7 +542,8 @@ ________________________________________________________________________________
     
 
 ### 3.1.11. View hours worked by member: `hours`
-View the total hours worked by a worker across all tasks assigned in all projects.
+As a project manager you might want to keep track of the number of hours each member in a project has contributed.
+This command achieves just and allows you to view the total number of hours worked by a worker across all tasks assigned in all projects.
 
 Now, you know which of your workers are overworked and be a better manager by shifting work to members who are more free!
 
@@ -566,7 +571,8 @@ ________________________________________________________________________________
 
 
 ### 3.1.12. Exiting EZ Manager: `bye`
-You can exit the program with the `bye` command.
+When you are done with your work for the day you can exit the program with the `bye` command and this returns
+you back to the commmand line.
 
 Format: `bye`
 
@@ -617,12 +623,13 @@ ____________________________________________________________
 ## 4.1. Project View Commands
 
 ### 4.1.1. Viewing the updated Project View: `list`
-Displays the updated Project View to user.
+When you select a project you might want to view an overview of all the tasks along with their respective priorities and deadlines. You may also be interested in viewing a list of all members associated to the project and which tasks they are working on.
+This command allows you to view the Project View of a project and is progressively updated everytime you add in a new task and assign in a member to the project.
 
 Format: `list`
 
 ### 4.1.2. Adding a task: `task`
-Adds a new task to the task list.
+Each project have their own activities and assignments associated with them. To record these activities this command allows you to create a new task and the program adds it to the task list.
 
 Format: `task n/TASK_NAME`
 
@@ -647,7 +654,8 @@ Certain Parameters are missing!
 
 
 ### 4.1.3. Editing a task name: `edit`
-Updates an existing task name with the new name.
+As you and your team porgess to working on the project you might want to make updates to an existing task name with the new name. This
+commmand helps you achieve that.
 
 Format: `edit t/TASK_INDEX n/NEW_TASK_NAME`
 
@@ -679,7 +687,7 @@ ________________________________________________________________________________
 ```   
 
 ### 4.1.4. Marking a task as done: `done`
-Marks an existing task as done.
+During your course of a project you can mark certain tasks as done and this command is used for that purpose. This command allows you to differentiate a task that is completed from a task that is still pending. This ultimately makes your management of a particular project more organised.
 
 > :exclamation: The task must exist before it can be selected.
 
@@ -713,12 +721,18 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```
-### 4.1.5. Adding a deadline to a task: `deadline`
-Adds a deadline to an existing task.
+### 4.1.5. Adding a deadline to a task: `deadline` (Sean)
+In a typical software engineering project, implementation of various tasks are dependent on the
+completion of other tasks. Easily add deadlines to your tasks with the deadline command. Now your team
+can finish tasks on time and start work on further tasks. 
+
+Simply specify the task followed by the deadline according to the format below.
 
 Format: `deadline t/TASK_INDEX d/DATE`
 
 > :warning: The `DATE` must be of the form `YYYY-MM-DD`
+>
+> :bulb: EZManager allows you to easily sort and view tasks by deadline. (See: Deadline Command)
 
 
 * The task must exist before a deadline can be added.
@@ -733,7 +747,7 @@ ____________________________________________________________
 Deadline 25/10/2020 added to Task Coding
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Providing a deadline to a task in in the DD-MM-YYYY format
 ```
 deadline t/1 d/22-11-2020
@@ -745,10 +759,15 @@ deadline t/1 d/11-27-2020
 Date must be specified in format YYYY-MM-DD
 ```
 
-### 4.1.6. Adding a priority to a task: `priority`
-Adds a priority to an existing task.
+### 4.1.6. Adding a priority to a task: `priority` (Sean)
+Over time, you discover new bugs add new features and your project starts to fill up with
+tasks after tasks. Add priorities to tasks and ensure your team stays focused and work on the most important tasks first. 
+
+All you have to do is specify the task index followed by the priority according to the format below.
 
 > :bulb: 1 denotes the highest priority.
+>
+> :bulb: EZManager will allow you to easily sort and view these tasks by priority (See: Sort command).
 >
 > :exclamation: The task must exist before a deadline can be added.
 
@@ -776,8 +795,19 @@ Task ID does not exist!
 _____________________________________________________________________________________
 ```
 
-### 4.1.7. Deleting a task: `delete`
-Deletes a task from the task list.
+> Setting an invalid priority.
+```
+_____________________________________________________________________________________
+priority t/4 p/-1
+_____________________________________________________________________________________
+Invalid priority! Please input a positive integer for priority.
+_____________________________________________________________________________________
+```
+
+### 4.1.7. Deleting a task: `delete` (Sean)
+As your project evolves, you might soon find certain tasks unnecessary or outdated. 
+
+Easily delete a task from the task list with the delete command!
 
 > :exclamation: The task must exist in the task list before it can be deleted.
 
@@ -803,8 +833,14 @@ Task ID does not exist!
 _____________________________________________________________________________________
 ```
 
-### 4.1.8. Assigning a member to a task: `assign`
-Assigns an existing member to an existing task.
+### 4.1.8. Assigning a member to a task: `assign` (Sean)
+Easily delegate work to your team members with the assign commmand! 
+
+Now each member knows exactly what they have to do and not be overwhelmed with the full list of tasks in a project. 
+
+Besides, EZManager allows you to assign multiple members to tasks so they can discuss and collaborate with team members 
+that are assigned the same task as them! 
+
 
 > :exclamation: Members must belong to a project before they can be assigned tasks.
 
@@ -824,7 +860,7 @@ ____________________________________________________________
 Member "Tom" has been assigned to "Code Review"
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Assigning a member to a task that does not exist
 ```
 _____________________________________________________________________________________
@@ -842,8 +878,11 @@ Team Member ID does not exist!
 _____________________________________________________________________________________
 ```
 
-### 4.1.9. Removing a member: `remove`
-Removes an existing member from the current project as well as the tasks assigned.
+### 4.1.9. Removing a member: `remove` (Sean)
+If you decide to remove a member from a project, it's incredibly simple! 
+
+Easily remove a member from a project with the remove command. The member will continue to be part of your members list in
+the Home View so you can assign him/her to another project instead.
 
 > :exclamation: The member must exist before they can be removed.
 
@@ -859,7 +898,7 @@ ___________________________________________________________
 Team member "Mike" has been removed from Project "CS2113T"
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Removing a team member without the m/ parameter
 ```
 remove 2
