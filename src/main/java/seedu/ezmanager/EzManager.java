@@ -85,7 +85,6 @@ public class EzManager {
                 System.err.println("Couldn't save before terminating.");
             }
         }));
-
     }
 
 }

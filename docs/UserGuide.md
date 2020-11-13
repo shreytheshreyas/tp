@@ -41,34 +41,38 @@ example output
 2. [Terminologies](#terminologies)
 3. [Home View](#home-view)
     1. [Commands](#31-home-view-commands)
-        1. [List: Viewing the updated Home View](#311-viewing-the-updated-home-view-list) Bg Sam
-        2. [Project: Adding a project](#312-adding-a-project-project) Bg Sam
-        3. [Select: Selecting a project](#313-selecting-a-project-select) Baby Sam
-        4. [Done: Marking a project as done](#314-marking-a-project-as-done-done)B sam
-        5. [Deadline: Adding a deadline to a project](#315-adding-a-deadline-to-a-project-deadline) bae Sam
-        6. [Description: Adding a description to a project](#316-adding-a-description-to-a-project-description) Radical Riaz
-        7. [Delete: Deleting a project](#317-deleting-a-project-delete) Righteous Riaz 
-        8. [Member: Adding a member](#318-adding-a-member-member) Ready Riaz?
-        9. [Assign: Assigning a member to a project](#319-assigning-a-member-to-a-project-assign) Ravenous Riaz
-        10. [Remove: Removing a member](#3110-removing-a-member-remove) R Riaz
-        11. [Hours: Hours worked by member](#3111-view-hours-worked-by-member-hours) Super Shreyas
-        12. [Bye: Exit Program](#3112-exiting-ez-Manager-bye) ShreyTheShreyas
+        1. [List: Viewing the updated Home View](#311-viewing-the-updated-home-view-list)
+        2. [Project: Adding a project](#312-adding-a-project-project)
+        3. [Select: Selecting a project](#313-selecting-a-project-select)
+        4. [Done: Marking a project as done](#314-marking-a-project-as-done-done)
+        5. [Deadline: Adding a deadline to a project](#315-adding-a-deadline-to-a-project-deadline)
+        6. [Description: Adding a description to a project](#316-adding-a-description-to-a-project-description)
+        7. [Delete: Deleting a project](#317-deleting-a-project-delete)
+        8. [Member: Adding a member](#318-adding-a-member-member)
+        9. [Assign: Assigning a member to a project](#319-assigning-a-member-to-a-project-assign)
+        10. [Remove: Removing a member](#3110-removing-a-member-remove)
+        11. [Hours: Hours worked by member](#3111-view-hours-worked-by-member-hours)
+        12. [Bye: Exit Program](#3112-exiting-ez-Manager-bye)
 4. [Project View](#project-view)
     1. [Commands](#project-view-commands)
-        1. [List: Viewing the updated Project View](#411-viewing-the-updated-project-view-list) Seductive Shreyas
-        2. [Task: Adding a task](#412-adding-a-task-task) Serendepedous Shreyas
-        3. [Edit: Editing a task name](#413-editing-a-task-name-edit) Shockingly Handsome Shreyas
-        4. [Done: Marking a task as done](#414-marking-a-task-as-done-done) Shrelock Shreyas
-        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline-sean) Samyang Sean
-        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-priority-sean) Sexy Sean
-        7. [Delete: Deleting a task](#417-deleting-a-task-delete-sean) Single Sean
-        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign-sean) Spontaneous Sean
-        9. [Remove: Removing a member from the project](#419-removing-a-member-remove-sean) Singer Sean
-        10. [Estimate: Adding estimated time to a task](#4110-add-estimated-time-estimate) Sarenate Sam
-        11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual) Sarangayou Sam
-        12. [Sort: Sort tasks](#4112-sort-tasks-sort) Shag Sam
-        13. [Bye: Exit Program](#4113-exiting-ez-manager-bye) Swagger McSam
-5. [FAQ](#faq) Sammy the Man
+        1. [List: Viewing the updated Project View](#411-viewing-the-updated-project-view-list)
+        2. [Task: Adding a task](#412-adding-a-task-task)
+        3. [Edit: Editing a task name](#413-editing-a-task-name-edit)
+        4. [Done: Marking a task as done](#414-marking-a-task-as-done-done)
+        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline)
+        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-deadline)
+        7. [Delete: Deleting a task](#417-deleting-a-task-delete)
+        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign)
+        9. [Remove: Removing a member from the project](#419-removing-a-member-remove)
+        10. [Estimate: Adding estimated time to a task](#4110-add-estimated-time-estimate)
+        11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual)
+        12. [Sort: Sort tasks](#4112-sort-tasks-sort)
+        13. [Bye: Exit Program](#4113-exiting-ez-manager-bye)
+
+
+
+
+5. [FAQ](#faq)
 6. [Command Summary](#command-summary)
 
 ## 1. Quick Start
@@ -88,9 +92,9 @@ In this view, you can execute task and member commands but
 you cannot execute project commands.
 - **Project list**: Refers to the list of projects currently
 existing in the system
-- **Task list**: Refers to the list of tasks currently
+- **Task list**: Refers to the list of tasks currentl
 existing in the system
-- **Member list**: Refers to the list of members currently
+- **Member list**: Refers to the list of membersrrently
 existing in the system
 - **PROJECT_INDEX**: Every existing project would be assigned
 a positive integer. Hence, the PROJECT_INDEX refers to this
@@ -912,7 +916,16 @@ ________________________________________________________________________________
 
 
 ### 4.1.10. Add estimated time: `estimate`
-Add estimated time taken for task to complete.
+As a project manager, you need to ensure that your projects are run profitably. This means that projects cannot 
+over-run the timeline that has been agreed with your stakeholders. To ensure that time is spend well, you can add
+estimate the amount of time that should be spent on a task. This ensures that your team will have a rough gauge on how
+much time they can spend on a task before it becomes unprofitable. 
+
+Apart from maintaining profitability, this allows you to catch red flags early on when tasks require more time than 
+what has been forecasted. This gives you ample time to communicate foreseeable delays with your clients and ensure  that 
+unwanted surprises are minimised throughout your project management journey.
+
+To add an estimated time, you can use the format shown below.
 
 Format: `estimate t/TASK_INDEX h/HOURS m/MINUTES`
 
@@ -941,7 +954,15 @@ ________________________________________________________________________________
 
 
 ### 4.1.11. Add actual time taken: `actual`
-Add actual time taken for task to complete.
+Expectations are different from reality. You may set out to finish a task in one hour but it might end up taking twice 
+that much time. Having a record of the actual time that your team members spent on a task is invaluable. This opens up 
+the opportunity for you to gauge timelines better in the future. Ensuring that your projects remain profitable.
+
+Here is best part. You can use the records of actual time taken to facilitate reviews with your team. Allowing them to 
+learn about the difference between perceived and actual effort needed for tasks.
+
+
+To add the actual time taken for task to be completed, the format below can be used.
 
 > :exclamation: Task must be marked as done before actual time taken can be added.
 
@@ -971,8 +992,11 @@ ________________________________________________________________________________
 
 ### 4.1.12. Sort tasks: `sort` (Shreyas)
 
-Sort tasks by priority, deadline or actual time taken.
+What do you do when you start a week? A meticulous project manager like yourself always plans ahead. The most difficult part
+is determining where you and your team should spend their energy. With this sorting feature, you can determine which
+tasks you need to focus on at a glance. Simply sort tasks by priority, deadline or actual time taken.
 
+Here are a few things you can take note of:
 :bulb: Highest priority of 1 will be displayed at top.
 
 :bulb: Earliest deadline will be displayed at top.
@@ -1002,11 +1026,19 @@ ________________________________________________________________________________
 ```
 ### 4.1.13. Exiting EZ Manager: `bye`
 
-You can exit the program with the `bye` command.
+After a hard day's work, you can end your session with EZ Manager using the bye command. Fret not, when you are ready to
+resume work, EZ Manager will automatically load the previous data into your session so that you can pick up where you 
+left off.
 
 Format: `bye`
 
+Note: If you use `Ctrl + C` to end your EZ Manager session, we have made the provisions to still ensure that your data 
+is saved and ready for you when you have recharged.
+
 ## 5. FAQ
+
+EZ Manager is here to make your life a little bit easier. Here are the most common questions that we get, we hope it 
+answers some of the questions that you may have not found answers to yet.
 
 **Q**: Does the program saves the data entered when I terminate the program abruptly? 
 
