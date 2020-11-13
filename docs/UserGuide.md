@@ -122,7 +122,7 @@ Members by using the `list` command in Home View or in Project View
 
 ## 3. Home View (Samuel Leow Wei Han)
 As a project manager, you want to have a quick overview of all the projects that are under your charge.
-Apart from just projects, you would also like to be able to see what your members are working on, so that you can allocate 
+Apart from just projects, you will also like to be able to see what your members are working on, so that you can allocate 
 work evenly among your members.
 The Home View does just that. You get a concise display of the full list of projects and members that are under your purview. 
 
@@ -148,34 +148,7 @@ You can return to the Home View with the command shown below.
 
 Example of usage and output:
 
-```
-EZ Manager Home View
-
- ---------------------- 
-| PROJECT LIST         |
- ---------------------- 
-
-Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
-------------------------------------------------------------------------------------------------------------------------------------------------------
-1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
-2.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
-3.      N        Launch Rocket            Tracking of rockets                04/03/2022    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
-
-
- ---------------------- 
-| MEMBERS LIST         |
- ---------------------- 
-
-Index      Member Name                        Projects Involved        Hours spent across tasks
------------------------------------------------------------------------------------------------
-1.         Sean                               1. CS2113T               5.0      
-
-2.         Tom                                1. Home Improvement      2.5      
-
-3.         Mike                               1. Launch Rocket         3.0      
-
-____________________________________________________________
-```
+![ProjectView2](https://i.ibb.co/xKvJZj0/ss2.png)
 
 ---
 <div style="page-break-after: always;"></div>
@@ -211,35 +184,7 @@ Format: `list`
 
 Example of usage and output:
 
-```
-EZ Manager Home View
-
- ---------------------- 
-| PROJECT LIST         |
- ---------------------- 
-
-Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
-------------------------------------------------------------------------------------------------------------------------------------------------------
-1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
-2.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
-3.      N        Launch Rocket            Tracking of rockets                04/03/2022    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
-
-
- ---------------------- 
-| MEMBERS LIST         |
- ---------------------- 
-
-Index      Member Name                        Projects Involved        Hours spent across tasks
------------------------------------------------------------------------------------------------
-1.         Sean                               1. CS2113T               5.0      
-
-2.         Tom                                1. Home Improvement      2.5      
-
-3.         Mike                               1. Launch Rocket         3.0      
-
-____________________________________________________________
-```
-
+![ProjectView2](https://i.ibb.co/xKvJZj0/ss2.png)
 
 
 ### 3.1.2. Adding a project: `project` (Samuel Leow Wei Han)
@@ -261,7 +206,10 @@ Example usage and output:
 project n/Web Development
 ____________________________________________________________
 Project "Web Development" created!
-```
+```  
+---
+<div style="page-break-after: always;"></div>  
+
 **Examples of Exception Handling for this command**
 > Adding a Project without providing the n/ parameter
 ```
@@ -304,17 +252,14 @@ Index must be an integer!
 
 > Selecting a invalid Project-ID
 ```
-_____________________________________________________________________________________
 select p/8
 _____________________________________________________________________________________
 Project ID does not exist!
-_____________________________________________________________________________________
-```
-
-
-
->>>>>>> 022e3a55ae866ccb58a5cd83d0ca2a3ea300d260
-### 3.1.4. Marking a project as done: `done`
+```  
+---
+<div style="page-break-after: always;"></div>  
+  
+### 3.1.4. Marking a project as done: `done` (Samuel Leow Wei Han)
 Now that you have finally finished developing your project, you will want to mark the project as done 
 so that you can free your mind from that project and focus on the other unfinished ones.
 
@@ -365,7 +310,6 @@ You can simply add a deadline to an existing project.
 We will sort the projects in the list for you according to their deadlines to inform you the projects that are most urgent.
 
 You can add a deadline to a specified project with the command shown below.
->>>>>>> 022e3a55ae866ccb58a5cd83d0ca2a3ea300d260
 
 > :exclamation: The project must exist before a deadline can be added.
 
@@ -377,74 +321,11 @@ Example of usage:
 
 >  Adds the deadline 04/03/2022 to the third project.
 
-```
-deadline p/3 d/2022-03-04
-____________________________________________________________
-Deadline 04/03/2022 added to Project Launch Rocket
-
-EZ Manager Home View
-
- ---------------------- 
-| PROJECT LIST         |
- ---------------------- 
-
-Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
-------------------------------------------------------------------------------------------------------------------------------------------------------
-1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
-2.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
-3.      N        Launch Rocket            Tracking of rockets                04/03/2022    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
-
-
- ---------------------- 
-| MEMBERS LIST         |
- ---------------------- 
-
-Index      Member Name                        Projects Involved        Hours spent across tasks
------------------------------------------------------------------------------------------------
-1.         Sean                               1. CS2113T               5.0      
-
-2.         Tom                                1. Home Improvement      2.5      
-
-3.         Mike                               1. Launch Rocket         3.0      
-
-____________________________________________________________
-```  
+![ProjectView1](https://i.ibb.co/7VPSfCW/ss.png)
 
 > Adds an earlier deadline 12/12/2020 to the third project to show sorting of projects.
 
-```
-deadline p/3 d/2022-03-04
-____________________________________________________________
-Deadline 04/03/2022 added to Project Launch Rocket
-
-EZ Manager Home View
-
- ---------------------- 
-| PROJECT LIST         |
- ---------------------- 
-
-Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
-------------------------------------------------------------------------------------------------------------------------------------------------------
-1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
-2.      N        Launch Rocket            Tracking of rockets                12/12/2020    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
-3.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
-
-
-
- ---------------------- 
-| MEMBERS LIST         |
- ---------------------- 
-
-Index      Member Name                        Projects Involved        Hours spent across tasks
------------------------------------------------------------------------------------------------
-1.         Sean                               1. CS2113T               5.0      
-
-2.         Tom                                1. Home Improvement      2.5      
-
-3.         Mike                               1. Launch Rocket         3.0      
-
-____________________________________________________________
-```
+![HomeView](https://i.ibb.co/0rwVkQD/ss3.png)
 
 **Examples of Exception Handling for this command**
 > Providing a deadline to a project in in the DD-MM-YYYY format
@@ -460,7 +341,7 @@ Date must be specified in format YYYY-MM-DD
 
 
 
-### 3.1.6. Adding a description to a project: `description`
+### 3.1.6. Adding a description to a project: `description` (Riaz Ahamed)
 As a project manager, you would like to see the descriptions of different projects.
 The `description` command allows you to add descriptions to a project as shown below.
 
@@ -492,8 +373,8 @@ ____________________________________________________________
 Project description added "This is my Software Engineering Module.".
 ```
 
-**Examples of Exception Handling for the `description` command** (Shreyas)
-Shown below are some examples of misuse of the `delete` command that you could potentially make as a user.
+**Examples of Exception Handling for the `description` command** 
+Shown below are some examples of misuse of the `description` command that you could potentially make as a user.
 
 > If you did not include the `d` parameter, you will be responded with an error message as shown below.
 ```
@@ -503,7 +384,7 @@ Certain Parameters are missing!
 ---
 <div style="page-break-after: always;"></div>  
 
-### 3.1.7. Deleting a project: `delete`
+### 3.1.7. Deleting a project: `delete` (Riaz Ahamed)
 As a project manager, you would like to delete projects for various reasons. Some reasons
 include; creating a project by mistake, project is no longer in progress or the project has been discontinued.
 Hence, the `delete` command allows you to delete a specific project, one at a time, as shown below.
@@ -526,7 +407,7 @@ ____________________________________________________________
 Project "Home Improvement" deleted
 ____________________________________________________________
 ```
-**Examples of Exception Handling for the `delete` command** (Shreyas)
+**Examples of Exception Handling for the `delete` command**
 Shown below are some examples of misuse of the `delete` command that you could potentially make as a user.
 
 > In the example shown below, there are only 7 projects in the list of projects.
@@ -543,7 +424,7 @@ ________________________________________________________________________________
 <div style="page-break-after: always;"></div>  
   
   
-### 3.1.8. Adding a member: `member`
+### 3.1.8. Adding a member: `member` (Riaz Ahamed)
 As a project manager, you would like to add members to join your team. You can then assign members 
 to projects or tasks in the future using the `assign` command. 
 The `member` command allows you to add members to your team as shown below.
@@ -562,7 +443,7 @@ member n/John Doe
 ____________________________________________________________
 Team member "John Doe" has been added
 ```
-**Examples of Exception Handling for the `member` command** (Shreyas)
+**Examples of Exception Handling for the `member` command** 
 Shown below are some examples of misuse of the `member` command that you could potentially make as a user.
 
 > If you did not include the `n` parameter, you will be responded with an error message as shown below.
@@ -571,7 +452,7 @@ member steve
 Certain Parameters are missing!
 ```
 
-### 3.1.9. Assigning a member to a project: `assign` (Shreyas)
+### 3.1.9. Assigning a member to a project: `assign` (Riaz Ahamed)
 As a project manager, you would like to assign members to specific projects.
 You can then keep track of which members are assigned to which projects using the `list` command in the Home View.
 By using the `assign` command, you can assign members to a project as shown below.
@@ -581,6 +462,9 @@ By using the `assign` command, you can assign members to a project as shown belo
 
 You can use the following format to assign a member to a specific project of your choice.
 Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
+  
+---
+<div style="page-break-after: always;"></div>  
 
 Example of usage: 
 
@@ -603,32 +487,28 @@ ____________________________________________________________
 Tom assigned to Project "CS2113T"
 ```
 
-**Examples of Exception Handling for the `assign` command** (Shreyas)
+**Examples of Exception Handling for the `assign` command** 
 Shown below are some examples of misuse of the `assign` command that you could potentially make as a user.
 
 > In the example shown below, there are only 8 projects in the list of projects.
 > If you try to assign a member to a project that does not exist, for example, assigning a member to the ninth project, you will be responded with an error message as shown below.
 ```
-_____________________________________________________________________________________
 assign m/1 p/9
 _____________________________________________________________________________________
 Project ID does not exist!
-_____________________________________________________________________________________
 ```
 > In the example shown below, there are only 3 members in the list of members.
 > If you try to assign a project to a member that does not exist, for example, assigning a project to the fourth member, you will be responded with an error message as shown below.
 ```
-_____________________________________________________________________________________
 assign m/4 p/1
 _____________________________________________________________________________________
 Team Member ID does not exist!
-_____________________________________________________________________________________
 ```
   
 ---
 <div style="page-break-after: always;"></div>  
 
-### 3.1.10. Removing a member: `remove`
+### 3.1.10. Removing a member: `remove` (Riaz Ahamed)
 As a project manager, you would like to remove specific members from your team for various reasons.
 Some reasons include; the member has been accidentally added to your team or the member is no longer working with you.
 The `remove` command allows you to remove members from your team as shown below.
@@ -650,7 +530,7 @@ ___________________________________________________________
 Team member "Mike" has been removed from program entirely
 ```
 
-**Examples of Exception Handling for `remove` command** (Shreyas)
+**Examples of Exception Handling for `remove` command**
 Shown below are some examples of misuse of the `remove` command that you could potentially make as a user.
 
 > If you did not include the `m` parameter, you will be responded with an error message as shown below.
@@ -671,7 +551,7 @@ ________________________________________________________________________________
 ---
 <div style="page-break-after: always;"></div>  
 
-### 3.1.11. View hours worked by member: `hours`
+### 3.1.11. View hours worked by member: `hours` (Shreyas Kumar)
 As a project manager you might want to keep track of the number of hours each member in a project has contributed.
 This command achieves just and allows you to view the total number of hours worked by a worker across all tasks assigned in all projects.
 
@@ -689,7 +569,7 @@ hours m/1
 John worked for 2.5 hours.
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Providing an Invalid member index 
 ```
 _____________________________________________________________________________________
@@ -700,7 +580,7 @@ ________________________________________________________________________________
 ```    
 
 
-### 3.1.12. Exiting EZ Manager: `bye`
+### 3.1.12. Exiting EZ Manager: `bye` (Shreyas Kumar)
 When you are done with your work for the day you can exit the program with the `bye` command and this returns
 you back to the commmand line.
 
@@ -709,7 +589,7 @@ Format: `bye`
 ---
 <div style="page-break-after: always;"></div>  
 
-## 4. Project View
+## 4. Project View (Shreyas Kumar)
 
 The Project View displays the full list of tasks and members in a particular project.
 The manager can add and edit tasks and assign members to tasks.
@@ -754,13 +634,13 @@ ____________________________________________________________
 
 ## 4.1. Project View Commands
 
-### 4.1.1. Viewing the updated Project View: `list`
+### 4.1.1. Viewing the updated Project View: `list` (Shreyas Kumar)
 When you select a project you might want to view an overview of all the tasks along with their respective priorities and deadlines. You may also be interested in viewing a list of all members associated to the project and which tasks they are working on.
 This command allows you to view the Project View of a project and is progressively updated everytime you add in a new task and assign in a member to the project.
 
 Format: `list`
 
-### 4.1.2. Adding a task: `task`
+### 4.1.2. Adding a task: `task` (Shreyas Kumar)
 Each project have their own activities and assignments associated with them. To record these activities this command allows you to create a new task and the program adds it to the task list.
 
 Format: `task n/TASK_NAME`
@@ -777,7 +657,7 @@ ____________________________________________________________
 Task "Deploy Version 2.0" created!
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Providing a task name without n/ parameter
 ```
 task task4
@@ -787,7 +667,7 @@ Certain Parameters are missing!
 ---
 <div style="page-break-after: always;"></div>  
 
-### 4.1.3. Editing a task name: `edit`
+### 4.1.3. Editing a task name: `edit` (Shreyas Kumar)
 As you and your team porgess to working on the project you might want to make updates to an existing task name with the new name. This
 commmand helps you achieve that.
 
@@ -809,7 +689,7 @@ edit t/1 n/Update documentation
 ____________________________________________________________
 Task "Read documentation" has been updated to "Update documentation"
 ```
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command** 
 >Editing the name of an invalid task  
 
 ```
@@ -824,7 +704,7 @@ ________________________________________________________________________________
 ---
 <div style="page-break-after: always;"></div>  
 
-### 4.1.4. Marking a task as done: `done`
+### 4.1.4. Marking a task as done: `done` (Shreyas Kumar)
 During your course of a project you can mark certain tasks as done and this command is used for that purpose. This command allows you to differentiate a task that is completed from a task that is still pending. This ultimately makes your management of a particular project more organised.
 
 > :exclamation: The task must exist before it can be selected.
@@ -840,7 +720,7 @@ done t/1
 ____________________________________________________________
 Task "Coding" is done!
 ```
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command** 
 > Marking a task as done without the t/ parameter
 ```
 done 1
@@ -864,7 +744,7 @@ ________________________________________________________________________________
 ---
 <div style="page-break-after: always;"></div>  
 
-### 4.1.5. Adding a deadline to a task: `deadline` (Sean)
+### 4.1.5. Adding a deadline to a task: `deadline` (Sean Tan)
 In a typical software engineering project, implementation of various tasks are dependent on the
 completion of other tasks. Easily add deadlines to your tasks with the deadline command. Now your team
 can finish tasks on time and start work on further tasks. 
@@ -905,7 +785,7 @@ Date must be specified in format YYYY-MM-DD
 ---
 <div style="page-break-after: always;"></div>  
 
-### 4.1.6. Adding a priority to a task: `priority` (Sean)
+### 4.1.6. Adding a priority to a task: `priority` (Sean Tan)
 Over time, you discover new bugs add new features and your project starts to fill up with
 tasks after tasks. Add priorities to tasks and ensure your team stays focused and work on the most important tasks first. 
 
@@ -931,26 +811,26 @@ ____________________________________________________________
 Priority "1" has been assigned to "Coding"
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Setting priority to an invalid task-ID
 ```
-_____________________________________________________________________________________
 priority t/4 p/1
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 
 > Setting an invalid priority.
 ```
-_____________________________________________________________________________________
 priority t/4 p/-1
 _____________________________________________________________________________________
 Invalid priority! Please input a positive integer for priority.
-_____________________________________________________________________________________
-```
+```  
+  
+---
+<div style="page-break-after: always;"></div>  
 
-### 4.1.7. Deleting a task: `delete` (Sean)
+
+### 4.1.7. Deleting a task: `delete` (Sean Tan)
 As your project evolves, you might soon find certain tasks unnecessary or outdated. 
 
 Easily delete a task from the task list with the delete command!
@@ -969,7 +849,7 @@ ____________________________________________________________
 Task "Coding" removed!
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Delete a task with an invalid task-ID
 ```
 _____________________________________________________________________________________
@@ -979,7 +859,7 @@ Task ID does not exist!
 _____________________________________________________________________________________
 ```
 
-### 4.1.8. Assigning a member to a task: `assign` (Sean)
+### 4.1.8. Assigning a member to a task: `assign` (Sean Tan)
 Easily delegate work to your team members with the assign commmand! 
 
 Now each member knows exactly what they have to do and not be overwhelmed with the full list of tasks in a project. 
@@ -1009,22 +889,19 @@ Member "Tom" has been assigned to "Code Review"
 **Examples of Exception Handling for this command**
 > Assigning a member to a task that does not exist
 ```
-_____________________________________________________________________________________
 assign m/1 t/11
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 > Assigning a member to a task who is not assigned to the respective project 
 ```
-_____________________________________________________________________________________
 assign m/4 t/1
 _____________________________________________________________________________________
 Team Member ID does not exist!
-_____________________________________________________________________________________
-```
+```  
 
-### 4.1.9. Removing a member: `remove` (Sean)
+
+### 4.1.9. Removing a member: `remove` (Sean Tan)
 If you decide to remove a member from a project, it's incredibly simple! 
 
 Easily remove a member from a project with the remove command. The member will continue to be part of your members list in
@@ -1061,7 +938,7 @@ ________________________________________________________________________________
 
 
 
-### 4.1.10. Add estimated time: `estimate`
+### 4.1.10. Add estimated time: `estimate` (Samuel Paul Christopher)
 As a project manager, you need to ensure that your projects are run profitably. This means that projects cannot 
 over-run the timeline that has been agreed with your stakeholders. To ensure that time is spend well, you can add
 estimate the amount of time that should be spent on a task. This ensures that your team will have a rough gauge on how
@@ -1086,20 +963,21 @@ estimate t/1 h/12 m/30
 ____________________________________________________________
 Task "New Task" has estimated time of 12 hours and 30 minutes
 
-```
+```  
+  
+---
+<div style="page-break-after: always;"></div>  
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Assigning a time period to a task that does not exist
 ```
-_____________________________________________________________________________________
 estimate t/11 h/6 m/30
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 
 
-### 4.1.11. Add actual time taken: `actual`
+### 4.1.11. Add actual time taken: `actual` (Samuel Paul Christopher)
 Expectations are different from reality. You may set out to finish a task in one hour but it might end up taking twice 
 that much time. Having a record of the actual time that your team members spent on a task is invaluable. This opens up 
 the opportunity for you to gauge timelines better in the future. Ensuring that your projects remain profitable.
@@ -1126,17 +1004,15 @@ ____________________________________________________________
 Task "New Task" took 12 hours and 30 minutes to be completed.
 
 ```
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Assigning a time period to a task that does not exist
 ```
-_____________________________________________________________________________________
 actual t/11 h/5 m/20    
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 
-### 4.1.12. Sort tasks: `sort` (Shreyas)
+### 4.1.12. Sort tasks: `sort` (Samuel Paul Christopher)
 
 What do you do when you start a week? A meticulous project manager like yourself always plans ahead. The most difficult part
 is determining where you and your team should spend their energy. With this sorting feature, you can determine which
@@ -1162,15 +1038,16 @@ sort s/d
 ____________________________________________________________
 Task List sorted based on deadline
 ```
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command** 
 > Using the sort functionality with the s/ parameter
 ```
 _____________________________________________________________________________________
 sort p
 Certain Parameters are missing!
 _____________________________________________________________________________________
-```
-### 4.1.13. Exiting EZ Manager: `bye`
+```  
+
+### 4.1.13. Exiting EZ Manager: `bye` (Samuel Paul Christopher)
 
 After a hard day's work, you can end your session with EZ Manager using the bye command. Fret not, when you are ready to
 resume work, EZ Manager will automatically load the previous data into your session so that you can pick up where you 
@@ -1181,7 +1058,7 @@ Format: `bye`
 Note: If you use `Ctrl + C` to end your EZ Manager session, we have made the provisions to still ensure that your data 
 is saved and ready for you when you have recharged.
 
-## 5. FAQ
+## 5. FAQ (Samuel Paul Christopher)
 
 EZ Manager is here to make your life a little bit easier. Here are the most common questions that we get, we hope it 
 answers some of the questions that you may have not found answers to yet.
