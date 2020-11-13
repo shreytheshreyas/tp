@@ -270,7 +270,8 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```  
-
+  
+  
 ### 3.1.4. Marking a project as done: `done`
 Now that you have finally finished building your project, you would want to mark the project as done 
 so that you can free your mind from that project and focus on the other unfinished ones.
@@ -308,7 +309,6 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```  
-
 ---
 <div style="page-break-after: always;"></div>  
 
@@ -406,7 +406,8 @@ Date must be specified in format YYYY-MM-DD
 deadline p/1 d/11-27-2020
 Date must be specified in format YYYY-MM-DD
 ```    
-
+  
+  
 ### 3.1.6. Adding a description to a project: `description`
 As a project manager, you would like to see the descriptions of different projects.
 The `description` command allows you to add descriptions to a project as shown below.
@@ -446,8 +447,7 @@ Shown below are some examples of misuse of the `delete` command that you could p
 ```
 description p/1 this is a new project
 Certain Parameters are missing!
-```
-  
+```  
 ---
 <div style="page-break-after: always;"></div>  
 
@@ -489,7 +489,8 @@ ________________________________________________________________________________
   
 ---
 <div style="page-break-after: always;"></div>  
-
+  
+  
 ### 3.1.8. Adding a member: `member`
 As a project manager, you would like to add members to join your team. You can then assign members 
 to projects or tasks in the future using the `assign` command. 
@@ -767,6 +768,9 @@ Task ID does not exist!
 _____________________________________________________________________________________
 
 ```  
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 4.1.4. Marking a task as done: `done`
 During your course of a project you can mark certain tasks as done and this command is used for that purpose. This command allows you to differentiate a task that is completed from a task that is still pending. This ultimately makes your management of a particular project more organised.
@@ -804,6 +808,9 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```  
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 4.1.5. Adding a deadline to a task: `deadline` (Sean)
 In a typical software engineering project, implementation of various tasks are dependent on the
@@ -842,6 +849,9 @@ Date must be specified in format YYYY-MM-DD
 deadline t/1 d/11-27-2020
 Date must be specified in format YYYY-MM-DD
 ```
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 4.1.6. Adding a priority to a task: `priority` (Sean)
 Over time, you discover new bugs add new features and your project starts to fill up with
