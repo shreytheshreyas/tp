@@ -23,6 +23,7 @@ besides formatting issues.
 
 :bulb: : This refers to any helpful tips that might prove helpful to you.  
 
+---
 <div style="page-break-after: always;"></div>
 
 ### Structure
@@ -36,8 +37,10 @@ You can see an example usage of the command followed by the expected output.
 command PARAMETER_TYPE/VALUE
 ________________________________
 example output
-```
----
+```  
+---  
+<div style="page-break-after: always;"></div>  
+
 ## Table of Contents
 1. [Quick Start](#1-quick-start)
 2. [Terminologies](#terminologies)
@@ -70,12 +73,11 @@ example output
         11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual)
         12. [Sort: Sort tasks](#4112-sort-tasks-sort)
         13. [Bye: Exit Program](#4113-exiting-ez-manager-bye)
-
-
-
-
 5. [FAQ](#faq)
-6. [Command Summary](#command-summary)
+6. [Command Summary](#command-summary)  
+  
+ ---  
+<div style="page-break-after: always;"></div>      
 
 ## 1. Quick Start
 1. Ensure that you have Java 11 or above installed.
