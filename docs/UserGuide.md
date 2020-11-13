@@ -881,21 +881,21 @@ Priority "1" has been assigned to "Coding"
 **Examples of Exception Handling for this command** (Shreyas)
 > Setting priority to an invalid task-ID
 ```
-_____________________________________________________________________________________
 priority t/4 p/1
 _____________________________________________________________________________________
 Task ID does not exist!
-_____________________________________________________________________________________
 ```
 
 > Setting an invalid priority.
 ```
-_____________________________________________________________________________________
 priority t/4 p/-1
 _____________________________________________________________________________________
 Invalid priority! Please input a positive integer for priority.
-_____________________________________________________________________________________
-```
+```  
+  
+---
+<div style="page-break-after: always;"></div>  
+
 
 ### 4.1.7. Deleting a task: `delete` (Sean)
 As your project evolves, you might soon find certain tasks unnecessary or outdated. 
