@@ -110,27 +110,28 @@ Members by using the `list` command in Home View or in Project View
 
 
 
-## 3. Home View
-As a project manager, you need to have a quick overview of all the projects that are under your charge.
-Apart from just projects, you would want to be able to see what your members are working on, so that you can allocate 
-work evenly across your members.
+## 3. Home View (Samuel Leow Wei Han)
+As a project manager, you want to have a quick overview of all the projects that are under your charge.
+Apart from just projects, you would also like to be able to see what your members are working on, so that you can allocate 
+work evenly among your members.
 The Home View does just that. You get a concise display of the full list of projects and members that are under your purview. 
 
-At a glance, you see the most important details about your project including its status, deadline and number of tasks completed.
+At a glance, you will notice the few most important details about your project such as its status, deadline and number of tasks completed.
 
 The Home View also conveniently provides you with warnings for uncompleted tasks with imminent deadlines.
 
 Remarks shown for each project depends on the deadline of its tasks.
-Task that you have not completed and has an upcoming deadline due in 5 days or less will have `!!!Warning!!!` shown in the remarks as well as a countdown to deadline.
-Task that you have not completed but has a deadline due in 6 days or more will just have the name of task and date of deadline displayed in the remarks. 
+Task that you have not completed and has an upcoming deadline due in 5 days or less will have `!!!Warning!!!` shown in the remarks as well as a countdown to the deadline.
+Task that you have not completed but has a deadline due in 6 days or more will only have the name of task and date of deadline displayed in the remarks. 
 
+You can return to the Home View with the command shown below.
 
 > ### :bulb: Accessing Home View
 >
 > Format: `home`
 >
-> Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
-> enables the Home View commands in this section.
+> Displays the Home View. If the user is in the Project View, this command changes the view to Home View and 
+> commands specific to the Home View is enabled.
 
 Example of usage and output:
 
@@ -185,18 +186,54 @@ ____________________________________________________________
 
 
 
-### 3.1.1. Viewing the updated Home View: `list`
+### 3.1.1. Viewing the Home View: `list` (Samuel Leow Wei Han)
+As a project manager, you want to keep an eye on your team's progress and workload. Viewing the Home View provides you with the big picture, allowing you to focus your attention on the projects that are more important.
+Additionally, after making some changes to your project information or assigning members to a new project, 
+you will want to see the updated Home View immediately. 
 
-After making any changes, you would want to immediately see the updated Home View. 
-You can achieve this with the `list` command.
+You can display the Home View with the command shown below. You will not have to worry about drowning in a sea of information from now on!
 
 Format: `list`
 
+Example of usage and output:
+
+```
+EZ Manager Home View
+
+ ---------------------- 
+| PROJECT LIST         |
+ ---------------------- 
+
+Index   Status   Project Name             Project Description                Deadline     Tasks Completed     Remarks
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1.      Y        CS2113T                  EzManager App for Software Engi... 04/11/2020    3/3                -
+2.      N        Home Improvement         -                                  04/09/2021    3/4                !!!WARNING!!! Task "AI Implementation" has 2 day(s) before deadline and still not done!!
+3.      N        Launch Rocket            Tracking of rockets                04/03/2022    0/1                Task "Radar Sensor" has an upcoming deadline at 12/12/2020 and still not done!!
 
 
-### 3.1.2. Adding a project: `project`
-Now you have a new project allocated to you and want to be able to add it to your list of projects.
-Simply enter `project`, together with the project name and there you have it, a new project listed on the project list.
+ ---------------------- 
+| MEMBERS LIST         |
+ ---------------------- 
+
+Index      Member Name                        Projects Involved        Hours spent across tasks
+-----------------------------------------------------------------------------------------------
+1.         Sean                               1. CS2113T               5.0      
+
+2.         Tom                                1. Home Improvement      2.5      
+
+3.         Mike                               1. Launch Rocket         3.0      
+
+____________________________________________________________
+```
+
+
+
+### 3.1.2. Adding a project: `project` (Samuel Leow Wei Han)
+You have just struck a deal with Company X and are being tasked to design a particular software.
+But first things first, you have to create a new project before you start creating tasks and allocate them to your team members.
+Why is this important? Organising your tasks, members, deadlines and more will enable you to have a clearer understanding on what to do.
+
+You can simply list a new project on your project list with the command shown below.
 
 Format: `project n/PROJECT_NAME`
 
@@ -211,18 +248,21 @@ project n/Web Development
 ____________________________________________________________
 Project "Web Development" created!
 ```
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Adding a Project without providing the n/ parameter
 ```
 project New Project
 Certain Parameters are missing!
 ```
 
-### 3.1.3. Selecting a project: `select`
 
-You want to start working on a certain project such as adding a new task and assigning members to your task.
-This can be accomplished with this command by selecting the project you want to work on from the project list, 
-bringing you to the Project View of the project you have specified.
+
+### 3.1.3. Selecting a project: `select` (Samuel Leow Wei Han)
+There are many requirements to fulfil in order to develop a new software product. 
+With numerous products to look after, you will want to be able to zoom in on a certain project and start working on it.
+You want to ensure that everything you have entered pertaining to a certain project will be stored accordingly.
+
+This can be accomplished with the command shown below, bringing you to the Project View of the project you have specified.
 
 > :exclamation: The project must exist before it can be selected.
 
@@ -235,7 +275,7 @@ Example of usage:
 ```
 select p/1
 ```
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Adding a Project without providing the p/ parameter
 ```
 select 1
@@ -256,9 +296,14 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```
+
+
+
 ### 3.1.4. Marking a project as done: `done`
-Now that you have finally finished building your project, you would want to mark the project as done 
+Now that you have finally finished developing your project, you will want to mark the project as done 
 so that you can free your mind from that project and focus on the other unfinished ones.
+
+To mark a project as done, you can use the command shown below.
 
 > :exclamation: The project must exist before it can be marked as done.
 
@@ -274,7 +319,7 @@ ____________________________________________________________
 Task "New Task" is done!
 ____________________________________________________________
 ``` 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Marking a project as done without the p/ parameter
 ```
 done 1
@@ -293,9 +338,16 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```
-### 3.1.5. Adding a deadline to a project: `deadline`
-With multiple projects that you have to work on, you want to be able to keep track of these projects and deliver them to your clients on time.
-You can simply add a deadline to an existing project. We will sort the projects in the list for you according to their deadlines in order for you to know which projects are the most urgent.
+
+
+
+### 3.1.5. Adding a deadline to a project: `deadline` (Samuel Leow Wei Han)
+Deadlines make clear of when and what you are expected to deliver. Failing to meet them can result in bad business reputation and should not be tolerated.
+With multiple projects to work on, you want to be able to keep track of these projects and deliver them to your clients on time.
+You can simply add a deadline to an existing project. 
+We will sort the projects in the list for you according to their deadlines to inform you the projects that are most urgent.
+
+You can add a deadline to a specified project with the command shown below.
 
 > :exclamation: The project must exist before a deadline can be added.
 
@@ -376,7 +428,7 @@ Index      Member Name                        Projects Involved        Hours spe
 ____________________________________________________________
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Providing a deadline to a project in in the DD-MM-YYYY format
 ```
 deadline p/1 d/22-11-2020
@@ -387,6 +439,8 @@ Date must be specified in format YYYY-MM-DD
 deadline p/1 d/11-27-2020
 Date must be specified in format YYYY-MM-DD
 ```
+
+
 
 ### 3.1.6. Adding a description to a project: `description`
 Adds a description to an existing project.
