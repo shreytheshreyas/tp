@@ -116,6 +116,8 @@ Members by using the `list` command in Home View or in Project View
 
 >  :warning: Project Index, Task Index and Member Index must be positive integers.
 
+---
+<div style="page-break-after: always;"></div>
 
 
 ## 3. Home View
@@ -139,6 +141,9 @@ Task that you have not completed but has a deadline due in 6 days or more will j
 >
 > Displays the Home View. If the user is in Project View, this command changes the view to Home View and 
 > enables the Home View commands in this section.
+
+---
+<div style="page-break-after: always;"></div>
 
 Example of usage and output:
 
@@ -171,7 +176,8 @@ Index      Member Name                        Projects Involved        Hours spe
 ____________________________________________________________
 ```
 
-
+---
+<div style="page-break-after: always;"></div>
 
 ## 3.1. Home View Commands
 
