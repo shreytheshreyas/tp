@@ -529,6 +529,9 @@ By using the `assign` command, you can assign members to a project as shown belo
 
 You can use the following format to assign a member to a specific project of your choice.
 Format: `assign p/PROJECT_INDEX m/MEMBER_INDEX`
+  
+---
+<div style="page-break-after: always;"></div>  
 
 Example of usage: 
 
