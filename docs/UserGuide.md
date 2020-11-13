@@ -571,7 +571,10 @@ ________________________________________________________________________________
 Team Member ID does not exist!
 _____________________________________________________________________________________
 ```
-    
+  
+---
+<div style="page-break-after: always;"></div>  
+
 ### 3.1.10. Removing a member: `remove`
 As a project manager, you would like to remove specific members from your team for various reasons.
 Some reasons include; the member has been accidentally added to your team or the member is no longer working with you.
@@ -611,7 +614,9 @@ ________________________________________________________________________________
 Team Member ID does not exist!
 _____________________________________________________________________________________
 ```
-    
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 3.1.11. View hours worked by member: `hours`
 As a project manager you might want to keep track of the number of hours each member in a project has contributed.
@@ -647,8 +652,9 @@ When you are done with your work for the day you can exit the program with the `
 you back to the commmand line.
 
 Format: `bye`
-
-
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ## 4. Project View
 
@@ -689,8 +695,9 @@ Index  Status   Description        Deadline        Priority      Expected Hrs   
 
 ____________________________________________________________
 ```
-
-
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ## 4.1. Project View Commands
 
