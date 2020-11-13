@@ -921,7 +921,10 @@ Example of usage:
 remove m/1
 ___________________________________________________________
 Team member "Mike" has been removed from Project "CS2113T"
-```
+```  
+  
+---
+<div style="page-break-after: always;"></div>    
 
 **Examples of Exception Handling for this command**
 > Removing a team member without the m/ parameter
