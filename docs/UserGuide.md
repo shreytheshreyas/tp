@@ -519,7 +519,7 @@ member steve
 Certain Parameters are missing!
 ```
 
-### 3.1.9. Assigning a member to a project: `assign` (Shreyas)
+### 3.1.9. Assigning a member to a project: `assign` (Shreyas)  
 As a project manager, you would like to assign members to specific projects.
 You can then keep track of which members are assigned to which projects using the `list` command in the Home View.
 By using the `assign` command, you can assign members to a project as shown below.
