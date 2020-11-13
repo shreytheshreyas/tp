@@ -269,7 +269,8 @@ select p/8
 _____________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
-```
+```  
+
 ### 3.1.4. Marking a project as done: `done`
 Now that you have finally finished building your project, you would want to mark the project as done 
 so that you can free your mind from that project and focus on the other unfinished ones.
@@ -306,7 +307,11 @@ done p/8
 _____________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
-```
+```  
+
+---
+<div style="page-break-after: always;"></div>  
+
 ### 3.1.5. Adding a deadline to a project: `deadline`
 With multiple projects that you have to work on, you want to be able to keep track of these projects and deliver them to your clients on time.
 You can simply add a deadline to an existing project. We will sort the projects in the list for you according to their deadlines in order for you to know which projects are the most urgent.
@@ -352,7 +357,7 @@ Index      Member Name                        Projects Involved        Hours spe
 3.         Mike                               1. Launch Rocket         3.0      
 
 ____________________________________________________________
-```
+```  
 
 > Adds an earlier deadline 12/12/2020 to the third project to show sorting of projects.
 
@@ -400,7 +405,7 @@ Date must be specified in format YYYY-MM-DD
 ```
 deadline p/1 d/11-27-2020
 Date must be specified in format YYYY-MM-DD
-```
+```    
 
 ### 3.1.6. Adding a description to a project: `description`
 As a project manager, you would like to see the descriptions of different projects.
