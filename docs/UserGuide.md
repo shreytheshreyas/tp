@@ -318,6 +318,9 @@ Example of usage:
 >  Adds the deadline 04/03/2022 to the third project.
 
 ![ProjectView1](https://i.ibb.co/7VPSfCW/ss.png)
+  
+---
+<div style="page-break-after: always;"></div>    
 
 > Adds an earlier deadline 12/12/2020 to the third project to show sorting of projects.
 
