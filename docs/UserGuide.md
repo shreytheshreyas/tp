@@ -224,7 +224,10 @@ Example usage and output:
 project n/Web Development
 ____________________________________________________________
 Project "Web Development" created!
-```
+```  
+---
+<div style="page-break-after: always;"></div>  
+
 **Examples of Exception Handling for this command** (Shreyas)
 > Adding a Project without providing the n/ parameter
 ```
