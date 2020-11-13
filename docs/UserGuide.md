@@ -267,13 +267,12 @@ Index must be an integer!
 
 > Selecting a invalid Project-ID
 ```
-_____________________________________________________________________________________
 select p/8
 _____________________________________________________________________________________
 Project ID does not exist!
-_____________________________________________________________________________________
 ```  
-  
+---
+<div style="page-break-after: always;"></div>  
   
 ### 3.1.4. Marking a project as done: `done`
 Now that you have finally finished building your project, you would want to mark the project as done 
