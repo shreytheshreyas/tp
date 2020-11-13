@@ -59,11 +59,11 @@ example output
         2. [Task: Adding a task](#412-adding-a-task-task) Serendepedous Shreyas
         3. [Edit: Editing a task name](#413-editing-a-task-name-edit) Shockingly Handsome Shreyas
         4. [Done: Marking a task as done](#414-marking-a-task-as-done-done) Shrelock Shreyas
-        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline) Samyang Sean
-        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-deadline) Sexy Sean
-        7. [Delete: Deleting a task](#417-deleting-a-task-delete) Single Sean
-        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign) Spontaneous Sean
-        9. [Remove: Removing a member from the project](#419-removing-a-member-remove) Singer Sean
+        5. [Deadline: Adding a deadline to a task](#415-adding-a-deadline-to-a-task-deadline-sean) Samyang Sean
+        6. [Priority: Adding a priority to a task](#416-adding-a-priority-to-a-task-priority-sean) Sexy Sean
+        7. [Delete: Deleting a task](#417-deleting-a-task-delete-sean) Single Sean
+        8. [Assign: Assigning a member to a task](#418-assigning-a-member-to-a-task-assign-sean) Spontaneous Sean
+        9. [Remove: Removing a member from the project](#419-removing-a-member-remove-sean) Singer Sean
         10. [Estimate: Adding estimated time to a task](#4110-add-estimated-time-estimate) Sarenate Sam
         11. [Actual: Adding actual time to a task](#4111-add-actual-time-taken-actual) Sarangayou Sam
         12. [Sort: Sort tasks](#4112-sort-tasks-sort) Shag Sam
@@ -713,12 +713,18 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```
-### 4.1.5. Adding a deadline to a task: `deadline`
-Adds a deadline to an existing task.
+### 4.1.5. Adding a deadline to a task: `deadline` (Sean)
+In a typical software engineering project, implementation of various tasks are dependent on the
+completion of other tasks. Easily add deadlines to your tasks with the deadline command. Now your team
+can finish tasks on time and start work on further tasks. 
+
+Simply specify the task followed by the deadline according to the format below.
 
 Format: `deadline t/TASK_INDEX d/DATE`
 
 > :warning: The `DATE` must be of the form `YYYY-MM-DD`
+>
+> :bulb: EZManager allows you to easily sort and view tasks by deadline. (See: Deadline Command)
 
 
 * The task must exist before a deadline can be added.
@@ -733,7 +739,7 @@ ____________________________________________________________
 Deadline 25/10/2020 added to Task Coding
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Providing a deadline to a task in in the DD-MM-YYYY format
 ```
 deadline t/1 d/22-11-2020
@@ -745,10 +751,15 @@ deadline t/1 d/11-27-2020
 Date must be specified in format YYYY-MM-DD
 ```
 
-### 4.1.6. Adding a priority to a task: `priority`
-Adds a priority to an existing task.
+### 4.1.6. Adding a priority to a task: `priority` (Sean)
+Over time, you discover new bugs add new features and your project starts to fill up with
+tasks after tasks. Add priorities to tasks and ensure your team stays focused and work on the most important tasks first. 
+
+All you have to do is specify the task index followed by the priority according to the format below.
 
 > :bulb: 1 denotes the highest priority.
+>
+> :bulb: EZManager will allow you to easily sort and view these tasks by priority (See: Sort command).
 >
 > :exclamation: The task must exist before a deadline can be added.
 
@@ -776,8 +787,19 @@ Task ID does not exist!
 _____________________________________________________________________________________
 ```
 
-### 4.1.7. Deleting a task: `delete`
-Deletes a task from the task list.
+> Setting an invalid priority.
+```
+_____________________________________________________________________________________
+priority t/4 p/-1
+_____________________________________________________________________________________
+Invalid priority! Please input a positive integer for priority.
+_____________________________________________________________________________________
+```
+
+### 4.1.7. Deleting a task: `delete` (Sean)
+As your project evolves, you might soon find certain tasks unnecessary or outdated. 
+
+Easily delete a task from the task list with the delete command!
 
 > :exclamation: The task must exist in the task list before it can be deleted.
 
@@ -803,8 +825,14 @@ Task ID does not exist!
 _____________________________________________________________________________________
 ```
 
-### 4.1.8. Assigning a member to a task: `assign`
-Assigns an existing member to an existing task.
+### 4.1.8. Assigning a member to a task: `assign` (Sean)
+Easily delegate work to your team members with the assign commmand! 
+
+Now each member knows exactly what they have to do and not be overwhelmed with the full list of tasks in a project. 
+
+Besides, EZManager allows you to assign multiple members to tasks so they can discuss and collaborate with team members 
+that are assigned the same task as them! 
+
 
 > :exclamation: Members must belong to a project before they can be assigned tasks.
 
@@ -824,7 +852,7 @@ ____________________________________________________________
 Member "Tom" has been assigned to "Code Review"
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Assigning a member to a task that does not exist
 ```
 _____________________________________________________________________________________
@@ -842,8 +870,11 @@ Team Member ID does not exist!
 _____________________________________________________________________________________
 ```
 
-### 4.1.9. Removing a member: `remove`
-Removes an existing member from the current project as well as the tasks assigned.
+### 4.1.9. Removing a member: `remove` (Sean)
+If you decide to remove a member from a project, it's incredibly simple! 
+
+Easily remove a member from a project with the remove command. The member will continue to be part of your members list in
+the Home View so you can assign him/her to another project instead.
 
 > :exclamation: The member must exist before they can be removed.
 
@@ -859,7 +890,7 @@ ___________________________________________________________
 Team member "Mike" has been removed from Project "CS2113T"
 ```
 
-**Examples of Exception Handling for this command** (Shreyas)
+**Examples of Exception Handling for this command**
 > Removing a team member without the m/ parameter
 ```
 remove 2
