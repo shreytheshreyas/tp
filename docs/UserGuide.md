@@ -244,7 +244,7 @@ ____________________________________________________________
 
 ### 3.1.2. Adding a project: `project` (Samuel Leow Wei Han)
 You have just struck a deal with Company X and are being tasked to design a particular software.
-But first things first, you have to create a new project before you start creating tasks and allocate them to your team members.
+But first things first, you have to create a new project before you start creating tasks and allocating them to your team members.
 Why is this important? Organising your tasks, members, deadlines and more will enable you to have a clearer understanding on what to do.
 
 You can simply list a new project on your project list with the command shown below.
