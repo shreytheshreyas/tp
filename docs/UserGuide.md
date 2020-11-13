@@ -447,6 +447,9 @@ Shown below are some examples of misuse of the `delete` command that you could p
 description p/1 this is a new project
 Certain Parameters are missing!
 ```
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 3.1.7. Deleting a project: `delete`
 As a project manager, you would like to delete projects for various reasons. Some reasons
@@ -483,6 +486,9 @@ ________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
 ```
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 3.1.8. Adding a member: `member`
 As a project manager, you would like to add members to join your team. You can then assign members 
