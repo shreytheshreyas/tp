@@ -23,7 +23,7 @@ besides formatting issues.
 
 :bulb: : This refers to any helpful tips that might prove helpful to you.  
 
----
+\pagebreak
 
 ### Structure
 Under each command, a description of what the command does is provided. 
