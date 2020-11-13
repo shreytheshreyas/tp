@@ -350,6 +350,9 @@ You can use the following format to add descriptions to a specific project.
 Format: `description p/PROJECT_INDEX d/DESCRIPTION`
 
 > :warning: Project descriptions should not include slashes or an error will be shown.
+  
+---
+<div style="page-break-after: always;"></div>    
 
 Example of usage: 
 
