@@ -560,20 +560,16 @@ Shown below are some examples of misuse of the `assign` command that you could p
 > In the example shown below, there are only 8 projects in the list of projects.
 > If you try to assign a member to a project that does not exist, for example, assigning a member to the ninth project, you will be responded with an error message as shown below.
 ```
-_____________________________________________________________________________________
 assign m/1 p/9
 _____________________________________________________________________________________
 Project ID does not exist!
-_____________________________________________________________________________________
 ```
 > In the example shown below, there are only 3 members in the list of members.
 > If you try to assign a project to a member that does not exist, for example, assigning a project to the fourth member, you will be responded with an error message as shown below.
 ```
-_____________________________________________________________________________________
 assign m/4 p/1
 _____________________________________________________________________________________
 Team Member ID does not exist!
-_____________________________________________________________________________________
 ```
   
 ---
