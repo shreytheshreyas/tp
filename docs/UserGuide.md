@@ -729,8 +729,10 @@ Task "Deploy Version 2.0" created!
 ```
 task task4
 Certain Parameters are missing!
-```   
-
+```     
+  
+---
+<div style="page-break-after: always;"></div>  
 
 ### 4.1.3. Editing a task name: `edit`
 As you and your team porgess to working on the project you might want to make updates to an existing task name with the new name. This
@@ -755,7 +757,8 @@ ____________________________________________________________
 Task "Read documentation" has been updated to "Update documentation"
 ```
 **Examples of Exception Handling for this command** (Shreyas)
->Editing the name of an invalid task 
+>Editing the name of an invalid task  
+
 ```
 _____________________________________________________________________________________
 edit t/4 n/task4
@@ -763,7 +766,7 @@ ________________________________________________________________________________
 Task ID does not exist!
 _____________________________________________________________________________________
 
-```   
+```  
 
 ### 4.1.4. Marking a task as done: `done`
 During your course of a project you can mark certain tasks as done and this command is used for that purpose. This command allows you to differentiate a task that is completed from a task that is still pending. This ultimately makes your management of a particular project more organised.
@@ -774,7 +777,7 @@ Format: `done t/TASK_INDEX`
 
 Example of usage: 
 
-> Marks the first task in the task list as done.
+> Marks the first task in the task list as done.  
 
 ```
 done t/1 
@@ -792,14 +795,16 @@ Certain Parameters are missing!
 done t/"task1"
 Index must be an integer!
 ```
-> Marking an invalid task-ID as done
+> Marking an invalid task-ID as done  
+
 ```
 _____________________________________________________________________________________
 done p/8
 _____________________________________________________________________________________
 Project ID does not exist!
 _____________________________________________________________________________________
-```
+```  
+
 ### 4.1.5. Adding a deadline to a task: `deadline` (Sean)
 In a typical software engineering project, implementation of various tasks are dependent on the
 completion of other tasks. Easily add deadlines to your tasks with the deadline command. Now your team
