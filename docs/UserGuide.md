@@ -1051,6 +1051,9 @@ sort p
 Certain Parameters are missing!
 _____________________________________________________________________________________
 ```  
+  
+---
+<div style="page-break-after: always;"></div>    
 
 ### 4.1.13. Exiting EZ Manager: `bye` (Samuel Paul Christopher)
 
